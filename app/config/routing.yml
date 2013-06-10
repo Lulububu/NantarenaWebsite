@@ -1,0 +1,12 @@
+# Montage du SiteBundle en mode annotation
+nantarena_site:
+    resource: "@NantarenaSiteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+# Décommentez les lignes suivantes pour activer le controleur du CoreBundle
+#nantarena_core:
+#    resource: "@NantarenaCoreBundle/Controller/"
+#    type:     annotation
+#    prefix:   /core
+

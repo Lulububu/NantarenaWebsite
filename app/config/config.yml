@@ -1,6 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    # ajoutez à la suite les fichiers supplémentaires à charger comme les services.yml
+    # - { resource: "@AcmeHelloBundle/Resources/config/services.yml" }
 
 framework:
     #esi:             ~
