@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {# balises meta (a compléter avec boilerplate) #}
         <meta charset="UTF-8" />
+
+        {# titre de la page #}
         <title>{% block title %}{% endblock %} &ndash; Nantarena</title>
 
+        {# chargement des assets CSS du SiteBundle (note qu'on ne peut pas utiliser @Bundle pour les fichiers CSS)#}
         {% stylesheets 'bundles/nantarenasite/css/*' filter='cssrewrite' %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
         {% endstylesheets %}
 
+        {# fichiers CSS supplémentaires à définir #}
         {% block stylesheets %}{% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {# contenu principal de la page #}
         {% block container %}{% endblock %}
-        {% block javascripts %}
-            {% javascripts '@NantarenaSiteBundle/Resources/public/js/*' %}
-                <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        {% endblock %}
+
+        {# chargement des assets JS du SiteBundle #}
+        {% javascripts '@NantarenaSiteBundle/Resources/public/js/*' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {# fichiers javascript supplémentaires à définir #}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
