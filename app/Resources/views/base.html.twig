@@ -21,6 +21,10 @@
         {# contenu principal de la page #}
         {% block container %}{% endblock %}
 
+        <footer>
+            {{ 'site.authors'|trans }}
+        </footer>
+
         {# chargement des assets JS du SiteBundle #}
         {% javascripts '@NantarenaSiteBundle/Resources/public/js/*' %}
             <script src="{{ asset_url }}"></script>
