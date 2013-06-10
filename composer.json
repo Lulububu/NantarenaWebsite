@@ -1,8 +1,7 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "license": "MIT",
+    "name": "ClubRezo/NantarenaWebsite",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The Nantarena main Website project",
     "autoload": {
         "psr-0": { "": "src/" }
     },
