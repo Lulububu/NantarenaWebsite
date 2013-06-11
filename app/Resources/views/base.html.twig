@@ -18,6 +18,16 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <nav>
+            <ul>
+                {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') and not is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('login') }}">{{ 'nav.login'|trans }}</a></li>
+                {% else %}
+                    <li><a href="{{ path('logout') }}">{{ 'nav.logout'|trans }}</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
         {# contenu principal de la page #}
         {% block container %}{% endblock %}
 

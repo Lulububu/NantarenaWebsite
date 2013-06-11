@@ -4,3 +4,13 @@ site:
   title: Nantarena Website
   authors: Jaconil & Drake
   date: 2013
+
+nav:
+  login: Connexion
+  logout: Déconnexion
+
+login:
+  title: Connexion
+  username: Identifiant
+  password: Mot de passe
+  submit: Connexion

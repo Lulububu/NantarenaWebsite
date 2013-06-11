@@ -4,6 +4,15 @@ nantarena_site:
     type:     annotation
     prefix:   /
 
+# Routes vers le login
+login:
+    pattern:   /login
+    defaults:  { _controller: NantarenaSiteBundle:Security:login }
+login_check:
+    pattern:   /login_check
+logout:
+    pattern:   /logout
+
 # Décommentez les lignes suivantes pour activer le controleur du CoreBundle
 #nantarena_core:
 #    resource: "@NantarenaCoreBundle/Controller/"
