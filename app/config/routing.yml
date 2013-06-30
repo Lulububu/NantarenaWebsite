@@ -3,22 +3,3 @@ nantarena_site:
   resource: "@NantarenaSiteBundle/Controller/"
   type:     annotation
   prefix:   /
-
-# Route vers le login
-login:
-  pattern:   /login
-
-# Route vers le login_check pour Symfony
-login_check:
-  pattern:   /login_check
-
-# Route vers le logout
-logout:
-  pattern:   /logout
-
-# Décommentez les lignes suivantes pour activer le controleur du CoreBundle
-#nantarena_core:
-#  resource: "@NantarenaCoreBundle/Controller/"
-#  type:     annotation
-#  prefix:   /core
-
