@@ -1,6 +1,9 @@
-# fichier contenant la déclaration des services du CoreBundle
 parameters:
-   # mettre ici les paramètres des services
+    nantarena.core.db_prefix: na_
 
 services:
-  # déclarer ici les services
+    nantarena.core.db_prefix:
+        class: Nantarena\CoreBundle\Services\TablePrefixSubscriber
+        arguments: [%nantarena.core.db_prefix%]
+        tags:
+            - {name: doctrine.event_subscriber}
