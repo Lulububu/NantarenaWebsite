@@ -1,4 +1,3 @@
-# fichier contenant la déclaration des services du CoreBundle
 parameters:
    # mettre ici les paramètres des services
 

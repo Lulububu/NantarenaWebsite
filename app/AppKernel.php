@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Nantarena\CoreBundle\NantarenaCoreBundle(),
             new Nantarena\SiteBundle\NantarenaSiteBundle(),
+            new Nantarena\UserBundle\NantarenaUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,35 +1,40 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-      default_provider:
-        memory:
-          users:
-            user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-            admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-            superadmin: { password: superadminpass, roles: [ 'ROLE_SUPER_ADMIN' ] }
-        #entity:
-          # entité User a renseigner ici
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
-      dev:
-          pattern:  ^/(_(profiler|wdt)|css|images|js)/
-          security: false
-      secured_area:
-          pattern:    ^/
-          anonymous:  ~
-          form_login: ~
-          logout:     ~
-          # switch d'user à la volée
-          switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:         ^/
+            form_login:
+                provider:    fos_userbundle
+                login_path:  fos_user_security_login
+                check_path:  fos_user_security_check
+                remember_me: true
+                csrf_provider:  form.csrf_provider
+            remember_me:
+                key:         %secret%
+                lifetime:    3600
+                path:        /
+            logout:
+                path:        fos_user_security_logout
+                target:      /
+            anonymous:       true
+            switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
+
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/logout, roles: ROLE_USER }
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/user, roles: ROLE_USER }
+        - { path: fos_user_security_login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: fos_user_registration_register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }

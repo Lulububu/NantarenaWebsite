@@ -1,0 +1,7 @@
+parameters:
+#    nantarena_user.example.class: Nantarena\UserBundle\Example
+
+services:
+#    nantarena_user.example:
+#        class: %nantarena_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
