@@ -1,9 +1,0 @@
-parameters:
-    nantarena.core.db_prefix: na_
-
-services:
-    nantarena.core.db_prefix:
-        class: Nantarena\CoreBundle\Services\TablePrefixSubscriber
-        arguments: [%nantarena.core.db_prefix%]
-        tags:
-            - {name: doctrine.event_subscriber}

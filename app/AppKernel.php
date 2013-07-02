@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
-            new Nantarena\CoreBundle\NantarenaCoreBundle(),
             new Nantarena\SiteBundle\NantarenaSiteBundle(),
             new Nantarena\UserBundle\NantarenaUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
