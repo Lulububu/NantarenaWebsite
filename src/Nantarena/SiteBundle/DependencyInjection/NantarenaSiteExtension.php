@@ -24,5 +24,7 @@ class NantarenaSiteExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('nantarena_site.db_prefix', $config['db_prefix']);
     }
 }
