@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Nantarena\SiteBundle\NantarenaSiteBundle(),
             new Nantarena\UserBundle\NantarenaUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

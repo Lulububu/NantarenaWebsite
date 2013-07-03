@@ -70,6 +70,22 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Nantarena\UserBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    from_email:
+        address:        noreply@nantarena.net
+        sender_name:    Nantarena
+    registration:
+        form:
+            type: nantarena_user_registration
+        confirmation:
+            enabled: true
 
 nantarena_site:
     db_prefix: %db_prefix%
+
+ewz_recaptcha:
+    public_key:   6LdJteMSAAAAAMEttvfQjPcchEGCajY1YMk8nvKA
+    private_key:  6LdJteMSAAAAACtd2qsSpnhYu-3vm4wOiPJCcI-6
+    secure:       false
+    locale_key:   kernel.default_locale
