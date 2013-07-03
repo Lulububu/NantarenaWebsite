@@ -32,9 +32,3 @@ security:
             anonymous:       true
             switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
 
-
-    access_control:
-        - { path: fos_user_security_login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: fos_user_registration_register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
