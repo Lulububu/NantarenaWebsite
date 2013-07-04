@@ -1,16 +1,15 @@
 <?php
 
-
 namespace Nantarena\UserBundle\Entity;
 
+use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity
  * @ORM\Table()
  */
-class User extends BaseUser
+class Group extends BaseGroup
 {
     /**
      * @ORM\Id
@@ -18,9 +17,4 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Nantarena\UserBundle\Entity\Group")
-     */
-    protected $groups;
 }
