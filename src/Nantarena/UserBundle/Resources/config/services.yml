@@ -4,3 +4,9 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: nantarena_user_registration }
+
+    nantarena_user.role_filter:
+        class: Nantarena\UserBundle\Services\RoleFilter
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
