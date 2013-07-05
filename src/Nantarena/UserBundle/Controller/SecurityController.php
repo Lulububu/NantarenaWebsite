@@ -2,17 +2,17 @@
 
 namespace Nantarena\UserBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use FOS\UserBundle\Controller\SecurityController as BaseController;
+use Symfony\Component\HttpFoundation\Request;
 
 class SecurityController extends BaseController
 {
+    use ControllerFilters;
+
     public function loginAction(Request $request)
     {
-        if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return new RedirectResponse($this->container->get('router')->generate('nantarena_site_home'));
-        }
+        if (null !== ($response = $this->anonymousOnlyFilter()))
+            return $response;
 
         return parent::loginAction($request);
     }
