@@ -4,7 +4,10 @@ news:
         title: 'Liste des news'
 
     news_embed:
-        title: '%title%'
         category: 'Dans la catégorie %category%'
         news_informations: 'Ecrit par %author%, le %date%'
         read: 'Lire la news'
+        title: '%title%'
+
+    show:
+        title: %title%

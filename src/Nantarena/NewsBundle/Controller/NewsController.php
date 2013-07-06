@@ -19,7 +19,7 @@ use Nantarena\NewsBundle\Form\Type\NewsType;
 class NewsController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="nantarena_news_index")
      * @Template()
      */
     public function indexAction()
