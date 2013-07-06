@@ -150,7 +150,14 @@
     </header>
 
     <div id="content" class="container">
-        {% block body %}{% endblock %}
+        <div class="row">
+            {% block raw_body %}
+                <section class="span9">
+                    {% block body %}{% endblock %}
+                </section>
+                {% include 'NantarenaSiteBundle::sidebar.html.twig' %}
+            {% endblock %}
+        </div>
     </div>
 
     <footer>
