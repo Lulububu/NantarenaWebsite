@@ -87,3 +87,9 @@ ewz_recaptcha:
     private_key:  6LdJteMSAAAAACtd2qsSpnhYu-3vm4wOiPJCcI-6
     secure:       false
     locale_key:   kernel.default_locale
+
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            sluggable: true
