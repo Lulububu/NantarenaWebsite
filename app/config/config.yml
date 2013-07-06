@@ -24,12 +24,13 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        fos_csrf_provider: "@form.csrf_provider"
 
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -60,11 +61,6 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
-
-jms_i18n_routing:
-    default_locale: fr
-    locales: [fr, en]
-    strategy: prefix_except_default # prefix or prefix_except_default
 
 fos_user:
     db_driver: orm
