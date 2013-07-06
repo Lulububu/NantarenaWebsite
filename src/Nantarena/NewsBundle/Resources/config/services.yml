@@ -1,0 +1,14 @@
+parameters:
+    # news bundle parameters
+
+services:
+    nantarena_news.news_manager:
+        class: Nantarena\NewsBundle\Manager\NewsManager
+        arguments: [@router]
+
+    nantarena_news.twig.news_extension:
+        class: Nantarena\NewsBundle\Twig\NewsExtension
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [ setContainer, [@service_container] ]

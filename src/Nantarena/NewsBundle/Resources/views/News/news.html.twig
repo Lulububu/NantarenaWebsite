@@ -1,0 +1,29 @@
+<article class="news-article">
+    {% block news %}
+        <header>
+            <h1>
+                {% block news_title %}
+                    {{ 'news.news_embed.title'|trans({'%title%': news.title}) }}
+                {% endblock %}
+            </h1>
+            <p class="news-informations">
+                {% block news_informations %}
+                    {{ 'news.news_embed.news_informations'|trans({'%author%': news.author.username, '%date%': news.date|date('d-m-Y H:i')}) }}
+                {% endblock %}
+            </p>
+            <p class="news-category">
+                {% block news_category %}
+                    {{ 'news.news_embed.category'|trans({'%category%': news.category }) }}
+                {% endblock %}
+            </p>
+        </header>
+        <div class="news-content">
+            {{ news.content|nl2br }}
+        </div>
+        <footer>
+            <p class="news-links">
+                <a href="{{ news_path(news) }}">{{ 'news.news_embed.read'|trans }}</a>
+            </p>
+        </footer>
+    {% endblock %}
+</article>

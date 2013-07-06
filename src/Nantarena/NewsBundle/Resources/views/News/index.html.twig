@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block title 'news.index.title'|trans %}
+
+{% block body %}
+    <h1>{{ 'news.index.title'|trans }}</h1>
+
+    {% for entity in news %}
+        {% embed 'NantarenaNewsBundle:News:news.html.twig' with {'news': entity} %}
+        {% endembed %}
+    {% else %}
+        <p>
+            {{ 'news.index.no_results'|trans }}
+        </p>
+    {% endfor %}
+{% endblock %}
