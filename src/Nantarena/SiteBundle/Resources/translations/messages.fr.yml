@@ -1,16 +1,36 @@
-# fichier de traduction français
-
 site:
-  title: Nantarena Website
-  authors: Jaconil & Drake
-  date: 2013
+    footer:
+        credits: '© Club Rézo Polytech Nantes - Design par Alexis Camilleri et Maxime Guihal'
+        scroll: 'Aller en haut'
 
-nav:
-  login: Connexion
-  logout: Déconnexion
+    login:
+        password: 'Mot de passe'
+        pseudo: Pseudo
+        resetting: 'Retrouver son mot de passe'
 
-login:
-  title: Connexion
-  username: Identifiant
-  password: Mot de passe
-  submit: Connexion
+    menu:
+        admin: Administration
+        medias: Photos
+        news: Actualités
+        profile: Profil
+        signin: Connexion
+        signout: Déconnexion
+        signup: Inscription
+        whoarewe: Présentation
+
+    nav:
+        contact: 'Formulaire de contact'
+        facebook: Facebook
+        forum: Forum
+        info: 'Informations pratiques'
+        irc: 'Chan IRC #nantarena'
+        map: 'Où sommes-nous ?'
+        news: Actualités
+        press: Presse
+        sponsors: 'Nos partenaires'
+        tournaments: 'Les tournois'
+        twitter: Twitter
+        whoarewe: 'Qui sommes-nous ?'
+
+    subtitle: 'Club Rézo Polytech Nantes'
+    title: Nantarena

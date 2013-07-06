@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ 'site.title'|trans }} &ndash; {% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    {# feuilles de style et favicon #}
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    {% stylesheets filter='cssrewrite' 'bundles/nantarenasite/css/*' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% javascripts '@NantarenaSiteBundle/Resources/public/js/modernizr/modernizr-2.6.2.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</head>
+
+<body>
+    <header id="top">
+        <div id="container_header" class="container">
+            <div class="logo">
+                <a href="{{ path('nantarena_site_home') }}">
+                    {{ 'site.title'|trans }} <span>{{ 'site.subtitle'|trans }}</span>
+                </a>
+            </div>
+            <nav id="header">
+                <ul>
+                    <li><a href="#infos" class="info">{{ 'site.nav.info'|trans }}</a></li>
+                    <li><a href="#plan" class="plan">{{ 'site.nav.map'|trans }}</a></li>
+                    <li><a href="#forum" class="forum">{{ 'site.nav.forum'|trans }}</a></li>
+                    <li><a href="#contact" class="contact">{{ 'site.nav.contact'|trans }}</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav id="menu">
+            <ul class="container">
+                <li class="left"><a href="#">{{ 'site.menu.news'|trans }}</a></li>
+                <li class="left"><a href="#">{{ 'site.menu.whoarewe'|trans }}</a></li>
+                <li class="left"><a href="#">{{ 'site.menu.medias'|trans }}</a></li>
+
+                {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li class="right js">
+                        <a class="login">{{ 'site.menu.signin'|trans }}</a>
+                        <div class="loginbox">
+                            <form action="{{ path('fos_user_security_check') }}" method="post">
+                                <div class="inputs">
+                                    <p><input type="text" name="_username" required="required" placeholder="{{ 'site.login.pseudo'|trans }}" class="username" /></p>
+                                    <p><input type="password" name="_password" required="required" placeholder="{{ "site.login.password"|trans }}" class="password" /></p>
+                                    <p><a href="{{ path('fos_user_resetting_request') }}">{{ 'site.login.resetting'|trans }}</a></p>
+                                </div>
+                                <div class="submit">
+                                    <input type="checkbox" name="_remember_me" value="on" checked="checked" class="hide" />
+                                    <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}" />
+                                    <input type="submit" class="btn" name="_submit" />
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li class="right no-js"><a href="{{ path('fos_user_security_login') }}">{{ 'site.menu.signin'|trans }}</a></li>
+
+                    <li class="right"><a href="{{ path('fos_user_registration_register') }}">{{ 'site.menu.signup'|trans }}</a></li>
+                {% else %}
+
+                    <li class="right profile">
+                        {{ app.user.username }}
+                        {#{% if  app.user.getUnreadNotifs() > 0 %}#}
+                            {#<span class="badge"><a href="#">{{ app.user.getUnreadNotifs() }}</a></span>#}
+                        {#{% endif %}#}
+
+                        <ul class="profilebox">
+                            <li><a href="{{ path('fos_user_profile_edit') }}">{{ 'site.menu.profile'|trans }}</a></li>
+
+                            {%  if is_granted('ROLE_ADMIN') %}
+                                <li><a href="#">{{ 'site.menu.admin'|trans }}</a>
+                            {% endif %}
+
+                            <li><a href="{{ path('fos_user_security_logout') }}">{{ 'site.menu.signout'|trans }}</a></li>
+                        </ul>
+                    </li>
+
+                {% endif %}
+            </ul>
+        </nav>
+
+        <div id="banner">
+            <div class="container">
+                <div class="une">
+                    <div class="item">
+                        <span></span>
+                        <div class="une_news">
+                            <p>
+                                <a href="#" title="Nantarena 13.2">
+                                    <img src="http://i.imgur.com/FgGxIxT.png" alt="Nantarena 13.2" style="height: 60%" />
+                                </a>
+                            </p>
+                            <h2>Merci à tous !</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sponsors carousel slide carousel-fade" id="car_sponsors">
+
+                    <ol class="carousel-indicators">
+                        <li data-target="#car_sponsors" data-slide-to="0" class="active"></li>
+                        <li data-target="#car_sponsors" data-slide-to="1"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+
+                        <div class="active item">
+                            <span></span>
+                            <div class="sponsor">
+                                <p>
+                                    <a href="#" title="MSI">
+                                        <img src="http://i.imgur.com/7v1tgYp.png" alt="MSI" />
+                                    </a>
+                                </p>
+                                <h2>Partenaire de la Nantarena</h2>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <span></span>
+                            <div class="sponsor">
+                                <p>
+                                    <a href="#" title="Roccat">
+                                        <img src="http://i.imgur.com/S1A7ejG.jpg" alt="Roccat" />
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="#" title="Roccat">
+                                        <img src="http://i.imgur.com/B62U2Tj.jpg" alt="Roccat" />
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="content" class="container">
+        {% block body %}{% endblock %}
+    </div>
+
+    <footer>
+        <div id="container_footer" class="container">
+            <div class="event">
+                <div class="icon"></div>
+                <ul>
+                    <li><a href="#">{{ 'site.nav.tournaments'|trans }}</a></li>
+                    <li><a href="#">{{ 'site.nav.info'|trans }}</a></li>
+                    <li><a href="#">{{ 'site.nav.map'|trans }}</a></li>
+                    <li><a href="#">{{ 'site.nav.sponsors'|trans }}</a></li>
+                </ul>
+            </div>
+
+            <div class="website">
+                <div class="icon"></div>
+                <ul>
+                    <li><a href="#">{{ 'site.nav.whoarewe'|trans }}</a></li>
+                    <li><a href="#">{{ 'site.nav.news'|trans }}</a></li>
+                    <li><a href="#">{{ 'site.nav.press'|trans }}</a></li>
+                    <li><a href="#">{{ 'site.nav.forum'|trans }}</a></li>
+                </ul>
+            </div>
+
+            <div class="contact">
+                <div class="icon"></div>
+                <ul>
+                    <li><a href="#">{{ 'site.nav.contact'|trans }}</a></li>
+                    <li><a href="http://webchat.quakenet.org/?channels=nantarena">{{ 'site.nav.irc'|trans }}</a></li>
+                </ul>
+            </div>
+
+            <div class="social">
+                <div class="icon"></div>
+                <ul>
+                    <li><a href="https://www.facebook.com/nantarena">{{ 'site.nav.facebook'|trans }}</a></li>
+                    <li><a href="https://www.twitter.com/nantarena">{{ 'site.nav.twitter'|trans }}</a></li>
+                </ul>
+            </div>
+
+            <p>{{ 'site.footer.credits'|trans }}</p>
+
+        </div>
+
+        <div id="scrolltotop"><a href="#top">{{ 'site.footer.scroll'|trans }}</a></div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+    {% javascripts '@NantarenaSiteBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</body>
+</html>
