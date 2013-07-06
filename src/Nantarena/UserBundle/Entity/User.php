@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Nantarena\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
