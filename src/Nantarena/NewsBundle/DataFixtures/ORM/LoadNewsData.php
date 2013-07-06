@@ -22,6 +22,8 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
             ->setAuthor($this->getReference('user-1'));
         $manager->persist($news);
 
+        $this->addReference('news-1', $news);
+
         $news = new News();
         $news
             ->setTitle('Seconde news')
@@ -29,6 +31,8 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
             ->setContent('Une belle news numéro 2')
             ->setAuthor($this->getReference('user-2'));
         $manager->persist($news);
+
+        $this->addReference('news-2', $news);
 
         $manager->flush();
     }
