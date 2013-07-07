@@ -1,0 +1,26 @@
+{% extends "NantarenaUserBundle::layout.html.twig" %}
+
+{% block title 'user.resetting.title'|trans %}
+{% block page_title 'user.resetting.page_title'|trans %}
+
+{% block user_content %}
+    {% if invalid_username is defined %}
+        <div class="alert alert-error">
+            {{ 'user.resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="form-horizontal resetting">
+        <div class="control-group">
+            <label for="username" class="control-label">{{ 'user.form.username'|trans }}</label>
+            <div class="controls">
+                <input type="text" id="username" name="username" required="required" />
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn" value="{{ 'user.resetting.request.submit'|trans }}" />
+            </div>
+        </div>
+    </form>
+{% endblock user_content %}

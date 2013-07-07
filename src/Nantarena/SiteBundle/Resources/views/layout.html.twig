@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
 
+    {% block stylesheets %}{% endblock %}
+
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     {% javascripts '@NantarenaSiteBundle/Resources/public/js/modernizr/modernizr-2.6.2.min.js' %}
@@ -153,9 +155,13 @@
         <div class="row">
             {% block raw_body %}
                 <section class="span9">
+                    {% set block_page_title = block('page_title') %}
+                    {% if block_page_title is not empty %}
+                        <h1>{{ block_page_title|raw }}</h1>
+                    {% endif %}
                     {% block body %}{% endblock %}
                 </section>
-                {% include 'NantarenaSiteBundle::sidebar.html.twig' %}
+                {% include 'NantarenaSiteBundle::_sidebar.html.twig' %}
             {% endblock %}
         </div>
     </div>
@@ -211,5 +217,7 @@
     {% javascripts '@NantarenaSiteBundle/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    {% block javascripts %}{% endblock %}
 </body>
 </html>

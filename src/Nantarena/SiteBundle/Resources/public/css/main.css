@@ -542,6 +542,27 @@
         font-style: italic;
     }
 
+/* Contenu */
+    h1 {
+        text-align: center;
+        font-family: 'Lato';
+        font-size: 40px;
+        font-weight: normal;
+        text-shadow: 1px 1px rgba(255, 255, 255, 1);
+        color: #51565B;
+        line-height: 0px;
+        margin-top: 30px;
+    }
+
+    h1:after {
+        content: '';
+        background: url("../images/separator.png");
+        height: 50px;
+        margin: auto;
+        width: 500px;
+        display: block;
+    }
+
 /* Articles */
     .news article {
         margin-bottom: 30px;

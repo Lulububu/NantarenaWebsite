@@ -1,0 +1,82 @@
+'Bad credentials': 'Nom d''utilisateur ou mot de passe incorrect'
+
+user:
+    change_password:
+        back: 'Retour au profil'
+
+        flash:
+            success: 'Le mot de passe a été modifié'
+
+        page_title: 'Changement de mot de passe'
+        submit: 'Modifier le mot de passe'
+        title: 'Changement de mot de passe'
+
+    form:
+        current_password: 'Mot de passe actuel :'
+        email: 'E-Mail :'
+        new_password: 'Nouveau mot de passe :'
+        password: 'Mot de passe :'
+        recaptcha: 'Image de vérification :'
+        remember_me: 'Se souvenir de moi'
+        repeated: 'Vérification :'
+        username: 'Pseudo :'
+
+    login:
+        page_title: Connexion
+        submit: Connexion
+        title: Connexion
+
+    profile:
+        edit:
+            submit: 'Mettre à jour'
+
+        flash:
+            updated: 'Le profil a été mis à jour'
+
+        page_title: 'Mon profil'
+
+        show:
+            email: 'Adresse e-mail'
+            username: 'Nom d''utilisateur'
+
+        submit: Mettre-à-jour
+        title: 'Mon profil'
+
+    registration:
+        back: 'Retour à la page d''origine.'
+        check_email: "Un e-mail a été envoyé à l'adresse %email%.\nIl contient un lien d'activation sur lequel il vous faudra cliquer afin d'activer votre compte.\n"
+        confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
+
+        email:
+            message: "Bonjour %username% !\n\nPour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
+            subject: 'Bienvenue sur le site de la Nantarena, %username% !'
+
+        flash:
+            user_created: 'L''utilisateur a été créé avec succès'
+
+        page_title: Inscription
+        submit: 'S''inscrire'
+        title: Inscription
+
+    resetting:
+        check_email: "Un e-mail a été envoyé à l''adresse %email%.\nIl contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.\n"
+
+        email:
+            message: "Bonjour %username% !\n\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
+            subject: 'Réinitialisation de votre mot de passe'
+
+        flash:
+            success: 'Le mot de passe a été réinitialisé avec succès'
+
+        page_title: 'Retrouver son mot de passe'
+        password_already_requested: 'Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.'
+
+        request:
+            invalid_username: 'Le nom d''utilisateur ou l''adresse e-mail "%username%" n''existe pas.'
+            submit: 'Réinitialiser le mot de passe'
+            username: 'Nom d''utilisateur ou adresse e-mail :'
+
+        reset:
+            submit: 'Modifier le mot de passe'
+
+        title: 'Retrouver son mot de passe'

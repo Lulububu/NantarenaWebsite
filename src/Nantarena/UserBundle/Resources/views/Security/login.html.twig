@@ -1,0 +1,45 @@
+{% extends "NantarenaUserBundle::layout.html.twig" %}
+
+{% block title 'user.login.title'|trans %}
+{% block page_title 'user.login.page_title'|trans %}
+
+{% block user_content %}
+    {% if error %}
+        <div class="alert alert-error">
+            {{ error|trans }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal login" novalidate>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        <div class="control-group">
+            <label for="username" class="control-label">{{ 'user.form.username'|trans }}</label>
+            <div class="controls">
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="password" class="control-label">{{ 'user.form.password'|trans }}</label>
+            <div class="controls">
+                <input type="password" id="password" name="_password" required="required" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    {{ 'user.form.remember_me'|trans }}
+                </label>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" id="_submit" name="_submit" class="btn" value="{{ 'user.login.submit'|trans }}" />
+            </div>
+        </div>
+    </form>
+{% endblock user_content %}
