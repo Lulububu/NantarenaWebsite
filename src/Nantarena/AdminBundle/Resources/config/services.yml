@@ -1,0 +1,4 @@
+services:
+    nantarena_admin.dashboard_service:
+        class: Nantarena\AdminBundle\Services\Dashboard
+

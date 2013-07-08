@@ -1,3 +1,9 @@
+# Montage du AdminBundle en mode annotation
+nantarena_admin:
+    resource: "@NantarenaAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
 # Montage du NewsBundle en mode annotation
 nantarena_news:
     resource: "@NantarenaNewsBundle/Controller/"

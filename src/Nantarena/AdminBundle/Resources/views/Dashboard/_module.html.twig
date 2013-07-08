@@ -1,0 +1,9 @@
+<h3>{% block module_title %}{{ module_title }}{% endblock %}</h3>
+
+{% block module_links %}
+<ul>
+    {% for link, url in module_links %}
+        <li><a href="{{ url }}">{{ link }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

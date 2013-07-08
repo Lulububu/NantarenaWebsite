@@ -1,0 +1,21 @@
+div.module {
+    border: solid darkgrey 1px;
+    width: 47%;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(200,200,200,0.3);
+}
+
+div.module h3 {
+    color: #51565B;
+    font-family: 'Lato';
+    margin: 0;
+}
+
+div.module ul {
+    list-style-type: none;
+    margin: 0;
+}
