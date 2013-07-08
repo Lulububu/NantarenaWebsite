@@ -10,7 +10,6 @@ class DashboardCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-
         if (!$container->hasDefinition('nantarena_admin.dashboard_service')) {
             return;
         }

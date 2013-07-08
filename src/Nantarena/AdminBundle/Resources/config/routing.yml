@@ -1,3 +1,0 @@
-nantarena_admin_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: NantarenaAdminBundle:Default:index }
