@@ -37,6 +37,10 @@ class NewsController extends Controller
      */
     public function showAction(News $news)
     {
+        if (News::STATE_UNPUBLISHED === $news->getState()) {
+            return $this->redirect($this->generateUrl('nantarena_news_index'));
+        }
+
         $form = $this->createForm(new CommentType(), null, array(
             'action' => $this->get('nantarena_news.comment_manager')->getCreateCommentPath($news),
             'method' => 'POST',

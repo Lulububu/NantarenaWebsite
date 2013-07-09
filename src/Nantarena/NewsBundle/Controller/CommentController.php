@@ -23,6 +23,10 @@ class CommentController extends Controller
      */
     public function createAction(Request $request, News $news)
     {
+        if (News::STATE_UNPUBLISHED === $news->getState()) {
+            return $this->redirect($this->generateUrl('nantarena_news_index'));
+        }
+
         $comment = new Comment();
         $form = $this->createForm(new CommentType(), $comment, array(
             'action' => $this->get('nantarena_news.comment_manager')->getCreateCommentPath($news),
