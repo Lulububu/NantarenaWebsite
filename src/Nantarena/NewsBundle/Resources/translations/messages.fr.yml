@@ -26,7 +26,7 @@ news:
             flash_success: 'Le commentaire a été supprimé avec succès'
 
     comment_embed:
-        delete: 'Supprimer'
+        delete: Supprimer
         informations: 'Ecrit par %author% le %date%'
 
     entity:
@@ -43,6 +43,9 @@ news:
 
         create:
             legend: 'Créer une nouvelle news'
+
+        delete:
+            cancel: Annuler
 
         edit:
             legend: 'Editer une news'

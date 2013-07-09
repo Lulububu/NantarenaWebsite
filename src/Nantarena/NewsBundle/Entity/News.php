@@ -80,7 +80,7 @@ class News
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Nantarena\NewsBundle\Entity\Comment", mappedBy="news")
+     * @ORM\OneToMany(targetEntity="Nantarena\NewsBundle\Entity\Comment", mappedBy="news", cascade={"remove"})
      */
     protected $comments;
 
