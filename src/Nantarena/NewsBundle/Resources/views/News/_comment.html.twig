@@ -1,0 +1,13 @@
+<div class="news-comment">
+    <p>
+        {{ 'news.comment_embed.informations'|trans({'%author%': comment.author, '%date%': comment.date|date('d-m-Y à H:i')}) }}
+    </p>
+    <p>
+        {{ comment.content|nl2br }}
+    </p>
+    {% if app.user == comment.author %}
+        <p>
+            <a href="{{ comment_delete_path(comment) }}">{{ 'news.comment_embed.delete'|trans }}</a>
+        </p>
+    {% endif %}
+</div>

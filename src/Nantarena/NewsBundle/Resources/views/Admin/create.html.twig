@@ -2,8 +2,6 @@
 
 {% block body %}
     {% embed 'NantarenaNewsBundle:Form:_news.html.twig' with {'form': form} %}
-        {% block form_news_legend %}
-            {{ 'news.form.edit.legend'|trans }}
-        {% endblock %}
+        {% block form_news_legend %}{{ 'news.form.create.legend'|trans }}{% endblock %}
     {% endembed %}
 {% endblock %}

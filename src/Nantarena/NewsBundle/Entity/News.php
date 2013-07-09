@@ -2,6 +2,8 @@
 
 namespace Nantarena\NewsBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Nantarena\UserBundle\Entity\User;
@@ -16,6 +18,9 @@ use Nantarena\UserBundle\Entity\User;
  */
 class News
 {
+    const STATE_PUBLISHED = true;
+    const STATE_UNPUBLISHED = false;
+
     /**
      * @var integer
      *
@@ -29,6 +34,7 @@ class News
      * @var string
      *
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank()
      */
     protected $title;
 
@@ -36,6 +42,7 @@ class News
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime()
      */
     protected $date;
 
@@ -50,6 +57,7 @@ class News
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Nantarena\NewsBundle\Entity\Category", inversedBy="relatedNews")
+     * @Assert\NotNull()
      */
     protected $category;
 
@@ -57,14 +65,31 @@ class News
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     protected $content;
 
     /**
+     * @var string
+     *
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=64, unique=true)
      */
     protected $slug;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Nantarena\NewsBundle\Entity\Comment", mappedBy="news")
+     */
+    protected $comments;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $state = false;
 
     /**
      * Constructeur par défaut
@@ -194,5 +219,43 @@ class News
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $comments
+     * @return $this
+     */
+    public function setComments(ArrayCollection $comments)
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param $state
+     * @return $this
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

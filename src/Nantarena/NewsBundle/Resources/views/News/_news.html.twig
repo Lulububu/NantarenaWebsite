@@ -8,7 +8,7 @@
             </h1>
             <p class="news-informations">
                 {% block news_informations %}
-                    {{ 'news.news_embed.news_informations'|trans({'%author%': news.author.username, '%date%': news.date|date('d-m-Y H:i')}) }}
+                    {{ 'news.news_embed.news_informations'|trans({'%author%': news.author.username, '%date%': news.date|date('d-m-Y à H:i')}) }}
                 {% endblock %}
             </p>
             <p class="news-category">
@@ -21,9 +21,12 @@
             {{ news.content|nl2br }}
         </div>
         <footer>
-            <p class="news-links">
-                <a href="{{ news_path(news) }}">{{ 'news.news_embed.read'|trans }}</a>
-            </p>
+            {% block news_footer %}
+                <p class="news-links">
+                    <a href="{{ news_path(news) }}">{{ 'news.news_embed.read'|trans }}</a>
+                    <a href="{{ news_path(news) }}#comments">{{ 'news.news_embed.comments'|transchoice(news.comments|length, {'%count_comments%': news.comments|length}) }}</a>
+                </p>
+            {% endblock %}
         </footer>
     {% endblock %}
 </article>

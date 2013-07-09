@@ -7,6 +7,14 @@
         <title>{% block title %}{% endblock %} &ndash; Dev Page</title>
     </head>
     <body>
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %}{% endblock %}
     </body>
 </html>

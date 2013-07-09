@@ -14,6 +14,13 @@ class NewsType extends AbstractType
             ->add('title')
             ->add('category')
             ->add('content')
+            ->add('state', 'choice', array(
+                'choices' => array(
+                    true => 'news.state.published',
+                    false => 'news.state.unpublished'
+                ),
+            ))
+            ->add('save', 'submit')
         ;
     }
 

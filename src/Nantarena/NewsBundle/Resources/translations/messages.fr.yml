@@ -1,13 +1,76 @@
 news:
+    admin:
+        create:
+            flash_error: 'La news "%title%" n''a pas pu être ajoutée'
+            flash_success: 'La news "%title%" a été ajoutée avec succès'
+
+        delete:
+            flash_error: 'Impossible de supprimer la news'
+            flash_success: 'La news a bien été supprimée'
+
+        edit:
+            flash_error: 'La news "%title%" n''a pas pu être éditée'
+            flash_success: 'La news "%title%" a été éditée avec succès'
+
+        index:
+            actions: Actions
+            create: 'Créer une nouvelle news'
+
+    comment:
+        create:
+            flash_error: 'Le commentaire n''a pas pu être ajouté'
+            flash_success: 'Commentaire ajouté avec succès'
+
+        delete:
+            flash_error: 'Le commentaire n''a pas pu être supprimé'
+            flash_success: 'Le commentaire a été supprimé avec succès'
+
+    comment_embed:
+        delete: 'Supprimer'
+        informations: 'Ecrit par %author% le %date%'
+
+    entity:
+        author: Auteur
+        category: Catégorie
+        date: Date
+        id: Id
+        state: Etat
+        title: Titre
+
+    form:
+        comment:
+            legend: 'Commenter la news'
+
+        create:
+            legend: 'Créer une nouvelle news'
+
+        edit:
+            legend: 'Editer une news'
+
     index:
         no_results: 'Aucune news à afficher'
         title: 'Liste des news'
 
     news_embed:
         category: 'Dans la catégorie %category%'
+        comments: '{0} Aucun commentaire|{1} Un commentaire|]1,Inf] %count_comments% commentaires'
         news_informations: 'Ecrit par %author%, le %date%'
         read: 'Lire la news'
         title: '%title%'
 
+    publish:
+        flash_success: 'La news est maintenant publiée'
+
     show:
-        title: %title%
+        comments: Commentaires
+        comments.no_results: 'Aucun commentaire'
+        title: '%title%'
+
+    state:
+        publish: 'Publier la news'
+        published: Publiée
+        unpublish: 'Passer en brouillon'
+        unpublished: Brouillon
+
+    unpublish:
+        flash_success: 'La news est maintenant en brouillon'

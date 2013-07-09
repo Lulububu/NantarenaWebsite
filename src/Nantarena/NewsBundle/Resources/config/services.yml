@@ -6,8 +6,19 @@ services:
         class: Nantarena\NewsBundle\Manager\NewsManager
         arguments: [@router]
 
+    nantarena_news.comment_manager:
+        class: Nantarena\NewsBundle\Manager\CommentManager
+        arguments: [@router]
+
     nantarena_news.twig.news_extension:
         class: Nantarena\NewsBundle\Twig\NewsExtension
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [ setContainer, [@service_container] ]
+
+    nantarena_news.twig.comment_extension:
+        class: Nantarena\NewsBundle\Twig\CommentExtension
         tags:
             - { name: twig.extension }
         calls:

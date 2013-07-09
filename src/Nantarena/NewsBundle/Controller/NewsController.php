@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Nantarena\NewsBundle\Entity\News;
-use Nantarena\NewsBundle\Form\Type\NewsType;
+use Nantarena\NewsBundle\Form\Type\CommentType;
 
 /**
  * Class NewsController
@@ -25,18 +25,26 @@ class NewsController extends Controller
     public function indexAction()
     {
         return array(
-            'news' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findAll(),
+            'news' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findBy(array(
+                'state' => News::STATE_PUBLISHED,
+            )),
         );
     }
 
     /**
-     * @Route("/{id}-{slug}", name="nantarena_site_news_show")
+     * @Route("/{id}-{slug}", name="nantarena_news_show")
      * @Template()
      */
-    public function showAction($id, News $news)
+    public function showAction(News $news)
     {
+        $form = $this->createForm(new CommentType(), null, array(
+            'action' => $this->get('nantarena_news.comment_manager')->getCreateCommentPath($news),
+            'method' => 'POST',
+        ));
+
         return array(
             'news' => $news,
+            'form' => $form->createView(),
         );
     }
 }

@@ -32,3 +32,6 @@ security:
             anonymous:       true
             switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
 
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/news/comment, roles: ROLE_USER }

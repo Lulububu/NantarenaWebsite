@@ -2,6 +2,7 @@
 
 namespace Nantarena\NewsBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,7 +28,8 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, unique=true)
+     * @Assert\NotBlank()
      */
     protected $name;
 

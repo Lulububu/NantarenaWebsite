@@ -3,6 +3,24 @@
 {% block title 'news.show.title'|trans({'%title%': news.title}) %}
 
 {% block body %}
-    {% embed 'NantarenaNewsBundle:News:news.html.twig' with {'news': news} %}
+    {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': news} %}
+    {% endembed %}
+
+    <div class="news-comments">
+        <h2>{{ 'news.show.comments'|trans }}</h2>
+
+        <div id="comments">
+            {% for comment in news.comments %}
+                {% embed 'NantarenaNewsBundle:News:_comment.html.twig' with {'comment': comment} %}
+                {% endembed %}
+            {% else %}
+                <p>
+                    {{ 'news.show.comments.no_results'|trans }}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% embed 'NantarenaNewsBundle:Form:_comment.html.twig' with {'form': form} %}
     {% endembed %}
 {% endblock %}

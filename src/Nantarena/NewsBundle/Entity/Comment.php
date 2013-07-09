@@ -2,6 +2,7 @@
 
 namespace Nantarena\NewsBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Nantarena\UserBundle\Entity\User;
 
@@ -29,19 +30,29 @@ class Comment
      *
      * @ORM\ManyToOne(targetEntity="Nantarena\UserBundle\Entity\User")
      */
-    protected $user;
+    protected $author;
 
     /**
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     protected $content;
 
     /**
      * @var \DateTime
+     *
+     * @Assert\DateTime()
      */
     protected $date;
+
+    /**
+     * @var News
+     *
+     * @ORM\ManyToOne(targetEntity="Nantarena\NewsBundle\Entity\News", inversedBy="comments")
+     */
+    protected $news;
 
     public function __construct()
     {
@@ -71,7 +82,7 @@ class Comment
      * @param \DateTime $date
      * @return $this
      */
-    public function setDate($date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
 
@@ -98,9 +109,9 @@ class Comment
      * @param \Nantarena\UserBundle\Entity\User $user
      * @return $this
      */
-    public function setUser($user)
+    public function setAuthor(User $user)
     {
-        $this->user = $user;
+        $this->author = $user;
 
         return $this;
     }
@@ -108,8 +119,27 @@ class Comment
     /**
      * @return \Nantarena\UserBundle\Entity\User
      */
-    public function getUser()
+    public function getAuthor()
     {
-        return $this->user;
+        return $this->author;
+    }
+
+    /**
+     * @param \Nantarena\NewsBundle\Entity\News $news $news
+     * @return $this
+     */
+    public function setNews(News $news)
+    {
+        $this->news = $news;
+
+        return $this;
+    }
+
+    /**
+     * @return \Nantarena\NewsBundle\Entity\News
+     */
+    public function getNews()
+    {
+        return $this->news;
     }
 }

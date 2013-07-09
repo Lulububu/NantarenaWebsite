@@ -1,0 +1,13 @@
+<fieldset>
+    {% block form_news_fieldset %}
+        <legend>{% block form_news_legend %}{% endblock %}</legend>
+
+        {% block form_news_form %}
+            {{ form_start(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.category) }}
+                {{ form_row(form.content) }}
+            {{ form_end(form) }}
+        {% endblock %}
+    {% endblock %}
+</fieldset>

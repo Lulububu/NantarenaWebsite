@@ -1,0 +1,38 @@
+{% extends 'NantarenaSiteBundle::layout_dev.html.twig' %}
+
+{% block body %}
+    <p>
+        <a href="{{ path('nantarena_news_admin_create') }}">{{ 'news.admin.index.create'|trans }}</a>
+    </p>
+    <table>
+        <tr>
+            <th>{{ 'news.entity.id'|trans }}</th>
+            <th>{{ 'news.entity.date'|trans }}</th>
+            <th>{{ 'news.entity.category'|trans }}</th>
+            <th>{{ 'news.entity.title'|trans }}</th>
+            <th>{{ 'news.entity.author'|trans }}</th>
+            <th>{{ 'news.entity.state'|trans }}</th>
+            <th>{{ 'news.admin.index.actions'|trans }}</th>
+        </tr>
+        {% for n in news %}
+            <tr>
+                <td>{{ n.id }}</td>
+                <td>{{ n.date|date('Y-m-d H:i') }}</td>
+                <td>{{ n.category }}</td>
+                <td>{{ n.title }}</td>
+                <td>{{ n.author }}</td>
+                <td>{{ news_state(n) }}</td>
+                <td>
+                    <a href="{{ news_path(n) }}">Voir</a>
+                    {% if n.state == false %}
+                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'published'}) }}">{{ 'news.state.publish'|trans }}</a>
+                    {% else %}
+                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'unpublished'}) }}">{{ 'news.state.unpublish'|trans }}</a>
+                    {% endif %}
+                    <a href="{{ news_edit_path(n) }}">Editer</a>
+                    <a href="{{ news_delete_path(n) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
