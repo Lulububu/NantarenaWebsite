@@ -3,18 +3,22 @@ news:
         create:
             flash_error: 'La news "%title%" n''a pas pu être ajoutée'
             flash_success: 'La news "%title%" a été ajoutée avec succès'
+            title: 'Créer une news'
 
         delete:
             flash_error: 'Impossible de supprimer la news'
             flash_success: 'La news a bien été supprimée'
+            title: 'Supprimer la news'
 
         edit:
             flash_error: 'La news "%title%" n''a pas pu être éditée'
             flash_success: 'La news "%title%" a été éditée avec succès'
+            title: 'Editer une news'
 
         index:
             actions: Actions
             create: 'Créer une nouvelle news'
+            title: 'Administration des news'
 
     comment:
         create:
@@ -46,6 +50,7 @@ news:
 
         delete:
             cancel: Annuler
+            legend: 'Confirmer la suppression'
 
         edit:
             legend: 'Editer une news'
@@ -55,9 +60,8 @@ news:
         title: 'Liste des news'
 
     news_embed:
-        category: 'Dans la catégorie %category%'
+        category: 'Publiée dans la catégorie %category%'
         comments: '{0} Aucun commentaire|{1} Un commentaire|]1,Inf] %count_comments% commentaires'
-        news_informations: 'Ecrit par %author%, le %date%'
         read: 'Lire la news'
         title: '%title%'
 

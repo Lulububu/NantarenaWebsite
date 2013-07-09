@@ -1,6 +1,10 @@
-{% extends 'NantarenaSiteBundle::layout_dev.html.twig' %}
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
 
-{% block body %}
+{% block title 'news.admin.edit.title'|trans %}
+
+{% block page_title 'news.admin.edit.title'|trans %}
+
+{% block admin_content %}
     {% embed 'NantarenaNewsBundle:Form:_news.html.twig' with {'form': form} %}
         {% block form_news_legend %}
             {{ 'news.form.edit.legend'|trans }}

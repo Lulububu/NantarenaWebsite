@@ -1,5 +1,9 @@
-{% extends 'NantarenaSiteBundle::layout_dev.html.twig' %}
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
 
-{% block body %}
+{% block title 'news.admin.delete.title'|trans %}
+
+{% block page_title 'news.admin.delete.title'|trans %}
+
+{% block admin_content %}
     {% include 'NantarenaNewsBundle:Form:_delete.html.twig' with {'form': form} %}
 {% endblock %}

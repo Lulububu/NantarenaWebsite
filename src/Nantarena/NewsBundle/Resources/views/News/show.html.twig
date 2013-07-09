@@ -1,9 +1,12 @@
-{% extends 'NantarenaSiteBundle::layout_dev.html.twig' %}
+{% extends 'NantarenaNewsBundle::layout.html.twig' %}
 
 {% block title 'news.show.title'|trans({'%title%': news.title}) %}
 
+{% block page_title 'news.show.title'|trans({'%title%': news.title}) %}
+
 {% block body %}
     {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': news} %}
+        {% block news_title %}{% endblock %}
     {% endembed %}
 
     <div class="news-comments">

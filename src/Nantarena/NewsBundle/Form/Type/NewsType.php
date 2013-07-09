@@ -2,6 +2,7 @@
 
 namespace Nantarena\NewsBundle\Form\Type;
 
+use Nantarena\NewsBundle\Entity\News;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -11,13 +12,22 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', 'text', array(
+                'attr' => array(
+                    'class' => 'input-block-level',
+                )
+            ))
             ->add('category')
-            ->add('content')
+            ->add('content', 'textarea', array(
+                'attr' => array(
+                    'class' => 'input-block-level',
+                    'rows' => 25,
+                )
+            ))
             ->add('state', 'choice', array(
                 'choices' => array(
-                    true => 'news.state.published',
-                    false => 'news.state.unpublished'
+                    News::STATE_PUBLISHED => 'news.state.published',
+                    News::STATE_UNPUBLISHED => 'news.state.unpublished',
                 ),
             ))
             ->add('save', 'submit')

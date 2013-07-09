@@ -1,10 +1,14 @@
-{% extends 'NantarenaSiteBundle::layout_dev.html.twig' %}
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
 
-{% block body %}
+{% block title 'news.admin.index.title'|trans %}
+
+{% block page_title 'news.admin.index.title'|trans %}
+
+{% block admin_content %}
     <p>
-        <a href="{{ path('nantarena_news_admin_create') }}">{{ 'news.admin.index.create'|trans }}</a>
+        <a href="{{ path('nantarena_news_admin_create') }}" class="btn btn-primary">{{ 'news.admin.index.create'|trans }}</a>
     </p>
-    <table>
+    <table class="table-stripe table">
         <tr>
             <th>{{ 'news.entity.id'|trans }}</th>
             <th>{{ 'news.entity.date'|trans }}</th>
@@ -19,18 +23,17 @@
                 <td>{{ n.id }}</td>
                 <td>{{ n.date|date('Y-m-d H:i') }}</td>
                 <td>{{ n.category }}</td>
-                <td>{{ n.title }}</td>
+                <td><a href="{{ news_path(n) }}">{{ n.title }}</a></td>
                 <td>{{ n.author }}</td>
                 <td>{{ news_state(n) }}</td>
                 <td>
-                    <a href="{{ news_path(n) }}">Voir</a>
                     {% if n.state == false %}
-                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'published'}) }}">{{ 'news.state.publish'|trans }}</a>
+                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'published'}) }}" class="btn btn-mini">{{ 'news.state.publish'|trans }}</a>
                     {% else %}
-                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'unpublished'}) }}">{{ 'news.state.unpublish'|trans }}</a>
+                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'unpublished'}) }}" class="btn btn-mini">{{ 'news.state.unpublish'|trans }}</a>
                     {% endif %}
-                    <a href="{{ news_edit_path(n) }}">Editer</a>
-                    <a href="{{ news_delete_path(n) }}">Supprimer</a>
+                    <a href="{{ news_edit_path(n) }}" class="btn btn-mini">Editer</a>
+                    <a href="{{ news_delete_path(n) }}" class="btn btn-danger btn-mini">Supprimer</a>
                 </td>
             </tr>
         {% endfor %}

@@ -1,16 +1,18 @@
-{% extends 'NantarenaSiteBundle::layout_dev.html.twig' %}
+{% extends 'NantarenaNewsBundle::layout.html.twig' %}
 
 {% block title 'news.index.title'|trans %}
 
-{% block body %}
-    <h1>{{ 'news.index.title'|trans }}</h1>
+{% block page_title 'news.index.title'|trans %}
 
-    {% for entity in news %}
-        {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': entity} %}
-        {% endembed %}
-    {% else %}
-        <p>
-            {{ 'news.index.no_results'|trans }}
-        </p>
-    {% endfor %}
+{% block body %}
+    <div class="news">
+        {% for entity in news %}
+            {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': entity} %}
+            {% endembed %}
+        {% else %}
+            <p>
+                {{ 'news.index.no_results'|trans }}
+            </p>
+        {% endfor %}
+    </div>
 {% endblock %}

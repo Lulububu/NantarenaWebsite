@@ -14,6 +14,12 @@ class HomeController extends Controller
      */
     public function homeAction()
     {
-        return array();
+        $latest = $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findBy(array(), array(
+            'id' => 'desc',
+        ), 5);
+
+        return array(
+            'latest' => $latest,
+        );
     }
 }

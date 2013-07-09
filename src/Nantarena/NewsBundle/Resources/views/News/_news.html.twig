@@ -1,19 +1,16 @@
 <article class="news-article">
     {% block news %}
         <header>
-            <h1>
+            <h2>
                 {% block news_title %}
                     {{ 'news.news_embed.title'|trans({'%title%': news.title}) }}
                 {% endblock %}
-            </h1>
+            </h2>
             <p class="news-informations">
                 {% block news_informations %}
-                    {{ 'news.news_embed.news_informations'|trans({'%author%': news.author.username, '%date%': news.date|date('d-m-Y à H:i')}) }}
-                {% endblock %}
-            </p>
-            <p class="news-category">
-                {% block news_category %}
-                    {{ 'news.news_embed.category'|trans({'%category%': news.category }) }}
+                    <a href="#">{{ news.author }}</a>
+                    <span>{{ news.date|date('d/m/Y') }}</span>
+                    <span>{{ news.date|date('H:i') }}</span>
                 {% endblock %}
             </p>
         </header>
@@ -22,6 +19,11 @@
         </div>
         <footer>
             {% block news_footer %}
+                <p class="news-category">
+                    {% block news_category %}
+                        {{ 'news.news_embed.category'|trans({'%category%': news.category }) }}
+                    {% endblock %}
+                </p>
                 <p class="news-links">
                     <a href="{{ news_path(news) }}">{{ 'news.news_embed.read'|trans }}</a>
                     <a href="{{ news_path(news) }}#comments">{{ 'news.news_embed.comments'|transchoice(news.comments|length, {'%count_comments%': news.comments|length}) }}</a>

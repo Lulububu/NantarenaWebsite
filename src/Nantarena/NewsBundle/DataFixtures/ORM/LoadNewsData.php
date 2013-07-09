@@ -19,7 +19,8 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
             ->setTitle('Première news')
             ->setCategory($this->getReference('category-1'))
             ->setContent('Une belle news numéro 1')
-            ->setAuthor($this->getReference('user-1'));
+            ->setAuthor($this->getReference('user-1'))
+            ->setState(News::STATE_PUBLISHED);
         $manager->persist($news);
 
         $this->addReference('news-1', $news);
