@@ -13,7 +13,7 @@ use Nantarena\UserBundle\Entity\User;
  *
  * @package Nantarena\NewsBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Nantarena\NewsBundle\Repository\NewsRepository")
  * @ORM\Table(name="news_news")
  */
 class News

@@ -30,7 +30,6 @@ class NewsType extends AbstractType
                     News::STATE_UNPUBLISHED => 'news.state.unpublished',
                 ),
             ))
-            ->add('save', 'submit')
         ;
     }
 

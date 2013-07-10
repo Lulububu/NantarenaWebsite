@@ -3,6 +3,12 @@
 
     {{ form_start(form) }}
         {{ form_row(form.id) }}
-        {{ form_row(form.delete) }} <a href="{{ path('nantarena_news_admin_index') }}">{{ 'news.form.delete.cancel'|trans }}</a>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn" value="{{ 'news.form.delete.submit'|trans }}" />
+                <a href="{{ path('nantarena_news_admin_index') }}">{{ 'news.form.delete.cancel'|trans }}</a>
+            </div>
+        </div>
     {{ form_end(form) }}
 </fieldset>

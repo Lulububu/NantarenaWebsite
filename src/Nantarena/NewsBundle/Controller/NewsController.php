@@ -24,10 +24,15 @@ class NewsController extends Controller
      */
     public function indexAction()
     {
+        $newsRepository = $this->getDoctrine()->getRepository('NantarenaNewsBundle:News');
+        $page = $this->getRequest()->get('page', 1);
+        $limit = 5;
+        $offset = ($page - 1) * 5;
+
         return array(
-            'news' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findBy(array(
-                'state' => News::STATE_PUBLISHED,
-            )),
+            'news' => $newsRepository->findAllPublished($limit, $offset),
+            'count' => ceil($newsRepository->countAllPublished() / 5),
+            'page' => $page,
         );
     }
 

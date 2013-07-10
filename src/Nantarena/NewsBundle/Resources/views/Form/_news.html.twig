@@ -8,7 +8,10 @@
                 {{ form_row(form.category) }}
                 {{ form_row(form.content) }}
                 {{ form_row(form.state) }}
-                {{ form_row(form.save) }}
+
+                {% block form_news_actions %}
+
+                {% endblock %}
             {{ form_end(form) }}
         {% endblock %}
     {% endblock %}

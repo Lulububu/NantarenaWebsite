@@ -3,5 +3,11 @@
 
     {{ form_start(form) }}
         {{ form_row(form.content) }}
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn" value="{{ 'news.form.comment.submit'|trans }}" />
+            </div>
+        </div>
     {{ form_end(form) }}
 </fieldset>

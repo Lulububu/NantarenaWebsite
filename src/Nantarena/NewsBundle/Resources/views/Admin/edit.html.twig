@@ -6,8 +6,14 @@
 
 {% block admin_content %}
     {% embed 'NantarenaNewsBundle:Form:_news.html.twig' with {'form': form} %}
-        {% block form_news_legend %}
-            {{ 'news.form.edit.legend'|trans }}
+        {% block form_news_legend %}{{ 'news.form.edit.legend'|trans }}{% endblock %}
+        {% block form_news_actions %}
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary" value="{{ 'news.form.edit.submit'|trans }}" />
+                    <input type="reset" class="btn" value="{{ 'news.form.edit.reset'|trans }}" />
+                </div>
+            </div>
         {% endblock %}
     {% endembed %}
 {% endblock %}
