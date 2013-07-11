@@ -15,8 +15,7 @@ class CommentType extends AbstractType
                 'attr' => array(
                     'class' => 'input-block-level',
                 )
-            ))
-            ->add('create', 'submit');
+            ));
 
     }
 

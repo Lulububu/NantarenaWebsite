@@ -1,0 +1,9 @@
+{% set offset_start = (page - 5 < 1) ? 1 : page - 5 %}
+{% set offset_end = (page + 5 > count) ? count : page + 5 %}
+<div class="pagination">
+    <ul>
+        {% for p in offset_start..offset_end %}
+            <li{% if p == page %} class="active"{% endif %}><a href="{{ path('nantarena_news_index', {'page': p}) }}">{{ p }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

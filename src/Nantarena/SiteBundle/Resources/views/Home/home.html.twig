@@ -1,14 +1,18 @@
 {% extends 'NantarenaSiteBundle::layout.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{{ 'home.title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="news">
         {% for news in latest %}
             {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': news} %}
             {% endembed %}
+        {% else %}
+            <p>
+                {{ 'home.news.no_results'|trans }}
+            </p>
         {% endfor %}
 
-        <p class="text-center"><a href="#" class="btn">Voir toutes les actualités</a></p>
+        <p class="text-center"><a href="{{ path('nantarena_news_index') }}" class="btn">{{ 'home.news.link'|trans }}</a></p>
     </div>
 {% endblock %}

@@ -65,7 +65,7 @@ class CommentController extends Controller
             $em->remove($comment);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('news.comment.delete.flash_success'));
+            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('news.comment.delete.flash_success'));
         }
 
         return $this->redirect($this->get('nantarena_news.news_manager')->getNewsPath($comment->getNews()));

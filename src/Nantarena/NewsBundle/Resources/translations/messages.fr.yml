@@ -44,16 +44,22 @@ news:
     form:
         comment:
             legend: 'Commenter la news'
+            submit: 'Envoyer'
 
         create:
             legend: 'Créer une nouvelle news'
+            reset: 'RàZ'
+            submit: 'Créer la news'
 
         delete:
             cancel: Annuler
             legend: 'Confirmer la suppression'
+            submit: 'Supprimer la news'
 
         edit:
             legend: 'Editer une news'
+            reset: 'RàZ'
+            submit: 'Editer la news'
 
     index:
         no_results: 'Aucune news à afficher'

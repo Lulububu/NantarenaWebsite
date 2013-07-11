@@ -26,9 +26,7 @@ class AdminController extends Controller
     public function indexAction()
     {
         return array(
-            'news' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findBy(array(), array(
-                'id' => 'desc',
-            ))
+            'news' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findAllOrderedByIdDesc(),
         );
     }
 
@@ -150,7 +148,7 @@ class AdminController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->add('delete', 'submit')
+            ->setMethod('POST')
             ->setAction($this->generateUrl('nantarena_news_admin_delete', array(
                 'id' => $id
             )))
