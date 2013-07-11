@@ -10,10 +10,12 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    {# feuilles de style et favicon #}
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    {# feuilles de style #}
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
     {% stylesheets filter='cssrewrite' 'bundles/nantarenasite/css/*' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        <link href="{{ asset_url }}"  rel="stylesheet" />
     {% endstylesheets %}
 
     {% block stylesheets %}{% endblock %}
@@ -21,7 +23,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     {% javascripts '@NantarenaSiteBundle/Resources/public/js/modernizr/modernizr-2.6.2.min.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 </head>
 
@@ -93,6 +95,7 @@
             </ul>
         </nav>
 
+        {% block banner %}
         <div id="banner">
             <div class="container">
                 <div class="une">
@@ -149,6 +152,7 @@
                 </div>
             </div>
         </div>
+        {% endblock banner %}
     </header>
 
     <div id="content" class="container">
@@ -211,11 +215,12 @@
         <div id="scrolltotop"><a href="#top">{{ 'site.footer.scroll'|trans }}</a></div>
     </footer>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 
     {% javascripts '@NantarenaSiteBundle/Resources/public/js/*' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
     {% block javascripts %}{% endblock %}

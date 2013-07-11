@@ -10,6 +10,8 @@
     {% endstylesheets %}
 {% endblock %}
 
+{% block banner %}{% endblock %}
+
 {% block raw_body %}
     {% set block_page_title = block('page_title') %}
     {% if block_page_title is not empty %}
@@ -22,4 +24,11 @@
         {% block admin_content %}
         {% endblock admin_content %}
     </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {% javascripts '@NantarenaAdminBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

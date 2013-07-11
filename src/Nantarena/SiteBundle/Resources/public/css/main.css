@@ -50,9 +50,13 @@
       opacity: 1;
     }
 
+/* Override Bootstrap */
+table.tab-content > .active {
+    display: table-row-group;
+}
+
 /* Entête */
     body > header {
-        height: 405px;
         background: url('../images/dark.png');
         width: 100%;
     }
