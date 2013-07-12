@@ -4,3 +4,9 @@
     form.profile {
         margin-left: 115px;
     }
+
+/* Admin */
+    div.users {
+        margin: auto;
+        width: 50%;
+    }

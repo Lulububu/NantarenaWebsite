@@ -13,6 +13,7 @@ fos_user:
 
     password:
         blank: 'Le mot de passe est vide'
+        mismatch: 'Les mots de passe ne sont pas identiques'
         short: 'Votre mot de passe est trop court'
 
     username:

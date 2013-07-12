@@ -17,6 +17,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             ->setEmail('testeur1@nantarena.net')
             ->setPlainPassword('testeur1')
             ->addGroup($this->getReference('group-1'))
+            ->addGroup($this->getReference('group-2'))
             ->setEnabled(true);
         $manager->persist($user);
 

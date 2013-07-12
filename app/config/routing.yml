@@ -10,6 +10,12 @@ nantarena_news:
     type:     annotation
     prefix:   /
 
+# Montage du UserBundle en mode annotation
+nantarena_user:
+    resource: "@NantarenaUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 # Montage du SiteBundle en mode annotation
 nantarena_site:
     resource: "@NantarenaSiteBundle/Controller/"

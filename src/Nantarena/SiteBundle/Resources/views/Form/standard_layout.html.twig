@@ -1,6 +1,15 @@
 {# Widgets #}
+{% block button_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
 
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn')|trim}) %}
 
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+    {% endspaceless %}
+{% endblock button_widget %}
 
 {# Labels #}
 
@@ -39,6 +48,16 @@
     </div>
 {% endspaceless %}
 {% endblock form_row %}
+
+{% block button_row %}
+    {% spaceless %}
+        <div class="text-center">
+            {#<div class="controls">#}
+                {{ form_widget(form) }}
+            {#</div>#}
+        </div>
+    {% endspaceless %}
+{% endblock button_row %}
 
 {# Misc #}
 

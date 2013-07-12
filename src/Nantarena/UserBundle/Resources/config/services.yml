@@ -5,8 +5,13 @@ services:
         tags:
             - { name: form.type, alias: nantarena_user_registration }
 
-    nantarena_user.profileListener:
+    nantarena_user.profile_listener:
         class: Nantarena\UserBundle\EventListener\ProfileListener
         arguments: [@router]
         tags:
             - { name: kernel.event_subscriber}
+
+    nantarena_user.admin_user:
+        class: Nantarena\UserBundle\Controller\AdminController
+        tags:
+            - { name: nantarena_admin.dashboard}

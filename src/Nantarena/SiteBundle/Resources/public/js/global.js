@@ -1,7 +1,8 @@
-/**
- * Affichage/Masquage du formulaire de login
- */
 $(function() {
+
+    /**
+     * Affichage/Masquage du formulaire de login
+     */
     $("nav#menu .login").click(function() {
         $("nav#menu .loginbox").slideToggle(100);
         $("nav#menu .login").toggleClass("active");
@@ -17,34 +18,40 @@ $(function() {
 
         $(document).on("keydown", handler);
     })
-});
 
-/**
- * Mise en route des effets bootstrap
- */
-$('.carousel').carousel();
-$('.ttip').tooltip();
+    /**
+     * Mise en route des effets bootstrap et jQuery
+     */
+    $('.carousel').carousel();
+    $('.ttip').tooltip();
+    $('.datepicker').datepicker();
 
-/**
- * Flèche scroll-to-top
- */
-$(function() {
-    $("#scrolltotop").hide();
+    /**
+     * Flèche scroll-to-top
+     */
+    $(function() {
+        $("#scrolltotop").hide();
 
-    $(function () {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('#scrolltotop').fadeIn();
-            } else {
-                $('#scrolltotop').fadeOut();
-            }
-        });
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('#scrolltotop').fadeIn();
+                } else {
+                    $('#scrolltotop').fadeOut();
+                }
+            });
 
-        $('#scrolltotop a').click(function () {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
+            $('#scrolltotop a').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
         });
     });
-})
+});
+
+
+
+
+
