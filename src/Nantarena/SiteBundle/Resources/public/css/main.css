@@ -567,6 +567,10 @@ table.tab-content > .active {
         display: block;
     }
 
+    body > div#content {
+        min-height: 400px;
+    }
+
 /* Articles */
     .news article {
         margin-bottom: 30px;

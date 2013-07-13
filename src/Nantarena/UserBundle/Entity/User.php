@@ -9,7 +9,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Nantarena\UserBundle\Repository\UserRepository")
  * @ORM\Table()
  */
 class User extends BaseUser

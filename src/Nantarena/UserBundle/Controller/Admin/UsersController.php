@@ -28,7 +28,7 @@ class UsersController extends Controller
     public function listAction()
     {
         return array(
-            'users' => $this->getDoctrine()->getRepository('NantarenaUserBundle:User')->findAll(),
+            'users' => $this->getDoctrine()->getRepository('NantarenaUserBundle:User')->findAllWithGroups(),
         );
     }
 
@@ -60,7 +60,7 @@ class UsersController extends Controller
                 $flashbag->add('success', $translator->trans('user.admin.create.users.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_user_admin_users'));
 
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $flashbag->add('error', $translator->trans('user.admin.create.users.flash_error'));
             }
         }
@@ -99,7 +99,7 @@ class UsersController extends Controller
                     'id' => $user->getId()
                 )));
 
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $flashbag->add('error', $translator->trans('user.admin.edit.users.flash_error'));
             }
         }

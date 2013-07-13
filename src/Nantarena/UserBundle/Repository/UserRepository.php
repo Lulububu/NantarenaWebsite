@@ -11,4 +11,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function findAllWithGroups()
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.groups', 'g')
+            ->addSelect('g')
+            ->getQuery()
+            ->getResult();
+    }
 }
