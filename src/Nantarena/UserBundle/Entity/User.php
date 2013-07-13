@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="Nantarena\UserBundle\Repository\UserRepository")
- * @ORM\Table()
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {

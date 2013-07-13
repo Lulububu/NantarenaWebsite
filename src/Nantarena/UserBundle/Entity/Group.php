@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table()
+ * @ORM\Table(name="group")
  */
 class Group extends BaseGroup
 {
@@ -17,6 +17,28 @@ class Group extends BaseGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="boolean", name="default_group")
+     */
+    protected $default;
+
+    /**
+     * Constructor
+     */
+    public function __construct($name, $roles = array())
+    {
+        parent::__construct($name, $roles);
+        $this->default = false;
+    }
+
+    /**
+     * @return bool
+     */
+    function isDefault()
+    {
+        return $this->default;
+    }
 
     function __toString()
     {
