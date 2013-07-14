@@ -3,7 +3,6 @@
 namespace Nantarena\UserBundle\Controller\Admin;
 
 use Doctrine\ORM\EntityRepository;
-use Nantarena\UserBundle\Entity\User;
 use Nantarena\UserBundle\Entity\Group;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -115,7 +114,7 @@ class GroupsController extends Controller
     public function deleteAction(Request $request, Group $group)
     {
         if ($group->isDefault())
-            throw new AccessDeniedException("Impossible de supprimer le groupe par défaut");
+            throw new AccessDeniedException("Not allowed to delete default group");
 
         $form = $this->createDeleteForm($group->getId());
         $form->handleRequest($request);
@@ -126,11 +125,10 @@ class GroupsController extends Controller
 
             try {
                 if ($form->get('id')->getData() == $group->getId()) {
-                    $groupManager = $this->container->get('fos_user.group_manager');
-                    $newgroup = $form->get('newgroup')->getData();
+                    $groupManager = $this->get('fos_user.group_manager');
 
-                    $this->moveUsers($group, $newgroup);
-                    $groupManager->deleteGroup($group);
+                    $moveTo = $form->get('newgroup')->getData();
+                    $groupManager->deleteGroupAndMoveUsers($group, $moveTo);
 
                     $flashbag->add('success', $translator->trans('user.admin.groups.delete.flash_success'));
                 } else {
@@ -174,26 +172,5 @@ class GroupsController extends Controller
                 'id' => $id
             )))
             ->getForm();
-    }
-
-    /**
-     * Move users when a group is deleted
-     *
-     * @param Group $from
-     * @param Group $to
-     */
-    private function moveUsers(Group $from, Group $to)
-    {
-        $userManager = $this->container->get('fos_user.user_manager');
-        $users = $this->getDoctrine()->getRepository('NantarenaUserBundle:User')->findAllInGroup($from);
-
-        /** @var User $user */
-        foreach ($users as $user) {
-            $user->removeGroup($from);
-            if (!$user->hasGroup($to)) {
-                $user->addGroup($to);
-            }
-            $userManager->updateUser($user, true);
-        }
     }
 }

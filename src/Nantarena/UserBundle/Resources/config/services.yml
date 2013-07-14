@@ -19,3 +19,11 @@ services:
     nantarena_user.groups.group_type:
         class: Nantarena\UserBundle\Form\Type\GroupType
         arguments: [%security.role_hierarchy.roles%, @translator]
+
+    nantarena_user.user_manager:
+        class: Nantarena\UserBundle\Manager\UserManager
+        arguments: [@security.encoder_factory, @fos_user.util.username_canonicalizer, @fos_user.util.email_canonicalizer, @fos_user.entity_manager, %fos_user.model.user.class%]
+
+    nantarena_user.group_manager:
+        class: Nantarena\UserBundle\Manager\GroupManager
+        arguments: [@fos_user.entity_manager, %fos_user.model.group.class%, @nantarena_user.user_manager]

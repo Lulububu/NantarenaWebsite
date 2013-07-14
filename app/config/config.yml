@@ -68,8 +68,10 @@ fos_user:
     user_class: Nantarena\UserBundle\Entity\User
     group:
         group_class: Nantarena\UserBundle\Entity\Group
+        group_manager: nantarena_user.group_manager
     service:
         mailer: fos_user.mailer.twig_swift
+        user_manager: nantarena_user.user_manager
     from_email:
         address:        noreply@nantarena.net
         sender_name:    Nantarena
