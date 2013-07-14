@@ -22,7 +22,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Nantarena\UserBundle\Entity\Group")
+     * @ORM\ManyToMany(targetEntity="Nantarena\UserBundle\Entity\Group", inversedBy="users")
      */
     protected $groups;
 
