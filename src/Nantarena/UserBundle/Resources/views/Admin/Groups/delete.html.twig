@@ -1,0 +1,31 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'user.admin.groups.delete.title'|trans %}
+{% block page_title 'user.admin.groups.delete.title'|trans %}
+
+{% block admin_content %}
+
+    <div class="span6 offset3">
+        <div class="alert alert-error text-center">
+            <strong>{{ 'user.admin.warning'|trans }}</strong>
+            {{ 'user.admin.groups.delete.warning'|trans }}
+        </div>
+
+        <div class="alert alert-warning text-center">
+            {{ 'user.admin.groups.delete.info'|trans }}
+        </div>
+
+        {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            {{ form_row(form.newgroup, {'label': 'user.admin.groups.delete.newgroup'|trans}) }}
+            {{ form_row(form.submit, {'label': 'user.admin.groups.delete.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
+        {{ form_end(form) }}
+
+        <p class="text-center">
+            <a href="{{ path('nantarena_user_admin_groups') }}">{{ 'user.admin.groups.create.back'|trans }}</a>
+        </p>
+    </div>
+
+
+{% endblock %}

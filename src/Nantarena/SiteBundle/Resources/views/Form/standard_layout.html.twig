@@ -11,6 +11,19 @@
     {% endspaceless %}
 {% endblock button_widget %}
 
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+            <label class="checkbox">
+                {{ form_widget(child) }}
+                {{ child.vars.label }}
+            </label>
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
+
 {# Labels #}
 
 {% block form_label %}

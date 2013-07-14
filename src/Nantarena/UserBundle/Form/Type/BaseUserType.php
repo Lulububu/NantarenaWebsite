@@ -2,7 +2,6 @@
 
 namespace Nantarena\UserBundle\Form\Type;
 
-use Nantarena\NewsBundle\Entity\News;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

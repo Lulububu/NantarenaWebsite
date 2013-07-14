@@ -19,7 +19,7 @@ class AdminController extends Controller implements DashboardInterface
                 $translator->trans('user.admin.dashboard.users_management') =>
                     $this->generateUrl('nantarena_user_admin_users'),
                 $translator->trans('user.admin.dashboard.groups_management') =>
-                    '#',
+                    $this->generateUrl('nantarena_user_admin_groups'),
             )
         );
     }

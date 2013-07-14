@@ -1,0 +1,22 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'user.admin.groups.edit.title'|trans %}
+{% block page_title 'user.admin.groups.edit.title'|trans %}
+
+{% block admin_content %}
+
+    <div class="span6 offset3">
+        {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            {{ form_row(form.name, {'label': 'user.form.group.name'|trans}) }}
+            {{ form_row(form.roles, {'label': 'user.form.group.roles'|trans}) }}
+            {{ form_row(form.submit, {'label': 'user.admin.groups.edit.submit'|trans}) }}
+        {{ form_end(form) }}
+
+        <p class="text-center">
+            <a href="{{ path('nantarena_user_admin_groups') }}">{{ 'user.admin.groups.create.back'|trans }}</a>
+        </p>
+    </div>
+
+{% endblock %}

@@ -15,3 +15,7 @@ services:
         class: Nantarena\UserBundle\Controller\AdminController
         tags:
             - { name: nantarena_admin.dashboard}
+
+    nantarena_user.groups.group_type:
+        class: Nantarena\UserBundle\Form\Type\GroupType
+        arguments: [%security.role_hierarchy.roles%, @translator]

@@ -5,26 +5,54 @@ user:
             title: 'Gestion des membres'
             users_management: 'Gestion des membres'
 
+        groups:
+            create:
+                back: 'Retour à la liste'
+                flash_error: 'Erreur lors de la création du groupe'
+                flash_success: 'Le groupe a été créé avec succès'
+                submit: Créer
+                title: 'Créer un nouveau groupe'
+
+            delete:
+                flash_error: 'Erreur lors de la suppression du groupe'
+                flash_success: 'Le groupe a été supprimé avec succès'
+                info: 'Les membres actuels de ce groupe seront déplacés vers le nouveau groupe défini ci-dessous.'
+                newgroup: 'Déplacer vers '
+                submit: Supprimer
+                title: 'Suppression d''un groupe'
+                warning: 'Vous êtes sur le point de supprimer un groupe.'
+
+            edit:
+                flash_error: 'Erreur lors de la modification du groupe'
+                flash_success: 'Le groupe a été modifié avec succès'
+                submit: Modifier
+                title: 'Modifier un groupe'
+
+            list:
+                default: 'Par défaut'
+                name: Nom
+                title: 'Liste des groupes'
+
         users:
             create:
                 back: 'Retour à la liste'
+                flash_error: 'Erreur lors de la création de l''utilisateur'
+                flash_success: 'L''tilisateur a été créé avec succès'
                 submit: Créer
                 title: 'Ajouter un nouveau membre'
-                flash_error: 'Erreur lors de la création de l''utilisateur'
-                flash_success: 'L''utilisateur a été créé avec succès'
 
             delete:
-                submit: Supprimer
-                title: Suppression d'un membre
-                warning: Vous êtes sur le point de supprimer un membre.
                 flash_error: 'Erreur lors de la suppression de l''utilisateur'
                 flash_success: 'L''tilisateur a été supprimé avec succès'
+                submit: Supprimer
+                title: 'Suppression d''un membre'
+                warning: 'Vous êtes sur le point de supprimer un membre.'
 
             edit:
-                submit: Modifier
-                title: 'Modifier un membre'
                 flash_error: 'Erreur lors de la modification de l''utilisateur'
                 flash_success: 'L''tilisateur a été modifié avec succès'
+                submit: Modifier
+                title: 'Modifier un membre'
 
             list:
                 disabled: Inactivé
@@ -37,7 +65,7 @@ user:
                 title: 'Liste des membres'
                 username: Pseudo
 
-        warning: Attention !
+        warning: 'Attention !'
 
     change_password:
         back: 'Retour au profil'
@@ -49,6 +77,11 @@ user:
         current_password: 'Mot de passe actuel :'
         email: 'E-Mail :'
         enabled: 'Compte activé :'
+
+        group:
+            name: 'Nom du groupe :'
+            roles: 'Droits du groupe :'
+
         groups: 'Groupes :'
         locked: 'Compte bloqué :'
         new_password: 'Nouveau mot de passe :'

@@ -18,6 +18,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             ->setPlainPassword('testeur1')
             ->addGroup($this->getReference('group-1'))
             ->addGroup($this->getReference('group-2'))
+            ->addRole('ROLE_SUPER_ADMIN')
             ->setEnabled(true);
         $manager->persist($user);
 

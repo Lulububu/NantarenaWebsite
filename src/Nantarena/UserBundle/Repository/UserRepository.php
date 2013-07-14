@@ -3,6 +3,7 @@
 namespace Nantarena\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Nantarena\UserBundle\Entity\Group;
 
 /**
  * Class UserRepository
@@ -16,6 +17,15 @@ class UserRepository extends EntityRepository
         return $this->createQueryBuilder('u')
             ->leftJoin('u.groups', 'g')
             ->addSelect('g')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllInGroup(Group $group)
+    {
+        return $this->createQueryBuilder('u')
+            ->where(':group MEMBER OF u.groups')
+            ->setParameter('group', $group)
             ->getQuery()
             ->getResult();
     }

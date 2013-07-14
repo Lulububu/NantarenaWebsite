@@ -2,14 +2,12 @@
 
 namespace Nantarena\UserBundle\Controller\Admin;
 
-use Doctrine\DBAL\DBALException;
 use Nantarena\UserBundle\Entity\User;
 use Nantarena\UserBundle\Form\Type\EditUserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\ORMException;
 use Nantarena\UserBundle\Form\Type\AddUserType;
 
 /**
@@ -38,7 +36,7 @@ class UsersController extends Controller
      */
     public function createAction(Request $request)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
+        $userManager = $this->get('fos_user.user_manager');
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
@@ -57,11 +55,11 @@ class UsersController extends Controller
             try {
                 $userManager->updateUser($user);
 
-                $flashbag->add('success', $translator->trans('user.admin.create.users.flash_success'));
+                $flashbag->add('success', $translator->trans('user.admin.users.create.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_user_admin_users'));
 
             } catch (\Exception $e) {
-                $flashbag->add('error', $translator->trans('user.admin.create.users.flash_error'));
+                $flashbag->add('error', $translator->trans('user.admin.users.create.flash_error'));
             }
         }
 
@@ -76,7 +74,7 @@ class UsersController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
+        $userManager = $this->get('fos_user.user_manager');
 
         $form = $this->createForm(new EditUserType(), $user, array(
             'action' => $this->generateUrl('nantarena_user_admin_users_edit', array(
@@ -94,13 +92,13 @@ class UsersController extends Controller
             try {
                 $userManager->updateUser($user);
 
-                $flashbag->add('success', $translator->trans('user.admin.edit.users.flash_success'));
+                $flashbag->add('success', $translator->trans('user.admin.users.edit.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_user_admin_users_edit', array(
                     'id' => $user->getId()
                 )));
 
             } catch (\Exception $e) {
-                $flashbag->add('error', $translator->trans('user.admin.edit.users.flash_error'));
+                $flashbag->add('error', $translator->trans('user.admin.users.edit.flash_error'));
             }
         }
 
@@ -115,7 +113,7 @@ class UsersController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
+        $userManager = $this->get('fos_user.user_manager');
 
         $form = $this->createDeleteForm($user->getId());
         $form->handleRequest($request);
