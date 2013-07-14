@@ -26,7 +26,7 @@ class GroupsController extends Controller
     public function listAction()
     {
         return array(
-            'groups' => $this->getDoctrine()->getRepository('NantarenaUserBundle:Group')->findAll(),
+            'groups' => $this->getDoctrine()->getRepository('NantarenaUserBundle:Group')->findAllWithCount(),
         );
     }
 

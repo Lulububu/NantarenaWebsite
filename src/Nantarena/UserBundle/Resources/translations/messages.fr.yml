@@ -29,6 +29,7 @@ user:
                 title: 'Modifier un groupe'
 
             list:
+                count: Membres
                 default: 'Par défaut'
                 name: Nom
                 title: 'Liste des groupes'

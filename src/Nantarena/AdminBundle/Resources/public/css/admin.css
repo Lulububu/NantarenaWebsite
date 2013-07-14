@@ -22,11 +22,10 @@
     }
 
 /* Style pour les tableaux */
-    table th.id, table td.id {
+    table th.tiny, table td.tiny {
         width: 25px;
     }
 
-    table th.actions, table td.actions {
+    table th.mini, table td.mini {
         width: 80px;
-        text-align: center;
     }

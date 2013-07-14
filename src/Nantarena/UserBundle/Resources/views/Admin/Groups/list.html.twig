@@ -13,21 +13,25 @@
         <table class="table sortable" data-sort="1" data-perpage="50">
             <thead>
             <tr>
-                <th data-filter="ignore" class="id">#</th>
+                <th data-filter="ignore" class="tiny">#</th>
                 <th>{{ 'user.admin.groups.list.name'|trans }}</th>
-                <th class="actions"></th>
+                <th class="mini">{{ 'user.admin.groups.list.count'|trans }}</th>
+                <th class="mini"></th>
             </tr>
             </thead>
 
             <tbody>
             {% for group in groups %}
                 <tr>
-                    <td class="id">{{ group.id }}</td>
+                    <td>{{ group.id }}</td>
                     <td>
                         {{ group.name }}
                         {% if group.default %}<span class="label">{{ 'user.admin.groups.list.default'|trans }}</span>{% endif %}
                     </td>
-                    <td class="actions">
+                    <td>
+                        {{ group.users.count }}
+                    </td>
+                    <td>
                         <a href="{{ path('nantarena_user_admin_groups_edit', {'id': group.id}) }}">
                             <i class="icon-wrench"></i>
                         </a>

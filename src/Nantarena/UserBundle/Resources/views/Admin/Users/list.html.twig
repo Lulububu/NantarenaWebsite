@@ -13,13 +13,13 @@
         <thead>
             <tr>
                 {#<th></th>#}
-                <th data-filter="ignore" class="id">#</th>
+                <th data-filter="ignore" class="tiny">#</th>
                 <th>{{ 'user.admin.users.list.username'|trans }}</th>
                 <th>{{ 'user.admin.users.list.email'|trans }}</th>
                 <th data-filter="date">{{ 'user.admin.users.list.registration_date'|trans }}</th>
                 <th data-filter="date">{{ 'user.admin.users.list.last_login'|trans }}</th>
                 <th data-filter="select">{{ 'user.admin.users.list.groups'|trans }}</th>
-                <th class="actions"></th>
+                <th class="mini"></th>
             </tr>
         </thead>
 
@@ -37,7 +37,7 @@
                     <td>{{ user.registrationDate|date("d/m/Y H:i") }}</td>
                     <td>{{ user.lastLogin is empty ? "--" : user.lastLogin|date("d/m/Y H:i") }}</td>
                     <td>{{ user.groups|join(', ') }}</td>
-                    <td class="actions">
+                    <td>
                         <a href="{{ path('nantarena_user_admin_users_edit', {'id': user.id}) }}">
                             <i class="icon-wrench"></i>
                         </a>
