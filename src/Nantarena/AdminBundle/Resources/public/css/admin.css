@@ -21,6 +21,12 @@
         margin: 0;
     }
 
+    p.backlink {
+        position: absolute;
+        right: 15%;
+        top: 175px;
+    }
+
 /* Style pour les tableaux */
     table th.tiny, table td.tiny {
         width: 25px;

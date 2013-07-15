@@ -18,9 +18,15 @@
         <h1>{{ block_page_title|raw }}</h1>
     {% endif %}
 
+    {% block admin_backlink %}
+        <p class="backlink">
+            <a class="label text-center" href="{{ path('nantarena_admin_index') }}">Retour au panneau<br />d'administration</a>
+        </p>
+    {% endblock %}
+
     {% include 'NantarenaSiteBundle::_flashbag.html.twig' %}
 
-    <div>
+    <div class="container">
         {% block admin_content %}
         {% endblock admin_content %}
     </div>
