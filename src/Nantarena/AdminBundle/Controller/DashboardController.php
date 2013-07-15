@@ -26,15 +26,48 @@ class DashboardController extends Controller
             $content = $moduleController->dashboardAction();
 
             if ($content instanceof Response) {
-                $modules[] = $content->getContent();
+                if ($content->getStatusCode() == 200) {
+                    $modules[] = $content->getContent();
+                }
             } else {
-                $modules[] = $this->get('templating')->render(
-                    'NantarenaAdminBundle:Dashboard:_module.html.twig',
-                    $content
-                );
+                if ($this->validate($content)) {
+                    $modules[] = $this->get('templating')->render(
+                        'NantarenaAdminBundle:Dashboard:_module.html.twig',
+                        $content
+                    );
+                }
             }
         }
 
         return array('modules' => $modules);
+    }
+
+    /**
+     * @param $content
+     * @return bool True if content is valid
+     */
+    private function validate(&$content)
+    {
+        if (isset($content['access']) && $content['access'] == false)
+            return false;
+
+        if (!isset($content['module_title']) || !isset($content['module_links']))
+            return false;
+
+        $access = false;
+        $security = $this->get('security.context');
+
+        foreach($content['module_links'] as &$link) {
+            if (!isset($link['url']))
+                $link['url'] = '#';
+
+            if (!isset($link['role']))
+                $link['role'] = 'ROLE_ADMIN';
+
+            if ($security->isGranted($link))
+                $access = true;
+        }
+
+        return $access;
     }
 }

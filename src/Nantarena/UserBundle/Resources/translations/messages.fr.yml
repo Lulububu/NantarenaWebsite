@@ -1,3 +1,6 @@
+ROLE_USER_ADMIN_USERS: 'Admin - Gestion des utilisateurs'
+ROLE_USER_ADMIN_GROUPS: 'Admin - Gestion des groupes d''utilisateurs'
+
 user:
     admin:
         dashboard:

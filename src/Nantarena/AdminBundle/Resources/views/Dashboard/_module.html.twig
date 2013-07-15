@@ -2,8 +2,10 @@
 
 {% block module_links %}
 <ul>
-    {% for link, url in module_links %}
-        <li><a href="{{ url }}">{{ link }}</a></li>
+    {% for name, link in module_links %}
+        {% if is_granted(link.role) %}
+            <li><a href="{{ link.url }}">{{ name }}</a></li>
+        {% endif %}
     {% endfor %}
 </ul>
 {% endblock %}

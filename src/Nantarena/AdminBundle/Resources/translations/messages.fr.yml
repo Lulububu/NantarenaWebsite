@@ -1,3 +1,6 @@
+ROLE_SUPER_ADMIN: 'Admin - Administrateur global'
+ROLE_ADMIN: 'Admin - Accès au panneau d''administration'
+
 admin:
     dashboard:
         page_title: Panneau d'administration
