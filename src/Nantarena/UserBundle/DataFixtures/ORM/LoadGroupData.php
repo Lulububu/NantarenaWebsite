@@ -11,16 +11,22 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $adminsGroup = new Group('admins');
-        $adminsGroup->addRole('ROLE_ADMIN');
+        $adminsGroup = new Group('Administrateurs');
+        $adminsGroup->addRole('ROLE_SUPER_ADMIN');
 
-        $usersGroup= new Group('users');
+        $staffGroup = new Group('Staff');
+        $staffGroup->addRole('ROLE_USER_ADMIN_USERS');
+
+        $usersGroup= new Group('Membres');
         $usersGroup->addRole('ROLE_USER');
+        $usersGroup->setDefault(true);
 
         $this->addReference('group-1', $adminsGroup);
-        $this->addReference('group-2', $usersGroup);
+        $this->addReference('group-2', $staffGroup);
+        $this->addReference('group-3', $usersGroup);
 
         $manager->persist($adminsGroup);
+        $manager->persist($staffGroup);
         $manager->persist($usersGroup);
 
         $manager->flush();

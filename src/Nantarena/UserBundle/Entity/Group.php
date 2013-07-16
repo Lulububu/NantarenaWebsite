@@ -49,6 +49,17 @@ class Group extends BaseGroup
     }
 
     /**
+     * @deprecated
+     * @param bool $default
+     * @return $this
+     */
+    function setDefault($default)
+    {
+        $this->default = $default;
+        return $this;
+    }
+
+    /**
      * Add users
      *
      * @param GroupableInterface $user
