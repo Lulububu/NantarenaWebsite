@@ -1,0 +1,38 @@
+event:
+    admin:
+        dashboard:
+            entrytypes_management: 'Gestion des types d''inscription'
+            title: 'Gestion des évènements'
+
+        entrytypes:
+            create:
+                back: 'Retour à la liste'
+                flash_error: 'Erreur lors de la création du nouveau type'
+                flash_success: 'Le nouveau type a été créé avec succès'
+                submit: 'Ajouter'
+                title: 'Ajouter un type d''inscription'
+
+            delete:
+                flash_error: 'Erreur lors de la suppression du nouveau type'
+                flash_success: 'Le nouveau type a été supprimé avec succès'
+                info: 'Les évènements utilisant ce type d''inscription continuent de pouvoir l''utiliser'
+                submit: Supprimer
+                title: 'Suppression d''un type d''inscription'
+                warning: 'Vous êtes sur le point de supprimer un type d''inscription.'
+
+            edit:
+                flash_error: 'Erreur lors de la modification du nouveau type'
+                flash_success: 'Le nouveau type a été modifié avec succès'
+                submit: 'Modifier'
+                title: 'Modifier un type d''inscription'
+
+            list:
+                empty: 'Aucun type n''est encore défini'
+                name: Libellé
+                title: 'Types d''inscription'
+
+        warning: 'Attention !'
+
+    form:
+        entrytype:
+            name: 'Libellé'

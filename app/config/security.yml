@@ -5,8 +5,11 @@ security:
     role_hierarchy:
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
+
             - ROLE_USER_ADMIN_USERS
             - ROLE_USER_ADMIN_GROUPS
+
+            - ROLE_EVENT_ADMIN_ENTRYTYPES
 
     providers:
         fos_userbundle:
@@ -39,5 +42,7 @@ security:
 
         - { path: ^/admin/users, roles: ROLE_USER_ADMIN_USERS }
         - { path: ^/admin/groups, roles: ROLE_USER_ADMIN_GROUPS }
+
+        - { path: ^/admin/event/entrytypes, roles: ROLE_EVENT_ADMIN_ENTRYTYPES }
 
         - { path: ^/admin, roles: ROLE_ADMIN } # Attention à le laisser en dernier

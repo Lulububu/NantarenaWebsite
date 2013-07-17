@@ -1,0 +1,57 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'event.admin.entrytypes.list.title'|trans %}
+{% block page_title 'event.admin.entrytypes.list.title'|trans %}
+
+{% block admin_content %}
+
+    <div class="span6 offset3">
+        <div class="text-center">
+            <a class="btn" href="{{ path('nantarena_event_admin_entrytypes_create') }}">
+                {{ 'event.admin.entrytypes.create.title'|trans }}
+            </a>
+        </div>
+
+        <table class="table sortable" data-sort="1" data-perpage="50">
+            <thead>
+            <tr>
+                <th data-filter="ignore" class="tiny">#</th>
+                <th>{{ 'event.admin.entrytypes.list.name'|trans }}</th>
+                <th class="mini"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for type in types %}
+                <tr>
+                    <td>{{ type.id }}</td>
+                    <td>
+                        {{ type.name }}
+                    </td>
+                    <td>
+                        <a href="{{ path('nantarena_event_admin_entrytypes_edit', {'id': type.id}) }}">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="{{ path('nantarena_event_admin_entrytypes_delete', {'id': type.id}) }}">
+                            <i class="icon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">
+                        <div class="text-center">
+                            {{ 'event.admin.entrytypes.list.empty'|trans }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination pagination-centered"><ul></ul></div>
+    </div>
+
+
+{% endblock %}

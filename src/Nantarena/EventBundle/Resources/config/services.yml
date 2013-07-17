@@ -1,0 +1,5 @@
+services:
+    nantarena_event.admin_event:
+        class: Nantarena\EventBundle\Controller\AdminController
+        tags:
+            - { name: nantarena_admin.dashboard}
