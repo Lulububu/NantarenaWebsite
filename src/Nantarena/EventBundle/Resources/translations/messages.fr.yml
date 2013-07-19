@@ -2,6 +2,7 @@ event:
     admin:
         dashboard:
             entrytypes_management: 'Gestion des types d''inscription'
+            games_management: 'Gestion des jeux'
             title: 'Gestion des évènements'
 
         entrytypes:
@@ -9,21 +10,21 @@ event:
                 back: 'Retour à la liste'
                 flash_error: 'Erreur lors de la création du nouveau type'
                 flash_success: 'Le nouveau type a été créé avec succès'
-                submit: 'Ajouter'
+                submit: Ajouter
                 title: 'Ajouter un type d''inscription'
 
             delete:
-                flash_error: 'Erreur lors de la suppression du nouveau type'
-                flash_success: 'Le nouveau type a été supprimé avec succès'
+                flash_error: 'Erreur lors de la suppression du type'
+                flash_success: 'Le type a été supprimé avec succès'
                 info: 'Les évènements utilisant ce type d''inscription continuent de pouvoir l''utiliser'
                 submit: Supprimer
                 title: 'Suppression d''un type d''inscription'
                 warning: 'Vous êtes sur le point de supprimer un type d''inscription.'
 
             edit:
-                flash_error: 'Erreur lors de la modification du nouveau type'
-                flash_success: 'Le nouveau type a été modifié avec succès'
-                submit: 'Modifier'
+                flash_error: 'Erreur lors de la modification du type'
+                flash_success: 'Le type a été modifié avec succès'
+                submit: Modifier
                 title: 'Modifier un type d''inscription'
 
             list:
@@ -31,8 +32,42 @@ event:
                 name: Libellé
                 title: 'Types d''inscription'
 
+        games:
+            create:
+                back: 'Retour à la liste'
+                flash_error: 'Erreur lors de la création du nouveau jeu'
+                flash_success: 'Le nouveau jeu a été créé avec succès'
+                submit: Ajouter
+                title: 'Ajouter un jeu'
+
+            delete:
+                flash_error: 'Erreur lors de la suppression du jeu'
+                flash_success: 'Le jeu a été supprimé avec succès'
+                info: 'Les tournois de ce jeu ne seront pas supprimés'
+                submit: Supprimer
+                title: 'Suppression d''un jeu'
+                warning: 'Vous êtes sur le point de supprimer un jeu'
+
+            edit:
+                flash_error: 'Erreur lors de la modification du jeu'
+                flash_success: 'Le jeu a été modifié avec succès'
+                submit: Modifier
+                title: 'Modifier un jeu'
+
+            list:
+                empty: 'Aucun jeu n''est encore défini'
+                name: Nom
+                platform: Plate-forme
+                team_capacity: Joueurs/équipe
+                title: Liste des jeux
+
         warning: 'Attention !'
 
     form:
         entrytype:
-            name: 'Libellé'
+            name: Libellé :
+
+        game:
+            name: Nom :
+            platform: Plate-forme :
+            team_capacity: Joueurs/équipe :

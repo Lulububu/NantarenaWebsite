@@ -1,0 +1,65 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'event.admin.games.list.title'|trans %}
+{% block page_title 'event.admin.games.list.title'|trans %}
+
+{% block admin_content %}
+
+    <div class="span8 offset2">
+        <div class="text-center">
+            <a class="btn" href="{{ path('nantarena_event_admin_games_create') }}">
+                {{ 'event.admin.games.create.title'|trans }}
+            </a>
+        </div>
+
+        <table class="table sortable" data-sort="1" data-perpage="50">
+            <thead>
+            <tr>
+                <th data-filter="ignore" class="tiny">#</th>
+                <th>{{ 'event.admin.games.list.name'|trans }}</th>
+                <th>{{ 'event.admin.games.list.platform'|trans }}</th>
+                <th>{{ 'event.admin.games.list.team_capacity'|trans }}</th>
+                <th class="mini"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for game in games %}
+                <tr>
+                    <td>{{ game.id }}</td>
+                    <td>
+                        {{ game.name }}
+                    </td>
+                    <td>
+                        {{ game.platform }}
+                    </td>
+                    <td>
+                        {{ game.teamCapacity }}
+                    </td>
+                    <td>
+                        <a href="{{ path('nantarena_event_admin_games_edit', {'id': game.id}) }}">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="{{ path('nantarena_event_admin_games_delete', {'id': game.id}) }}">
+                            <i class="icon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">
+                        <div class="text-center">
+                            {{ 'event.admin.games.list.empty'|trans }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination pagination-centered"><ul></ul></div>
+    </div>
+
+
+{% endblock %}

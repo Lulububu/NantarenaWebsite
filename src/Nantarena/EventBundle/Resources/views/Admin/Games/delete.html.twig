@@ -1,0 +1,29 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'event.admin.games.delete.title'|trans %}
+{% block page_title 'event.admin.games.delete.title'|trans %}
+
+{% block admin_content %}
+
+    <div class="span6 offset3">
+        <div class="alert alert-error text-center">
+            <strong>{{ 'event.admin.warning'|trans }}</strong>
+            {{ 'event.admin.games.delete.warning'|trans }}
+        </div>
+
+        <div class="alert alert-warning text-center">
+            {{ 'event.admin.games.delete.info'|trans }}
+        </div>
+
+        {{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_row(form.submit, {'label': 'event.admin.games.delete.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
+        {{ form_end(form) }}
+
+        <p class="text-center">
+            <a href="{{ path('nantarena_event_admin_games') }}">{{ 'event.admin.games.create.back'|trans }}</a>
+        </p>
+    </div>
+
+
+{% endblock %}
