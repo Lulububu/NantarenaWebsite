@@ -308,6 +308,10 @@ table.tab-content > .active {
             padding-right: 8px;
         }
 
+        nav#menu li.profile > span {
+            cursor: pointer;
+        }
+
         nav#menu li.profile .badge {
             margin-left: 5px;
         }
@@ -569,6 +573,14 @@ table.tab-content > .active {
 
     body > div#content {
         min-height: 400px;
+    }
+
+    fieldset > legend {
+        border-bottom: 1px solid #d7d7d7;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-family: 'Lato';
+        color: #51565B;
     }
 
 /* Articles */

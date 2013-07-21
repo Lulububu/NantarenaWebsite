@@ -74,7 +74,9 @@
                 {% else %}
 
                     <li class="right profile">
-                        {{ app.user.username }}
+                        <span>
+                            {{ app.user.username }}
+                        </span>
                         {#{% if  app.user.getUnreadNotifs() > 0 %}#}
                             {#<span class="badge"><a href="#">{{ app.user.getUnreadNotifs() }}</a></span>#}
                         {#{% endif %}#}
@@ -155,7 +157,7 @@
     </header>
 
     <div id="content" class="container">
-        <div class="row">
+        <div class="row-fluid">
             {% block raw_body %}
                 <section class="span9">
                     {% set block_page_title = block('page_title') %}

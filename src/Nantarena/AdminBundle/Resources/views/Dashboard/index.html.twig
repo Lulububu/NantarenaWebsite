@@ -6,9 +6,12 @@
 {% block admin_backlink %}{% endblock %}
 
 {% block admin_content %}
-    {% for module in modules %}
-        <div class="module">
-            {{ module|raw }}
-        </div>
-    {% endfor %}
+    <div class="row-fluid">
+        {% for module in modules %}
+            <div class="module span6">
+                {{ module|raw }}
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
