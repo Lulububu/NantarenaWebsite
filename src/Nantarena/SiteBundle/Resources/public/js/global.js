@@ -20,11 +20,10 @@ $(function() {
     })
 
     /**
-     * Mise en route des effets bootstrap et jQuery
+     * Mise en route des effets bootstrap
      */
     $('.carousel').carousel();
     $('.ttip').tooltip();
-    $('.datepicker').datepicker();
 
     /**
      * Flèche scroll-to-top
