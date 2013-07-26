@@ -1,0 +1,28 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'news.admin.categories.index.title'|trans %}
+
+{% block page_title 'news.admin.categories.index.title'|trans %}
+
+{% block admin_content %}
+    <p>
+        <a href="{{ path('nantarena_news_admin_categories_create') }}" class="btn btn-primary">{{ 'news.admin.categories.index.create'|trans }}</a>
+    </p>
+    <table class="table-stripe table">
+        <tr>
+            <th>{{ 'category.entity.id'|trans }}</th>
+            <th>{{ 'category.entity.name'|trans }}</th>
+            <th>{{ 'news.admin.categories.index.actions'|trans }}</th>
+        </tr>
+        {% for c in categories %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.name }}</td>
+                <td>
+                    <a href="{{ category_edit_path(c) }}" class="btn btn-mini">Editer</a>
+                    <a href="{{ category_delete_path(c) }}" class="btn btn-danger btn-mini">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

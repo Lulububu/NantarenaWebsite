@@ -2,8 +2,17 @@ parameters:
     # news bundle parameters
 
 services:
+    nantarena_news.admin_event:
+        class: Nantarena\NewsBundle\Controller\AdminController
+        tags:
+            - { name: nantarena_admin.dashboard}
+
     nantarena_news.news_manager:
         class: Nantarena\NewsBundle\Manager\NewsManager
+        arguments: [@router]
+
+    nantarena_news.category_manager:
+        class: Nantarena\NewsBundle\Manager\CategoryManager
         arguments: [@router]
 
     nantarena_news.comment_manager:
@@ -19,6 +28,13 @@ services:
 
     nantarena_news.twig.comment_extension:
         class: Nantarena\NewsBundle\Twig\CommentExtension
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [ setContainer, [@service_container] ]
+
+    nantarena_news.twig.category_extension:
+        class: Nantarena\NewsBundle\Twig\CategoryExtension
         tags:
             - { name: twig.extension }
         calls:

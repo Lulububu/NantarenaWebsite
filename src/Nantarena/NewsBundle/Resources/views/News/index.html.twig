@@ -5,9 +5,10 @@
 {% block page_title 'news.index.title'|trans %}
 
 {% block body %}
-    {% include 'NantarenaNewsBundle:News:paginator.html.twig' %}
+    {{ render(controller('NantarenaNewsBundle:Category:categories')) }}
+    {{ knp_pagination_render(pagination) }}
     <div class="news">
-        {% for entity in news %}
+        {% for entity in pagination %}
             {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': entity} %}
             {% endembed %}
         {% else %}
@@ -16,5 +17,5 @@
             </p>
         {% endfor %}
     </div>
-    {% include 'NantarenaNewsBundle:News:paginator.html.twig' %}
+    {{ knp_pagination_render(pagination) }}
 {% endblock %}

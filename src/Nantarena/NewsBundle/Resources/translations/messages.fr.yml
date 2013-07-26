@@ -1,24 +1,60 @@
+category:
+    entity:
+        id: Id
+        name: Nom
+
 news:
     admin:
-        create:
-            flash_error: 'La news "%title%" n''a pas pu être ajoutée'
-            flash_success: 'La news "%title%" a été ajoutée avec succès'
-            title: 'Créer une news'
+        categories:
+            create:
+                flash_error: 'Impossible de créer la nouvelle catégorie'
+                flash_success: 'La catégorie a été crée avec succès'
+                title: 'Créer une nouvelle catégorie'
 
-        delete:
-            flash_error: 'Impossible de supprimer la news'
-            flash_success: 'La news a bien été supprimée'
-            title: 'Supprimer la news'
+            delete:
+                flash_error: 'Impossible de supprimer la catégorie'
+                flash_success: 'Catégorie supprimée'
+                title: 'Suppression d''une catégorie'
 
-        edit:
-            flash_error: 'La news "%title%" n''a pas pu être éditée'
-            flash_success: 'La news "%title%" a été éditée avec succès'
-            title: 'Editer une news'
+            edit:
+                flash_error: 'Impossible d''éditer la catégorie'
+                flash_success: 'Catégorie éditée avec succès'
+                title: 'Editer une catégorie'
 
-        index:
-            actions: Actions
-            create: 'Créer une nouvelle news'
-            title: 'Administration des news'
+            index:
+                actions: Actions
+                create: 'Créer une categorie'
+                title: 'Gestion des catégories'
+
+        dashboard:
+            categories_management: Gestion des catégories
+            news_management: Gestion des news
+            title: Gestion des news
+
+        news:
+            create:
+                flash_error: 'La news "%title%" n''a pas pu être ajoutée'
+                flash_success: 'La news "%title%" a été ajoutée avec succès'
+                title: 'Créer une news'
+
+            delete:
+                flash_error: 'Impossible de supprimer la news'
+                flash_success: 'La news a bien été supprimée'
+                title: 'Supprimer la news'
+
+            edit:
+                flash_error: 'La news "%title%" n''a pas pu être éditée'
+                flash_success: 'La news "%title%" a été éditée avec succès'
+                title: 'Editer une news'
+
+            index:
+                actions: Actions
+                categories: Gérer les catégories
+                create: 'Créer une nouvelle news'
+                title: 'Administration des news'
+
+    category:
+        title: Catégorie « %category% »
 
     comment:
         create:
@@ -42,24 +78,41 @@ news:
         title: Titre
 
     form:
+        category:
+            create:
+                legend: 'Créer une nouvelle catégorie'
+                reset: 'RàZ'
+                submit: Créer
+
+            delete:
+                cancel: 'Annuler la suppression'
+                legend: 'Confirmer la suppression de la catégorie %category%'
+                submit: Supprimer
+
+            edit:
+                legend: 'Editer la catégorie'
+                reset: 'RàZ'
+                submit: Editer
+
         comment:
             legend: 'Commenter la news'
-            submit: 'Envoyer'
+            submit: Envoyer
 
-        create:
-            legend: 'Créer une nouvelle news'
-            reset: 'RàZ'
-            submit: 'Créer la news'
+        news:
+            create:
+                legend: 'Créer une nouvelle news'
+                reset: 'RàZ'
+                submit: 'Créer la news'
 
-        delete:
-            cancel: Annuler
-            legend: 'Confirmer la suppression'
-            submit: 'Supprimer la news'
+            delete:
+                cancel: Annuler
+                legend: 'Confirmer la suppression de la news %news%'
+                submit: 'Supprimer la news'
 
-        edit:
-            legend: 'Editer une news'
-            reset: 'RàZ'
-            submit: 'Editer la news'
+            edit:
+                legend: 'Editer une news'
+                reset: 'RàZ'
+                submit: 'Editer la news'
 
     index:
         no_results: 'Aucune news à afficher'
@@ -67,7 +120,7 @@ news:
 
     news_embed:
         category: 'Publiée dans la catégorie %category%'
-        comments: '{0} Aucun commentaire|{1} Un commentaire|]1,Inf] %count_comments% commentaires'
+        comments: '{0} Aucun commentaire|{1} Un commentaire|]1,Inf] %count% commentaires'
         read: 'Lire la news'
         title: '%title%'
 

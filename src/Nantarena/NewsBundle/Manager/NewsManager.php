@@ -27,6 +27,7 @@ class NewsManager
     public function getNewsPath(News $news)
     {
         return $this->router->generate('nantarena_news_show', array(
+            'category' => $news->getCategory()->getSlug(),
             'id' => $news->getId(),
             'slug' => $news->getSlug(),
         ));

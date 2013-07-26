@@ -3,6 +3,7 @@
 namespace Nantarena\NewsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Nantarena\NewsBundle\Entity\Category;
 use Nantarena\NewsBundle\Entity\News;
 
 /**
@@ -22,6 +23,13 @@ class NewsRepository extends EntityRepository
     public function findAllPublished($limit = null, $offset = null)
     {
         return $this->findBy(array('state' => News::STATE_PUBLISHED), array(
+            'id' => 'desc',
+        ), $limit, $offset);
+    }
+
+    public function findAllPublishedByCategory(Category $category, $limit = null, $offset = null)
+    {
+        return $this->findBy(array('category' => $category, 'state' => News::STATE_PUBLISHED), array(
             'id' => 'desc',
         ), $limit, $offset);
     }

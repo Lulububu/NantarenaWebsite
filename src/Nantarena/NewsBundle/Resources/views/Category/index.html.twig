@@ -1,0 +1,20 @@
+{% extends 'NantarenaNewsBundle::layout.html.twig' %}
+
+{% block title 'news.category.title'|trans %}
+
+{% block page_title 'news.category.title'|trans({'%category%': category.name}) %}
+
+{% block body %}
+    {{ knp_pagination_render(pagination) }}
+    <div class="news">
+        {% for entity in pagination %}
+            {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': entity} %}
+            {% endembed %}
+        {% else %}
+            <p>
+                {{ 'news.index.no_results'|trans }}
+            </p>
+        {% endfor %}
+    </div>
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}

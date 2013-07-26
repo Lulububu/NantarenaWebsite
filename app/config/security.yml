@@ -6,6 +6,9 @@ security:
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
 
+            - ROLE_NEWS_ADMIN_CATEGORIES
+            - ROLE_NEWS_ADMIN_NEWS
+
             - ROLE_USER_ADMIN_USERS
             - ROLE_USER_ADMIN_GROUPS
 
@@ -40,6 +43,9 @@ security:
 
     access_control:
         - { path: ^/news/comment, roles: ROLE_USER }
+
+        - { path: ^/admin/news/categories, roles: ROLE_NEWS_ADMIN_CATEGORIES }
+        - { path: ^/admin/news, roles: ROLE_NEWS_ADMIN_NEWS }
 
         - { path: ^/admin/users, roles: ROLE_USER_ADMIN_USERS }
         - { path: ^/admin/groups, roles: ROLE_USER_ADMIN_GROUPS }

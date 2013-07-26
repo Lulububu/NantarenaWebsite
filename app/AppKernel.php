@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Nantarena\SiteBundle\NantarenaSiteBundle(),
             new Nantarena\UserBundle\NantarenaUserBundle(),
             new Nantarena\NewsBundle\NantarenaNewsBundle(),

@@ -1,0 +1,19 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'news.admin.categories.create.title'|trans %}
+
+{% block page_title 'news.admin.categories.create.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaNewsBundle:Form:_category.html.twig' with {'form': form} %}
+        {% block form_news_category_legend %}{{ 'news.form.category.create.legend'|trans }}{% endblock %}
+        {% block form_news_category_actions %}
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary" value="{{ 'news.form.category.create.submit'|trans }}" />
+                    <input type="reset" class="btn" value="{{ 'news.form.category.create.reset'|trans }}" />
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

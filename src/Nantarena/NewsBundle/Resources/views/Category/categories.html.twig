@@ -1,0 +1,9 @@
+{% block _news_categories %}
+    <div class="news-categories">
+        <ul>
+            {% for category in categories %}
+                <li><a href="{{ category_path(category) }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

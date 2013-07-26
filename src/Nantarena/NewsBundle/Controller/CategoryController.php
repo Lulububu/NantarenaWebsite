@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Nantarena\NewsBundle\Entity\News;
-use Nantarena\NewsBundle\Form\Type\CommentType;
 
 /**
  * Class NewsController
@@ -17,44 +16,35 @@ use Nantarena\NewsBundle\Form\Type\CommentType;
  *
  * @Route("/news")
  */
-class NewsController extends Controller
+class CategoryController extends Controller
 {
     /**
-     * @Route("/", name="nantarena_news_index")
+     * @Route("/{slug}", name="nantarena_news_category_index")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Category $category)
     {
         $limit = $this->getRequest()->get('limit', 5);
         $pagination = $this->get('knp_paginator')->paginate(
-            $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findAllPublished(),
+            $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findAllPublishedByCategory($category),
             $this->getRequest()->get('page', 1),
             $limit
         );
 
         return array(
             'pagination' => $pagination,
+            'category' => $category,
         );
     }
 
     /**
-     * @Route("/{category}/{id}-{slug}", name="nantarena_news_show")
+     * @Route("/categories", name="nantarena_news_category_categories")
      * @Template()
      */
-    public function showAction($category, News $news)
+    public function categoriesAction()
     {
-        if (News::STATE_UNPUBLISHED === $news->getState()) {
-            return $this->redirect($this->generateUrl('nantarena_news_index'));
-        }
-
-        $form = $this->createForm(new CommentType(), null, array(
-            'action' => $this->get('nantarena_news.comment_manager')->getCreateCommentPath($news),
-            'method' => 'POST',
-        ));
-
         return array(
-            'news' => $news,
-            'form' => $form->createView(),
+            'categories' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:Category')->findAll(),
         );
     }
 }

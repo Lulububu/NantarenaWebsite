@@ -5,6 +5,7 @@ namespace Nantarena\NewsBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Category
@@ -39,6 +40,14 @@ class Category
      * @ORM\OneToMany(targetEntity="Nantarena\NewsBundle\Entity\News", mappedBy="category")
      */
     protected $relatedNews;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=64, unique=true)
+     */
+    protected $slug;
 
     /**
      * Constructeur par défaut
@@ -100,5 +109,24 @@ class Category
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @param string $slug
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

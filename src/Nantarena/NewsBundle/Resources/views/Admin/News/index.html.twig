@@ -1,12 +1,13 @@
 {% extends 'NantarenaAdminBundle::layout.html.twig' %}
 
-{% block title 'news.admin.index.title'|trans %}
+{% block title 'news.admin.news.index.title'|trans %}
 
-{% block page_title 'news.admin.index.title'|trans %}
+{% block page_title 'news.admin.news.index.title'|trans %}
 
 {% block admin_content %}
     <p>
-        <a href="{{ path('nantarena_news_admin_create') }}" class="btn btn-primary">{{ 'news.admin.index.create'|trans }}</a>
+        <a href="{{ path('nantarena_news_admin_create') }}" class="btn btn-primary">{{ 'news.admin.news.index.create'|trans }}</a>
+        <a href="{{ path('nantarena_news_admin_categories_index') }}" class="btn">{{ 'news.admin.news.index.categories'|trans }}</a>
     </p>
     <table class="table-stripe table">
         <tr>
@@ -16,7 +17,7 @@
             <th>{{ 'news.entity.title'|trans }}</th>
             <th>{{ 'news.entity.author'|trans }}</th>
             <th>{{ 'news.entity.state'|trans }}</th>
-            <th>{{ 'news.admin.index.actions'|trans }}</th>
+            <th>{{ 'news.admin.news.index.actions'|trans }}</th>
         </tr>
         {% for n in news %}
             <tr>

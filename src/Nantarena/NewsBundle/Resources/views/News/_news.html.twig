@@ -15,7 +15,7 @@
             </p>
         </header>
         <div class="news-content">
-            {{ news.content|nl2br }}
+            {{ news.content|markdown }}
         </div>
         <footer>
             {% block news_footer %}
@@ -26,7 +26,7 @@
                 </p>
                 <p class="news-links">
                     <a href="{{ news_path(news) }}">{{ 'news.news_embed.read'|trans }}</a>
-                    <a href="{{ news_path(news) }}#comments">{{ 'news.news_embed.comments'|transchoice(news.comments|length, {'%count_comments%': news.comments|length}) }}</a>
+                    <a href="{{ news_path(news) }}#comments">{{ 'news.news_embed.comments'|transchoice(news.comments|length) }}</a>
                 </p>
             {% endblock %}
         </footer>

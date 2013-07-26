@@ -1,15 +1,22 @@
 <?php
 
-namespace Nantarena\NewsBundle\Controller;
+namespace Nantarena\NewsBundle\Controller\Admin;
 
 use Nantarena\NewsBundle\Entity\News;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class PublishController
+ *
+ * @package Nantarena\NewsBundle\Controller\Admin
+ *
+ * @Route("/admin/publish")
+ */
 class PublishController extends Controller
 {
     /**
-     * @Route("/publish/{state}/{id}", name="nantarena_news_publish")
+     * @Route("/{state}/{id}", name="nantarena_news_publish")
      */
     public function publishAction($state, News $news)
     {

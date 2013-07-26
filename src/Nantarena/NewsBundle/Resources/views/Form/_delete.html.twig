@@ -1,14 +1,10 @@
 <fieldset>
-    <legend>{{ 'news.form.delete.legend'|trans }}</legend>
+    <legend>{% block form_news_delete_legend %}{% endblock %}</legend>
 
     {{ form_start(form) }}
         {{ form_row(form.id) }}
 
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" class="btn" value="{{ 'news.form.delete.submit'|trans }}" />
-                <a href="{{ path('nantarena_news_admin_index') }}">{{ 'news.form.delete.cancel'|trans }}</a>
-            </div>
-        </div>
+        {% block form_news_delete_actions %}
+        {% endblock %}
     {{ form_end(form) }}
 </fieldset>

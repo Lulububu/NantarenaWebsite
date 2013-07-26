@@ -1,0 +1,20 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'news.admin.categories.delete.title'|trans %}
+
+{% block page_title 'news.admin.categories.delete.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaNewsBundle:Form:_delete.html.twig' with {'form': form} %}
+        {% block form_news_delete_legend %}{{ 'news.form.category.delete.legend'|trans({'%category%': category.name}) }}{% endblock %}
+        {% block form_news_delete_actions %}
+            {{ form_row(form.category) }}
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-danger" value="{{ 'news.form.category.delete.submit'|trans }}" />
+                    <a href="{{ path('nantarena_news_admin_categories_index') }}">{{ 'news.form.category.delete.cancel'|trans }}</a>
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
