@@ -2,6 +2,7 @@ event:
     admin:
         dashboard:
             entrytypes_management: 'Gestion des types d''inscription'
+            events_management: 'Gestion des évènements'
             games_management: 'Gestion des jeux'
             title: 'Gestion des évènements'
 
@@ -32,6 +33,38 @@ event:
                 name: Libellé
                 title: 'Types d''inscription'
 
+        events:
+            create:
+                back: 'Retour à la liste'
+                flash_error: 'Erreur lors de la création du nouvel évènement'
+                flash_success: 'Le nouvel évènement a été créé avec succès'
+                submit: Créer
+                title: 'Créer un nouvel évènement'
+
+            delete:
+                flash_error: 'Erreur lors de la suppression de l''évènement'
+                flash_success: 'L''évènement a été supprimé avec succès'
+                info: 'Toutes les données liées à cet évènement seront également supprimées'
+                submit: Supprimer
+                title: 'Suppression d''un évènement'
+                warning: 'Vous êtes sur le point de supprimer un évènement.'
+
+            edit:
+                flash_error: 'Erreur lors de la modification de l''évènement'
+                flash_success: 'L''évènement a été modifié avec succès'
+                submit: Modifier
+                title: 'Modifier un évènement'
+
+            list:
+                capacity: Capacité
+                empty: 'Aucun évènement n''est encore défini'
+                endDate: Fin
+                name: Nom
+                registrationEnd: 'Fin des inscriptions'
+                registrationStart: 'Début des inscriptions'
+                startDate: Début
+                title: 'Liste des évènements'
+
         games:
             create:
                 back: 'Retour à la liste'
@@ -59,15 +92,28 @@ event:
                 name: Nom
                 platform: Plate-forme
                 team_capacity: Joueurs/équipe
-                title: Liste des jeux
+                title: 'Liste des jeux'
 
         warning: 'Attention !'
 
     form:
         entrytype:
-            name: Libellé :
+            name: 'Libellé :'
+
+        event:
+            capacity: 'Capacité :'
+            endDate: 'Fin :'
+            endRegistrationDate: 'Fin :'
+            name: 'Nom :'
+            startDate: 'Début :'
+            startRegistrationDate: 'Début :'
+
+        evententrytype:
+            add: 'Ajouter un type d''inscription'
+            entryType: 'Type d''inscription'
+            price: Prix
 
         game:
-            name: Nom :
-            platform: Plate-forme :
-            team_capacity: Joueurs/équipe :
+            name: 'Nom :'
+            platform: 'Plate-forme :'
+            team_capacity: 'Joueurs/équipe :'

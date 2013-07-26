@@ -14,6 +14,7 @@ security:
 
             - ROLE_EVENT_ADMIN_ENTRYTYPES
             - ROLE_EVENT_ADMIN_GAMES
+            - ROLE_EVENT_ADMIN_EVENTS
 
     providers:
         fos_userbundle:
@@ -52,5 +53,6 @@ security:
 
         - { path: ^/admin/event/entrytypes, roles: ROLE_EVENT_ADMIN_ENTRYTYPES }
         - { path: ^/admin/event/games, roles: ROLE_EVENT_ADMIN_GAMES }
+        - { path: ^/admin/event/events, roles: ROLE_EVENT_ADMIN_EVENTS }
 
         - { path: ^/admin, roles: ROLE_ADMIN } # Attention à le laisser en dernier

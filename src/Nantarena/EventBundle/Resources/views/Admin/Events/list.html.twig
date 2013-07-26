@@ -1,0 +1,83 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'event.admin.events.list.title'|trans %}
+{% block page_title 'event.admin.events.list.title'|trans %}
+
+{% block admin_content %}
+
+    <div class="text-center">
+        <a class="btn" href="{{ path('nantarena_event_admin_events_create') }}">
+            {{ 'event.admin.events.create.title'|trans }}
+        </a>
+    </div>
+
+    <table class="table sortable" data-sort="2" data-asc="desc" data-perpage="50">
+        <thead>
+        <tr>
+            <th data-filter="ignore" class="tiny">#</th>
+            <th>{{ 'event.admin.events.list.name'|trans }}</th>
+            <th>{{ 'event.admin.events.list.startDate'|trans }}</th>
+            <th>{{ 'event.admin.events.list.endDate'|trans }}</th>
+            <th>{{ 'event.admin.events.list.registrationStart'|trans }}</th>
+            <th>{{ 'event.admin.events.list.registrationEnd'|trans }}</th>
+            <th>{{ 'event.admin.events.list.capacity'|trans }}</th>
+            <th class="mini"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for event in events %}
+            {% if date(event.startRegistrationDate) <= date() and date(event.startDate) >= date() %}
+                <tr class="warning">
+            {% elseif date(event.startDate) > date() %}
+                <tr class="success">
+            {% elseif date(event.endDate) > date() %}
+                <tr class="error">
+            {% else %}
+                <tr>
+            {% endif %}
+
+                <td>{{ event.id }}</td>
+                <td>
+                    {{ event.name }}
+                </td>
+                <td>
+                    {{ event.startDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.endDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.startRegistrationDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.endRegistrationDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.capacity }}
+                </td>
+                <td>
+                    <a href="{{ path('nantarena_event_admin_events_edit', {'id': event.id}) }}">
+                        <i class="icon-wrench"></i>
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="{{ path('nantarena_event_admin_events_delete', {'id': event.id}) }}">
+                        <i class="icon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">
+                    <div class="text-center">
+                        {{ 'event.admin.events.list.empty'|trans }}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination pagination-centered"><ul></ul></div>
+
+{% endblock %}

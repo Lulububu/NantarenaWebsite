@@ -24,6 +24,15 @@
     {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
+{% block money_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-mini')|trim}) %}
+        <div class="input-append">
+            {{ block('form_widget_simple') }}
+            <span class="add-on">&euro;</span>
+        </div>
+    {% endspaceless %}
+{% endblock money_widget %}
 
 {% block datetime_widget %}
     {% spaceless %}
@@ -77,6 +86,66 @@
         {% endif %}
     {% endspaceless %}
 {% endblock time_widget %}
+
+{% block collection_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set prototype_html = '<tr>' %}
+            {% for widget in prototype %}
+                {% set prototype_html = prototype_html ~ '<td>' ~ form_widget(widget) ~ '</td>' %}
+            {% endfor %}
+            {% if form.vars.allow_delete %}
+                {% set prototype_html = prototype_html ~ '<td><a href="#" class="collection_delete"><i class="icon-trash"></i></a></td>' %}
+            {% endif %}
+            {% set prototype_html = prototype_html ~ '</tr>' %}
+
+            {% set attr = attr|merge({'data-prototype': prototype_html }) %}
+            {% set attr = attr|merge({'data-count': form|length }) %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' collection_holder')|trim}) %}
+        {% endif %}
+
+        <div {{ block('widget_container_attributes') }}">
+            <table class="table" >
+                <tr>
+                    {% for field in prototype %}
+                        <th>
+                            {% if labels[field.vars.name] is defined %}
+                                {{ labels[field.vars.name] }}
+                            {% endif %}
+                        </th>
+                    {% endfor %}
+                    {% if form.vars.allow_delete %}
+                        <th></th>
+                    {% endif %}
+                </tr>
+
+                {% for field in form %}
+                    <tr>
+                        {% for widget in field %}
+                        <td>
+                            {{ form_widget(widget) }}
+                            {{ form_errors(widget) }}
+                        </td>
+                        {% endfor %}
+
+                        {% if form.vars.allow_delete %}
+                            <td>
+                                <a href="#" class="collection_delete"><i class="icon-trash"></i></a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                {% if form.vars.allow_add %}
+                    <tr>
+                        <td class="collection-add" colspan="{{ prototype|length + form.vars.allow_delete }}">
+                            <a href="#" class="btn btn-small collection_add" >{{ add_text }}</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            </table>
+        </div>
+    {% endspaceless %}
+{% endblock collection_widget %}
 
 {# Labels #}
 

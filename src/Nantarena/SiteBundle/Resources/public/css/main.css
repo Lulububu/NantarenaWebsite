@@ -583,6 +583,14 @@ table.tab-content > .active {
         color: #51565B;
     }
 
+    div.inline {
+        display: inline-block;
+    }
+
+    table td.collection-add {
+        text-align: center;
+    }
+
 /* Articles */
     .news article {
         margin-bottom: 30px;
