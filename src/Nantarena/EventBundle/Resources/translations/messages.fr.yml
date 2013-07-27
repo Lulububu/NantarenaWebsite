@@ -108,6 +108,10 @@ event:
             entryType: 'Type d''inscription'
             price: Prix
 
+        fieldset:
+            entries: 'Inscriptions'
+            infos: 'Informations générales'
+
         game:
             name: 'Nom :'
             platform: 'Plate-forme :'

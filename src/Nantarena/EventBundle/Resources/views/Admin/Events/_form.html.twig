@@ -2,7 +2,7 @@
     {{ form_errors(form) }}
 
     <fieldset>
-        <legend>Informations générales</legend>
+        <legend>{{ 'event.form.fieldset.infos'|trans }}</legend>
 
         {{ form_row(form.name, {'label': 'event.form.event.name'|trans}) }}
         {{ form_row(form.capacity, {'label': 'event.form.event.capacity'|trans}) }}
@@ -11,7 +11,7 @@
     </fieldset>
 
     <fieldset>
-        <legend>Inscriptions</legend>
+        <legend>{{ 'event.form.fieldset.entries'|trans }}</legend>
 
         <div class="row control-group">
             <div class="span6">

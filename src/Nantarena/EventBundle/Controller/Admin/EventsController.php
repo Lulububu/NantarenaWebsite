@@ -73,8 +73,11 @@ class EventsController extends Controller
      * @Route("/edit/{id}", name="nantarena_event_admin_events_edit")
      * @Template()
      */
-    public function editAction(Request $request, Event $event)
+    public function editAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('NantarenaEventBundle:Event')->findWithEntryTypes($id);
+
         $originalEntryTypes = array();
 
         foreach ($event->getEntryTypes() as $entryType) {
@@ -95,8 +98,6 @@ class EventsController extends Controller
             $flashbag = $this->get('session')->getFlashBag();
 
             try {
-                $em = $this->getDoctrine()->getManager();
-
                 foreach ($event->getEntryTypes() as $entryType) {
                     foreach ($originalEntryTypes as $key => $toDel) {
                         if ($toDel->getId() === $entryType->getId()) {
