@@ -1,0 +1,32 @@
+<div class="span6 offset3">
+    {% set block_warning = block('warning') %}
+    {% set block_info = block('info') %}
+
+    {% if block_warning is not empty %}
+        <div class="alert alert-error text-center">
+            <strong>{{ 'admin.delete.warning'|trans }}</strong>
+            {% block warning %}{% endblock %}
+        </div>
+    {% endif %}
+
+    {% if block_info is not empty %}
+        <div class="alert alert-warning text-center">
+            {% block info %}{% endblock %}
+        </div>
+    {% endif %}
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {% block form %}
+        {% endblock %}
+
+        {{ form_row(form.submit, {'label': 'admin.delete.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
+    {{ form_end(form) }}
+
+    <p class="text-center">
+        {% block back %}
+            <a href="{{ path('nantarena_event_admin_games') }}">{{ 'event.admin.games.create.back'|trans }}</a>
+        {% endblock %}
+    </p>
+</div>

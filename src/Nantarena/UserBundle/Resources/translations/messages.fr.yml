@@ -21,7 +21,6 @@ user:
                 flash_success: 'Le groupe a été supprimé avec succès'
                 info: 'Les membres actuels de ce groupe seront déplacés vers le nouveau groupe défini ci-dessous.'
                 newgroup: 'Déplacer vers '
-                submit: Supprimer
                 title: 'Suppression d''un groupe'
                 warning: 'Vous êtes sur le point de supprimer un groupe.'
 
@@ -48,7 +47,6 @@ user:
             delete:
                 flash_error: 'Erreur lors de la suppression de l''utilisateur'
                 flash_success: 'L''tilisateur a été supprimé avec succès'
-                submit: Supprimer
                 title: 'Suppression d''un membre'
                 warning: 'Vous êtes sur le point de supprimer un membre.'
 
@@ -68,8 +66,6 @@ user:
                 registration_date: 'Date d''inscription'
                 title: 'Liste des membres'
                 username: Pseudo
-
-        warning: 'Attention !'
 
     change_password:
         back: 'Retour au profil'

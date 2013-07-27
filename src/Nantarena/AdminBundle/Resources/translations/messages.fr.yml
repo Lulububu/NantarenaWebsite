@@ -5,3 +5,7 @@ admin:
     dashboard:
         page_title: Panneau d'administration
         title: Administration
+
+    delete:
+        warning: 'Attention !'
+        submit: 'Supprimer'

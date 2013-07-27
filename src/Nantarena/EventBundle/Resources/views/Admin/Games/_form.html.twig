@@ -1,0 +1,14 @@
+<div class="span6 offset3">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name, {'label': 'event.form.game.name'|trans}) }}
+        {{ form_row(form.platform, {'label': 'event.form.game.platform'|trans}) }}
+        {{ form_row(form.teamCapacity, {'label': 'event.form.game.team_capacity'|trans}) }}
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+
+    <p class="text-center">
+        <a href="{{ path('nantarena_event_admin_games') }}">{{ 'event.admin.games.create.back'|trans }}</a>
+    </p>
+</div>

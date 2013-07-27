@@ -4,22 +4,17 @@
 {% block page_title 'user.admin.users.delete.title'|trans %}
 
 {% block admin_content %}
+    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
 
-    <div class="span6 offset3">
-        <div class="alert alert-error text-center">
-            <strong>{{ 'user.admin.warning'|trans }}</strong>
+        {% block warning %}
             {{ 'user.admin.users.delete.warning'|trans }}
-        </div>
+        {% endblock %}
 
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_row(form.submit, {'label': 'user.admin.users.delete.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
-        {{ form_end(form) }}
+        {% block back %}
+            <a href="{{ path('nantarena_user_admin_users') }}">
+                {{ 'user.admin.users.create.back'|trans }}
+            </a>
+        {% endblock %}
 
-        <p class="text-center">
-            <a href="{{ path('nantarena_user_admin_users') }}">{{ 'user.admin.users.create.back'|trans }}</a>
-        </p>
-    </div>
-
-
+    {% endembed %}
 {% endblock %}

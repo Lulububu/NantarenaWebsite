@@ -1,0 +1,39 @@
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <fieldset>
+        <legend>Informations générales</legend>
+
+        {{ form_row(form.name, {'label': 'event.form.event.name'|trans}) }}
+        {{ form_row(form.capacity, {'label': 'event.form.event.capacity'|trans}) }}
+        {{ form_row(form.startDate, {'label': 'event.form.event.startDate'|trans}) }}
+        {{ form_row(form.endDate, {'label': 'event.form.event.endDate'|trans}) }}
+    </fieldset>
+
+    <fieldset>
+        <legend>Inscriptions</legend>
+
+        <div class="row control-group">
+            <div class="span6">
+                {{ form_row(form.startRegistrationDate, {'label': 'event.form.event.startRegistrationDate'|trans}) }}
+                {{ form_row(form.endRegistrationDate, {'label': 'event.form.event.endRegistrationDate'|trans}) }}
+            </div>
+            <div class="span6">
+                {% form_theme form.entryTypes with 'NantarenaSiteBundle:Form:inline_layout.html.twig' %}
+                {{ form_widget(form.entryTypes, {
+                    'add_text': 'event.form.evententrytype.add'|trans,
+                    'labels': {
+                        'entryType': 'event.form.evententrytype.entryType'|trans,
+                        'price': 'event.form.evententrytype.price'|trans
+                    }
+                }) }}
+            </div>
+        </div>
+    </fieldset>
+
+    {{ form_row(form.submit, {'label': submit}) }}
+{{ form_end(form) }}
+
+<p class="text-center">
+    <a href="{{ path('nantarena_event_admin_events') }}">{{ 'event.admin.events.create.back'|trans }}</a>
+</p>

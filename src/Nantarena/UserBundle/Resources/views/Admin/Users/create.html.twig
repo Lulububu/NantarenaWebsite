@@ -4,24 +4,7 @@
 {% block page_title 'user.admin.users.create.title'|trans %}
 
 {% block admin_content %}
-
-    <div class="span6 offset3">
-        {{ form_start(form) }}
-            {{ form_errors(form) }}
-
-            {{ form_row(form.username, {'label': 'user.form.username'|trans}) }}
-            {{ form_row(form.email, {'label': 'user.form.email'|trans}) }}
-            {{ form_row(form.plainPassword.first, {'label': 'user.form.password'|trans}) }}
-            {{ form_row(form.plainPassword.second, {'label': 'user.form.repeated'|trans}) }}
-            {{ form_row(form.groups, {'label': 'user.form.groups'|trans}) }}
-            {{ form_row(form.enabled, {'label': 'user.form.enabled'|trans}) }}
-            {{ form_row(form.locked, {'label': 'user.form.locked'|trans}) }}
-            {{ form_row(form.submit, {'label': 'user.admin.users.create.submit'|trans}) }}
-        {{ form_end(form) }}
-
-        <p class="text-center">
-            <a href="{{ path('nantarena_user_admin_users') }}">{{ 'user.admin.users.create.back'|trans }}</a>
-        </p>
-    </div>
-
+    {% embed 'NantarenaUserBundle:Admin/Users:_form.html.twig' with {
+        'submit': 'user.admin.users.create.submit'|trans
+    } %}{% endembed %}
 {% endblock %}

@@ -4,26 +4,21 @@
 {% block page_title 'event.admin.entrytypes.delete.title'|trans %}
 
 {% block admin_content %}
+    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
 
-    <div class="span6 offset3">
-        <div class="alert alert-error text-center">
-            <strong>{{ 'event.admin.warning'|trans }}</strong>
+        {% block warning %}
             {{ 'event.admin.entrytypes.delete.warning'|trans }}
-        </div>
+        {% endblock %}
 
-        <div class="alert alert-warning text-center">
+        {% block info %}
             {{ 'event.admin.entrytypes.delete.info'|trans }}
-        </div>
+        {% endblock %}
 
-        {{ form_start(form) }}
-            {{ form_errors(form) }}
-            {{ form_row(form.submit, {'label': 'event.admin.entrytypes.delete.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
-        {{ form_end(form) }}
+        {% block back %}
+            <a href="{{ path('nantarena_event_admin_entrytypes') }}">
+                {{ 'event.admin.entrytypes.create.back'|trans }}
+            </a>
+        {% endblock %}
 
-        <p class="text-center">
-            <a href="{{ path('nantarena_event_admin_entrytypes') }}">{{ 'event.admin.entrytypes.create.back'|trans }}</a>
-        </p>
-    </div>
-
-
+    {% endembed %}
 {% endblock %}

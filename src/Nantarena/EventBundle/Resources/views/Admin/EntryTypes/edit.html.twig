@@ -4,18 +4,7 @@
 {% block page_title 'event.admin.entrytypes.edit.title'|trans %}
 
 {% block admin_content %}
-
-    <div class="span6 offset3">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-
-        {{ form_row(form.name, {'label': 'event.form.entrytype.name'|trans}) }}
-        {{ form_row(form.submit, {'label': 'event.admin.entrytypes.edit.submit'|trans}) }}
-        {{ form_end(form) }}
-
-        <p class="text-center">
-            <a href="{{ path('nantarena_event_admin_entrytypes') }}">{{ 'event.admin.entrytypes.create.back'|trans }}</a>
-        </p>
-    </div>
-
+    {% embed 'NantarenaEventBundle:Admin/EntryTypes:_form.html.twig' with {
+        'submit': 'event.admin.entrytypes.edit.submit'|trans
+    } %}{% endembed %}
 {% endblock %}
