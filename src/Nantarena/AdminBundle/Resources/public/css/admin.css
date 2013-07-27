@@ -5,6 +5,9 @@
         text-align: center;
         border-radius: 10px;
         background: rgba(200,200,200,0.3);
+        width: 48%;
+        float: left;
+        margin: 5px;
     }
 
     div.module h3 {
