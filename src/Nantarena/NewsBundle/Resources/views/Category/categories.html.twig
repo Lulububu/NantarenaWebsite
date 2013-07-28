@@ -2,7 +2,7 @@
     <div class="news-categories">
         <ul>
             {% for category in categories %}
-                <li><a href="{{ category_path(category) }}">{{ category.name }}</a></li>
+                <li><a href="{{ category_path(category) }}" class="label label-info">{{ category.name }}</a></li>
             {% endfor %}
         </ul>
     </div>

@@ -4,9 +4,11 @@
 
 {% block page_title 'news.index.title'|trans %}
 
-{% block body %}
+{% block news_content %}
     {{ render(controller('NantarenaNewsBundle:Category:categories')) }}
+
     {{ knp_pagination_render(pagination) }}
+
     <div class="news">
         {% for entity in pagination %}
             {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': entity} %}
@@ -17,5 +19,6 @@
             </p>
         {% endfor %}
     </div>
+
     {{ knp_pagination_render(pagination) }}
 {% endblock %}

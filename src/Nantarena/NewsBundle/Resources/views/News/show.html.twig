@@ -4,13 +4,16 @@
 
 {% block page_title 'news.show.title'|trans({'%title%': news.title}) %}
 
-{% block body %}
-    {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': news} %}
-        {% block news_title %}{% endblock %}
-    {% endembed %}
+{% block news_content %}
+    <div class="news">
+        {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': news} %}
+            {% block news_title %}{% endblock %}
+            {% block news_footer_links %}{% endblock %}
+        {% endembed %}
+    </div>
 
     <div class="news-comments">
-        <h2>{{ 'news.show.comments'|trans }}</h2>
+        <h2>{{ 'news.show.comments.title'|trans }}</h2>
 
         <div id="comments">
             {% for comment in news.comments %}
@@ -24,6 +27,6 @@
         </div>
     </div>
 
-    {% embed 'NantarenaNewsBundle:Form:_comment.html.twig' with {'form': form} %}
+    {% embed 'NantarenaNewsBundle:Form:_comment.html.twig' with {'submit': 'news.form.comment.create.submit'|trans} %}
     {% endembed %}
 {% endblock %}

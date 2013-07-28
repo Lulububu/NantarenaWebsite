@@ -57,15 +57,15 @@ class CommentController extends Controller
      */
     public function deleteAction(Comment $comment)
     {
-        if ($comment->getAuthor() !== $this->getUser()) {
-            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('news.comment.delete.flash_error'));
-        } else {
+        if ($comment->getAuthor() === $this->getUser() or $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
 
             $em->remove($comment);
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('news.comment.delete.flash_success'));
+        } else {
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('news.comment.delete.flash_error'));
         }
 
         return $this->redirect($this->get('nantarena_news.news_manager')->getNewsPath($comment->getNews()));

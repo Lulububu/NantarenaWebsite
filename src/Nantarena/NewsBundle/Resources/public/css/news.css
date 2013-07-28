@@ -1,0 +1,8 @@
+div.news-categories ul {
+    padding: 0;
+    margin: 0;
+}
+
+div.news-categories ul li {
+    display: inline;
+}

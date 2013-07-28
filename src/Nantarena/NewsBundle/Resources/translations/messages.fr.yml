@@ -81,37 +81,32 @@ news:
     form:
         category:
             create:
-                legend: 'Créer une nouvelle catégorie'
                 reset: 'RàZ'
                 submit: Créer
 
             delete:
                 cancel: 'Annuler la suppression'
-                legend: 'Confirmer la suppression de la catégorie %category%'
                 submit: Supprimer
 
             edit:
-                legend: 'Editer la catégorie'
                 reset: 'RàZ'
                 submit: Editer
 
         comment:
-            legend: 'Commenter la news'
-            submit: Envoyer
+            create:
+                content: Commentaire
+                submit: Envoyer
 
         news:
             create:
-                legend: 'Créer une nouvelle news'
                 reset: 'RàZ'
                 submit: 'Créer la news'
 
             delete:
                 cancel: Annuler
-                legend: 'Confirmer la suppression de la news %news%'
                 submit: 'Supprimer la news'
 
             edit:
-                legend: 'Editer une news'
                 reset: 'RàZ'
                 submit: 'Editer la news'
 
@@ -120,7 +115,7 @@ news:
         title: 'Liste des news'
 
     news_embed:
-        category: 'Publiée dans la catégorie %category%'
+        category: 'Publiée dans la catégorie <span class="label label-info">%category%</span>'
         comments: '{0} Aucun commentaire|{1} Un commentaire|]1,Inf] %count% commentaires'
         read: 'Lire la news'
         title: '%title%'
@@ -129,8 +124,9 @@ news:
         flash_success: 'La news est maintenant publiée'
 
     show:
-        comments: Commentaires
-        comments.no_results: 'Aucun commentaire'
+        comments:
+            title: 'Commentaires'
+            no_results: 'Aucun commentaire'
         title: '%title%'
 
     state:

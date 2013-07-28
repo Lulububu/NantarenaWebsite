@@ -1,13 +1,6 @@
-<fieldset>
-    <legend>{{ 'news.form.comment.legend'|trans }}</legend>
-
+<div class="span9 offset1">
     {{ form_start(form) }}
-        {{ form_row(form.content) }}
-
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" class="btn" value="{{ 'news.form.comment.submit'|trans }}" />
-            </div>
-        </div>
+        {{ form_row(form.content, {'label': 'news.form.comment.create.content'|trans|colon}) }}
+        {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}
-</fieldset>
+</div>

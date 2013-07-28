@@ -4,7 +4,7 @@
 
 {% block page_title 'news.category.title'|trans({'%category%': category.name}) %}
 
-{% block body %}
+{% block news_content %}
     {{ knp_pagination_render(pagination) }}
     <div class="news">
         {% for entity in pagination %}

@@ -19,6 +19,17 @@ use Nantarena\NewsBundle\Entity\News;
 class CategoryController extends Controller
 {
     /**
+     * @Route("/categories", name="nantarena_news_category_categories")
+     * @Template()
+     */
+    public function categoriesAction()
+    {
+        return array(
+            'categories' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:Category')->findAll(),
+        );
+    }
+
+    /**
      * @Route("/{slug}", name="nantarena_news_category_index")
      * @Template()
      */
@@ -34,17 +45,6 @@ class CategoryController extends Controller
         return array(
             'pagination' => $pagination,
             'category' => $category,
-        );
-    }
-
-    /**
-     * @Route("/categories", name="nantarena_news_category_categories")
-     * @Template()
-     */
-    public function categoriesAction()
-    {
-        return array(
-            'categories' => $this->getDoctrine()->getRepository('NantarenaNewsBundle:Category')->findAll(),
         );
     }
 }
