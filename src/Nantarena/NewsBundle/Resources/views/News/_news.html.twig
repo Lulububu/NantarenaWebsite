@@ -22,7 +22,7 @@
                 {% block news_footer_category %}
                     <p class="news-category">
                         {% block news_category %}
-                            {{ 'news.news_embed.category'|trans({'%category%': news.category })|raw }}
+                            {{ 'news.news_embed.category'|trans({'%category%': news.category, '%path%': category_path(news.category)})|raw }}
                         {% endblock %}
                     </p>
                 {% endblock %}
