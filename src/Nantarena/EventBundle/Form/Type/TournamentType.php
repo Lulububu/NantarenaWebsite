@@ -5,6 +5,7 @@ namespace Nantarena\EventBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class TournamentType extends AbstractType
 {
@@ -18,6 +19,13 @@ class TournamentType extends AbstractType
             ->add('admin', 'entity', array(
                 'class' => 'NantarenaUserBundle:User',
                 'property' => 'username',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->join('u.groups', 'g')
+                        ->where('g.roles LIKE :role')
+                        ->setParameter('role', '%ROLE_EVENT_TOURNAMENTS_MANAGER%');
+                },
+                'required' => false
             ))
             ->add('maxTeams', 'integer', array(
                 'attr' => array('min' => 2)
