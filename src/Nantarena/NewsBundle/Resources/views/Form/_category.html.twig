@@ -1,15 +1,10 @@
-<fieldset>
-    {% block form_news_fieldset %}
-        <legend>{% block form_news_category_legend %}{% endblock %}</legend>
+<div class="span6 offset3">
+    {{ form_start(form) }}
+        {{ form_row(form.name, {'label': 'news.entity.name'|trans ~ ' :'}) }}
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
 
-        {% block form_news_category_form %}
-            {{ form_start(form, {'class': 'form-horizontal'}) }}
-                {{ form_row(form.name) }}
-
-                {% block form_news_category_actions %}
-
-                {% endblock %}
-            {{ form_end(form) }}
-        {% endblock %}
-    {% endblock %}
-</fieldset>
+    <p class="text-center">
+        <a href="{{ path('nantarena_news_admin_categories_index') }}">{{ 'news.admin.news.back'|trans }}</a>
+    </p>
+</div>

@@ -4,15 +4,7 @@
 {% block page_title 'news.admin.categories.edit.title'|trans %}
 
 {% block admin_content %}
-    {% embed 'NantarenaNewsBundle:Form:_category.html.twig' with {'form': form} %}
-        {% block form_news_category_legend %}{{ 'news.form.category.edit.legend'|trans }}{% endblock %}
-        {% block form_news_category_actions %}
-            <div class="control-group">
-                <div class="controls">
-                    <input type="submit" class="btn btn-primary" value="{{ 'news.form.category.edit.submit'|trans }}" />
-                    <input type="reset" class="btn" value="{{ 'news.form.category.edit.reset'|trans }}" />
-                </div>
-            </div>
-        {% endblock %}
-    {% endembed %}
+    {% embed 'NantarenaNewsBundle:Form:_category.html.twig' with {
+        'submit': 'news.form.category.edit.submit'|trans
+    } %}{% endembed %}
 {% endblock %}

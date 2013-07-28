@@ -5,6 +5,10 @@
 
 {% block admin_content %}
     {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
+        {% block warning %}
+            {{ 'news.admin.news.delete.warning'|trans }}
+        {% endblock %}
+
         {% block back %}
             <a href="{{ path('nantarena_news_admin_index') }}">
                 {{ 'news.admin.news.back'|trans }}

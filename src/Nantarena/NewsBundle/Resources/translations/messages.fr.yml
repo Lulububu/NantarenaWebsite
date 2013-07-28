@@ -1,8 +1,3 @@
-category:
-    entity:
-        id: Id
-        name: Nom
-
 news:
     admin:
         categories:
@@ -15,6 +10,9 @@ news:
                 flash_error: 'Impossible de supprimer la catégorie'
                 flash_success: 'Catégorie supprimée'
                 title: 'Suppression d''une catégorie'
+                warning: 'Vous êtes sur le point de supprimer une catégorie.'
+                info: 'Les news de cette catégorie seront déplacées vers la nouvelle catégorie définie ci-dessous.'
+                category: 'Déplacer vers :'
 
             edit:
                 flash_error: 'Impossible d''éditer la catégorie'
@@ -24,7 +22,7 @@ news:
             index:
                 actions: Actions
                 create: 'Créer une categorie'
-                title: 'Gestion des catégories'
+                title: 'Liste des catégories'
 
         dashboard:
             categories_management: Gestion des catégories
@@ -43,6 +41,7 @@ news:
                 flash_error: 'Impossible de supprimer la news'
                 flash_success: 'La news a bien été supprimée'
                 title: 'Supprimer la news'
+                warning: 'Vous êtes sur le point de supprimer une news.'
 
             edit:
                 flash_error: 'La news "%title%" n''a pas pu être éditée'
@@ -77,6 +76,7 @@ news:
         date: Date
         state: Etat
         title: Titre
+        name: Nom
 
     form:
         category:

@@ -3,6 +3,7 @@
 namespace Nantarena\NewsBundle\Controller\Admin;
 
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\EntityRepository;
 use Nantarena\NewsBundle\Entity\Category;
 use Nantarena\NewsBundle\Form\Type\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -157,8 +158,14 @@ class CategoriesController extends Controller
             ->add('category', 'entity', array(
                 'class' => 'Nantarena\NewsBundle\Entity\Category',
                 'property' => 'name',
+                'query_builder' => function(EntityRepository $er) use ($id) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.id <> :id')
+                        ->setParameter('id', $id);
+                }
             ))
             ->add('id', 'hidden')
+            ->add('submit', 'submit')
             ->setMethod('POST')
             ->setAction($this->generateUrl('nantarena_news_admin_categories_delete', array(
                 'id' => $id
