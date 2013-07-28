@@ -1,6 +1,6 @@
 <div class="span6 offset3">
     {{ form_start(form) }}
-        {{ form_row(form.name, {'label': 'news.entity.name'|trans ~ ' :'}) }}
+        {{ form_row(form.name, {'label': 'news.entity.name'|trans|colon}) }}
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}
 

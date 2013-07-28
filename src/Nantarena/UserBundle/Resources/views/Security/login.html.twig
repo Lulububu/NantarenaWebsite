@@ -14,14 +14,14 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
         <div class="control-group">
-            <label for="username" class="control-label">{{ 'user.form.username'|trans }}</label>
+            <label for="username" class="control-label">{{ 'user.form.username'|trans|colon }}</label>
             <div class="controls">
                 <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
             </div>
         </div>
 
         <div class="control-group">
-            <label for="password" class="control-label">{{ 'user.form.password'|trans }}</label>
+            <label for="password" class="control-label">{{ 'user.form.password'|trans|colon }}</label>
             <div class="controls">
                 <input type="password" id="password" name="_password" required="required" />
             </div>

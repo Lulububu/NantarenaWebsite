@@ -2,13 +2,13 @@
     {{ form_start(form) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.username, {'label': 'user.form.username'|trans}) }}
-        {{ form_row(form.email, {'label': 'user.form.email'|trans}) }}
-        {{ form_row(form.plainPassword.first, {'label': 'user.form.password'|trans}) }}
-        {{ form_row(form.plainPassword.second, {'label': 'user.form.repeated'|trans}) }}
-        {{ form_row(form.groups, {'label': 'user.form.groups'|trans}) }}
-        {{ form_row(form.enabled, {'label': 'user.form.enabled'|trans}) }}
-        {{ form_row(form.locked, {'label': 'user.form.locked'|trans}) }}
+        {{ form_row(form.username, {'label': 'user.form.username'|trans|colon}) }}
+        {{ form_row(form.email, {'label': 'user.form.email'|trans|colon}) }}
+        {{ form_row(form.plainPassword.first, {'label': 'user.form.password'|trans|colon}) }}
+        {{ form_row(form.plainPassword.second, {'label': 'user.form.repeated'|trans|colon}) }}
+        {{ form_row(form.groups, {'label': 'user.form.groups'|trans|colon}) }}
+        {{ form_row(form.enabled, {'label': 'user.form.enabled'|trans|colon}) }}
+        {{ form_row(form.locked, {'label': 'user.form.locked'|trans|colon}) }}
 
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}

@@ -58,14 +58,11 @@ user:
 
             list:
                 disabled: Inactivé
-                email: 'Adresse e-mail'
                 empty: 'Aucun membre ne correspond à ces critères'
-                groups: Groupes
                 last_login: 'Dernière connexion'
                 locked: Bloqué
                 registration_date: 'Date d''inscription'
                 title: 'Liste des membres'
-                username: Pseudo
 
     change_password:
         back: 'Retour au profil'
@@ -74,22 +71,22 @@ user:
         title: 'Changement de mot de passe'
 
     form:
-        current_password: 'Mot de passe actuel :'
-        email: 'E-Mail :'
-        enabled: 'Compte activé :'
+        current_password: 'Mot de passe actuel'
+        email: 'Adresse e-mail'
+        enabled: 'Compte activé'
 
         group:
-            name: 'Nom du groupe :'
-            roles: 'Droits du groupe :'
+            name: 'Nom du groupe'
+            roles: 'Droits du groupe'
 
-        groups: 'Groupes :'
-        locked: 'Compte bloqué :'
-        new_password: 'Nouveau mot de passe :'
-        password: 'Mot de passe :'
-        recaptcha: 'Image de vérification :'
+        groups: 'Groupes'
+        locked: 'Compte bloqué'
+        new_password: 'Nouveau mot de passe'
+        password: 'Mot de passe'
+        recaptcha: 'Image de vérification'
         remember_me: 'Se souvenir de moi'
-        repeated: 'Vérification :'
-        username: 'Pseudo :'
+        repeated: 'Vérification'
+        username: 'Pseudo'
 
     login:
         page_title: Connexion

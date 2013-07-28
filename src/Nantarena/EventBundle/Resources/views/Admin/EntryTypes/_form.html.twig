@@ -2,7 +2,7 @@
     {{ form_start(form) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.name, {'label': 'event.form.entrytype.name'|trans}) }}
+        {{ form_row(form.name, {'label': 'event.form.entrytype.name'|trans|colon}) }}
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}
 

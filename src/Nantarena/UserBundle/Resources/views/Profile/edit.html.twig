@@ -11,9 +11,9 @@
     }) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.username, {'label': 'user.form.username'|trans}) }}
-        {{ form_row(form.email, {'label': 'user.form.email'|trans}) }}
-        {{ form_row(form.current_password, {'label': 'user.form.current_password'|trans}) }}
+        {{ form_row(form.username, {'label': 'user.form.username'|trans|colon}) }}
+        {{ form_row(form.email, {'label': 'user.form.email'|trans|colon}) }}
+        {{ form_row(form.current_password, {'label': 'user.form.current_password'|trans|colon}) }}
 
         <div class="control-group">
             <div class="controls">

@@ -2,10 +2,10 @@
     {{ form_start(form) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.title, {'label': 'news.entity.title'|trans ~ ' :'}) }}
-        {{ form_row(form.category, {'label': 'news.entity.category'|trans ~ ' :'}) }}
-        {{ form_row(form.content, {'label': 'news.entity.content'|trans ~ ' :'}) }}
-        {{ form_row(form.state, {'label': 'news.entity.state'|trans ~ ' :'}) }}
+        {{ form_row(form.title, {'label': 'news.entity.title'|trans|colon}) }}
+        {{ form_row(form.category, {'label': 'news.entity.category'|trans|colon}) }}
+        {{ form_row(form.content, {'label': 'news.entity.content'|trans|colon}) }}
+        {{ form_row(form.state, {'label': 'news.entity.state'|trans|colon}) }}
 
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}

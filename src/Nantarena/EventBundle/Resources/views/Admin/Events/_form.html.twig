@@ -4,10 +4,10 @@
     <fieldset>
         <legend>{{ 'event.form.fieldset.infos'|trans }}</legend>
 
-        {{ form_row(form.name, {'label': 'event.form.event.name'|trans}) }}
-        {{ form_row(form.capacity, {'label': 'event.form.event.capacity'|trans}) }}
-        {{ form_row(form.startDate, {'label': 'event.form.event.startDate'|trans}) }}
-        {{ form_row(form.endDate, {'label': 'event.form.event.endDate'|trans}) }}
+        {{ form_row(form.name, {'label': 'event.form.event.name'|trans|colon}) }}
+        {{ form_row(form.capacity, {'label': 'event.form.event.capacity'|trans|colon}) }}
+        {{ form_row(form.startDate, {'label': 'event.form.event.startDate'|trans|colon}) }}
+        {{ form_row(form.endDate, {'label': 'event.form.event.endDate'|trans|colon}) }}
     </fieldset>
 
     <fieldset>
@@ -15,8 +15,8 @@
 
         <div class="row control-group">
             <div class="span6">
-                {{ form_row(form.startRegistrationDate, {'label': 'event.form.event.startRegistrationDate'|trans}) }}
-                {{ form_row(form.endRegistrationDate, {'label': 'event.form.event.endRegistrationDate'|trans}) }}
+                {{ form_row(form.startRegistrationDate, {'label': 'event.form.event.startRegistrationDate'|trans|colon}) }}
+                {{ form_row(form.endRegistrationDate, {'label': 'event.form.event.endRegistrationDate'|trans|colon}) }}
             </div>
             <div class="span6">
                 {% form_theme form.entryTypes with 'NantarenaSiteBundle:Form:inline_layout.html.twig' %}

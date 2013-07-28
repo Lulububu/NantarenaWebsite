@@ -15,7 +15,7 @@
         {% endblock %}
 
         {% block form %}
-            {{ form_row(form.newgroup, {'label': 'user.admin.groups.delete.newgroup'|trans}) }}
+            {{ form_row(form.newgroup, {'label': 'user.admin.groups.delete.newgroup'|trans|colon}) }}
         {% endblock %}
 
         {% block back %}

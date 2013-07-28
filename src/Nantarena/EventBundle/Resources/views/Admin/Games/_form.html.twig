@@ -2,9 +2,9 @@
     {{ form_start(form) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.name, {'label': 'event.form.game.name'|trans}) }}
-        {{ form_row(form.platform, {'label': 'event.form.game.platform'|trans}) }}
-        {{ form_row(form.teamCapacity, {'label': 'event.form.game.team_capacity'|trans}) }}
+        {{ form_row(form.name, {'label': 'event.form.game.name'|trans|colon}) }}
+        {{ form_row(form.platform, {'label': 'event.form.game.platform'|trans|colon}) }}
+        {{ form_row(form.teamCapacity, {'label': 'event.form.game.team_capacity'|trans|colon}) }}
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}
 

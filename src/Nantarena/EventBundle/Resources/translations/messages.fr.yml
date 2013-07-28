@@ -29,7 +29,6 @@ event:
 
             list:
                 empty: 'Aucun type n''est encore défini'
-                name: Libellé
                 title: 'Types d''inscription'
 
         events:
@@ -54,13 +53,9 @@ event:
                 title: 'Modifier un évènement'
 
             list:
-                capacity: Capacité
                 empty: 'Aucun évènement n''est encore défini'
-                endDate: Fin
-                name: Nom
                 registrationEnd: 'Fin des inscriptions'
                 registrationStart: 'Début des inscriptions'
-                startDate: Début
                 title: 'Liste des évènements'
 
         games:
@@ -86,22 +81,19 @@ event:
 
             list:
                 empty: 'Aucun jeu n''est encore défini'
-                name: Nom
-                platform: Plate-forme
-                team_capacity: Joueurs/équipe
                 title: 'Liste des jeux'
 
     form:
         entrytype:
-            name: 'Libellé :'
+            name: 'Libellé'
 
         event:
-            capacity: 'Capacité :'
-            endDate: 'Fin :'
-            endRegistrationDate: 'Fin :'
-            name: 'Nom :'
-            startDate: 'Début :'
-            startRegistrationDate: 'Début :'
+            capacity: 'Capacité'
+            endDate: 'Fin'
+            endRegistrationDate: 'Fin'
+            name: 'Nom'
+            startDate: 'Début'
+            startRegistrationDate: 'Début'
 
         evententrytype:
             add: 'Ajouter un type d''inscription'
@@ -114,9 +106,9 @@ event:
             tournaments: Tournois
 
         game:
-            name: 'Nom :'
-            platform: 'Plate-forme :'
-            team_capacity: 'Joueurs/équipe :'
+            name: 'Nom'
+            platform: 'Plate-forme'
+            team_capacity: 'Joueurs/équipe'
 
         tournament:
             admin: Responsable
