@@ -12,13 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
-    public function findWithEntryTypes($id)
+    public function findWithAll($id)
     {
         return $this->createQueryBuilder('e')
             ->join('e.entryTypes', 'et')
             ->addSelect('et')
             ->join('et.entryType', 't')
             ->addSelect('t')
+            ->join('e.tournaments', 'to')
+            ->addSelect('to')
+            ->join('to.game', 'g')
+            ->addSelect('g')
             ->where('e.id = :id')
             ->setParameter('id', $id)
             ->getQuery()

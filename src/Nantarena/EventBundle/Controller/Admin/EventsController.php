@@ -76,7 +76,7 @@ class EventsController extends Controller
     public function editAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $event = $em->getRepository('NantarenaEventBundle:Event')->findWithEntryTypes($id);
+        $event = $em->getRepository('NantarenaEventBundle:Event')->findWithAll($id);
 
         $originalEntryTypes = array();
 
@@ -103,7 +103,7 @@ class EventsController extends Controller
             $translator = $this->get('translator');
             $flashbag = $this->get('session')->getFlashBag();
 
-            //try {
+            try {
                 foreach ($event->getEntryTypes() as $entryType) {
                     foreach ($originalEntryTypes as $key => $toDel) {
                         if ($toDel->getId() === $entryType->getId()) {
@@ -134,9 +134,9 @@ class EventsController extends Controller
                 $flashbag->add('success', $translator->trans('event.admin.events.edit.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_event_admin_events'));
 
-            /*} catch (\Exception $e) {
+            } catch (\Exception $e) {
                 $flashbag->add('error', $translator->trans('event.admin.events.edit.flash_error'));
-            }*/
+            }
         }
 
         return array(
