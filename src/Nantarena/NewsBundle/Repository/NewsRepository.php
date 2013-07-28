@@ -33,9 +33,38 @@ class NewsRepository extends EntityRepository
         return $this;
     }
 
+    public function addComment(QueryBuilder $qb)
+    {
+        $qb->join('n.comments', 'c')->addSelect('c');
+
+        return $this;
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @return $this
+     */
     public function addCategory(QueryBuilder $qb)
     {
         $qb->join('n.category', 't')->addSelect('t');
+
+        return $this;
+    }
+
+    public function filterState(QueryBuilder $qb, $state)
+    {
+        $qb
+            ->andWhere('n.state = :state')
+            ->setParameter('state', $state);
+
+        return $this;
+    }
+
+    public function filterCategory(QueryBuilder $qb, Category $category)
+    {
+        $qb
+            ->andWhere('n.category = :category')
+            ->setParameter('category', $category);
 
         return $this;
     }
@@ -46,7 +75,8 @@ class NewsRepository extends EntityRepository
 
         $this->addAuthor($qb);
         $this->addCategory($qb);
-        $this->addComments($qb);
+        $this->addComment($qb);
+        $this->filterState($qb, News::STATE_PUBLISHED);
 
         $qb
             ->addOrderBy('n.id', 'desc')
@@ -61,7 +91,8 @@ class NewsRepository extends EntityRepository
 
         $this->addAuthor($qb);
         $this->addCategory($qb);
-        $this->addComments($qb);
+        $this->addComment($qb);
+        $this->filterState($qb, News::STATE_PUBLISHED);
 
         $qb
             ->addOrderBy('n.id', 'desc')
@@ -77,11 +108,11 @@ class NewsRepository extends EntityRepository
 
         $this->addAuthor($qb);
         $this->addCategory($qb);
-        $this->addComments($qb);
+        $this->addComment($qb);
+        $this->filterState($qb, News::STATE_PUBLISHED);
+        $this->filterCategory($qb, $category);
 
         $qb
-            ->andWhere('n.category = :category')
-            ->setParameter('category', $category)
             ->addOrderBy('n.id', 'desc')
             ->setMaxResults($limit)
             ->setFirstResult($offset);
