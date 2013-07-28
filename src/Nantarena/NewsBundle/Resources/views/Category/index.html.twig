@@ -1,6 +1,6 @@
 {% extends 'NantarenaNewsBundle::layout.html.twig' %}
 
-{% block title 'news.category.title'|trans %}
+{% block title 'news.category.title'|trans({'%category%': category.name}) %}
 
 {% block page_title 'news.category.title'|trans({'%category%': category.name}) %}
 
