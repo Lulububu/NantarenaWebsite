@@ -2,6 +2,12 @@
 
 {% block title %}{{ 'home.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {% stylesheets filter='cssrewrite' 'bundles/nantarenanews/css/*' %}
+    <link href="{{ asset_url }}"  rel="stylesheet" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
     <div class="news">
         {% for news in latest %}

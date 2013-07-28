@@ -6,3 +6,40 @@ div.news-categories ul {
 div.news-categories ul li {
     display: inline;
 }
+
+.news article {
+    margin-bottom: 30px;
+}
+
+.news article header {
+    background: url("../images/dark.png");
+    color: white;
+    border-radius: 10px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.news article header h2 {
+    font-size: 20px;
+}
+
+.news article header p {
+    float: right;
+    height: 50px;
+    background: url("../images/widget.png");
+    width: 80px;
+    position: absolute;
+    top: -5px;
+    right: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 16px;
+    color: black;
+    border: 1px solid #AAA;
+}
+
+.news article .news_content {
+    margin-left: 20px;
+    margin-right: 10px;
+}

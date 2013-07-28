@@ -1,3 +1,10 @@
+home:
+    news:
+        link: Voir toutes les actualités
+        no_results: Aucune actualité à afficher
+
+    title: Accueil
+
 site:
     footer:
         credits: '© Club Rézo Polytech Nantes - Design par Alexis Camilleri et Maxime Guihal'
