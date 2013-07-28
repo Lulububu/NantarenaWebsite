@@ -31,6 +31,21 @@
         </div>
     </fieldset>
 
+    <fieldset>
+        <legend>{{ 'event.form.fieldset.tournaments'|trans }}</legend>
+
+        {% form_theme form.tournaments with 'NantarenaSiteBundle:Form:inline_layout.html.twig' %}
+        {{ form_widget(form.tournaments, {
+            'add_text': 'event.form.tournaments.add'|trans,
+            'labels': {
+                'game': 'event.form.tournament.game'|trans,
+                'admin': 'event.form.tournament.admin'|trans,
+                'maxTeams': 'event.form.tournament.maxTeams'|trans,
+                'startDate': 'event.form.tournament.startDate'|trans
+            }
+        }) }}
+    </fieldset>
+
     {{ form_row(form.submit, {'label': submit}) }}
 {{ form_end(form) }}
 

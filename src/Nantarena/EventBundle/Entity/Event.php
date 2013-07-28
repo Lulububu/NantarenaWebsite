@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Nantarena\EventBundle\Validator\Constraints\DatesConstraint;
 use Nantarena\EventBundle\Validator\Constraints\EntryTypesConstraint;
+use Nantarena\EventBundle\Validator\Constraints\TournamentsConstraint;
 
 /**
  * Event
@@ -19,6 +20,9 @@ use Nantarena\EventBundle\Validator\Constraints\EntryTypesConstraint;
  *      eventDates="event.dates.eventDates",
  *      registrationDates="event.dates.registrationDates",
  *      eventRegistrationDates="event.dates.eventRegistrationDates"
+ * )
+ * @TournamentsConstraint(
+ *      message="event.tournaments.outDate"
  * )
  */
 class Event
@@ -91,6 +95,14 @@ class Event
      * )
      */
     private $entryTypes;
+
+    /**
+     * @ORM\OneToMany(
+     *      targetEntity="Nantarena\EventBundle\Entity\Tournament",
+     *      mappedBy="event",
+     *      cascade={"persist", "remove"})
+     */
+    private $tournaments;
 
     /**
      * Get id
@@ -281,5 +293,39 @@ class Event
     public function getEntryTypes()
     {
         return $this->entryTypes;
+    }
+
+    /**
+     * Add tournament
+     *
+     * @param \Nantarena\EventBundle\Entity\Tournament $tournament
+     * @return Event
+     */
+    public function addTournament(\Nantarena\EventBundle\Entity\Tournament $tournament)
+    {
+        $tournament->setEvent($this);
+        $this->tournaments[] = $tournament;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tournament
+     *
+     * @param \Nantarena\EventBundle\Entity\Tournament $tournament
+     */
+    public function removeTournament(\Nantarena\EventBundle\Entity\Tournament $tournament)
+    {
+        $this->tournaments->removeElement($tournament);
+    }
+
+    /**
+     * Get tournaments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTournaments()
+    {
+        return $this->tournaments;
     }
 }

@@ -28,11 +28,13 @@ class EventEntryType
     * @ORM\ManyToOne(
     *   targetEntity="Nantarena\EventBundle\Entity\Event",
     *   inversedBy="entryTypes")
+    * @ORM\JoinColumn(name="event_id", referencedColumnName="id", nullable=false)
     */
     private $event;
 
     /**
      * @ORM\ManyToOne(targetEntity="Nantarena\EventBundle\Entity\EntryType")
+     * @ORM\JoinColumn(name="entryType_id", referencedColumnName="id", nullable=false)
      */
     private $entryType;
 

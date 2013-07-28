@@ -51,7 +51,7 @@ class EventsController extends Controller
             $translator = $this->get('translator');
             $flashbag = $this->get('session')->getFlashBag();
 
-            try {
+            //try {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($event);
                 $em->flush();
@@ -59,9 +59,9 @@ class EventsController extends Controller
                 $flashbag->add('success', $translator->trans('event.admin.events.create.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_event_admin_events'));
 
-            } catch (\Exception $e) {
+            /*} catch (\Exception $e) {
                 $flashbag->add('error', $translator->trans('event.admin.events.create.flash_error'));
-            }
+            }*/
         }
 
         return array(
@@ -84,6 +84,12 @@ class EventsController extends Controller
             $originalEntryTypes[] = $entryType;
         }
 
+        $originalTournaments = array();
+
+        foreach ($event->getTournaments() as $tournament) {
+            $originalTournaments[] = $tournament;
+        }
+
         $form = $this->createForm(new EventType(), $event, array(
             'action' => $this->generateUrl('nantarena_event_admin_events_edit', array(
                 'id' => $event->getId()
@@ -97,7 +103,7 @@ class EventsController extends Controller
             $translator = $this->get('translator');
             $flashbag = $this->get('session')->getFlashBag();
 
-            try {
+            //try {
                 foreach ($event->getEntryTypes() as $entryType) {
                     foreach ($originalEntryTypes as $key => $toDel) {
                         if ($toDel->getId() === $entryType->getId()) {
@@ -106,8 +112,20 @@ class EventsController extends Controller
                     }
                 }
 
+                foreach ($event->getTournaments() as $tournament) {
+                    foreach ($originalTournaments as $key => $toDel) {
+                        if ($toDel->getId() === $tournament->getId()) {
+                            unset($originalTournaments[$key]);
+                        }
+                    }
+                }
+
                 foreach ($originalEntryTypes as $entryType) {
                     $em->remove($entryType);
+                }
+
+                foreach ($originalTournaments as $tournament) {
+                    $em->remove($tournament);
                 }
 
                 $em->persist($event);
@@ -116,9 +134,9 @@ class EventsController extends Controller
                 $flashbag->add('success', $translator->trans('event.admin.events.edit.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_event_admin_events'));
 
-            } catch (\Exception $e) {
+            /*} catch (\Exception $e) {
                 $flashbag->add('error', $translator->trans('event.admin.events.edit.flash_error'));
-            }
+            }*/
         }
 
         return array(

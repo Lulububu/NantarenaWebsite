@@ -109,10 +109,20 @@ event:
             price: Prix
 
         fieldset:
-            entries: 'Inscriptions'
+            entries: Inscriptions
             infos: 'Informations générales'
+            tournaments: Tournois
 
         game:
             name: 'Nom :'
             platform: 'Plate-forme :'
             team_capacity: 'Joueurs/équipe :'
+
+        tournament:
+            admin: Responsable
+            game: Jeu
+            maxTeams: 'Nombre d''équipes maximal'
+            startDate: 'Début du tournoi'
+
+        tournaments:
+            add: 'Ajouter un tournoi'

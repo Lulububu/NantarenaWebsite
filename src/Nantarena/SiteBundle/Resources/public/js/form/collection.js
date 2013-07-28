@@ -12,11 +12,13 @@ $(function() {
         collectionHolder.data('count', index + 1);
 
         $(this).parents('tr').before(newForm);
+        $(this).trigger('collection_add_clicked');
     });
 
     $(".collection_holder").on('click', '.collection_delete', function(e) {
         e.preventDefault();
         $(this).parents('tr').remove();
+        $(this).trigger('collection_delete_clicked');
     });
 
 });

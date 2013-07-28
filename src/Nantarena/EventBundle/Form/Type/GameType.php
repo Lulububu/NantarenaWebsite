@@ -13,7 +13,9 @@ class GameType extends AbstractType
         $builder
             ->add('name', 'text')
             ->add('platform', 'text')
-            ->add('teamCapacity', 'integer')
+            ->add('teamCapacity', 'integer', array(
+                'attr' => array('min' => 1)
+            ))
             ->add('submit', 'submit')
         ;
     }

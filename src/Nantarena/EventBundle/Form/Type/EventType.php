@@ -28,9 +28,17 @@ class EventType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy HH:mm'
             ))
-            ->add('capacity', 'integer')
+            ->add('capacity', 'integer', array(
+                'attr' => array('min' => 1)
+            ))
             ->add('entryTypes', 'collection', array(
                 'type' => new EventEntryTypeType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ))
+            ->add('tournaments', 'collection', array(
+                'type' => new TournamentType(),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,

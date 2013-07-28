@@ -1,7 +1,4 @@
-/**
- * Mise en oeuvre du tri des tableaux sortable
- */
-$(function() {
+function admin_init() {
     $("table.sortable").tablesorter();
     $("table.filterable").tablefilter();
     $('.datetimepicker').datetimepicker({
@@ -39,5 +36,13 @@ $(function() {
         forceParse: 0,
         format: 'hh:ii',
         pickerPosition: 'bottom-left'
+    });
+}
+
+$(function() {
+    admin_init();
+
+    $(".collection_holder").bind('collection_add_clicked', function() {
+        admin_init();
     });
 });
