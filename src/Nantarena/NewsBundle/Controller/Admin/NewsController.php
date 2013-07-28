@@ -149,6 +149,7 @@ class NewsController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
+            ->add('submit', 'submit')
             ->setMethod('POST')
             ->setAction($this->generateUrl('nantarena_news_admin_delete', array(
                 'id' => $id

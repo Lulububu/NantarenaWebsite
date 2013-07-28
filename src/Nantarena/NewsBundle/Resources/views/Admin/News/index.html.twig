@@ -1,42 +1,62 @@
 {% extends 'NantarenaAdminBundle::layout.html.twig' %}
 
 {% block title 'news.admin.news.index.title'|trans %}
-
 {% block page_title 'news.admin.news.index.title'|trans %}
 
 {% block admin_content %}
-    <p>
-        <a href="{{ path('nantarena_news_admin_create') }}" class="btn btn-primary">{{ 'news.admin.news.index.create'|trans }}</a>
-        <a href="{{ path('nantarena_news_admin_categories_index') }}" class="btn">{{ 'news.admin.news.index.categories'|trans }}</a>
+    <p class="text-center">
+        <a href="{{ path('nantarena_news_admin_create') }}" class="btn">{{ 'news.admin.news.index.create'|trans }}</a>
     </p>
-    <table class="table-stripe table">
-        <tr>
-            <th>{{ 'news.entity.id'|trans }}</th>
-            <th>{{ 'news.entity.date'|trans }}</th>
-            <th>{{ 'news.entity.category'|trans }}</th>
-            <th>{{ 'news.entity.title'|trans }}</th>
-            <th>{{ 'news.entity.author'|trans }}</th>
-            <th>{{ 'news.entity.state'|trans }}</th>
-            <th>{{ 'news.admin.news.index.actions'|trans }}</th>
-        </tr>
-        {% for n in news %}
+
+    <table class="table sortable filterable" data-sort="1" data-perpage="20">
+        <thead>
             <tr>
-                <td>{{ n.id }}</td>
-                <td>{{ n.date|date('Y-m-d H:i') }}</td>
-                <td>{{ n.category }}</td>
-                <td><a href="{{ news_path(n) }}">{{ n.title }}</a></td>
-                <td>{{ n.author }}</td>
-                <td>{{ news_state(n) }}</td>
-                <td>
-                    {% if n.state == false %}
-                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'published'}) }}" class="btn btn-mini">{{ 'news.state.publish'|trans }}</a>
-                    {% else %}
-                        <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'unpublished'}) }}" class="btn btn-mini">{{ 'news.state.unpublish'|trans }}</a>
-                    {% endif %}
-                    <a href="{{ news_edit_path(n) }}" class="btn btn-mini">Editer</a>
-                    <a href="{{ news_delete_path(n) }}" class="btn btn-danger btn-mini">Supprimer</a>
+                <th data-filter="ignore" class="tiny">#</th>
+                <th>{{ 'news.entity.title'|trans }}</th>
+                <th data-filter="select">{{ 'news.entity.category'|trans }}</th>
+                <th data-filter="date">{{ 'news.entity.date'|trans }}</th>
+                <th>{{ 'news.entity.author'|trans }}</th>
+                <th data-filter="select">{{ 'news.entity.state'|trans }}</th>
+                <th class="mini"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for n in news %}
+                <tr>
+                    <td>{{ n.id }}</td>
+                    <td><a href="{{ news_path(n) }}">{{ n.title }}</a></td>
+                    <td>{{ n.category }}</td>
+                    <td>{{ n.date|date('Y-m-d H:i') }}</td>
+                    <td>{{ n.author }}</td>
+                    <td>{{ news_state(n) }}</td>
+                    <td>
+                        {% if n.state == false %}
+                            <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'published'}) }}" title="{{ 'news.state.publish'|trans }}">
+                                <i class="icon-eye-open"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('nantarena_news_publish', {'id': n.id, 'state': 'unpublished'}) }}" title="{{ 'news.state.unpublish'|trans }}">
+                                <i class="icon-eye-close"></i>
+                            </a>
+                        {% endif %}
+                        &nbsp;&nbsp;
+                        <a href="{{ news_edit_path(n) }}"><i class="icon-wrench"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="{{ news_delete_path(n) }}"><i class="icon-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        <tbody class="empty">
+            <tr>
+                <td colspan="7">
+                    <p class="text-center">{{ 'news.admin.news.index.empty'|trans }}</p>
                 </td>
             </tr>
-        {% endfor %}
+        </tbody>
     </table>
+
+    <div class="pagination pagination-centered"><ul></ul></div>
 {% endblock %}

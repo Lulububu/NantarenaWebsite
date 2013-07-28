@@ -32,6 +32,8 @@ news:
             title: Gestion des news
 
         news:
+            back: 'Retour à la liste'
+
             create:
                 flash_error: 'La news "%title%" n''a pas pu être ajoutée'
                 flash_success: 'La news "%title%" a été ajoutée avec succès'
@@ -48,10 +50,9 @@ news:
                 title: 'Editer une news'
 
             index:
-                actions: Actions
-                categories: Gérer les catégories
                 create: 'Créer une nouvelle news'
-                title: 'Administration des news'
+                title: 'Liste des news'
+                empty: 'Aucune news ne correspond à ces critères'
 
     category:
         title: Catégorie « %category% »
@@ -72,8 +73,8 @@ news:
     entity:
         author: Auteur
         category: Catégorie
+        content: Contenu
         date: Date
-        id: Id
         state: Etat
         title: Titre
 

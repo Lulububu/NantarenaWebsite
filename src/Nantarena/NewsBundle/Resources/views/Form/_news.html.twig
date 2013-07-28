@@ -1,18 +1,16 @@
-<fieldset>
-    {% block form_news_fieldset %}
-        <legend>{% block form_news_legend %}{% endblock %}</legend>
+<div class="span9 offset1">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
 
-        {% block form_news_form %}
-            {{ form_start(form, {'class': 'form-horizontal'}) }}
-                {{ form_row(form.title) }}
-                {{ form_row(form.category) }}
-                {{ form_row(form.content) }}
-                {{ form_row(form.state) }}
+        {{ form_row(form.title, {'label': 'news.entity.title'|trans ~ ' :'}) }}
+        {{ form_row(form.category, {'label': 'news.entity.category'|trans ~ ' :'}) }}
+        {{ form_row(form.content, {'label': 'news.entity.content'|trans ~ ' :'}) }}
+        {{ form_row(form.state, {'label': 'news.entity.state'|trans ~ ' :'}) }}
 
-                {% block form_news_actions %}
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
 
-                {% endblock %}
-            {{ form_end(form) }}
-        {% endblock %}
-    {% endblock %}
-</fieldset>
+    <p class="text-center">
+        <a href="{{ path('nantarena_news_admin_index') }}">{{ 'news.admin.news.back'|trans }}</a>
+    </p>
+</div>

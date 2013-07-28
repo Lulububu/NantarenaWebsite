@@ -1,19 +1,14 @@
 {% extends 'NantarenaAdminBundle::layout.html.twig' %}
 
 {% block title 'news.admin.news.delete.title'|trans %}
-
 {% block page_title 'news.admin.news.delete.title'|trans %}
 
 {% block admin_content %}
-    {% embed 'NantarenaNewsBundle:Form:_delete.html.twig' with {'form': form} %}
-        {% block form_news_delete_legend %}{{ 'news.form.news.delete.legend'|trans({'%news%': news.title)}) }}{% endblock %}
-        {% block form_news_delete_actions %}
-            <div class="control-group">
-                <div class="controls">
-                    <input type="submit" class="btn btn-danger" value="{{ 'news.form.news.delete.submit'|trans }}" />
-                    <a href="{{ path('nantarena_news_admin_index') }}">{{ 'news.form.news.delete.cancel'|trans }}</a>
-                </div>
-            </div>
+    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
+        {% block back %}
+            <a href="{{ path('nantarena_news_admin_index') }}">
+                {{ 'news.admin.news.back'|trans }}
+            </a>
         {% endblock %}
     {% endembed %}
 {% endblock %}
