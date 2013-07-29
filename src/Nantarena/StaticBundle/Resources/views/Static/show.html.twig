@@ -1,0 +1,13 @@
+{% extends 'NantarenaStaticBundle::layout.html.twig' %}
+
+{% block title content.title %}
+
+{% block page_title content.title %}
+
+{% block static_content %}
+    {{ content.content|raw }}
+{% endblock %}
+
+{% block static_footer %}
+    {{ 'static.show.footer'|trans({'%date%': content.update|date('d-m-Y à H:i')}) }}
+{% endblock %}

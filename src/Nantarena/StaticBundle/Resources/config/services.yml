@@ -1,0 +1,17 @@
+parameters:
+
+services:
+    nantarena_static.admin_event:
+        class: Nantarena\StaticBundle\Controller\AdminController
+        tags:
+            - { name: nantarena_admin.dashboard}
+
+    nantarena_static.static_content_manager:
+        class: Nantarena\StaticBundle\Manager\StaticContentManager
+        arguments: [@router]
+
+    nantarena_static.static_extension:
+        class: Nantarena\StaticBundle\Twig\StaticExtension
+        arguments: [@nantarena_static.static_content_manager, @translator]
+        tags:
+            - { name: twig.extension }

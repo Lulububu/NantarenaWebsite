@@ -1,0 +1,58 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'static.admin.index.title'|trans %}
+{% block page_title 'static.admin.index.title'|trans %}
+
+{% block admin_content %}
+    <p class="text-center">
+        <a href="{{ path('nantarena_static_admin_create') }}" class="btn">{{ 'static.admin.index.create'|trans }}</a>
+    </p>
+
+    <table class="table sortable filterable" data-sort="1" data-perpage="20">
+        <thead>
+        <tr>
+            <th data-filter="ignore" class="tiny">#</th>
+            <th>{{ 'static.entity.title'|trans }}</th>
+            <th data-filter="date">{{ 'static.entity.update'|trans }}</th>
+            <th data-filter="select">{{ 'static.entity.state'|trans }}</th>
+            <th class="mini"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for c in contents %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td><a href="{{ static_path(c) }}">{{ c.title }}</a></td>
+                <td>{{ c.update|date('Y-m-d H:i') }}</td>
+                <td>{{ static_state(c) }}</td>
+                <td>
+                    {% if c.state == false %}
+                        <a href="{{ path('nantarena_static_publish', {'id': c.id}) }}" title="{{ 'static.state.publish'|trans }}">
+                            <i class="icon-eye-open"></i>
+                        </a>
+                    {% else %}
+                        <a href="{{ path('nantarena_static_unpublish', {'id': c.id}) }}" title="{{ 'static.state.unpublish'|trans }}">
+                            <i class="icon-eye-close"></i>
+                        </a>
+                    {% endif %}
+                    &nbsp;&nbsp;
+                    <a href="{{ static_edit_path(c) }}"><i class="icon-wrench"></i></a>
+                    &nbsp;&nbsp;
+                    <a href="{{ static_delete_path(c) }}"><i class="icon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+        <tbody class="empty">
+        <tr>
+            <td colspan="7">
+                <p class="text-center">{{ 'static.admin.index.empty'|trans }}</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination pagination-centered"><ul></ul></div>
+{% endblock %}

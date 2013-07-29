@@ -1,0 +1,18 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'static.admin.delete.title'|trans({'%title%': content.title}) %}
+{% block page_title 'static.admin.delete.title'|trans({'%title%': content.title}) %}
+
+{% block admin_content %}
+    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
+        {% block warning %}
+            {{ 'static.admin.delete.warning'|trans }}
+        {% endblock %}
+
+        {% block back %}
+            <a href="{{ path('nantarena_static_admin_index') }}">
+                {{ 'static.admin.back'|trans }}
+            </a>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

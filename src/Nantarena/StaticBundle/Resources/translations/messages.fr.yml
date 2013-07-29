@@ -1,0 +1,58 @@
+static:
+    admin:
+        back: 'Retour à la liste'
+
+        create:
+            title: 'Création de la page'
+
+        dashboard:
+            static_create: 'Créer une page'
+            static_management: 'Gérer les pages statiques'
+            title: 'Gestion des pages statiques'
+
+        delete:
+            title: 'Supprimer la page statique "%title%"'
+            warning: 'Attention en supprimant la page, tout le contenu sera perdu !'
+
+        edit:
+            title: 'Edition de la page'
+
+        index:
+            create: 'Créer une page'
+            empty: 'Pas de pages statiques'
+            title: 'Gestion des pages statiques'
+
+        static_content:
+            create:
+                flash_error: 'Impossible de créer la page statique'
+                flash_success: 'Page statique "%title%" crée'
+
+            delete:
+                flash_error: 'Impossible de supprimer la page statique'
+                flash_success: 'Page statique "%title%" supprimée'
+
+            edit:
+                flash_error: 'Impossible d''éditer la page statique'
+                flash_success: 'Page statique "%title%" éditée'
+
+    entity:
+        content: Contenu
+        state: Etat
+        title: Titre
+        update: 'Mise à jour'
+
+    form:
+        create:
+            submit: 'Créer la page'
+
+        edit:
+            submit: 'Editer la page'
+
+    show:
+        footer: 'Dernière mise à jour le %date%'
+
+    state:
+        publish: 'Publier la page'
+        published: Publiée
+        unpublish: 'Passer la page en brouillon'
+        unpublished: Brouillon

@@ -1,0 +1,24 @@
+{% extends 'NantarenaSiteBundle::layout.html.twig' %}
+
+{% if form is defined %}
+    {% form_theme form with 'NantarenaSiteBundle:Form:standard_layout.html.twig' %}
+{% endif %}
+
+{% block stylesheets %}
+    {% stylesheets filter='cssrewrite' 'bundles/nantarenastatic/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    {% include 'NantarenaSiteBundle::_flashbag.html.twig' %}
+
+    <div class="static-content">
+        {% block static_content %}
+        {% endblock %}
+    </div>
+    <footer class="static-footer">
+        {% block static_footer %}
+        {% endblock %}
+    </footer>
+{% endblock %}

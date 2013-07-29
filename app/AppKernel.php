@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Nantarena\NewsBundle\NantarenaNewsBundle(),
             new Nantarena\AdminBundle\NantarenaAdminBundle(),
             new Nantarena\EventBundle\NantarenaEventBundle(),
+            new Nantarena\StaticBundle\NantarenaStaticBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

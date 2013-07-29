@@ -1,0 +1,10 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'static.admin.create.title'|trans %}
+{% block page_title 'static.admin.create.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaStaticBundle:Form:_staticContent.html.twig' with {
+    'submit': 'static.form.create.submit'|trans
+    } %}{% endembed %}
+{% endblock %}

@@ -50,3 +50,10 @@ fos_user_change_password:
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix: /group
+
+# /!\ Attention /!\ Veillez à ce que ce controlleur soit défini en dernier (sinon il risque
+# d'écraser les routes plus prioritaires)
+nantarena_static:
+    resource: "@NantarenaStaticBundle/Controller/"
+    type:     annotation
+    prefix:   /

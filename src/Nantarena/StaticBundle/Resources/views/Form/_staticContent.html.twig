@@ -1,0 +1,15 @@
+<div class="span9 offset1">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.title, {'label': 'static.entity.title'|trans|colon}) }}
+        {{ form_row(form.content, {'label': 'static.entity.content'|trans|colon}) }}
+        {{ form_row(form.state, {'label': 'static.entity.state'|trans|colon}) }}
+
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+
+    <p class="text-center">
+        <a href="{{ path('nantarena_static_admin_index') }}">{{ 'static.admin.back'|trans }}</a>
+    </p>
+</div>
