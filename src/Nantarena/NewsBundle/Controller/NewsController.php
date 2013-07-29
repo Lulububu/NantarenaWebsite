@@ -44,7 +44,9 @@ class NewsController extends Controller
     public function showAction($category, News $news)
     {
         if (News::STATE_UNPUBLISHED === $news->getState()) {
-            return $this->redirect($this->generateUrl('nantarena_news_index'));
+            if (!$this->get('security.context')->isGranted('ROLE_NEWS_ADMIN_NEWS')) {
+                throw $this->createNotFoundException();
+            }
         }
 
         $form = $this->createForm(new CommentType(), null, array(
