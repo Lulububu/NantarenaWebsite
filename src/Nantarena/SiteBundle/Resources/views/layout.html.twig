@@ -218,6 +218,15 @@
 
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: ".wysiwyg-area",
+            resize: false,
+            preview_styles: false,
+            width: "99.6%" // hack pour la bordure droite
+        });
+    </script>
 
     {% javascripts '@NantarenaSiteBundle/Resources/public/js/*' %}
         <script src="{{ asset_url }}"></script>
