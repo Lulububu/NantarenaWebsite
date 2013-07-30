@@ -14,4 +14,4 @@ parameters:
     locale:            fr
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    db_prefix:         ~
+    db_prefix:         na_
