@@ -85,6 +85,14 @@ class Event
     private $capacity;
 
     /**
+     * @ORM\OneToOne(
+     *      targetEntity="Nantarena\SiteBundle\Entity\Image",
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true)
+     */
+    private $cover;
+
+    /**
      * @ORM\OneToMany(
      *      targetEntity="Nantarena\EventBundle\Entity\EventEntryType",
      *      mappedBy="event",
@@ -327,5 +335,28 @@ class Event
     public function getTournaments()
     {
         return $this->tournaments;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param \Nantarena\SiteBundle\Entity\Image $cover
+     * @return Event
+     */
+    public function setCover(\Nantarena\SiteBundle\Entity\Image $cover = null)
+    {
+        $this->cover = $cover;
+    
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return \Nantarena\SiteBundle\Entity\Image 
+     */
+    public function getCover()
+    {
+        return $this->cover;
     }
 }

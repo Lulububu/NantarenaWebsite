@@ -4,10 +4,19 @@
     <fieldset>
         <legend>{{ 'event.form.fieldset.infos'|trans }}</legend>
 
-        {{ form_row(form.name, {'label': 'event.form.event.name'|trans|colon}) }}
-        {{ form_row(form.capacity, {'label': 'event.form.event.capacity'|trans|colon}) }}
-        {{ form_row(form.startDate, {'label': 'event.form.event.startDate'|trans|colon}) }}
-        {{ form_row(form.endDate, {'label': 'event.form.event.endDate'|trans|colon}) }}
+        <div class="row control-group">
+            <div class="span6">
+                {{ form_row(form.name, {'label': 'event.form.event.name'|trans|colon}) }}
+                {{ form_row(form.capacity, {'label': 'event.form.event.capacity'|trans|colon}) }}
+                {{ form_row(form.startDate, {'label': 'event.form.event.startDate'|trans|colon}) }}
+                {{ form_row(form.endDate, {'label': 'event.form.event.endDate'|trans|colon}) }}
+            </div>
+            <div class="span5">
+                {% form_theme form.cover.url with 'NantarenaSiteBundle:Form:inline_layout.html.twig' %}
+                {{ form_row(form.cover, {
+                    'label': 'event.form.event.cover'|trans|colon,
+                }) }}
+            </div>
     </fieldset>
 
     <fieldset>

@@ -94,6 +94,7 @@ event:
             name: 'Nom'
             startDate: 'Début'
             startRegistrationDate: 'Début'
+            cover: 'Affiche'
 
         evententrytype:
             add: 'Ajouter un type d''inscription'

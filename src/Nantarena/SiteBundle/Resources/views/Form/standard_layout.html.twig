@@ -95,7 +95,7 @@
                 {% set prototype_html = prototype_html ~ '<td>' ~ form_widget(widget) ~ '</td>' %}
             {% endfor %}
             {% if form.vars.allow_delete %}
-                {% set prototype_html = prototype_html ~ '<td><a href="#" class="collection_delete"><i class="icon-trash"></i></a></td>' %}
+                {% set prototype_html = prototype_html ~ '<td style="padding-top: 12px;"><a href="#" class="collection_delete"><i class="icon-trash"></i></a></td>' %}
             {% endif %}
             {% set prototype_html = prototype_html ~ '</tr>' %}
 
@@ -129,7 +129,7 @@
                         {% endfor %}
 
                         {% if form.vars.allow_delete %}
-                            <td>
+                            <td style="padding-top: 12px;">
                                 <a href="#" class="collection_delete"><i class="icon-trash"></i></a>
                             </td>
                         {% endif %}
@@ -146,6 +146,39 @@
         </div>
     {% endspaceless %}
 {% endblock collection_widget %}
+
+{% block imgur_row %}
+    {% spaceless %}
+        <div class="imageUpload">
+            <p class="uploading hide muted">
+                <strong>
+                    {{ 'imageupload.uploading'|trans({}, "imageUpload") }}&nbsp;<span></span>
+                </strong>
+            </p>
+
+            <p class="empty muted {% if value is not empty %}hide{% endif %}">
+                <strong>{{ empty_message }}</strong>
+                <br />
+                {{ 'imageupload.dropzone'|trans({}, "imageUpload") }}
+            </p>
+
+            <p class="thb {% if value is empty %}hide{% endif %}">
+                <a href="#"><img src="{{ value }}" /></a>
+            </p>
+
+            <p class="buttons">
+                <button class="upload btn btn-mini {% if value is not empty %}hide{% endif %}">{{ 'imageupload.upload'|trans({}, "imageUpload") }}</button>
+                <button class="delete btn btn-mini {% if value is empty %}hide{% endif %}">{{ 'imageupload.delete'|trans({}, "imageUpload") }}</button>
+            </p>
+
+            <input style="visibility: collapse; width: 0px;" type="file" />
+
+            {% set type = type|default('hidden') %}
+            {{ block('form_widget_simple') }}
+        </div>
+
+    {% endspaceless %}
+{% endblock imgur_row %}
 
 {# Labels #}
 

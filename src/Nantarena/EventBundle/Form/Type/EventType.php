@@ -2,6 +2,8 @@
 
 namespace Nantarena\EventBundle\Form\Type;
 
+use Nantarena\SiteBundle\Form\Transformer\ImageTransformer;
+use Nantarena\SiteBundle\Form\Type\ImageType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -10,6 +12,8 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $imageTransformer = new ImageTransformer();
+
         $builder
             ->add('name', 'text')
             ->add('startDate', 'datetime', array(
@@ -43,6 +47,12 @@ class EventType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
+            ->add(
+                $builder->create('cover', new ImageType(), array(
+                    'required' => false,
+                    'empty_message' => 'Aucune affiche n\'est liée'
+                ))->addViewTransformer($imageTransformer)
+            )
             ->add('submit', 'submit')
         ;
     }

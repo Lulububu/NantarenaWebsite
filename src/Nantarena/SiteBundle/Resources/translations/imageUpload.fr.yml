@@ -1,0 +1,5 @@
+imageupload:
+    uploading: 'Chargement...'
+    dropzone: 'Déposez votre image ici'
+    upload: 'Uploader une nouvelle image'
+    delete: 'Supprimer'
