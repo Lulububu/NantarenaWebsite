@@ -11,7 +11,7 @@ class WysiwygType extends AbstractType
     {
         $resolver->setDefaults(array(
             'attr' => array(
-                'class' => 'wysiwyg-area',
+                'class' => 'ckeditor',
                 'rows'  => 25,
             ),
             'required' => false,

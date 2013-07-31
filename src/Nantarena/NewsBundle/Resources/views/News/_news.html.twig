@@ -15,7 +15,7 @@
             </p>
         </header>
         <div class="news-content">
-            {{ news.content|markdown }}
+            {{ news.content|raw }}
         </div>
         <footer>
             {% block news_footer %}

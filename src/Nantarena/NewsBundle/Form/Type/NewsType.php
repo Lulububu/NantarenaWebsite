@@ -18,12 +18,7 @@ class NewsType extends AbstractType
                 )
             ))
             ->add('category')
-            ->add('content', 'textarea', array(
-                'attr' => array(
-                    'class' => 'input-block-level',
-                    'rows' => 25,
-                )
-            ))
+            ->add('content', 'wysiwyg_area')
             ->add('state', 'choice', array(
                 'choices' => array(
                     News::STATE_PUBLISHED => 'news.state.published',
