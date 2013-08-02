@@ -13,6 +13,9 @@ class ImageTransformer implements DataTransformerInterface
 
     public function reverseTransform($value)
     {
+        if ($value == null)
+            return null;
+
         $url = $value->getUrl();
 
         if (empty($url))
