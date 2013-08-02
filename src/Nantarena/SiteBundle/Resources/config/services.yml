@@ -15,6 +15,11 @@ services:
         tags:
             - { name: twig.extension }
 
+    nantarena_site.twig.collection_extension:
+        class: Nantarena\SiteBundle\Twig\CollectionExtension
+        tags:
+            - { name: twig.extension }
+
     nantarena_site.type.wysiwyg:
         class: Nantarena\SiteBundle\Form\Type\WysiwygType
         tags:
