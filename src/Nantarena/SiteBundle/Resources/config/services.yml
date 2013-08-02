@@ -10,6 +10,11 @@ services:
         tags:
             - { name: twig.extension }
 
+    nantarena_site.twig.image_extension:
+        class: Nantarena\SiteBundle\Twig\ImageExtension
+        tags:
+            - { name: twig.extension }
+
     nantarena_site.type.wysiwyg:
         class: Nantarena\SiteBundle\Form\Type\WysiwygType
         tags:
