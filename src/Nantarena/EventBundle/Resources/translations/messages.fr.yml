@@ -85,16 +85,16 @@ event:
 
     form:
         entrytype:
-            name: 'Libellé'
+            name: Libellé
 
         event:
-            capacity: 'Capacité'
-            endDate: 'Fin'
-            endRegistrationDate: 'Fin'
-            name: 'Nom'
-            startDate: 'Début'
-            startRegistrationDate: 'Début'
-            cover: 'Affiche'
+            capacity: Capacité
+            cover: Affiche
+            endDate: Fin
+            endRegistrationDate: Fin
+            name: Nom
+            startDate: Début
+            startRegistrationDate: Début
 
         evententrytype:
             add: 'Ajouter un type d''inscription'
@@ -107,9 +107,9 @@ event:
             tournaments: Tournois
 
         game:
-            name: 'Nom'
-            platform: 'Plate-forme'
-            team_capacity: 'Joueurs/équipe'
+            name: Nom
+            platform: Plate-forme
+            team_capacity: Joueurs/équipe
 
         tournament:
             admin: Responsable
@@ -119,3 +119,39 @@ event:
 
         tournaments:
             add: 'Ajouter un tournoi'
+
+    show:
+        capacity: Capacité
+        capacity_value: %value% personnes
+        cover: 'Affiche de l''évènement'
+        date:
+            oneday: le %date%
+            manydays: du %date1% au %date2%
+
+        datetime: le %datetime%
+        open_hour: Ouverture de la salle
+        price:
+            one: %price%€
+            many: de %price1% à %price2%€
+
+        registration:
+            closed: Les inscriptions sont cloturées
+            notyet: Les inscriptions ne sont pas encore ouvertes
+            open: Participer
+
+        registrations: Inscriptions
+        title: %name%
+        tournament:
+            admin: Responsable
+            capacity: %capacity% équipes
+            format: %nb%v%nb%
+            start: Début du tournoi
+            teams:
+                hide: Cacher les équipes
+                show: Voir les équipes
+                validated: %count% équipe validée|%count% équipes validées
+
+        tournaments: Les tournois organisés
+        tournaments_start: Début des tournois
+
+
