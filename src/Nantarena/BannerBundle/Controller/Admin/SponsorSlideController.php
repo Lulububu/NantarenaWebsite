@@ -68,7 +68,7 @@ class SponsorSlideController extends Controller
                 if ($slide->getActive()) {
                     $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.sponsorslide.create.flash_success_active'));
                 }
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.sponsorslide.create.flash_error'));
             }
 
@@ -98,7 +98,7 @@ class SponsorSlideController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.sponsorslide.edit.flash_success'));
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.sponsorslide.edit.flash_error'));
             }
 
@@ -116,7 +116,7 @@ class SponsorSlideController extends Controller
      */
     public function activeAction(SponsorSlide $slide)
     {
-        // check if the sponsor slide is relly disabled
+        // check if the sponsor slide is really disabled
         if (!$slide->getActive())
         {
             try {
@@ -127,7 +127,7 @@ class SponsorSlideController extends Controller
                 $em->flush();
 
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.sponsorslide.active.flash_success'));
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.sponsorslide.active.flash_error'));
             }
         }else
@@ -152,7 +152,7 @@ class SponsorSlideController extends Controller
                 $em->flush();
 
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.sponsorslide.disable.flash_success'));
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.sponsorslide.disable.flash_error'));
             }
         }else
@@ -179,7 +179,7 @@ class SponsorSlideController extends Controller
                 $em->remove($slide);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.sponsorslide.delete.flash_success'));
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.sponsorslide.delete.flash_error'));
             }
 

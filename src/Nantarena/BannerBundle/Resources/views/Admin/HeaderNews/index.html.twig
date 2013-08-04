@@ -6,7 +6,9 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    <link href="{{ asset('bundles/nantarenabanner/css/banneroverview.css') }}" type="text/css" rel="stylesheet" />
+    {% stylesheets 'bundles/nantarenabanner/css/banneroverview.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block admin_content %}
@@ -16,7 +18,7 @@
             {{'banner.admin.headernews.create.title'|trans}}
         </a>
 
-        <table class="table" data-sort="1" data-perpage="50">
+        <table class="table">
             <thead>
                 <tr>
                     <th>{{'banner.admin.headernews.index.th_banniere'|trans}}</th>
@@ -58,9 +60,11 @@
                             <i class="icon-wrench"></i>
                         </a>
                         &nbsp;&nbsp;
+                        {% if not hnews.active %}
                         <a href="{{ path('nantarena_banner_news_delete', { 'id': hnews.id }) }}">
                             <i class="icon-trash"></i>
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}

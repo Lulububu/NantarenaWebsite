@@ -1,11 +1,6 @@
 parameters:
-#    nantarena_banner.example.class: Nantarena\BannerBundle\Example
 
 services:
-#    nantarena_banner.example:
-#        class: %nantarena_banner.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
-
     nantarena_banner.admin_event:
         class: Nantarena\BannerBundle\Controller\AdminController
         tags:

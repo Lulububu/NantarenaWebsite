@@ -6,16 +6,17 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    <link href="{{ asset('bundles/nantarenabanner/css/banneroverview.css') }}" type="text/css" rel="stylesheet" />
+    {% stylesheets 'bundles/nantarenabanner/css/banneroverview.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
-
 
 {% block admin_content %}
 
 <div class="container">
     <a href="{{ path('nantarena_banner_news_index') }}">
         <button type="button" class="btn pull-right">
-            {{'banner.admin.headernews.index.retour'|trans}}
+            {{'banner.admin.headernews.index.return'|trans}}
         </button>
     </a>
 </div>

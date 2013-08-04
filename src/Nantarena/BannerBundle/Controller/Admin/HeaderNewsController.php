@@ -78,7 +78,7 @@ class HeaderNewsController extends Controller
                 if ($hnews->getActive()) {
                     $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.headernews.create.flash_success_active'));
                 }
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.create.flash_error'));
             }
 
@@ -108,7 +108,7 @@ class HeaderNewsController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.headernews.edit.flash_success'));
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.edit.flash_error'));
             }
 
@@ -126,7 +126,7 @@ class HeaderNewsController extends Controller
      */
     public function activeAction(HeaderNews $hnews)
     {
-        // check if the header news is relly disabled
+        // check if the header news is really disabled
         if (!$hnews->getActive())
         {
             try {
@@ -145,9 +145,12 @@ class HeaderNewsController extends Controller
                 $em->flush();
 
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.headernews.active.flash_success'));
-            } catch (ORMException $e) {
+            } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.active.flash_error'));
             }
+        }else
+        {
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.active.flash_error_state'));
         }
 
         return $this->redirect($this->generateUrl('nantarena_banner_news_index'));
@@ -159,25 +162,25 @@ class HeaderNewsController extends Controller
      */
     public function deleteAction(Request $request, HeaderNews $hnews)
     {
+        // check if the header news is not active
+        if ($hnews->getActive())
+        {
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.delete.flash_error_active'));
+            return $this->redirect($this->generateUrl('nantarena_banner_news_index'));
+        }
+
         $form = $this->createDeleteForm($hnews->getId());
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // check if the header news is not active
-            if (!$hnews->getActive())
-            {
-                try {
-                    $em = $this->getDoctrine()->getManager();
-                    $em->remove($hnews);
-                    $em->flush();
-                    $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.headernews.delete.flash_success'));
-                } catch (ORMException $e) {
-                    $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.delete.flash_error'));
-                }
-            }else
-            {
-                $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.delete.flash_error_active'));
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($hnews);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.headernews.delete.flash_success'));
+            } catch (\Exception $e) {
+                $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.delete.flash_error'));
             }
 
             return $this->redirect($this->generateUrl('nantarena_banner_news_index'));

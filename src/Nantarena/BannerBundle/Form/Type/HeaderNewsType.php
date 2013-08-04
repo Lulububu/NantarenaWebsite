@@ -46,11 +46,6 @@ class HeaderNewsType extends AbstractType
         ));
     }
 
-    // public function setActive($val)
-    // {
-    //     $this->active = $val;
-    // }
-
     public function getName()
     {
         return 'nantarena_bannerbundle_headernewstype';

@@ -8,7 +8,7 @@ banner:
         headernews:
             index:
                 title: 'Liste des Unes disponibles'
-                retour: 'Retour sur la liste des Unes'
+                return: 'Retour sur la liste des Unes'
                 update: 'Modifier'
                 active: 'Activer'
                 delete: 'Supprimer'
@@ -25,6 +25,7 @@ banner:
             active:
                 flash_error: 'Erreur lors de l''activation de la Une'
                 flash_success: 'La Une a été activée'
+                flash_error_state: 'La Une est déjà activée'
             edit:
                 title: 'Modification de la Une'
                 flash_error: 'Erreur lors de l''édition de la Une'
@@ -38,8 +39,8 @@ banner:
 
         sponsorslide:
             index:
-                title: 'Gestion de l''affichage des slides de sponsor'
-                retour: 'Retour sur la liste des slides sponsor'
+                title: 'Gestion de l''affichage des slides sponsor'
+                return: 'Retour sur la liste des slides sponsor'
                 update: 'Modifier'
                 active: 'Activer'
                 disable: 'Désactiver'
@@ -47,27 +48,27 @@ banner:
                 th_banniere: 'Slides'
                 th_active: 'Activation'
             create:
-                title: 'Création d''une nouvelle slide de sponsor'
+                title: 'Création d''une nouvelle slide sponsor'
                 flash_error: 'Erreur lors de l''ajout dans la base de données'
-                flash_success: 'Nouvelle slide ajoutée'
-                flash_success_active: 'Nouvelle slide activée'
+                flash_success: 'Nouvelle slide sponsor ajoutée'
+                flash_success_active: 'Nouvelle slide sponsor activée'
             form:
-                label_content: 'Contenu de la slide'
-                label_active: 'Ajouter cette slide parmis les slides actives'
+                label_content: 'Contenu de la slide sponsor'
+                label_active: 'Activer cette slide sponsor'
             active:
-                flash_error: 'Erreur lors de l''activation de la slide'
-                flash_success: 'La slide a été activée'
-                flash_error_state: 'La slide est déjà activée'
+                flash_error: 'Erreur lors de l''activation de la slide sponsor'
+                flash_success: 'La slide sponsor a été activée'
+                flash_error_state: 'La slide sponsor est déjà activée'
             disable:
-                flash_error: 'Erreur lors de la désactivation de la slide'
-                flash_success: 'La slide a été désactivée'
-                flash_error_state: 'La slide est déjà désactivée'
+                flash_error: 'Erreur lors de la désactivation de la slide sponsor'
+                flash_success: 'La slide sponsor a été désactivée'
+                flash_error_state: 'La slide sponsor est déjà désactivée'
             edit:
-                title: 'Modification de la slide'
-                flash_error: 'Erreur lors de l''édition de la slide'
+                title: 'Modification de la slide sponsor'
+                flash_error: 'Erreur lors de l''édition de la slide sponsor'
                 flash_success: 'Nouvelle slide sponsor éditée'
             delete:
                 title: 'Suppresion de la slide sponsor'
-                warning: 'La slide sera définitivement supprimée'
-                flash_error: 'Erreur lors de la suppression de la slide'
-                flash_success: 'La slide a été supprimée'
+                warning: 'La slide sponsor sera définitivement supprimée'
+                flash_error: 'Erreur lors de la suppression de la slide sponsor'
+                flash_success: 'La slide sponsor a été supprimée'
