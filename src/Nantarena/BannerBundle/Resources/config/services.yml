@@ -1,0 +1,20 @@
+parameters:
+#    nantarena_banner.example.class: Nantarena\BannerBundle\Example
+
+services:
+#    nantarena_banner.example:
+#        class: %nantarena_banner.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    nantarena_banner.admin_event:
+        class: Nantarena\BannerBundle\Controller\AdminController
+        tags:
+            - { name: nantarena_admin.dashboard}
+
+    nantarena_banner.header_news_manager:
+        class: Nantarena\BannerBundle\Manager\HeaderNewsManager
+        arguments: [@router]
+
+    nantarena_banner.sponsor_slide_manager:
+        class: Nantarena\BannerBundle\Manager\SponsorSlideManager
+        arguments: [@router]

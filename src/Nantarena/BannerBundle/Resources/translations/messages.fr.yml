@@ -1,0 +1,73 @@
+banner:
+    admin:
+        dashboard:
+            title: 'Gestion de la bannière'
+            hnews_management: 'Gestion de la Une'
+            sponsorslide_management: 'Gestion des sponsors'
+
+        headernews:
+            index:
+                title: 'Liste des Unes disponibles'
+                retour: 'Retour sur la liste des Unes'
+                update: 'Modifier'
+                active: 'Activer'
+                delete: 'Supprimer'
+                th_banniere: 'Bannières'
+                th_active: 'Activation'
+            create:
+                title: 'Création d''une nouvelle Une'
+                flash_error: 'Erreur lors de l''ajout dans la base de données'
+                flash_success: 'Nouvelle Une ajoutée'
+                flash_success_active: 'Nouvelle Une activée'
+            form:
+                label_content: 'Contenu de la bannière'
+                label_active: 'Remplacer la Une actuelle par celle-ci'
+            active:
+                flash_error: 'Erreur lors de l''activation de la Une'
+                flash_success: 'La Une a été activée'
+            edit:
+                title: 'Modification de la Une'
+                flash_error: 'Erreur lors de l''édition de la Une'
+                flash_success: 'Nouvelle Une éditée'
+            delete:
+                title: 'Suppresion de la Une'
+                warning: 'La Une sera définitivement supprimée'
+                flash_error: 'Erreur lors de la suppression de la Une'
+                flash_success: 'La Une a été supprimée'
+                flash_error_active: 'La Une active ne peut pas être supprimée'
+
+        sponsorslide:
+            index:
+                title: 'Gestion de l''affichage des slides de sponsor'
+                retour: 'Retour sur la liste des slides sponsor'
+                update: 'Modifier'
+                active: 'Activer'
+                disable: 'Désactiver'
+                delete: 'Supprimer'
+                th_banniere: 'Slides'
+                th_active: 'Activation'
+            create:
+                title: 'Création d''une nouvelle slide de sponsor'
+                flash_error: 'Erreur lors de l''ajout dans la base de données'
+                flash_success: 'Nouvelle slide ajoutée'
+                flash_success_active: 'Nouvelle slide activée'
+            form:
+                label_content: 'Contenu de la slide'
+                label_active: 'Ajouter cette slide parmis les slides actives'
+            active:
+                flash_error: 'Erreur lors de l''activation de la slide'
+                flash_success: 'La slide a été activée'
+                flash_error_state: 'La slide est déjà activée'
+            disable:
+                flash_error: 'Erreur lors de la désactivation de la slide'
+                flash_success: 'La slide a été désactivée'
+                flash_error_state: 'La slide est déjà désactivée'
+            edit:
+                title: 'Modification de la slide'
+                flash_error: 'Erreur lors de l''édition de la slide'
+                flash_success: 'Nouvelle slide sponsor éditée'
+            delete:
+                title: 'Suppresion de la slide sponsor'
+                warning: 'La slide sera définitivement supprimée'
+                flash_error: 'Erreur lors de la suppression de la slide'
+                flash_success: 'La slide a été supprimée'

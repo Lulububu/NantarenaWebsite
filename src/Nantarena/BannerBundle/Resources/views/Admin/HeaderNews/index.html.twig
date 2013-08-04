@@ -1,0 +1,71 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'banner.admin.headernews.index.title'|trans %}
+{% block page_title 'banner.admin.headernews.index.title'|trans %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/nantarenabanner/css/banneroverview.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block admin_content %}
+
+    <div class="text-center allbanner">
+        <a class="btn btn-primary" href="{{ path('nantarena_banner_news_create') }}">
+            {{'banner.admin.headernews.create.title'|trans}}
+        </a>
+
+        <table class="table" data-sort="1" data-perpage="50">
+            <thead>
+                <tr>
+                    <th>{{'banner.admin.headernews.index.th_banniere'|trans}}</th>
+                    <th class="tiny">{{'banner.admin.headernews.index.th_active'|trans}}</th>
+                    <th class="mini"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for hnews in lhnews %}
+                {% if hnews.active %}
+                <tr class="success">
+                {% else %}
+                <tr>
+                {% endif %}
+                    <td>
+                        <div class="banner_overview">
+                            <div class="item">
+                                <span></span>
+                                <div class="banner_data">
+                                    {{hnews.content|raw}}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="tiny">
+                        {% if not hnews.active %}
+                        <a class="btn" href="{{ path('nantarena_banner_news_active', { 'id': hnews.id }) }}">
+                            {{'banner.admin.headernews.index.active'|trans}}
+                        </a>
+                        {% else %}
+                        <a class="btn" disabled>
+                            {{'banner.admin.headernews.index.active'|trans}}
+                        </a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('nantarena_banner_news_edit', { 'id': hnews.id }) }}">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="{{ path('nantarena_banner_news_delete', { 'id': hnews.id }) }}">
+                            <i class="icon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+{% endblock %}

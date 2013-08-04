@@ -1,3 +1,8 @@
+nantarena_banner:
+    resource: "@NantarenaBannerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 # Montage du EventBundle en mode annotation
 nantarena_event:
     resource: "@NantarenaEventBundle/Controller/"

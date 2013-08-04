@@ -1,0 +1,44 @@
+/* Bandeau */
+    div#banner {
+        height: 245px;
+        width: 100%;
+        background: url('../../bundles/nantarenabanner/images/banner.png') repeat-x;
+    }
+
+    div#banner div.container {
+        height: 240px;
+        margin: auto;
+    }
+
+    div#banner div.une,
+    div#banner div.sponsors {
+        width: 50%;
+        height: 100%;
+        float: left;
+        margin: 0;
+    }
+
+    div#banner .carousel-inner {
+        height: 100%;
+    }
+
+    div#banner .item {
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    div#banner .item span {
+        height: 100%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    div#banner .sponsor,
+    div#banner .une_news {
+        text-align: center;
+        width: 90%;
+        vertical-align: middle;
+        display: inline-block;
+        position: relative
+    }

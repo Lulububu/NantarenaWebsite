@@ -1,0 +1,30 @@
+    div.banner_overview {
+        height: 245px;
+        width: 100%;
+        background: url('../images/banner.png') repeat-x;
+    }
+
+    div.banner_overview_update {
+        border: 1px solid black;
+        margin-bottom: 15px;
+    }
+
+    div.banner_overview .item {
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    div.banner_overview .item span {
+        height: 100%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    div.banner_overview .banner_data {
+        text-align: center;
+        width: 90%;
+        vertical-align: middle;
+        display: inline-block;
+        position: relative
+    }

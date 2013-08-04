@@ -14,6 +14,9 @@ security:
             - ROLE_USER_ADMIN_USERS
             - ROLE_USER_ADMIN_GROUPS
 
+            - ROLE_BANNER_ADMIN_HEADERNEWS
+            - ROLE_BANNER_ADMIN_SPONSOR_SLIDE
+
             - ROLE_EVENT_ADMIN_ENTRYTYPES
             - ROLE_EVENT_ADMIN_GAMES
             - ROLE_EVENT_ADMIN_EVENTS
@@ -55,6 +58,9 @@ security:
 
         - { path: ^/admin/users, roles: ROLE_USER_ADMIN_USERS }
         - { path: ^/admin/groups, roles: ROLE_USER_ADMIN_GROUPS }
+
+        - { path: ^/admin/header-news, roles: ROLE_BANNER_ADMIN_HEADERNEWS }
+        - { path: ^/admin/sponsor, roles: ROLE_BANNER_ADMIN_SPONSOR_SLIDE }
 
         - { path: ^/admin/event/entrytypes, roles: ROLE_EVENT_ADMIN_ENTRYTYPES }
         - { path: ^/admin/event/games, roles: ROLE_EVENT_ADMIN_GAMES }

@@ -1,0 +1,32 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'banner.admin.headernews.edit.title'|trans %}
+{% block page_title 'banner.admin.headernews.edit.title'|trans %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/nantarenabanner/css/banneroverview.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block admin_content %}
+
+<div class="container">
+    <a href="{{ path('nantarena_banner_news_index') }}">
+        <button type="button" class="btn pull-right">
+            {{'banner.admin.headernews.index.retour'|trans}}
+        </button>
+    </a>
+</div>
+
+{{ form(form) }}
+
+{% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@NantarenaBannerBundle/Resources/public/js/glance.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'banner.admin.headernews.delete.title'|trans %}
+{% block page_title 'banner.admin.headernews.delete.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
+
+        {% block warning %}
+            {{ 'banner.admin.headernews.delete.warning'|trans }}
+        {% endblock %}
+
+        {% block back %}
+            <a href="{{ path('nantarena_banner_news_index') }}">
+                {{ 'banner.admin.headernews.index.retour'|trans }}
+            </a>
+        {% endblock %}
+
+    {% endembed %}
+{% endblock %}
