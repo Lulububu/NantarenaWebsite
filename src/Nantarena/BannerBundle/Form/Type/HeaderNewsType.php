@@ -23,7 +23,7 @@ class HeaderNewsType extends AbstractType
                 'label' => 'banner.admin.headernews.form.label_content',
                 'attr' => array(
                     'class' => 'input-block-level follow_content',
-                    'rows' => 15,
+                    'rows' => 10,
                 )
             ));
 

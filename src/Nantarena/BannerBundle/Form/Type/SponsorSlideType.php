@@ -23,7 +23,7 @@ class SponsorSlideType extends AbstractType
                 'label' => 'banner.admin.sponsorslide.form.label_content',
                 'attr' => array(
                     'class' => 'input-block-level follow_content',
-                    'rows' => 15,
+                    'rows' => 10,
                 )
             ))
             ->add('active', 'checkbox', array(
