@@ -1,7 +1,7 @@
 static:
     admin:
         back: 'Retour à la liste'
-
+	
         create:
             title: 'Création de la page'
 
