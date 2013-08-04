@@ -3,7 +3,7 @@ banner:
         dashboard:
             title: 'Gestion de la bannière'
             hnews_management: 'Gestion de la Une'
-            sponsorslide_management: 'Gestion des sponsors'
+            sponsorslide_management: 'Gestion des slides sponsor'
 
         headernews:
             index:
