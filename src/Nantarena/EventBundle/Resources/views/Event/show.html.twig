@@ -1,0 +1,180 @@
+{% extends 'NantarenaEventBundle::layout.html.twig' %}
+
+{% block title 'event.show.title'|trans({'%name%': event.name}) %}
+{% block page_title 'event.show.title'|trans({'%name%': event.name}) %}
+
+{% block event_content %}
+
+    <h2>
+        <time datetime="{{ event.startDate|date('Y-m-d') }}">
+            {% if event.startDate|date('Y-m-d') == event.endDate|date('Y-m-d') %}
+                {{ 'event.show.date.oneday'|trans({
+                    '%date%': event.startDate|localizeddate('full', 'none')
+                })|capitalize }}
+            {% else %}
+                {{ 'event.show.date.manydays'|trans({
+                    '%date1%': event.startDate|date('d'),
+                    '%date2%': event.endDate|localizeddate('long', 'none')
+                })|capitalize }}
+            {% endif %}
+        </time>
+    </h2>
+
+    <div class="infos {% if event.cover is not null %}infos-cover{% endif %}">
+        <div class="row-fluid">
+        {% if event.cover is not null %}
+            <div class="span6 cover">
+                <img src="{{ imageLink(event.cover) }}" alt="{{ event.show.cover }}"/>
+            </div>
+            <div class="span6">
+        {% else %}
+            <div class="span12">
+        {% endif %}
+                <ul>
+                    <li>
+                        <strong>{{ 'event.show.registrations'|trans|colon }}</strong>
+                        {% if event.startRegistrationDate|date('Y-m-d') == event.endRegistrationDate|date('Y-m-d') %}
+                            <time datetime="{{ event.startRegistrationDate|date('Y-m-d') }}">
+                                {{ 'event.show.date.oneday'|trans({
+                                    '%date%': event.startRegistrationDate|date('d/m/Y')
+                                }) }}
+                            </time>
+                        {% else %}
+                            <time datetime="{{ event.startRegistrationDate|date('Y-m-d') }}">
+                                {{ 'event.show.date.manydays'|trans({
+                                    '%date1%': event.startRegistrationDate|date('d/m/Y'),
+                                    '%date2%': event.endRegistrationDate|date('d/m/Y')
+                                }) }}
+                            </time>
+                        {% endif %}
+                    </li>
+                    <li>
+                        <strong>{{ 'event.show.open_hour'|trans|colon }}</strong>
+                        <time datetime="{{ event.startDate|date('Y-m-d H:i') }}">
+                            {{ 'event.show.datetime'|trans({
+                                '%datetime%': event.startDate|date('d/m/Y \\à H\\h')
+                            }) }}
+                            {% if event.startDate|date('i') > 0 %}
+                                {{ event.startDate|date('i') }}
+                            {% endif %}
+                        </time>
+                    </li>
+                    {% if event.tournaments.count > 0 %}
+                        <li>
+                            <strong>{{ 'event.show.tournaments_start'|trans|colon }}</strong>
+                            {% set startDate = event.tournaments|min('startDate').startDate %}
+                            {{ 'event.show.datetime'|trans({
+                                '%datetime%': startDate|date('d/m/Y \\à H\\h')
+                            }) }}
+                            {% if startDate|date('i') > 0 %}
+                                {{ startDate|date('i') }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                    <li>
+                        <strong>{{ 'event.show.capacity'|trans|colon }}</strong>
+                        {{ 'event.show.capacity_value'|trans({
+                            '%value%': event.capacity
+                        }) }}
+                    </li>
+                    <li>
+                        <strong>Tarif :</strong>
+                        {% set minPrice = event.entryTypes|min('price').price %}
+                        {% set maxPrice = event.entryTypes|max('price').price %}
+
+                        {% if minPrice == maxPrice %}
+                            {{ 'event.show.price.one'|trans({
+                                '%price%': minPrice
+                            }) }}
+                        {% else %}
+                            {{ 'event.show.price.many'|trans({
+                                '%price1%': minPrice,
+                                '%price2%': maxPrice
+                            }) }}
+                        {% endif %}
+                    </li>
+                </ul>
+
+                <p class="text-center">
+                    {% if event.endRegistrationDate|date('Y-m-d') < "now"|date('Y-m-d') %}
+                        <span class="text-error">{{ 'event.show.registration.closed'|trans }}</span>
+                    {% elseif event.startRegistrationDate|date('Y-m-d') > "now"|date('Y-m-d') %}
+                        <span class="text-error">{{ 'event.show.registration.notyet'|trans }}</span>
+                    {% else %}
+                        <a href="#" class="btn btn-success">{{ 'event.show.registration.open'|trans }}</a>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% if event.tournaments.count > 0 %}
+        <h2>{{ 'event.show.tournaments'|trans }}</h2>
+
+        {% for tournament in event.tournaments %}
+            <section class="tournament">
+                <header>
+                    <h3>
+                        {{ tournament.game.name }}
+                        <span>
+                            {{ 'event.show.tournament.format'|trans({
+                                '%nb%': tournament.game.teamCapacity
+                            }) }}
+                            -
+                            {{ 'event.show.tournament.capacity'|trans({
+                                '%capacity%': tournament.maxTeams
+                            }) }}
+                        </span>
+                    </h3>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <ul class="infos">
+                                <li>
+                                    <strong>{{ 'event.show.tournament.start'|trans|colon }}</strong>
+                                    {{ 'event.show.datetime'|trans({
+                                        '%datetime%': tournament.startDate|date('d/m/Y \\à H\\h')
+                                    }) }}
+                                    {% if tournament.startDate|date('i') > 0 %}
+                                        {{ tournament.startDate|date('i') }}
+                                    {% endif %}
+                                </li>
+                                {% if tournament.admin is not null %}
+                                <li>
+                                    <strong>{{ 'event.show.tournament.admin'|trans|colon }}</strong>
+                                    {{ tournament.admin.username }}
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="span6">
+                            <div class="progress">
+                                <div class="bar" style="width: 60%"></div>
+                            </div>
+                            <p>
+                                {{ 'event.show.tournament.teams.validated'|transchoice(13) }}
+                                -
+                                <a href="#" class="teams-show">{{ 'event.show.tournament.teams.show'|trans }}</a>
+                                <a href="#" class="teams-hide hide">{{ 'event.show.tournament.teams.hide'|trans }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="teams hide">
+                    <div class="team">
+                        <h4>Jabbawockeez</h4>
+                        <ul>
+                            <li>AznBak</li>
+                            <li>Chaca or Shaco</li>
+                            <li class="captain">kiilys</li>
+                            <li>Kuroari</li>
+                            <li>Shodaime</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

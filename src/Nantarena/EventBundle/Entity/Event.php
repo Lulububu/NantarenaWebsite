@@ -45,6 +45,14 @@ class Event
     private $name;
 
     /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", unique=true)
+     */
+    protected $slug;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="start_date", type="datetime")
@@ -83,6 +91,14 @@ class Event
      * @Assert\GreaterThan(value=0)
      */
     private $capacity;
+
+    /**
+     * @ORM\OneToOne(
+     *      targetEntity="Nantarena\SiteBundle\Entity\Image",
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true)
+     */
+    private $cover;
 
     /**
      * @ORM\OneToMany(
@@ -327,5 +343,28 @@ class Event
     public function getTournaments()
     {
         return $this->tournaments;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param \Nantarena\SiteBundle\Entity\Image $cover
+     * @return Event
+     */
+    public function setCover(\Nantarena\SiteBundle\Entity\Image $cover = null)
+    {
+        $this->cover = $cover;
+    
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return \Nantarena\SiteBundle\Entity\Image 
+     */
+    public function getCover()
+    {
+        return $this->cover;
     }
 }

@@ -1,6 +1,6 @@
 $(function() {
 
-    $(".collection_holder").on('click', '.collection_add', function(e) {
+    $(".collection_holder").on('click', 'a.collection_add', function(e) {
         e.preventDefault();
 
         var collectionHolder = $(this).parents(".collection_holder");
@@ -15,7 +15,7 @@ $(function() {
         $(this).trigger('collection_add_clicked');
     });
 
-    $(".collection_holder").on('click', '.collection_delete', function(e) {
+    $(".collection_holder").on('click', 'a.collection_delete', function(e) {
         e.preventDefault();
         $(this).parents('tr').remove();
         $(this).trigger('collection_delete_clicked');

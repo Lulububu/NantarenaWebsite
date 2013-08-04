@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nantarena\EventBundle\Entity\Event;
+use Nantarena\EventBundle\Entity\EventEntryType;
 
 class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -19,6 +20,12 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na131->setStartRegistrationDate(new \DateTime('2012-10-23 14:00'));
         $na131->setEndRegistrationDate(new \DateTime('2012-11-16 23:00'));
 
+        $types131 = new EventEntryType();
+        $types131->setEntryType($this->getReference('entrytype-1'));
+        $types131->setPrice(5);
+
+        $na131->addEntryType($types131);
+
         $na132 = new Event();
         $na132->setName('Nantarena 13.2');
         $na132->setCapacity(250);
@@ -27,6 +34,12 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na132->setStartRegistrationDate(new \DateTime('2013-02-23 14:00'));
         $na132->setEndRegistrationDate(new \DateTime('2013-03-22 23:00'));
 
+        $types132 = new EventEntryType();
+        $types132->setEntryType($this->getReference('entrytype-1'));
+        $types132->setPrice(5);
+
+        $na132->addEntryType($types132);
+
         $na133 = new Event();
         $na133->setName('Nantarena 13.3');
         $na133->setCapacity(250);
@@ -34,6 +47,12 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na133->setEndDate(new \DateTime('2013-11-17 17:00'));
         $na133->setStartRegistrationDate(new \DateTime('2013-10-16 14:00'));
         $na133->setEndRegistrationDate(new \DateTime('2013-11-15 23:00'));
+
+        $types133 = new EventEntryType();
+        $types133->setEntryType($this->getReference('entrytype-1'));
+        $types133->setPrice(5);
+
+        $na133->addEntryType($types133);
 
         $this->addReference('event-1', $na131);
         $this->addReference('event-2', $na132);

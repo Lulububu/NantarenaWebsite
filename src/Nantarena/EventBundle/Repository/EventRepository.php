@@ -19,12 +19,33 @@ class EventRepository extends EntityRepository
             ->addSelect('et')
             ->join('et.entryType', 't')
             ->addSelect('t')
-            ->join('e.tournaments', 'to')
+            ->leftJoin('e.tournaments', 'to')
             ->addSelect('to')
-            ->join('to.game', 'g')
+            ->leftJoin('to.game', 'g')
             ->addSelect('g')
+            ->leftJoin('to.admin', 'u')
+            ->addSelect('u')
             ->where('e.id = :id')
             ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+    public function findOneShow($slug)
+    {
+        return $this->createQueryBuilder('e')
+            ->join('e.entryTypes', 'et')
+            ->addSelect('et')
+            ->join('et.entryType', 't')
+            ->addSelect('t')
+            ->leftJoin('e.tournaments', 'to')
+            ->addSelect('to')
+            ->leftJoin('to.game', 'g')
+            ->addSelect('g')
+            ->leftJoin('to.admin', 'u')
+            ->addSelect('u')
+            ->where('e.slug = :slug')
+            ->setParameter('slug', $slug)
             ->getQuery()
             ->getSingleResult();
     }

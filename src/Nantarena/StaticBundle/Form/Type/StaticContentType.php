@@ -17,12 +17,7 @@ class StaticContentType extends AbstractType
                     'class' => 'input-block-level',
                 )
             ))
-            ->add('content', 'textarea', array(
-                'attr' => array(
-                    'class' => 'input-block-level',
-                    'rows' => 25,
-                )
-            ))
+            ->add('content', 'wysiwyg_area')
             ->add('state', 'choice', array(
                 'choices' => array(
                     StaticContent::STATE_PUBLISHED => 'static.state.published',

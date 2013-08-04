@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ c.id }}</td>
                 <td><a href="{{ static_path(c) }}">{{ c.title }}</a></td>
-                <td>{{ c.update|date('Y-m-d H:i') }}</td>
+                <td>{{ c.update|date('d-m-Y H:i') }}</td>
                 <td>{{ static_state(c) }}</td>
                 <td>
                     {% if c.state == false %}

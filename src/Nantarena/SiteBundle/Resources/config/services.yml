@@ -5,7 +5,22 @@ services:
         tags:
             - {name: doctrine.event_subscriber}
 
-    nantarena_news.twig.form_extension:
+    nantarena_site.twig.form_extension:
         class: Nantarena\SiteBundle\Twig\FormExtension
         tags:
             - { name: twig.extension }
+
+    nantarena_site.twig.image_extension:
+        class: Nantarena\SiteBundle\Twig\ImageExtension
+        tags:
+            - { name: twig.extension }
+
+    nantarena_site.twig.collection_extension:
+        class: Nantarena\SiteBundle\Twig\CollectionExtension
+        tags:
+            - { name: twig.extension }
+
+    nantarena_site.type.wysiwyg:
+        class: Nantarena\SiteBundle\Form\Type\WysiwygType
+        tags:
+            - { name: form.type, alias: wysiwyg_area }
