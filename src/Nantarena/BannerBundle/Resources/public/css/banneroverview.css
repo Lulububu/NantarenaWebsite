@@ -1,6 +1,7 @@
     div.banner_overview {
         height: 245px;
-        width: 100%;
+        width: 50%;
+        margin:auto;
         background: url('../images/banner.png') repeat-x;
     }
 
