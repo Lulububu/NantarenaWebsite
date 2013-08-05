@@ -1,0 +1,9 @@
+{% block other_js %}
+    {% javascripts
+        '@NantarenaSiteBundle/Resources/public/js/form/collection.js'
+        '@NantarenaSiteBundle/Resources/public/js/form/imageUpload.js'
+        '@NantarenaSiteBundle/Resources/public/js/form/resource.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

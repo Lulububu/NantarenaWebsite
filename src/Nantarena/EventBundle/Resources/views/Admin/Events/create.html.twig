@@ -5,12 +5,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts
-        '@NantarenaSiteBundle/Resources/public/js/form/collection.js'
-        '@NantarenaSiteBundle/Resources/public/js/form/imageUpload.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% include 'NantarenaEventBundle:Admin/Events:_js.html.twig' %}
 {% endblock %}
 
 {% block admin_content %}
