@@ -1,0 +1,32 @@
+{% block imgur_row %}
+    {% spaceless %}
+        <div class="imageUpload">
+            <p class="uploading hide muted">
+                <strong>
+                    {{ 'imageupload.uploading'|trans({}, "imageUpload") }}&nbsp;<span></span>
+                </strong>
+            </p>
+
+            <p class="empty muted {% if value is not empty %}hide{% endif %}">
+                <strong>{{ empty_message|trans }}</strong>
+                <br />
+                {{ 'imageupload.dropzone'|trans({}, "imageUpload") }}
+            </p>
+
+            <p class="thb {% if value is empty %}hide{% endif %}">
+                <a href="#"><img src="{{ value }}" /></a>
+            </p>
+
+            <p class="buttons">
+                <button class="upload btn btn-mini {% if value is not empty %}hide{% endif %}">{{ 'imageupload.upload'|trans({}, "imageUpload") }}</button>
+                <button class="delete btn btn-mini {% if value is empty %}hide{% endif %}">{{ 'imageupload.delete'|trans({}, "imageUpload") }}</button>
+            </p>
+
+            <input style="visibility: collapse; width: 0px;" type="file" />
+
+            {% set type = type|default('hidden') %}
+            {{ block('form_widget_simple') }}
+        </div>
+
+    {% endspaceless %}
+{% endblock imgur_row %}
