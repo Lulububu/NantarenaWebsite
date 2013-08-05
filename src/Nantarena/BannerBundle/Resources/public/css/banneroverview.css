@@ -1,12 +1,13 @@
     div.banner_overview {
         height: 245px;
-        width: 50%;
+        width: 60%;
         margin:auto;
+        border: 1px solid black;
         background: url('../images/banner.png') repeat-x;
     }
 
     div.banner_overview_update {
-        border: 1px solid black;
+        margin-top: 20px;
         margin-bottom: 15px;
     }
 

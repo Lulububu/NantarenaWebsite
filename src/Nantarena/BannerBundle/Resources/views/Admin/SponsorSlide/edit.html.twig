@@ -13,15 +13,11 @@
 
 {% block admin_content %}
 
-<div class="container">
-    <a href="{{ path('nantarena_banner_sponsorslide_index') }}">
-        <button type="button" class="btn pull-right">
-            {{'banner.admin.sponsorslide.index.return'|trans}}
-        </button>
-    </a>
-</div>
-
 {{ form(form) }}
+
+<p class="text-center">
+    <a href="{{ path('nantarena_banner_sponsorslide_index') }}">{{ 'banner.admin.sponsorslide.index.return'|trans }}</a>
+</p>
 
 {% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
 
