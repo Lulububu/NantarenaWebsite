@@ -88,11 +88,16 @@ event:
             name: Libellé
 
         event:
+            autorization: Autorisation parentale
+            autorization_empty: Aucune autorisation fournie
             capacity: Capacité
             cover: Affiche
+            cover_empty: Aucune affiche n'est liée
             endDate: Fin
             endRegistrationDate: Fin
             name: Nom
+            rules: Règlement
+            rules_empty: Aucun règlement fourni
             startDate: Début
             startRegistrationDate: Début
 

@@ -1,4 +1,9 @@
 event:
+    autorization:
+        type: 'L''autorisation parentale doit être un fichier PDF'
+        size: 'Le fichier choisi pour l''autorisation parentale est trop volumineux'
+        upload: 'Une erreur a eu lieu durant l''upload de l''autorisation parentale'
+
     dates:
         eventDates: 'La date de début de l''évènement doit être antérieure à sa date de fin'
         eventRegistrationDates: 'La phase d''inscription doit se terminer avant le début de l''évènement'
@@ -7,6 +12,11 @@ event:
     entrytypes:
         empty: 'Vous devez ajouter au moins un type d''inscription pour l''évènement'
         same: 'Vous avez ajouté plus d''une fois le même type d''inscription'
+
+    rules:
+        type: 'Le règlement doit être un fichier PDF'
+        size: 'Le fichier choisi pour le règlement est trop volumineux'
+        upload: 'Une erreur a eu lieu durant l''upload du règlement'
 
     tournaments:
         outDate: 'Les tournois doivent commencer pendant l''évènement'

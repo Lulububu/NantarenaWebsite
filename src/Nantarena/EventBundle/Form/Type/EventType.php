@@ -3,7 +3,9 @@
 namespace Nantarena\EventBundle\Form\Type;
 
 use Nantarena\SiteBundle\Form\Transformer\ImageTransformer;
+use Nantarena\SiteBundle\Form\Transformer\ResourceTransformer;
 use Nantarena\SiteBundle\Form\Type\ImageType;
+use Nantarena\SiteBundle\Form\Type\ResourceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -13,6 +15,7 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $imageTransformer = new ImageTransformer();
+        $resourceTransformer = new ResourceTransformer();
 
         $builder
             ->add('name', 'text')
@@ -50,8 +53,20 @@ class EventType extends AbstractType
             ->add(
                 $builder->create('cover', new ImageType(), array(
                     'required' => false,
-                    'empty_message' => 'Aucune affiche n\'est liée'
+                    'empty_message' => 'event.form.event.cover_empty'
                 ))->addViewTransformer($imageTransformer)
+            )
+            ->add(
+                $builder->create('rules', new ResourceType(), array(
+                    'required' => false,
+                    'empty_message' => 'event.form.event.rules_empty'
+                ))->addViewTransformer($resourceTransformer)
+            )
+            ->add(
+                $builder->create('autorization', new ResourceType(), array(
+                    'required' => false,
+                    'empty_message' => 'event.form.event.autorization_empty'
+                ))->addViewTransformer($resourceTransformer)
             )
             ->add('submit', 'submit')
         ;

@@ -10,12 +10,16 @@
                 {{ form_row(form.capacity, {'label': 'event.form.event.capacity'|trans|colon}) }}
                 {{ form_row(form.startDate, {'label': 'event.form.event.startDate'|trans|colon}) }}
                 {{ form_row(form.endDate, {'label': 'event.form.event.endDate'|trans|colon}) }}
+
+                {% form_theme form.rules with 'NantarenaSiteBundle:Form:resource_layout.html.twig' %}
+                {{ form_row(form.rules, {'label': 'event.form.event.rules'|trans|colon}) }}
+
+                {% form_theme form.autorization with 'NantarenaSiteBundle:Form:resource_layout.html.twig' %}
+                {{ form_row(form.autorization, {'label': 'event.form.event.autorization'|trans|colon}) }}
             </div>
             <div class="span5">
-                {% form_theme form.cover.url with 'NantarenaSiteBundle:Form:inline_layout.html.twig' %}
-                {{ form_row(form.cover, {
-                    'label': 'event.form.event.cover'|trans|colon,
-                }) }}
+                {% form_theme form.cover with 'NantarenaSiteBundle:Form:image_layout.html.twig' %}
+                {{ form_row(form.cover, {'label': 'event.form.event.cover'|trans|colon}) }}
             </div>
     </fieldset>
 

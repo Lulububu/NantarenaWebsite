@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Nantarena\EventBundle\Validator\Constraints\DatesConstraint;
 use Nantarena\EventBundle\Validator\Constraints\EntryTypesConstraint;
 use Nantarena\EventBundle\Validator\Constraints\TournamentsConstraint;
+use Nantarena\SiteBundle\Validator\Constraints\ResourceConstraint;
 
 /**
  * Event
@@ -99,6 +100,40 @@ class Event
      *      orphanRemoval=true)
      */
     private $cover;
+
+    /**
+     * @ORM\OneToOne(
+     *      targetEntity="Nantarena\SiteBundle\Entity\Resource",
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
+     * )
+     * @ResourceConstraint(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "event.rules.type",
+     *     maxSizeMessage = "event.rules.size",
+     *     uploadFormSizeErrorMessage = "event.rules.size",
+     *     uploadErrorMessage = "event.rules.upload"
+     * )
+     */
+    private $rules;
+
+    /**
+     * @ORM\OneToOne(
+     *      targetEntity="Nantarena\SiteBundle\Entity\Resource",
+     *      cascade={"persist", "remove"},
+     *      orphanRemoval=true
+     * )
+     * @ResourceConstraint(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "event.autorization.type",
+     *     maxSizeMessage = "event.autorization.size",
+     *     uploadFormSizeErrorMessage = "event.autorization.size",
+     *     uploadErrorMessage = "event.autorization.upload"
+     * )
+     */
+    private $autorization;
 
     /**
      * @ORM\OneToMany(
@@ -366,5 +401,74 @@ class Event
     public function getCover()
     {
         return $this->cover;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Event
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set rules
+     *
+     * @param \Nantarena\SiteBundle\Entity\Resource $rules
+     * @return Event
+     */
+    public function setRules(\Nantarena\SiteBundle\Entity\Resource $rules = null)
+    {
+        $this->rules = $rules;
+    
+        return $this;
+    }
+
+    /**
+     * Get rules
+     *
+     * @return \Nantarena\SiteBundle\Entity\Resource 
+     */
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+    /**
+     * Set autorization
+     *
+     * @param \Nantarena\SiteBundle\Entity\Resource $autorization
+     * @return Event
+     */
+    public function setAutorization(\Nantarena\SiteBundle\Entity\Resource $autorization = null)
+    {
+        $this->autorization = $autorization;
+    
+        return $this;
+    }
+
+    /**
+     * Get autorization
+     *
+     * @return \Nantarena\SiteBundle\Entity\Resource 
+     */
+    public function getAutorization()
+    {
+        return $this->autorization;
     }
 }
