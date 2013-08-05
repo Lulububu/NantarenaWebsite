@@ -1,0 +1,34 @@
+{% block upload_row %}
+    {% spaceless %}
+        {% set attr = attr|merge({'style': (attr.style|default('') ~ ' visibility: collapse; width: 0px;')|trim}) %}
+        {{ block('form_widget_simple') }}
+    {% endspaceless %}
+{% endblock upload_row %}
+
+{% block form_rows %}
+    {% spaceless %}
+        {% set attr = attr|merge({'style': (attr.style|default('') ~ ' visibility: collapse; width: 0px;')|trim}) %}
+        {% set resource_id = form.file.vars.resource_id %}
+        {% if resource_id is not empty %}
+            {% set filename = form.name.vars.value %}
+        {% else %}
+            {% set filename = '' %}
+        {% endif %}
+
+        <div class="input-append input-prepend resource-widget">
+            {{ form_row(form.file) }}
+            {{ form_row(form.name, {'value': filename}) }}
+            <span class="uneditable-input name">
+                {% if resource_id is not empty %}
+                    <a href="{{ path('nantarena_site_resource', {'id': resource_id}) }}" class="{% if filename is empty %}hide{% endif %}">
+                        {{ filename }}
+                    </a>
+                {% endif %}
+                <span class="empty {% if filename is not empty %}hide{% endif %}">{{ form.file.vars.empty_message|trans }}</span>
+                <span class="temp"></span>
+            </span>
+            <span class="add-on delete {% if filename is empty %}hide{% endif %}"><a href="#"><i class="icon-trash"></i></a></span>
+            <span class="add-on"><a href="#" class="upload"><i class="icon-upload"></i></a></span>
+        </div>
+    {% endspaceless %}
+{% endblock form_rows %}
