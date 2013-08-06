@@ -12,7 +12,6 @@
     <table class="table sortable filterable" data-sort="1" data-perpage="50">
         <thead>
             <tr>
-                {#<th></th>#}
                 <th data-filter="ignore" class="tiny">#</th>
                 <th>{{ 'user.form.username'|trans }}</th>
                 <th>{{ 'user.form.email'|trans }}</th>
@@ -26,10 +25,15 @@
         <tbody>
             {% for user in users %}
                 <tr>
-                    {#<td><input name="select[]" type="checkbox" id="select-{{ user.id }}" style="margin:0;margin-top: -2px;"/></td>#}
                     <td>{{ user.id }}</td>
                     <td>
-                        {{ user.username }}
+                        {% if user.firstname is not empty %}
+                        <abbr title="{{ user.firstname }} {{ user.lastname|upper }}{% if user.birthdate is not empty %} - {{ "now"|date('Y') - user.birthdate|date('Y') }} {{ 'user.form.age'|trans }}{% endif %}">
+                            {{ user.username }}
+                        </abbr>
+                        {% else %}
+                            {{ user.username }}
+                        {% endif %}
                         {% if not user.enabled %}<span class="label">{{ 'user.admin.users.list.disabled'|trans }}</span>{% endif %}
                         {% if user.locked %}<span class="label label-inverse">{{ 'user.admin.users.list.locked'|trans }}</span>{% endif %}
                     </td>

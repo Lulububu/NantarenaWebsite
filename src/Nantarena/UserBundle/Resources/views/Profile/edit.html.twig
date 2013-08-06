@@ -13,14 +13,14 @@
         {{ form_errors(form) }}
 
         <fieldset>
-            <legend>Mes identifiants</legend>
+            <legend>{{ 'user.form.fieldset.infos'|trans }}</legend>
 
             {{ form_row(form.username, {'label': 'user.form.username'|trans|colon}) }}
             {{ form_row(form.email, {'label': 'user.form.email'|trans|colon}) }}
         </fieldset>
 
         <fieldset>
-            <legend>Mon identité</legend>
+            <legend>{{ 'user.form.fieldset.identity'|trans }}</legend>
 
             {{ form_row(form.firstname, {'label': 'user.form.firstname'|trans|colon}) }}
             {{ form_row(form.lastname, {'label': 'user.form.lastname'|trans|colon}) }}

@@ -13,6 +13,14 @@ class BaseUserType extends AbstractType
         $builder
             ->add('username', 'text')
             ->add('email', 'email')
+            ->add('firstname', 'text', array('required' => false))
+            ->add('lastname', 'text', array('required' => false))
+            ->add('birthdate', 'birthday', array(
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
+                'required' => 'false'
+            ))
+            ->add('email', 'email')
             ->add('groups', 'entity', array(
                 'class' => 'NantarenaUserBundle:Group',
                 'property' => 'name',
