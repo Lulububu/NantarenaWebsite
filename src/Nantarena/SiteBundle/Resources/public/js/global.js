@@ -48,7 +48,61 @@ $(function() {
             });
         });
     });
+
+    datetime_init();
 });
+
+function datetime_init() {
+    $('.datetimepicker').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        format: 'dd/mm/yyyy hh:ii',
+        pickerPosition: 'bottom-left'
+    });
+    $('.datepicker').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        format: 'dd/mm/yyyy',
+        pickerPosition: 'bottom-left'
+    });
+    $('.timepicker').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  0,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0,
+        format: 'hh:ii',
+        pickerPosition: 'bottom-left'
+    });
+    $('.birthdaypicker').datetimepicker({
+        language:  'fr',
+        startDate: '01/01/1940',
+        endDate: '31/12/2010',
+        weekStart: 1,
+        autoclose: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        initialDate: '01/01/1990',
+        format: 'dd/mm/yyyy',
+        pickerPosition: 'bottom-left'
+    });
+}
 
 
 

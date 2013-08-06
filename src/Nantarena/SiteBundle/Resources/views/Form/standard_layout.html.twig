@@ -87,6 +87,25 @@
     {% endspaceless %}
 {% endblock time_widget %}
 
+{% block birthday_widget %}
+    {% spaceless %}
+        {% if widget == 'single_text' %}
+            <div class="input-append date birthdaypicker">
+                {{ block('form_widget_simple') }}
+                <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+        {% else %}
+            <div {{ block('widget_container_attributes') }}>
+                {{ date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+                })|raw }}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock birthday_widget %}
+
 {% block collection_widget %}
     {% spaceless %}
         {% if prototype is defined %}
