@@ -90,6 +90,9 @@ fos_user:
             type: nantarena_user_registration
         confirmation:
             enabled: true
+    profile:
+        form:
+            type: nantarena_user_profile
 
 nantarena_site:
     db_prefix: %db_prefix%

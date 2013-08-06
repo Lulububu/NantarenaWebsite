@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\GroupInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Nantarena\UserBundle\Repository\UserRepository")
@@ -32,6 +33,27 @@ class User extends BaseUser
      * @Gedmo\Timestampable(on="create")
      */
     protected $registrationDate;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", name="firstname", nullable=true)
+     * @Assert\NotBlank(groups={"identity"})
+     */
+    protected $firstname;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", name="lastname", nullable=true)
+     * @Assert\NotBlank(groups={"identity"})
+     */
+    protected $lastname;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", name="birthdate", nullable=true)
+     * @Assert\DateTime(groups={"identity"})
+     */
+    protected $birthdate;
 
     /**
      * Constructor
@@ -107,5 +129,74 @@ class User extends BaseUser
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     * @return User
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string 
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return User
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set birthdate
+     *
+     * @param \DateTime $birthdate
+     * @return User
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+    
+        return $this;
+    }
+
+    /**
+     * Get birthdate
+     *
+     * @return \DateTime 
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
     }
 }
