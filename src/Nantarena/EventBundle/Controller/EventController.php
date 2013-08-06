@@ -30,4 +30,24 @@ class EventController extends Controller
             'event' => $event,
         );
     }
+
+    /**
+     * @Route("/{slug}/reglement", name="nantarena_event_rules")
+     */
+    public function rulesAction(Event $event)
+    {
+        return $this->forward('NantarenaSiteBundle:Resource:show', array(
+            'resource' => $event->getRules()
+        ));
+    }
+
+    /**
+     * @Route("/{slug}/autorisation", name="nantarena_event_autorization")
+     */
+    public function autorizationAction(Event $event)
+    {
+        return $this->forward('NantarenaSiteBundle:Resource:show', array(
+            'resource' => $event->getAutorization()
+        ));
+    }
 }
