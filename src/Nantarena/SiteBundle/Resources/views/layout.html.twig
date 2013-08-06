@@ -13,11 +13,10 @@
     {# feuilles de style #}
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
 
-    {% stylesheets filter='cssrewrite' 'bundles/nantarenasite/css/*' %}
-        <link href="{{ asset_url }}"  rel="stylesheet" />
-    {% endstylesheets %}
-
-    {% stylesheets 'bundles/nantarenabanner/css/*' %}
+    {% stylesheets
+        'bundles/nantarenasite/css/*'
+        'bundles/nantarenabanner/css/banner.css'
+        filter='cssrewrite' %}
         <link href="{{ asset_url }}"  rel="stylesheet" />
     {% endstylesheets %}
 

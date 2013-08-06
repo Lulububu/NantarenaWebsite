@@ -2,7 +2,7 @@
     div#banner {
         height: 245px;
         width: 100%;
-        background: url('../../bundles/nantarenabanner/images/banner.png') repeat-x;
+        background: url('../images/banner.png') repeat-x;
     }
 
     div#banner div.container {
