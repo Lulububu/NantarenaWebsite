@@ -13,15 +13,9 @@
 
 {% block admin_content %}
 
-{{ form(form) }}
-
-<p class="text-center">
-    <a href="{{ path('nantarena_banner_news_index') }}">{{ 'banner.admin.headernews.index.return'|trans }}</a>
-</p>
-
-{% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
-
-
+{% embed 'NantarenaBannerBundle:Form:_headernews_create.html.twig' with {
+    'submit': 'banner.admin.headernews.form.submit_create'|trans
+} %}{% endembed %}
 
 {% endblock %}
 

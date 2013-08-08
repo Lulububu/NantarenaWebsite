@@ -22,6 +22,8 @@ banner:
             form:
                 label_content: 'Contenu de la bannière'
                 label_active: 'Remplacer la Une actuelle par celle-ci'
+                submit_create: 'Ajouter'
+                submit_update: 'Modifier'
             active:
                 flash_error: 'Erreur lors de l''activation de la Une'
                 flash_success: 'La Une a été activée'
@@ -29,7 +31,7 @@ banner:
             edit:
                 title: 'Modification de la Une'
                 flash_error: 'Erreur lors de l''édition de la Une'
-                flash_success: 'Nouvelle Une éditée'
+                flash_success: 'La Une a été éditée'
             delete:
                 title: 'Suppresion de la Une'
                 warning: 'La Une sera définitivement supprimée'
@@ -55,6 +57,8 @@ banner:
             form:
                 label_content: 'Contenu de la slide sponsor'
                 label_active: 'Activer cette slide sponsor'
+                submit_create: 'Ajouter'
+                submit_update: 'Modifier ici'
             active:
                 flash_error: 'Erreur lors de l''activation de la slide sponsor'
                 flash_success: 'La slide sponsor a été activée'
@@ -66,7 +70,7 @@ banner:
             edit:
                 title: 'Modification de la slide sponsor'
                 flash_error: 'Erreur lors de l''édition de la slide sponsor'
-                flash_success: 'Nouvelle slide sponsor éditée'
+                flash_success: 'La slide sponsor a été éditée'
             delete:
                 title: 'Suppresion de la slide sponsor'
                 warning: 'La slide sponsor sera définitivement supprimée'

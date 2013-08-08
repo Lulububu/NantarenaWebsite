@@ -1,0 +1,16 @@
+<div class="span12">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.content, {'label': 'banner.admin.sponsorslide.form.label_content'|trans|colon}) }}
+        {{ form_row(form.active, {'label': 'banner.admin.sponsorslide.form.label_active'|trans|colon}) }}
+
+        {% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
+        
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+
+    <p class="text-center">
+        <a href="{{ path('nantarena_banner_sponsorslide_index') }}">{{ 'banner.admin.sponsorslide.index.return'|trans }}</a>
+    </p>
+</div>

@@ -13,17 +13,14 @@
 
 {% block admin_content %}
 
-{{ form(form) }}
-
-<p class="text-center">
-    <a href="{{ path('nantarena_banner_news_index') }}">{{ 'banner.admin.headernews.index.return'|trans }}</a>
-</p>
-
-{% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
+{% embed 'NantarenaBannerBundle:Form:_headernews_update.html.twig' with {
+    'submit': 'banner.admin.headernews.form.submit_update'|trans
+} %}{% endembed %}
 
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {% javascripts '@NantarenaBannerBundle/Resources/public/js/glance.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

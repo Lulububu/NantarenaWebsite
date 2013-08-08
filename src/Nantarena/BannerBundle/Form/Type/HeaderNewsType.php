@@ -20,7 +20,6 @@ class HeaderNewsType extends AbstractType
     {
         $builder
             ->add('content', 'textarea', array(
-                'label' => 'banner.admin.headernews.form.label_content',
                 'attr' => array(
                     'class' => 'input-block-level follow_content',
                     'rows' => 10,
@@ -31,12 +30,11 @@ class HeaderNewsType extends AbstractType
         {
             $builder
                 ->add('active', 'checkbox', array(
-                    'label'     => 'banner.admin.headernews.form.label_active',
                     'required'  => false,
                 ));
         }
 
-        $builder->add('save', 'submit');
+        $builder->add('submit', 'submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

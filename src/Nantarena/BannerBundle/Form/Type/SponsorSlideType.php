@@ -20,17 +20,15 @@ class SponsorSlideType extends AbstractType
     {
         $builder
             ->add('content', 'textarea', array(
-                'label' => 'banner.admin.sponsorslide.form.label_content',
                 'attr' => array(
                     'class' => 'input-block-level follow_content',
                     'rows' => 10,
                 )
             ))
             ->add('active', 'checkbox', array(
-                'label'     => 'banner.admin.sponsorslide.form.label_active',
                 'required'  => false,
             ))
-            ->add('save', 'submit')
+            ->add('submit', 'submit')
             ;
     }
 

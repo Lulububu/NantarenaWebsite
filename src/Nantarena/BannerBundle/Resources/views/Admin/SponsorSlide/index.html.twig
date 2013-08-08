@@ -13,7 +13,7 @@
 
 {% block admin_content %}
 <div class="text-center allbanner">
-    <a class="btn btn-primary" href="{{ path('nantarena_banner_sponsorslide_create') }}">
+    <a class="btn" href="{{ path('nantarena_banner_sponsorslide_create') }}">
         {{'banner.admin.sponsorslide.create.title'|trans}}
     </a>
 
@@ -46,11 +46,11 @@
                     </td>
                     <td class="tiny">
                         {% if not slide.active %}
-                            <a class="btn btn-primary" href="{{ path('nantarena_banner_sponsorslide_active', { 'id': slide.id }) }}">
+                            <a class="btn btn-info" href="{{ path('nantarena_banner_sponsorslide_active', { 'id': slide.id }) }}">
                             {{'banner.admin.sponsorslide.index.active'|trans}}
                             </a>
                         {% else %}
-                            <a class="btn btn-danger" href="{{ path('nantarena_banner_sponsorslide_disable', { 'id': slide.id }) }}">
+                            <a class="btn" href="{{ path('nantarena_banner_sponsorslide_disable', { 'id': slide.id }) }}">
                             {{'banner.admin.sponsorslide.index.disable'|trans}}
                             </a>
                         {% endif %}

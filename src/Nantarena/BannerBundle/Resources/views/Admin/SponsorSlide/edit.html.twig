@@ -13,17 +13,14 @@
 
 {% block admin_content %}
 
-{{ form(form) }}
-
-<p class="text-center">
-    <a href="{{ path('nantarena_banner_sponsorslide_index') }}">{{ 'banner.admin.sponsorslide.index.return'|trans }}</a>
-</p>
-
-{% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
+{% embed 'NantarenaBannerBundle:Form:_sponsorslide.html.twig' with {
+    'submit': 'banner.admin.sponsorslide.form.submit_update'|trans
+} %}{% endembed %}
 
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {% javascripts '@NantarenaBannerBundle/Resources/public/js/glance.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
