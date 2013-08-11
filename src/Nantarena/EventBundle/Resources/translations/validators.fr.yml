@@ -1,7 +1,7 @@
 event:
     autorization:
-        type: 'L''autorisation parentale doit être un fichier PDF'
         size: 'Le fichier choisi pour l''autorisation parentale est trop volumineux'
+        type: 'L''autorisation parentale doit être un fichier PDF'
         upload: 'Une erreur a eu lieu durant l''upload de l''autorisation parentale'
 
     dates:
@@ -14,8 +14,8 @@ event:
         same: 'Vous avez ajouté plus d''une fois le même type d''inscription'
 
     rules:
-        type: 'Le règlement doit être un fichier PDF'
         size: 'Le fichier choisi pour le règlement est trop volumineux'
+        type: 'Le règlement doit être un fichier PDF'
         upload: 'Une erreur a eu lieu durant l''upload du règlement'
 
     tournaments:

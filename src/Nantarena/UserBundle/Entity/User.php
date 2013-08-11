@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\GroupInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Nantarena\EventBundle\Entity\Event;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -54,6 +55,14 @@ class User extends BaseUser
      * @Assert\DateTime(groups={"identity"})
      */
     protected $birthdate;
+
+    /**
+     * @ORM\OneToMany(
+     *      targetEntity="Nantarena\EventBundle\Entity\Entry",
+     *      mappedBy="user",
+     *      cascade={"persist", "remove"})
+     */
+    protected $entries;
 
     /**
      * Constructor
@@ -198,5 +207,61 @@ class User extends BaseUser
     public function getBirthdate()
     {
         return $this->birthdate;
+    }
+
+    /**
+     * Add entries
+     *
+     * @param \Nantarena\EventBundle\Entity\Entry $entries
+     * @return User
+     */
+    public function addEntry(\Nantarena\EventBundle\Entity\Entry $entries)
+    {
+        $entries->setUser($this);
+        $this->entries[] = $entries;
+    
+        return $this;
+    }
+
+    /**
+     * Remove entries
+     *
+     * @param \Nantarena\EventBundle\Entity\Entry $entries
+     */
+    public function removeEntry(\Nantarena\EventBundle\Entity\Entry $entries)
+    {
+        $this->entries->removeElement($entries);
+    }
+
+    /**
+     * Get entries
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEntries()
+    {
+        return $this->entries;
+    }
+
+    /**
+     * Check if user participate to an event
+     *
+     * @param Event $event
+     * @return bool
+     */
+    public function hasEntry(Event $event)
+    {
+        $entries = $this->getEntries();
+        $result = false;
+
+        /** @var \Nantarena\EventBundle\Entity\Entry $entry */
+        foreach($entries as $entry) {
+            if ($entry->getEventEntryType()->getEvent() === $event) {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
     }
 }

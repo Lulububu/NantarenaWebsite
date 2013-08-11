@@ -471,4 +471,15 @@ class Event
     {
         return $this->autorization;
     }
+
+    /**
+     * Get if event is full or not
+     *
+     * @return bool
+     */
+    public function isFull()
+    {
+        // TODO: Implement
+        return false;
+    }
 }

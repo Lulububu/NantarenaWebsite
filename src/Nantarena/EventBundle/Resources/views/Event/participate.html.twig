@@ -1,0 +1,97 @@
+{% extends 'NantarenaEventBundle::layout.html.twig' %}
+
+{% block title 'event.show.title'|trans({'%name%': event.name}) %}
+{% block page_title 'event.show.title'|trans({'%name%': event.name}) %}
+
+{% block event_content %}
+
+    <h2>
+        <time datetime="{{ event.startDate|date('Y-m-d') }}">
+            {% if event.startDate|date('Y-m-d') == event.endDate|date('Y-m-d') %}
+                {{ 'event.show.date.oneday'|trans({
+                    '%date%': event.startDate|localizeddate('full', 'none')
+                })|capitalize }}
+            {% else %}
+                {{ 'event.show.date.manydays'|trans({
+                    '%date1%': event.startDate|date('d'),
+                    '%date2%': event.endDate|localizeddate('long', 'none')
+                })|capitalize }}
+            {% endif %}
+        </time>
+    </h2>
+
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            {% if event.rules is not null %}
+                <div class="alert alert-warning">
+                    {{ 'event.participate.rules'|trans({
+                        '%link_start%':  '<a href="' ~ path('nantarena_event_rules', {'slug': event.slug}) ~'">',
+                        '%link_end%': '</a>'
+                    })|raw }}
+                </div>
+            {% endif %}
+
+
+            {% if underage and event.autorization is not null %}
+                <div class="alert alert-warning">
+                    {{ 'event.participate.autorization'|trans({
+                        '%link_start%':  '<a href="' ~ path('nantarena_event_rules', {'slug': event.slug}) ~'">',
+                        '%link_end%': '</a>'
+                    })|raw }}
+                    Vous serez mineur au moment de l'évènement. Une
+                    <a href="{{ path('nantarena_event_autorization', {'slug': event.slug}) }}">autorisation</a>
+                    signée de la part de vos représentants légaux est <strong>obligatoire</strong> et vous sera
+                    demandée à votre arrivée.
+                </div>
+            {% endif %}
+
+            {% if event.entryTypes|length > 1 %}
+                <p class="text-center">
+                    {{ 'event.participate.choose'|trans|colon }}
+                </p>
+
+                {{ form_start(form) }}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{ 'event.form.evententrytype.entryType'|trans }}Type</th>
+                            <th>{{ 'event.form.evententrytype.price'|trans }}Prix</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for type in event.entryTypes %}
+                            <tr>
+                                <td>{{ type.entryType.name }}</td>
+                                <td>
+                                    {{ 'event.show.price.one'|trans({
+                                        '%price%': type.price
+                                    }) }}
+                                    {{ type.price }}€
+                                </td>
+                                <td>
+                                    {{ form_row(form['entrytype-' ~ type.id], {
+                                        'label': 'event.participate.confirm.many'|trans,
+                                        'attr': {'class': 'btn-success'}
+                                    }) }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {{ form_end(form) }}
+            {% else %}
+                {{ form_start(form) }}
+                {% for type in event.entryTypes %}
+                    {{ form_row(form['entrytype-' ~ type.id], {
+                        'label': 'event.participate.confirm.one'|trans,
+                        'attr': {'class': 'btn-success'}
+                    }) }}
+                {% endfor %}
+                {{ form_end(form) }}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

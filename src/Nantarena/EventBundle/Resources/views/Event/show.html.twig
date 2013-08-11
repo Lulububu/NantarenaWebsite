@@ -97,11 +97,15 @@
 
                 <p class="text-center">
                     {% if event.endRegistrationDate|date('Y-m-d') < "now"|date('Y-m-d') %}
-                        <span class="text-error">{{ 'event.show.registration.closed'|trans }}</span>
+                        <span class="text-error">{{ 'event.participate.flash.closed'|trans }}</span>
                     {% elseif event.startRegistrationDate|date('Y-m-d') > "now"|date('Y-m-d') %}
-                        <span class="text-error">{{ 'event.show.registration.notyet'|trans }}</span>
+                        <span class="text-error">{{ 'event.participate.flash.notyet'|trans }}</span>
+                    {% elseif app.user.hasEntry(event) %}
+                        <span class="text-error">{{ 'event.participate.flash.already'|trans }}</span>
+                    {% elseif event.full %}
+                        <span class="text-error">{{ 'event.participate.flash.full'|trans }}</span>
                     {% else %}
-                        <a href="#" class="btn btn-success">{{ 'event.show.registration.open'|trans }}</a>
+                        <a href="{{ path('nantarena_event_participate', {'slug': event.slug}) }}" class="btn btn-success">{{ 'event.show.registration.open'|trans }}</a>
                     {% endif %}
                 </p>
             </div>
