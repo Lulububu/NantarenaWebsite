@@ -21,7 +21,7 @@ class Entry
     *   targetEntity="Nantarena\EventBundle\Entity\EntryType")
     * @ORM\JoinColumn(name="event_entry_type_id", referencedColumnName="id", nullable=false)
     */
-    private $eventEntryType;
+    private $entryType;
 
     /**
      * @ORM\Id()
@@ -64,26 +64,26 @@ class Entry
     }
 
     /**
-     * Set eventEntryType
+     * Set entryType
      *
-     * @param \Nantarena\EventBundle\Entity\EntryType $eventEntryType
+     * @param \Nantarena\EventBundle\Entity\EntryType $entryType
      * @return Entry
      */
-    public function setEventEntryType(\Nantarena\EventBundle\Entity\EntryType $eventEntryType)
+    public function setEntryType(\Nantarena\EventBundle\Entity\EntryType $entryType)
     {
-        $this->eventEntryType = $eventEntryType;
+        $this->entryType = $entryType;
     
         return $this;
     }
 
     /**
-     * Get eventEntryType
+     * Get entryType
      *
      * @return \Nantarena\EventBundle\Entity\EntryType
      */
-    public function getEventEntryType()
+    public function getEntryType()
     {
-        return $this->eventEntryType;
+        return $this->entryType;
     }
 
     /**

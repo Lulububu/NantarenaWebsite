@@ -28,6 +28,8 @@ event:
 
             list:
                 empty: 'Aucun évènement n''est encore défini'
+                next_events: 'Prochains évènements'
+                old_events: 'Anciens évènements'
                 registrationEnd: 'Fin des inscriptions'
                 registrationStart: 'Début des inscriptions'
                 title: 'Liste des évènements'
@@ -58,6 +60,11 @@ event:
                 title: 'Liste des jeux'
 
     form:
+        entrytype:
+            add: 'Ajouter un type d''inscription'
+            name: 'Type d''inscription'
+            price: Prix
+
         event:
             autorization: 'Autorisation parentale'
             autorization_empty: 'Aucune autorisation fournie'
@@ -71,11 +78,6 @@ event:
             rules_empty: 'Aucun règlement fourni'
             startDate: Début
             startRegistrationDate: Début
-
-        entrytype:
-            add: 'Ajouter un type d''inscription'
-            name: 'Type d''inscription'
-            price: Prix
 
         fieldset:
             entries: Inscriptions
@@ -97,16 +99,11 @@ event:
             add: 'Ajouter un tournoi'
 
     participate:
-        autorization: |
-            Vous serez mineur au moment de l'évènement. Une
-            %link_start%autorisation%link_end%
-            signée de la part de vos représentants légaux est <strong>obligatoire</strong> et vous sera
-            demandée à votre arrivée.
-
+        autorization: "Vous serez mineur au moment de l'évènement. Une\n%link_start%autorisation%link_end%\nsignée de la part de vos représentants légaux est <strong>obligatoire</strong> et vous sera\ndemandée à votre arrivée.\n"
         choose: 'Veuillez choisir votre type d''inscription'
 
         confirm:
-            many: 'Choisir'
+            many: Choisir
             one: 'Confirmer l''inscription'
 
         flash:
@@ -118,9 +115,7 @@ event:
             profile: 'Vous devez renseigner votre nom, prénom et date de naissance avant de continuer'
             success: 'Félicitations, vous êtes maintenant préinscrit à l''évènement.'
 
-        rules: |
-           En vous inscrivant à l'évènement, vous déclarez avoir pris connaissance de son
-           %link_start%règlement%link_end%, et vous vous engagez à le respecter.
+        rules: "En vous inscrivant à l'évènement, vous déclarez avoir pris connaissance de son\n%link_start%règlement%link_end%, et vous vous engagez à le respecter.\n"
 
     show:
         capacity: Capacité

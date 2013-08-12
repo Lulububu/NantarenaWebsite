@@ -131,7 +131,7 @@ class EventController extends Controller
                 if ($form->get('entrytype-'.$type->getId())->isClicked()) {
 
                     $entry = new Entry();
-                    $entry->setEventEntryType($type);
+                    $entry->setEntryType($type);
                     $user->addEntry($entry);
 
                     $em->persist($entry);
