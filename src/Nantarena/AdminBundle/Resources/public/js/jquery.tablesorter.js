@@ -960,7 +960,7 @@
         }, format: function (s) {
             s = s.replace(/\-/g, "/");
             s = s.replace(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4}) ([0-2]?[0-9]:[0-5][0-9])/, "$3-$2-$1T$4");
-            return $.tablesorter.formatFloat(new Date(s).getTime());
+            return $.tablesorter.formatFloat(new Date(s.trim()).getTime());
         }, type: "numeric"
     });
 
