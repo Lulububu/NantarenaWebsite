@@ -38,8 +38,6 @@ class EventRepository extends EntityRepository
         return $this->createQueryBuilder('e')
             ->join('e.entryTypes', 'et')
             ->addSelect('et')
-            ->join('et.entryType', 't')
-            ->addSelect('t')
             ->leftJoin('e.tournaments', 'to')
             ->addSelect('to')
             ->leftJoin('to.game', 'g')
