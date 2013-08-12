@@ -1,0 +1,3 @@
+{% if event is not null %}
+    <a href="{{ path('nantarena_event_show', {'slug' : event.slug}) }}">{{ event.name }}</a>
+{% endif %}

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class EventController
@@ -149,6 +150,19 @@ class EventController extends Controller
             'event' => $event,
             'underage' => ($diff->y < 18),
             'form' => $form->createView()
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function menuAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('NantarenaEventBundle:Event')->findNext();
+
+        return array(
+            'event' => $event,
         );
     }
 }

@@ -49,4 +49,13 @@ class EventRepository extends EntityRepository
             ->getQuery()
             ->getSingleResult();
     }
+
+    public function findNext()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.startDate', 'desc')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

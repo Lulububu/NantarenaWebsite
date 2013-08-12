@@ -49,9 +49,7 @@
 
         <nav id="menu">
             <ul class="container">
-                <li class="left"><a href="{{ path('nantarena_news_index') }}">{{ 'site.menu.news'|trans }}</a></li>
-                <li class="left"><a href="#">{{ 'site.menu.whoarewe'|trans }}</a></li>
-                <li class="left"><a href="#">{{ 'site.menu.medias'|trans }}</a></li>
+                {% include 'NantarenaSiteBundle::_menu.html.twig' %}
 
                 {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <li class="right js">
