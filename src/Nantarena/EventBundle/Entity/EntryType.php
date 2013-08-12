@@ -8,12 +8,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * EventEntryType
+ * EntryType
  *
- * @ORM\Table(name="event_event_entry_type")
+ * @ORM\Table(name="event_entry_type")
  * @ORM\Entity()
  */
-class EventEntryType
+class EntryType
 {
     /**
      * @var integer
@@ -51,7 +51,7 @@ class EventEntryType
      * Set price
      *
      * @param integer $price
-     * @return EventEntryType
+     * @return EntryType
      */
     public function setPrice($price)
     {
@@ -74,7 +74,7 @@ class EventEntryType
      * Set event
      *
      * @param \Nantarena\EventBundle\Entity\Event $event
-     * @return EventEntryType
+     * @return EntryType
      */
     public function setEvent(\Nantarena\EventBundle\Entity\Event $event)
     {
@@ -107,7 +107,7 @@ class EventEntryType
      * Set name
      *
      * @param string $name
-     * @return EventEntryType
+     * @return EntryType
      */
     public function setName($name)
     {

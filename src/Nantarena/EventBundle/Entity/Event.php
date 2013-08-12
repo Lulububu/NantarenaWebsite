@@ -137,7 +137,7 @@ class Event
 
     /**
      * @ORM\OneToMany(
-     *      targetEntity="Nantarena\EventBundle\Entity\EventEntryType",
+     *      targetEntity="Nantarena\EventBundle\Entity\EntryType",
      *      mappedBy="event",
      *      cascade={"persist", "remove"})
      * @EntryTypesConstraint(
@@ -315,10 +315,10 @@ class Event
     /**
      * Add entryTypes
      *
-     * @param \Nantarena\EventBundle\Entity\EventEntryType $entryType
+     * @param \Nantarena\EventBundle\Entity\EntryType $entryType
      * @return Event
      */
-    public function addEntryType(\Nantarena\EventBundle\Entity\EventEntryType $entryType)
+    public function addEntryType(\Nantarena\EventBundle\Entity\EntryType $entryType)
     {
         $entryType->setEvent($this);
         $this->entryTypes->add($entryType);
@@ -329,9 +329,9 @@ class Event
     /**
      * Remove entryTypes
      *
-     * @param \Nantarena\EventBundle\Entity\EventEntryType $entryType
+     * @param \Nantarena\EventBundle\Entity\EntryType $entryType
      */
-    public function removeEntryType(\Nantarena\EventBundle\Entity\EventEntryType $entryType)
+    public function removeEntryType(\Nantarena\EventBundle\Entity\EntryType $entryType)
     {
         $this->entryTypes->removeElement($entryType);
     }

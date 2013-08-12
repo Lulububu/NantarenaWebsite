@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EventEntryTypeType extends AbstractType
+class EntryTypeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,12 +19,12 @@ class EventEntryTypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nantarena\EventBundle\Entity\EventEntryType',
+            'data_class' => 'Nantarena\EventBundle\Entity\EntryType',
         ));
     }
 
     public function getName()
     {
-        return 'nantarena_eventbundle_evententrytypetype';
+        return 'nantarena_eventbundle_entrytypetype';
     }
 }

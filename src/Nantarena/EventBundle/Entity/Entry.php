@@ -18,7 +18,7 @@ class Entry
     /**
     * @ORM\Id()
     * @ORM\ManyToOne(
-    *   targetEntity="Nantarena\EventBundle\Entity\EventEntryType")
+    *   targetEntity="Nantarena\EventBundle\Entity\EntryType")
     * @ORM\JoinColumn(name="event_entry_type_id", referencedColumnName="id", nullable=false)
     */
     private $eventEntryType;
@@ -66,10 +66,10 @@ class Entry
     /**
      * Set eventEntryType
      *
-     * @param \Nantarena\EventBundle\Entity\EventEntryType $eventEntryType
+     * @param \Nantarena\EventBundle\Entity\EntryType $eventEntryType
      * @return Entry
      */
-    public function setEventEntryType(\Nantarena\EventBundle\Entity\EventEntryType $eventEntryType)
+    public function setEventEntryType(\Nantarena\EventBundle\Entity\EntryType $eventEntryType)
     {
         $this->eventEntryType = $eventEntryType;
     
@@ -79,7 +79,7 @@ class Entry
     /**
      * Get eventEntryType
      *
-     * @return \Nantarena\EventBundle\Entity\EventEntryType 
+     * @return \Nantarena\EventBundle\Entity\EntryType
      */
     public function getEventEntryType()
     {

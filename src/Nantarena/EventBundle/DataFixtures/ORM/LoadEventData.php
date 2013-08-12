@@ -6,7 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nantarena\EventBundle\Entity\Event;
-use Nantarena\EventBundle\Entity\EventEntryType;
+use Nantarena\EventBundle\Entity\EntryType;
 
 class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -20,7 +20,7 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na131->setStartRegistrationDate(new \DateTime('2012-10-23 14:00'));
         $na131->setEndRegistrationDate(new \DateTime('2012-11-16 23:00'));
 
-        $types131 = new EventEntryType();
+        $types131 = new EntryType();
         $types131->setName("Joueur");
         $types131->setPrice(5);
 
@@ -34,7 +34,7 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na132->setStartRegistrationDate(new \DateTime('2013-02-23 14:00'));
         $na132->setEndRegistrationDate(new \DateTime('2013-03-22 23:00'));
 
-        $types132 = new EventEntryType();
+        $types132 = new EntryType();
         $types132->setName("Joueur");
         $types132->setPrice(5);
 
@@ -48,11 +48,11 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na133->setStartRegistrationDate(new \DateTime('2013-07-16 14:00'));
         $na133->setEndRegistrationDate(new \DateTime('2013-11-15 23:00'));
 
-        $types133 = new EventEntryType();
+        $types133 = new EntryType();
         $types133->setName("Joueur");
         $types133->setPrice(5);
 
-        $types134 = new EventEntryType();
+        $types134 = new EntryType();
         $types134->setName("Manager");
         $types134->setPrice(3);
 

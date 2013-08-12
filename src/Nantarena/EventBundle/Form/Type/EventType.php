@@ -39,7 +39,7 @@ class EventType extends AbstractType
                 'attr' => array('min' => 1)
             ))
             ->add('entryTypes', 'collection', array(
-                'type' => new EventEntryTypeType(),
+                'type' => new EntryTypeType(),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
