@@ -17,8 +17,7 @@ class EntryTypesConstraintValidator extends ConstraintValidator
             $types = array();
 
             foreach ($value as $type) {
-                #FIXME: Low query performance...
-                $types[] = $type->getEntryType()->getName();
+                $types[] = $type->getName();
             }
 
             if (count($types) != count(array_unique($types))) {

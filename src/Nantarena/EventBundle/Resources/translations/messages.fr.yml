@@ -84,9 +84,6 @@ event:
                 title: 'Liste des jeux'
 
     form:
-        entrytype:
-            name: Libellé
-
         event:
             autorization: 'Autorisation parentale'
             autorization_empty: 'Aucune autorisation fournie'
@@ -103,7 +100,7 @@ event:
 
         evententrytype:
             add: 'Ajouter un type d''inscription'
-            entryType: 'Type d''inscription'
+            name: 'Type d''inscription'
             price: Prix
 
         fieldset:

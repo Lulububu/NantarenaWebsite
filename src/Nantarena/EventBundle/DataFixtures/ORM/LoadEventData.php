@@ -21,7 +21,7 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na131->setEndRegistrationDate(new \DateTime('2012-11-16 23:00'));
 
         $types131 = new EventEntryType();
-        $types131->setEntryType($this->getReference('entrytype-1'));
+        $types131->setName("Joueur");
         $types131->setPrice(5);
 
         $na131->addEntryType($types131);
@@ -35,7 +35,7 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na132->setEndRegistrationDate(new \DateTime('2013-03-22 23:00'));
 
         $types132 = new EventEntryType();
-        $types132->setEntryType($this->getReference('entrytype-1'));
+        $types132->setName("Joueur");
         $types132->setPrice(5);
 
         $na132->addEntryType($types132);
@@ -45,14 +45,19 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
         $na133->setCapacity(250);
         $na133->setStartDate(new \DateTime('2013-11-16 10:00'));
         $na133->setEndDate(new \DateTime('2013-11-17 17:00'));
-        $na133->setStartRegistrationDate(new \DateTime('2013-10-16 14:00'));
+        $na133->setStartRegistrationDate(new \DateTime('2013-07-16 14:00'));
         $na133->setEndRegistrationDate(new \DateTime('2013-11-15 23:00'));
 
         $types133 = new EventEntryType();
-        $types133->setEntryType($this->getReference('entrytype-1'));
+        $types133->setName("Joueur");
         $types133->setPrice(5);
 
+        $types134 = new EventEntryType();
+        $types134->setName("Manager");
+        $types134->setPrice(3);
+
         $na133->addEntryType($types133);
+        $na133->addEntryType($types134);
 
         $this->addReference('event-1', $na131);
         $this->addReference('event-2', $na132);

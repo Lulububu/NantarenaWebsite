@@ -11,10 +11,7 @@ class EventEntryTypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('entryType', 'entity', array(
-                'class' => 'NantarenaEventBundle:EntryType',
-                'property' => 'name',
-            ))
+            ->add('name', 'text')
             ->add('price', 'money')
         ;
     }

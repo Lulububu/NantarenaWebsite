@@ -16,11 +16,6 @@ class AdminController extends Controller implements DashboardInterface
         return array(
             'module_title' => $translator->trans('event.admin.dashboard.title'),
             'module_links' => array(
-                $translator->trans('event.admin.dashboard.entrytypes_management') => array(
-                    'url' => $this->generateUrl('nantarena_event_admin_entrytypes'),
-                    'role' => 'ROLE_EVENT_ADMIN_ENTRYTYPES'
-                ),
-
                 $translator->trans('event.admin.dashboard.games_management') => array(
                     'url' => $this->generateUrl('nantarena_event_admin_games'),
                     'role' => 'ROLE_EVENT_ADMIN_GAMES'

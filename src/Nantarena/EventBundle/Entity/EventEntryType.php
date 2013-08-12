@@ -33,10 +33,10 @@ class EventEntryType
     private $event;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Nantarena\EventBundle\Entity\EntryType")
-     * @ORM\JoinColumn(name="entryType_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(name="name", type="string")
+     * @Assert\NotBlank()
      */
-    private $entryType;
+    private $name;
 
     /**
      * @var int
@@ -94,29 +94,6 @@ class EventEntryType
     }
 
     /**
-     * Set entryType
-     *
-     * @param \Nantarena\EventBundle\Entity\EntryType $entryType
-     * @return EventEntryType
-     */
-    public function setEntryType(\Nantarena\EventBundle\Entity\EntryType $entryType)
-    {
-        $this->entryType = $entryType;
-    
-        return $this;
-    }
-
-    /**
-     * Get entryType
-     *
-     * @return \Nantarena\EventBundle\Entity\EntryType 
-     */
-    public function getEntryType()
-    {
-        return $this->entryType;
-    }
-
-    /**
      * Get id
      *
      * @return integer 
@@ -124,5 +101,28 @@ class EventEntryType
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return EventEntryType
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
