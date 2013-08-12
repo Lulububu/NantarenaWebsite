@@ -310,6 +310,7 @@ class Event
     public function __construct()
     {
         $this->entryTypes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tournaments = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

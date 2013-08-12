@@ -11,6 +11,8 @@
         </a>
     </div>
 
+    <h2>Prochains évènements</h2>
+
     <table class="table sortable" data-sort="2" data-asc="desc" data-perpage="50">
         <thead>
         <tr>
@@ -26,20 +28,18 @@
         </thead>
 
         <tbody>
-        {% for event in events %}
+        {% for event in events if date(event.endDate) > date() %}
             {% if date(event.startRegistrationDate) <= date() and date(event.startDate) >= date() %}
                 <tr class="warning">
-            {% elseif date(event.startDate) > date() %}
-                <tr class="success">
-            {% elseif date(event.endDate) > date() %}
-                <tr class="error">
             {% else %}
-                <tr>
+                <tr class="error">
             {% endif %}
 
                 <td>{{ event.id }}</td>
                 <td>
-                    {{ event.name }}
+                    <a href="{{ path('nantarena_event_show', {'slug': event.slug}) }}">
+                        {{ event.name }}
+                    </a>
                 </td>
                 <td>
                     {{ event.startDate|date("d/m/Y H:i") }}
@@ -60,10 +60,68 @@
                     <a href="{{ path('nantarena_event_admin_events_edit', {'id': event.id}) }}">
                         <i class="icon-wrench"></i>
                     </a>
-                    &nbsp;&nbsp;
-                    <a href="{{ path('nantarena_event_admin_events_delete', {'id': event.id}) }}">
-                        <i class="icon-trash"></i>
+
+                    {% if date(event.startRegistrationDate) > date() %}
+                        &nbsp;&nbsp;
+                        <a href="{{ path('nantarena_event_admin_events_delete', {'id': event.id}) }}">
+                            <i class="icon-trash"></i>
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">
+                    <div class="text-center">
+                        {{ 'event.admin.events.list.empty'|trans }}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Anciens évènements</h2>
+
+    <table class="table sortable" data-sort="2" data-asc="desc" data-perpage="50">
+        <thead>
+        <tr>
+            <th data-filter="ignore" class="tiny">#</th>
+            <th>{{ 'event.form.event.name'|trans }}</th>
+            <th>{{ 'event.form.event.startDate'|trans }}</th>
+            <th>{{ 'event.form.event.endDate'|trans }}</th>
+            <th>{{ 'event.admin.events.list.registrationStart'|trans }}</th>
+            <th>{{ 'event.admin.events.list.registrationEnd'|trans }}</th>
+            <th>{{ 'event.form.event.capacity'|trans }}</th>
+            <th class="mini"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for event in events if date(event.endDate) < date() %}
+            <tr>
+                <td>{{ event.id }}</td>
+                <td>
+                    <a href="{{ path('nantarena_event_show', {'slug': event.slug}) }}">
+                        {{ event.name }}
                     </a>
+                </td>
+                <td>
+                    {{ event.startDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.endDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.startRegistrationDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.endRegistrationDate|date("d/m/Y H:i") }}
+                </td>
+                <td>
+                    {{ event.capacity }}
+                </td>
+                <td>
                 </td>
             </tr>
         {% else %}

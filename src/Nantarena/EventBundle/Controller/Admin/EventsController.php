@@ -150,13 +150,20 @@ class EventsController extends Controller
      */
     public function deleteAction(Request $request, Event $event)
     {
+        $translator = $this->get('translator');
+        $flashbag = $this->get('session')->getFlashBag();
+
         $form = $this->createDeleteForm($event->getId());
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $translator = $this->get('translator');
-            $flashbag = $this->get('session')->getFlashBag();
+        $now = new \DateTime();
 
+        if ($event->getStartRegistrationDate() <= $now) {
+            $flashbag->add('error', $translator->trans('event.admin.events.delete.flash_error'));
+            return $this->redirect($this->generateUrl('nantarena_event_admin_events'));
+        }
+
+        if ($form->isValid()) {
             try {
                 if ($form->get('id')->getData() == $event->getId()) {
                     $em = $this->getDoctrine()->getManager();
