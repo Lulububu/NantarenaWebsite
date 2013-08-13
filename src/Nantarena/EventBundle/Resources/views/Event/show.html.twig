@@ -100,7 +100,7 @@
                         <span class="text-error">{{ 'event.participate.flash.closed'|trans }}</span>
                     {% elseif event.startRegistrationDate|date('Y-m-d') > "now"|date('Y-m-d') %}
                         <span class="text-error">{{ 'event.participate.flash.notyet'|trans }}</span>
-                    {% elseif app.user.hasEntry(event) %}
+                    {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.hasEntry(event) %}
                         <span class="text-error">{{ 'event.participate.flash.already'|trans }}</span>
                     {% elseif event.full %}
                         <span class="text-error">{{ 'event.participate.flash.full'|trans }}</span>
