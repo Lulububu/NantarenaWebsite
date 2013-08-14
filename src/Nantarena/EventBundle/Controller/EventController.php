@@ -64,8 +64,6 @@ class EventController extends Controller
         $validator = $this->get('validator');
         $em = $this->get('doctrine.orm.entity_manager');
 
-        $user = $this->get('security.context')->getToken()->getUser();
-
         $now = new \DateTime();
 
         $event = $em->getRepository('NantarenaEventBundle:Event')->findOneShow($slug);
@@ -87,6 +85,8 @@ class EventController extends Controller
             $flashbag->add('error', $translator->trans('event.participate.flash.login'));
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
+
+        $user = $this->get('security.context')->getToken()->getUser();
 
         // Check if user profile is completed
         $errors = $validator->validate($user, array('identity'));
