@@ -1,0 +1,132 @@
+{% set nextEntries = [] %}
+{% set oldEntries = [] %}
+
+{% for entry in entries %}
+    {% if date(entry.entryType.event.endDate) > date() %}
+        {% set nextEntries = nextEntries|merge([entry]) %}
+    {% else %}
+        {% set oldEntries = oldEntries|merge([entry]) %}
+    {% endif %}
+{% endfor %}
+
+<div class="row-fluid">
+    <div class="span10 offset1">
+
+        {#TODO#}
+        {#<p class="alert alert-warning">#}
+            {#<strong>Attention :</strong>#}
+            {#Vous n'avez pas encore payé votre place pour l'évènement Nantarena 13.3.#}
+        {#</p>#}
+
+        {% if nextEvent is not null and not app.user.hasEntry(nextEvent) %}
+        <p class="alert text-center">
+            {{ 'event.profile.index.next_event'|trans({
+                '%name%': nextEvent.name,
+                '%date%': nextEvent.startDate|localizeddate('full', 'none'),
+                '%link%': path('nantarena_event_show', {'slug': nextEvent.slug})
+            })|raw }}
+        </p>
+        {% endif %}
+
+        {% for entry in nextEntries %}
+            {% if loop.first %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{ 'event.profile.index.event'|trans }}</th>
+                    <th>{{ 'event.profile.index.type'|trans }}</th>
+                    <th>{{ 'event.profile.index.team'|trans }}</th>
+                    <th>{{ 'event.profile.index.tournament'|trans }}</th>
+                    <th>{{ 'event.profile.index.payment'|trans }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+            {% endif %}
+
+                <tr>
+                    <td>
+                        <a href="{{ path('nantarena_event_show', {'slug': entry.entryType.event.slug}) }}">
+                            {{ entry.entryType.event.name }}
+                        </a>
+                    </td>
+                    <td>{{ entry.entryType.name }}</td>
+                    <td>
+                        {#TODO#}
+                        {#<a href="#">Créer une équipe</a><br />#}
+                        {#<a href="#">Rejoindre une équipe</a><br />#}
+                    </td>
+                    <td>
+                        {#TODO#}--
+                    </td>
+                    <td>
+                        {#TODO#}<a href="#" class="btn btn-success">Payer</a>
+                    </td>
+                </tr>
+
+            {% if loop.last %}
+                </tbody>
+            </table>
+            {% endif %}
+        {% else %}
+            <p class="text-center">
+                {{ 'event.profile.index.no_next'|trans }}
+            </p>
+        {% endfor %}
+
+        {% for entry in oldEntries %}
+            {% if loop.first %}
+            <h2 class="collapse collapsed" data-toggle="collapse" data-target="#oldEvents">{{ 'event.profile.index.old_events'|trans }}</h2>
+
+            <div id="oldEvents" class="collapse in">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ 'event.profile.index.event'|trans }}</th>
+                        <th>{{ 'event.profile.index.type'|trans }}</th>
+                        <th>{{ 'event.profile.index.team'|trans }}</th>
+                        <th>{{ 'event.profile.index.tournament'|trans }}</th>
+                        <th>{{ 'event.profile.index.payment'|trans }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+            {% endif %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('nantarena_event_show', {'slug': entry.entryType.event.slug}) }}">
+                                {{ entry.entryType.event.name }}
+                            </a>
+                        </td>
+                        <td>{{ entry.entryType.name }}</td>
+                        <td>
+                            {# TODO #} {# <a href="#" class="ppover"#}
+                               {#data-html="true"#}
+                               {#data-title="<strong>Equipe *</strong>"#}
+                               {#data-content="#}
+                                {#<strong>Manager :</strong> *<br />#}
+                                {#<strong>Joueurs :</strong>#}
+                                {#<ul>#}
+                                    {#<li>*</li>#}
+                                    {#<li>*</li>#}
+                                {#</ul>#}
+                           {#">#}
+                                {#Jabbawockeez#}
+                            {#</a>#}
+                        </td>
+                        <td>{# TODO #} {# League of Legends (3) #}</td>
+                        <td>
+                            {# TODO
+                            <abbr title="le 10/03/2013 - 18€ - Par * - Pour *, * et vous" data-placement="right">#}
+                                {#Paypal#}
+                            {#</abbr>#}
+                        </td>
+                    </tr>
+            {% if loop.last %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

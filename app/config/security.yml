@@ -25,7 +25,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
         dev:
@@ -39,6 +39,7 @@ security:
                 check_path:  fos_user_security_check
                 remember_me: true
                 csrf_provider:  form.csrf_provider
+                default_target_path: /profile
             remember_me:
                 key:         %secret%
                 lifetime:    3600
@@ -51,6 +52,8 @@ security:
 
     access_control:
         - { path: ^/news/comment, roles: ROLE_USER }
+
+        - { path: ^/profile, roles: ROLE_USER }
 
         - { path: ^/admin/static, roles: ROLE_STATIC_ADMIN }
 

@@ -66,6 +66,7 @@ class EventController extends Controller
 
         $now = new \DateTime();
 
+        /** @var \Nantarena\EventBundle\Entity\Event $event */
         $event = $em->getRepository('NantarenaEventBundle:Event')->findOneShow($slug);
 
         // Check date constraints
@@ -99,7 +100,7 @@ class EventController extends Controller
         // Check if user is not already registered
         if ($user->hasEntry($event)) {
             $flashbag->add('error', $translator->trans('event.participate.flash.already'));
-            return $this->redirect($this->generateUrl('nantarena_site_home')); // FIXME
+            return $this->redirect($this->generateUrl('nantarena_user_profile'));
         }
 
         // Check if event is full
@@ -143,7 +144,7 @@ class EventController extends Controller
             $em->flush();
 
             $flashbag->add('success', $translator->trans('event.participate.flash.success'));
-            return $this->redirect($this->generateUrl('nantarena_site_home')); // FIXME
+            return $this->redirect($this->generateUrl('nantarena_user_profile'));
         }
 
         return array(

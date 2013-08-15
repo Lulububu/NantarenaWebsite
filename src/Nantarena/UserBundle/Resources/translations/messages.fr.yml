@@ -1,5 +1,9 @@
-ROLE_USER_ADMIN_USERS: 'Admin - Gestion des utilisateurs'
 ROLE_USER_ADMIN_GROUPS: 'Admin - Gestion des groupes d''utilisateurs'
+ROLE_USER_ADMIN_USERS: 'Admin - Gestion des utilisateurs'
+
+site:
+    login:
+        resetting: site.login.resetting   # FIXME
 
 user:
     admin:
@@ -71,41 +75,53 @@ user:
         title: 'Changement de mot de passe'
 
     form:
+        age: ans
+        birthdate: 'Date de naissance'
         current_password: 'Mot de passe actuel'
         email: 'Adresse e-mail'
         enabled: 'Compte activé'
+
+        fieldset:
+            admin: Administration
+            identity: Identité
+            infos: Identifiants
+
+        firstname: Prénom
 
         group:
             name: 'Nom du groupe'
             roles: 'Droits du groupe'
 
-        groups: 'Groupes'
+        groups: Groupes
+        lastname: 'Nom de famille'
         locked: 'Compte bloqué'
         new_password: 'Nouveau mot de passe'
         password: 'Mot de passe'
         recaptcha: 'Image de vérification'
         remember_me: 'Se souvenir de moi'
-        repeated: 'Vérification'
-        username: 'Pseudo'
-        firstname: 'Prénom'
-        lastname: 'Nom de famille'
-        birthdate: 'Date de naissance'
-        age: 'ans'
-
-        fieldset:
-            infos: Identifiants
-            identity: Identité
-            admin: Administration
+        repeated: Vérification
+        username: Pseudo
 
     login:
         page_title: Connexion
         submit: Connexion
         title: Connexion
 
+    menu:
+        edit: Mon compte
+        index: Récapitulatif
+        teams: Mes équipes
+        tournaments: Mes tournois
+
     profile:
-        page_title: 'Mon profil'
-        submit: Mettre-à-jour
-        title: 'Mon profil'
+        edit:
+            page_title: 'Mon compte'
+            submit: Mettre-à-jour
+            title: 'Mon compte'
+
+        index:
+            page_title: 'Mon profil'
+            title: 'Mon profil'
 
     registration:
         back: 'Retour à la page d''origine.'

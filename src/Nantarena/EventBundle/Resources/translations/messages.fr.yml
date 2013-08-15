@@ -99,7 +99,7 @@ event:
             add: 'Ajouter un tournoi'
 
     participate:
-        autorization: "Vous serez mineur au moment de l'évènement. Une\n%link_start%autorisation%link_end%\nsignée de la part de vos représentants légaux est <strong>obligatoire</strong> et vous sera\ndemandée à votre arrivée.\n"
+        autorization: 'Vous serez mineur au moment de l''évènement. Une<br /><a href="%link%">autorisation</a><br />signée de la part de vos représentants légaux est <strong>obligatoire</strong> et vous sera<br />demandée à votre arrivée.'
         choose: 'Veuillez choisir votre type d''inscription'
 
         confirm:
@@ -115,7 +115,18 @@ event:
             profile: 'Vous devez renseigner votre nom, prénom et date de naissance avant de continuer'
             success: 'Félicitations, vous êtes maintenant préinscrit à l''évènement.'
 
-        rules: "En vous inscrivant à l'évènement, vous déclarez avoir pris connaissance de son\n%link_start%règlement%link_end%, et vous vous engagez à le respecter.\n"
+        rules: 'En vous inscrivant à l''évènement, vous déclarez avoir pris connaissance de son<br /><a href="%link%">règlement</a>, et vous vous engagez à le respecter.'
+
+    profile:
+        index:
+            event: Evènement
+            next_event: 'L''évènement <strong>%name%</strong> aura lieu le %date%,<br /> vous pouvez y participer en cliquant <a href="%link%">ici</a>.'
+            no_next: 'Vous n''avez pas prévu participer à de futurs évènements.'
+            old_events: 'Mes précédents évènements'
+            payment: Paiement
+            team: Equipe
+            tournament: Tournois
+            type: Type
 
     show:
         capacity: Capacité

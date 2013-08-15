@@ -23,7 +23,10 @@ $(function() {
      * Mise en route des effets bootstrap
      */
     $('.carousel').carousel();
-    $('.ttip').tooltip();
+    $('.collapse').collapse();
+    $('abbr, .ttip').tooltip();
+
+    $('.ppover').popover().on('click', function(e) {e.preventDefault(); return true;});
 
     /**
      * Flèche scroll-to-top
