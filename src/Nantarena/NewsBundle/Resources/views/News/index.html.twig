@@ -4,6 +4,8 @@
 
 {% block page_title 'news.index.title'|trans %}
 
+{% block breadcrumb %}{% endblock %}
+
 {% block news_content %}
     {{ render(controller('NantarenaNewsBundle:Category:categories')) }}
 

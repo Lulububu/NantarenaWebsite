@@ -30,26 +30,27 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/{slug}", name="nantarena_news_category_index")
+     * @Route("/{slug}/{page}", name="nantarena_news_category_index")
      * @Template()
      */
-    public function indexAction(Category $category)
+    public function indexAction(Category $category, $page = 1)
     {
         $limit = $this->getRequest()->get('limit', 5);
+
         $pagination = $this->get('knp_paginator')->paginate(
             $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findAllPublishedByCategory($category),
-            $this->getRequest()->get('page', 1),
-            $limit
+            $page, $limit
         );
 
-        $this->get('nantarena_site.breadcrumb')->push(
-            $this->get('translator')->trans('site.menu.news'),
-            $this->generateUrl('nantarena_news_index')
-        );
-        $this->get('nantarena_site.breadcrumb')->push(
-            $category->getName(),
-            $this->get('nantarena_news.category_manager')->getCategoryPath($category)
-        );
+        $this->get('nantarena_site.breadcrumb')
+            ->push(
+                $this->get('translator')->trans('site.menu.news'),
+                $this->generateUrl('nantarena_news_index')
+            )
+            ->push(
+                $category->getName(),
+                $this->get('nantarena_news.category_manager')->getCategoryPath($category)
+            );
 
         return array(
             'pagination' => $pagination,

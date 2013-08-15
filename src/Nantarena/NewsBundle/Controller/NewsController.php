@@ -26,10 +26,10 @@ class NewsController extends Controller
     public function indexAction()
     {
         $limit = $this->getRequest()->get('limit', 5);
+
         $pagination = $this->get('knp_paginator')->paginate(
             $this->getDoctrine()->getRepository('NantarenaNewsBundle:News')->findAllPublished(),
-            $this->getRequest()->get('page', 1),
-            $limit
+            $this->getRequest()->get('page', 1), $limit
         );
 
         return array(
@@ -51,18 +51,19 @@ class NewsController extends Controller
             }
         }
 
-        $this->get('nantarena_site.breadcrumb')->push(
-            $this->get('translator')->trans('site.menu.news'),
-            $this->generateUrl('nantarena_news_index')
-        );
-        $this->get('nantarena_site.breadcrumb')->push(
-            $category->getName(),
-            $this->get('nantarena_news.category_manager')->getCategoryPath($category)
-        );
-        $this->get('nantarena_site.breadcrumb')->push(
-            $news->getTitle(),
-            $this->get('nantarena_news.news_manager')->getNewsPath($news)
-        );
+        $this->get('nantarena_site.breadcrumb')
+            ->push(
+                $this->get('translator')->trans('site.menu.news'),
+                $this->generateUrl('nantarena_news_index')
+            )
+            ->push(
+                $category->getName(),
+                $this->get('nantarena_news.category_manager')->getCategoryPath($category)
+            )
+            ->push(
+                $news->getTitle(),
+                $this->get('nantarena_news.news_manager')->getNewsPath($news)
+            );
 
         $form = $this->createForm(new CommentType(), null, array(
             'action' => $this->get('nantarena_news.comment_manager')->getCreateCommentPath($news),
