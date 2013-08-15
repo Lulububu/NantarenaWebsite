@@ -21,6 +21,10 @@ div.news-categories ul li {
 
 .news article header h2 {
     font-size: 20px;
+    text-align: left;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .news article header p {

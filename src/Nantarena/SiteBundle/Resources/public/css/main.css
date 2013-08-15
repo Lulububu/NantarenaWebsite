@@ -519,11 +519,24 @@ table.tab-content > .active {
 
     h1:after {
         content: '';
-        background: url("../images/separator.png");
+        background-image: url("../images/separator.png");
         height: 50px;
         margin: auto;
-        width: 500px;
+        width: 60%;
         display: block;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 100% 47px;
+    }
+
+    h2 {
+        font-family: 'Lato';
+        font-weight: normal;
+        text-align: center;
+        font-size: 22px;
+        color: #51565B;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     body > div#content {

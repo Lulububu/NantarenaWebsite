@@ -1,13 +1,3 @@
-h2 {
-    font-family: 'Lato';
-    font-weight: normal;
-    text-align: center;
-    font-size: 22px;
-    color: #51565B;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 /* Dashboard */
     div.module {
         border: solid darkgrey 1px;
