@@ -4,17 +4,12 @@
             <div class="item">
                 <span></span>
                 <div class="une_news">
-                    {{ content |raw  }}
+                    {% if hnews is not null %} {{hnews.content|raw}} {% endif %}
                 </div>
             </div>
         </div>
 
         <div class="sponsors carousel slide carousel-fade" id="car_sponsors">
-
-            <!-- <ol class="carousel-indicators">
-                <li data-target="#car_sponsors" data-slide-to="0" class="active"></li>
-                <li data-target="#car_sponsors" data-slide-to="1"></li>
-            </ol> -->
 
             <div class="carousel-inner">
 
@@ -24,7 +19,6 @@
                     {% else %}
                     <div class="item">
                     {% endif %}
-
                         <span></span>
                         <div class="sponsor">
                             {{ slide.content | raw }}

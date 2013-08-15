@@ -56,16 +56,6 @@ class HeaderNewsController extends Controller
         if ($form->isValid()) {
             // reset current header news if the new one is activated
             try {
-                if($hnews->getActive())
-                {
-                    $repository = $this->getDoctrine()
-                        ->getRepository('NantarenaBannerBundle:HeaderNews');
-                    $oldhnews = $repository->findOneBy(array('active' => True));
-
-                    if ($oldhnews) {
-                        $oldhnews->setActive(False);
-                    }
-                }
                 // add the new header news
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($hnews);
@@ -75,9 +65,6 @@ class HeaderNewsController extends Controller
 
                 // messages
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.headernews.create.flash_success'));
-                if ($hnews->getActive()) {
-                    $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('banner.admin.headernews.create.flash_success_active'));
-                }
             } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('banner.admin.headernews.create.flash_error'));
             }
@@ -96,7 +83,7 @@ class HeaderNewsController extends Controller
      */
     public function editAction(Request $request, HeaderNews $hnews)
     {
-        $form = $this->createForm(new HeaderNewsType(false), $hnews, array(
+        $form = $this->createForm(new HeaderNewsType(), $hnews, array(
             'action' => $this->get('nantarena_banner.header_news_manager')->getEditPath($hnews),
             'method' => 'POST',
         ));     
@@ -122,7 +109,6 @@ class HeaderNewsController extends Controller
 
     /**
      * @Route("/active/{id}", name="nantarena_banner_news_active")
-     * @Template()
      */
     public function activeAction(HeaderNews $hnews)
     {

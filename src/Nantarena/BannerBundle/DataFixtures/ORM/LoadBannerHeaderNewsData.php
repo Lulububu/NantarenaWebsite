@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Nantarena\BannerBundle\Entity\HeaderNews;
 
-class LoadBannerHeaderNews extends AbstractFixture
+class LoadBannerHeaderNewsData extends AbstractFixture
 {
     /**
      * @param ObjectManager $manager

@@ -14,7 +14,6 @@ use Nantarena\BannerBundle\Entity\SponsorSlide;
 // Form type
 use Nantarena\BannerBundle\Form\Type\SponsorSlideType;
 
-
 /**
  * Class SponsorSlide
  *
@@ -112,7 +111,6 @@ class SponsorSlideController extends Controller
 
     /**
      * @Route("/active/{id}", name="nantarena_banner_sponsorslide_active")
-     * @Template()
      */
     public function activeAction(SponsorSlide $slide)
     {
@@ -140,7 +138,6 @@ class SponsorSlideController extends Controller
 
     /**
      * @Route("/disable/{id}", name="nantarena_banner_sponsorslide_disable")
-     * @Template()
      */
     public function disableAction(SponsorSlide $slide)
     {

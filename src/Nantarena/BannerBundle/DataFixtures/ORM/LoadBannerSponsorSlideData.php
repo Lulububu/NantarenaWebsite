@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Nantarena\BannerBundle\Entity\SponsorSlide;
 
-class LoadBannerSponsorSlide extends AbstractFixture
+class LoadBannerSponsorSlideData extends AbstractFixture
 {
     /**
      * @param ObjectManager $manager

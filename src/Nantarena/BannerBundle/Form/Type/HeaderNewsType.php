@@ -10,12 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class HeaderNewsType extends AbstractType
 {
-    protected $active;
-
-    function __construct($active=true) {
-        $this->active = $active;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -24,17 +18,9 @@ class HeaderNewsType extends AbstractType
                     'class' => 'input-block-level follow_content',
                     'rows' => 10,
                 )
-            ));
-
-        if($this->active)
-        {
-            $builder
-                ->add('active', 'checkbox', array(
-                    'required'  => false,
-                ));
-        }
-
-        $builder->add('submit', 'submit');
+            ))
+            ->add('submit', 'submit')
+        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

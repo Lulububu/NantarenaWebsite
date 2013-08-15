@@ -1,4 +1,4 @@
-    div.banner_overview {
+    div.banner-overview {
         height: 245px;
         width: 60%;
         margin:auto;
@@ -6,24 +6,24 @@
         background: url('../images/banner.png') repeat-x;
     }
 
-    div.banner_overview_update {
+    div.banner-overview-update {
         margin-top: 20px;
         margin-bottom: 15px;
     }
 
-    div.banner_overview .item {
+    div.banner-overview .item {
         height: 100%;
         text-align: center;
         overflow: hidden;
     }
 
-    div.banner_overview .item span {
+    div.banner-overview .item span {
         height: 100%;
         vertical-align: middle;
         display: inline-block;
     }
 
-    div.banner_overview .banner_data {
+    div.banner-overview .banner-data {
         text-align: center;
         width: 90%;
         vertical-align: middle;

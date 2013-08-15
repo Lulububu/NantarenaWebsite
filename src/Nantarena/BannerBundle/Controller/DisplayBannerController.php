@@ -19,25 +19,17 @@ class DisplayBannerController extends Controller
             ->getRepository('NantarenaBannerBundle:HeaderNews');
         $hnews = $repository->findOneBy(array('active' => True));
 
-        if ($hnews)
-            $content = $hnews->getContent();
-        else
-            $content = '';
-
         // get Sponsor slide
         $repository = $this->getDoctrine()
             ->getRepository('NantarenaBannerBundle:SponsorSlide');
         $slides = $repository->findBy(array( 'active' => True));
 
-        $nbslides = sizeof($slides) -1;
-        if ($nbslides > 0)
-            $num = rand(0, $nbslides);
-        else
-            $num = 0;
+        // random first slide
+        $num = rand(1, count($slides)) - 1;
 
         return $this->render('NantarenaBannerBundle:Banner:banner.html.twig', 
             array(
-                'content' => $content, 
+                'hnews' => $hnews, 
                 'slides' => $slides,
                 'num' => $num,));
     }
