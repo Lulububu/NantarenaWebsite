@@ -28,7 +28,7 @@
                     <td>{{ user.id }}</td>
                     <td>
                         {% if user.firstname is not empty %}
-                        <abbr title="{{ user.firstname }} {{ user.lastname|upper }}{% if user.birthdate is not empty %} - {{ "now"|date('Y') - user.birthdate|date('Y') }} {{ 'user.form.age'|trans }}{% endif %}">
+                        <abbr title="{{ user.firstname }} {{ user.lastname|upper }}{% if user.birthdate is not empty %} - {{ "now"|date('Y') - user.birthdate|date('Y') }} {{ 'user.form.age'|trans }}{% endif %}" data-placement="right">
                             {{ user.username }}
                         </abbr>
                         {% else %}

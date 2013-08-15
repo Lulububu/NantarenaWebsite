@@ -130,6 +130,7 @@
         reset($table);
         apply($table);
         render($table);
+        $table.trigger("filterUpdate");
     }
 
     $.fn.tablefilter = function() {
