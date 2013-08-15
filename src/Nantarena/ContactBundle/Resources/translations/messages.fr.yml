@@ -32,10 +32,10 @@ contact:
         title: 'Nous contacter'
         form:
             submit: 'Envoyer'
-            label_category: 'Thème du message'
+            label_category: 'Catégorie'
             label_email: 'Email'
             label_object: 'Objet'
             label_content: 'Message'
-            label_captcha: 'Complétez correctment ce captcha'
+            label_captcha: 'Image de vérification'
             flash_success: 'Le message a été correctement envoyé'
             flash_error: 'Erreur lors de l''envoie du message'

@@ -33,6 +33,11 @@ class ContactController extends Controller
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $user = $this->get('security.context')->getToken()->getUser();
             $contact->setEmail($user->getEmail());
+
+            $username = $user->getUsername();
+        } else 
+        {
+            $username = "";
         }
 
         $form = $this->createForm(new ContactType(), $contact, array(
@@ -44,15 +49,13 @@ class ContactController extends Controller
 
         if ($form->isValid()) {
             // message construction
-            // if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            //     $user = $this->get('security.context')->getToken()->getUser();
-            //     $src_email = array($contact->getEmail() => $user->getPseudo());
-            // } else {
-            //     $src_email = $contact->getEmail();
-            // }
-
-            $src_email = $contact->getEmail();
-            $dst_email = 'nantarena@gmail.com';
+            if ($username != "") {
+                $src_email = array($contact->getEmail() => $username);
+            } else {
+                $src_email = $contact->getEmail();
+            }
+            $src_email_only = $contact->getEmail();
+            $dst_email = $this->container->getParameter('contact_email');
             $objet = '[' . $contact->getCategory()->getTag() . '] ' . $contact->getObject();
             $content = $contact->getContent();
 
@@ -62,18 +65,25 @@ class ContactController extends Controller
                 ->setSubject($objet)
                 ->setFrom($src_email)
                 ->setSender($src_email)
-                ->setReturnPath($src_email)
+                ->setReturnPath($src_email_only)
                 ->setTo($dst_email)
                 ->setBody($content)
                 ;
 
-            $this->get('mailer')->send($message);
+            // send message (number of message sent in result)
+            $result = $this->get('mailer')->send($message);
 
-            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('contact.contact.form.flash_success'));
-
-            // Cas d'erreur ???
-            // $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('contact.contact.form.flash_error'));
-
+            if ($result)
+            {
+              $this->get('session')->getFlashBag()->add('success', 
+                $this->get('translator')->trans('contact.contact.form.flash_success'));
+            }
+            else
+            {
+              $this->get('session')->getFlashBag()->add('error', 
+                $this->get('translator')->trans('contact.contact.form.flash_error'));
+            }
+            
             return $this->redirect($this->generateUrl('nantarena_contact'));
         }
 
