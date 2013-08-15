@@ -110,3 +110,7 @@ stof_doctrine_extensions:
             sluggable: true
             timestampable: true
             softdeleteable: true
+
+knp_paginator:
+    template:
+        pagination: NantarenaSiteBundle:Pagination:sliding.html.twig
