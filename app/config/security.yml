@@ -39,7 +39,6 @@ security:
                 check_path:  fos_user_security_check
                 remember_me: true
                 csrf_provider:  form.csrf_provider
-                default_target_path: /profile
             remember_me:
                 key:         %secret%
                 lifetime:    3600

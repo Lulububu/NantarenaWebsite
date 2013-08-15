@@ -38,6 +38,7 @@
             </div>
 
             <div class="text-center">
+                <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
                 <input type="submit" id="_submit" name="_submit" class="btn" value="{{ 'user.login.submit'|trans }}" />
             </div>
         </form>
