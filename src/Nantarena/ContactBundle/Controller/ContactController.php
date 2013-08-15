@@ -72,7 +72,7 @@ class ContactController extends Controller
             // send message (number of message sent in result)
             $result = $this->get('mailer')->send($message);
 
-            if ($result == 0)
+            if ($result === 0)
             { // no message sent
                 $this->get('session')->getFlashBag()->add('error', 
                     $this->get('translator')->trans('contact.contact.form.flash_error'));
