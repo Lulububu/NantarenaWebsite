@@ -12,8 +12,8 @@ site:
 
     login:
         password: 'Mot de passe'
-        pseudo: Pseudo
-        resetting: 'Retrouver son mot de passe'
+        pseudo: 'Pseudo'
+        reset: 'Retrouver son mot de passe'
 
     menu:
         admin: Administration
