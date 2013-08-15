@@ -41,7 +41,8 @@ class LoadThreadData extends AbstractFixture implements DependentFixtureInterfac
     function getDependencies()
     {
         return array(
-            'Nantarena\ForumBundle\DataFixtures\ORM\LoadCategoryData'
+            'Nantarena\ForumBundle\DataFixtures\ORM\LoadCategoryData',
+            'Nantarena\ForumBundle\DataFixtures\ORM\LoadForumData',
         );
     }
 }
