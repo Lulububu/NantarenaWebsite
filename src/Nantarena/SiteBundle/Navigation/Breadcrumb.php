@@ -22,6 +22,7 @@ class Breadcrumb
      *
      * @param $name
      * @param $path
+     * @return Breadcrumb
      */
     public function push($name, $path)
     {
@@ -29,6 +30,8 @@ class Breadcrumb
            'name' => $name,
            'path' => $path
        ));
+
+       return $this;
     }
 
     public function getQueue()
