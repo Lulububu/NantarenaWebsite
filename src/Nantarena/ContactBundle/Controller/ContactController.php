@@ -52,7 +52,7 @@ class ContactController extends Controller
             // }
 
             $src_email = $contact->getEmail();
-            $dst_email = 'contact@nantarena.net';
+            $dst_email = 'nantarena@gmail.com';
             $objet = '[' . $contact->getCategory()->getTag() . '] ' . $contact->getObject();
             $content = $contact->getContent();
 
