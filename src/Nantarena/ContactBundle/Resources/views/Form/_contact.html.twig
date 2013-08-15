@@ -1,0 +1,13 @@
+<div class="span12">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.category, {'label': 'contact.contact.form.label_category'|trans|colon}) }}
+        {{ form_row(form.email, {'label': 'contact.contact.form.label_email'|trans|colon}) }}
+        {{ form_row(form.object, {'label': 'contact.contact.form.label_object'|trans|colon}) }}
+        {{ form_row(form.content, {'label': 'contact.contact.form.label_content'|trans|colon}) }}
+        {{ form_row(form.recaptcha, {'label': 'contact.contact.form.label_captcha'|trans|colon}) }}
+        
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+</div>

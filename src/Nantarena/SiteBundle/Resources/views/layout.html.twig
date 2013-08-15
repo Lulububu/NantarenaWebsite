@@ -42,7 +42,7 @@
                     <li><a href="#infos" class="info">{{ 'site.nav.info'|trans }}</a></li>
                     <li><a href="#plan" class="plan">{{ 'site.nav.map'|trans }}</a></li>
                     <li><a href="#forum" class="forum">{{ 'site.nav.forum'|trans }}</a></li>
-                    <li><a href="#contact" class="contact">{{ 'site.nav.contact'|trans }}</a></li>
+                    <li><a href="{{ path('nantarena_contact') }}" class="contact">{{ 'site.nav.contact'|trans }}</a></li>
                 </ul>
             </nav>
         </div>
@@ -143,7 +143,7 @@
             <div class="contact">
                 <div class="icon"></div>
                 <ul>
-                    <li><a href="#">{{ 'site.nav.contact'|trans }}</a></li>
+                    <li><a href="{{ path('nantarena_contact') }}">{{ 'site.nav.contact'|trans }}</a></li>
                     <li><a href="http://webchat.quakenet.org/?channels=nantarena">{{ 'site.nav.irc'|trans }}</a></li>
                 </ul>
             </div>

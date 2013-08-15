@@ -17,6 +17,8 @@ security:
             - ROLE_BANNER_ADMIN_HEADERNEWS
             - ROLE_BANNER_ADMIN_SPONSOR_SLIDE
 
+            - ROLE_CONTACT_ADMIN_CATEGORY
+
             - ROLE_EVENT_ADMIN_GAMES
             - ROLE_EVENT_ADMIN_EVENTS
             - ROLE_EVENT_TOURNAMENTS_MANAGER
@@ -60,6 +62,8 @@ security:
 
         - { path: ^/admin/header-news, roles: ROLE_BANNER_ADMIN_HEADERNEWS }
         - { path: ^/admin/sponsor, roles: ROLE_BANNER_ADMIN_SPONSOR_SLIDE }
+
+        - { path: ^/admin/contact/category, roles: ROLE_CONTACT_ADMIN_CATEGORY }
 
         - { path: ^/admin/event/games, roles: ROLE_EVENT_ADMIN_GAMES }
         - { path: ^/admin/event/events, roles: ROLE_EVENT_ADMIN_EVENTS }

@@ -1,0 +1,14 @@
+<div class="span12">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name, {'label': 'contact.admin.category.form.label_name'|trans|colon}) }}
+        {{ form_row(form.tag, {'label': 'contact.admin.category.form.label_tag'|trans|colon}) }}
+        
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+
+    <p class="text-center">
+        <a href="{{ path('nantarena_admin_contact_category_list') }}">{{ 'contact.admin.category.list.return'|trans }}</a>
+    </p>
+</div>

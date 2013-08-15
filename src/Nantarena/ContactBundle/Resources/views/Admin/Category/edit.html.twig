@@ -1,0 +1,13 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'contact.admin.category.edit.title'|trans %}
+{% block page_title 'contact.admin.category.edit.title'|trans %}
+
+{% block admin_content %}
+
+{% embed 'NantarenaContactBundle:Form:_category.html.twig' with {
+    'submit': 'contact.admin.category.form.submit_edit'|trans
+} %}{% endembed %}
+
+{% endblock %}
+

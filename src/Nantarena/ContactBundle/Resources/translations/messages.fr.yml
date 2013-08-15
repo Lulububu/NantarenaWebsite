@@ -1,0 +1,41 @@
+contact:
+    title: 'Contact'
+    admin:
+        dashboard:
+            title : 'Formulaire de contact'
+            category : 'Gestion des categories'
+        category:
+            list:
+                title: 'Liste des catégories'
+                name: 'nom'
+                tag: 'tag de l''objet du mail'
+                return: 'Retour sur la liste des catégories'
+            create:
+                title: 'Création d''une catégorie'
+                flash_error: 'Erreur lors de la création de la catégorie'
+                flash_success: 'La catégorie a été crée'
+            edit:
+                title: 'Modification d''une catégorie'
+                flash_error: 'Erreur lors de la modification de la catégorie'
+                flash_success: 'La catégorie a été modifiée'
+            delete:
+                title: 'Suppression d''une categorie'
+                warning: 'Vous allez supprimer une catégorie de mail'
+                flash_error: 'Erreur lors de la suppression de la catégorie'
+                flash_success: 'La catégorie a été supprimée'
+            form:
+                label_name: 'Nom de la catégorie'
+                label_tag: 'Tag associé'
+                submit_create: 'Creation de la catégorie'
+                submit_edit: 'Modifier la catégorie'
+    contact:
+        title: 'Nous contacter'
+        form:
+            submit: 'Envoyer'
+            label_category: 'Thème du message'
+            label_email: 'Email'
+            label_object: 'Objet'
+            label_content: 'Message'
+            label_captcha: 'Complétez correctment ce captcha'
+            flash_success: 'Le message a été correctement envoyé'
+            flash_error: 'Erreur lors de l''envoie du message'

@@ -1,0 +1,20 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'contact.admin.category.delete.title'|trans %}
+{% block page_title 'contact.admin.category.delete.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
+
+        {% block warning %}
+            {{ 'contact.admin.category.delete.warning'|trans }}
+        {% endblock %}
+
+        {% block back %}
+            <a href="{{ path('nantarena_admin_contact_category_list') }}">
+                {{ 'contact.admin.category.list.return'|trans }}
+            </a>
+        {% endblock %}
+
+    {% endembed %}
+{% endblock %}

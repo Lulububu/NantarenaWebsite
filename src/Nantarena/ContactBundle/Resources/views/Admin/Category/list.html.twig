@@ -1,0 +1,51 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'contact.admin.category.list.title'|trans %}
+{% block page_title 'contact.admin.category.list.title'|trans %}
+
+{% block admin_content %}
+
+    <div class="span6 offset3">
+        <div class="text-center">
+            <a class="btn" href="{{ path('nantarena_admin_contact_category_create') }}">{{ 'contact.admin.category.create.title'|trans }}</a>
+        </div>
+
+        <table class="table sortable" data-sort="1" data-perpage="50">
+            <thead>
+            <tr>
+                <th data-filter="ignore" class="tiny">#</th>
+                <th>{{ 'contact.admin.category.list.name'|trans }}</th>
+                <th>{{ 'contact.admin.category.list.tag'|trans }}</th>
+                <th class="mini"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for category in lcategory %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>
+                        {{ category.name }}
+                    </td>
+                    <td>
+                        [{{ category.tag }}]
+                    </td>
+                    <td>
+                        <a href="{{ path('nantarena_admin_contact_category_edit', {'id': category.id}) }}">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="{{ path('nantarena_admin_contact_category_delete', {'id': category.id}) }}">
+                            <i class="icon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination pagination-centered"><ul></ul></div>
+    </div>
+
+
+{% endblock %}

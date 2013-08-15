@@ -1,0 +1,11 @@
+{% extends 'NantarenaNewsBundle::layout.html.twig' %}
+
+{% block title 'contact.contact.title'|trans %}
+
+{% block page_title 'contact.contact.title'|trans %}
+
+{% block news_content %}
+{% embed 'NantarenaContactBundle:Form:_contact.html.twig' with {
+    'submit': 'contact.contact.form.submit'|trans
+} %}{% endembed %}
+{% endblock %}
