@@ -4,7 +4,7 @@
 {% block page_title 'static.admin.delete.title'|trans({'%title%': content.title}) %}
 
 {% block admin_content %}
-    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
+    {% embed 'NantarenaSiteBundle::_deleteConfirm.html.twig' %}
         {% block warning %}
             {{ 'static.admin.delete.warning'|trans }}
         {% endblock %}

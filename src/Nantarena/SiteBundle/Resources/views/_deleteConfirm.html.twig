@@ -1,6 +1,8 @@
+{% set block_warning = block('warning') %}
+{% set block_info = block('info') %}
+{% set block_back = block('back') %}
+
 <div class="span6 offset3">
-    {% set block_warning = block('warning') %}
-    {% set block_info = block('info') %}
 
     {% if block_warning is not empty %}
         <div class="alert alert-error text-center">
@@ -26,9 +28,9 @@
         {% endblock %}
     {{ form_end(form) }}
 
-    <p class="text-center">
-        {% block back %}
-            <a href="{{ path('nantarena_event_admin_games') }}">{{ 'event.admin.games.create.back'|trans }}</a>
-        {% endblock %}
-    </p>
+    {% if block_back is not empty %}
+        <p class="text-center">
+            {% block back %}{% endblock %}
+        </p>
+    {% endif %}
 </div>
