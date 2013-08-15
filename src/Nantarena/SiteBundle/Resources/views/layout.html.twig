@@ -107,6 +107,7 @@
         <div class="row-fluid">
             {% block raw_body %}
                 <section class="span9">
+                    {% block breadcrumb %}{% endblock %}
                     {% set block_page_title = block('page_title') %}
                     {% if block_page_title is not empty %}
                         <h1>{{ block_page_title|raw }}</h1>

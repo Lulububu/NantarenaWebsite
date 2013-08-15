@@ -51,9 +51,13 @@
     }
 
 /* Override Bootstrap */
-table.tab-content > .active {
-    display: table-row-group;
-}
+    table.tab-content > .active {
+        display: table-row-group;
+    }
+
+    .breadcrumb {
+        margin-top: 20px;
+    }
 
 /* Entête */
     body > header {

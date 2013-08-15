@@ -5,6 +5,9 @@ services:
         tags:
             - {name: doctrine.event_subscriber}
 
+    nantarena_site.breadcrumb:
+        class: Nantarena\SiteBundle\Navigation\Breadcrumb
+
     nantarena_site.twig.form_extension:
         class: Nantarena\SiteBundle\Twig\FormExtension
         tags:
@@ -24,3 +27,9 @@ services:
         class: Nantarena\SiteBundle\Form\Type\WysiwygType
         tags:
             - { name: form.type, alias: wysiwyg_area }
+
+    nantarena_site.twig.breadcrumb_extension:
+        class: Nantarena\SiteBundle\Twig\BreadcrumbExtension
+        arguments: [@nantarena_site.breadcrumb]
+        tags:
+            - { name: twig.extension }
