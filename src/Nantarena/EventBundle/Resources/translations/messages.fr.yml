@@ -59,6 +59,17 @@ event:
                 empty: 'Aucun jeu n''est encore défini'
                 title: 'Liste des jeux'
 
+    cancel:
+        back: 'Revenir sur la page précédente'
+
+        flash:
+            error: 'Erreur lors de votre désinscription. Veuillez réessayer ou contacter un administrateur.'
+            notyet: 'Vous n''êtes pas inscrit à l''évènement'
+            success: 'Vous êtes maintenant désinscrit avec succès'
+
+        submit: 'Se désinscrire'
+        title: 'Annuler votre participation à l''évènement'
+
     form:
         entrytype:
             add: 'Ajouter un type d''inscription'

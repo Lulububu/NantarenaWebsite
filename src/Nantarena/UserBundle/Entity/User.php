@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\GroupInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Nantarena\EventBundle\Entity\Entry;
 use Nantarena\EventBundle\Entity\Event;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -247,9 +248,10 @@ class User extends BaseUser
      * Check if user participate to an event
      *
      * @param Event $event
+     * @param Entry $entryResult
      * @return bool
      */
-    public function hasEntry(Event $event)
+    public function hasEntry(Event $event, Entry &$entryResult = null)
     {
         $entries = $this->getEntries();
         $result = false;
@@ -258,6 +260,7 @@ class User extends BaseUser
         foreach($entries as $entry) {
             if ($entry->getEntryType()->getEvent() === $event) {
                 $result = true;
+                $entryResult = $entry;
                 break;
             }
         }

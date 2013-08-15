@@ -1,0 +1,27 @@
+{% extends 'NantarenaEventBundle::layout.html.twig' %}
+
+{% block title 'event.cancel.title'|trans %}
+{% block page_title 'event.cancel.title'|trans %}
+
+{% block event_content %}
+    {% embed 'NantarenaAdminBundle::_deleteConfirm.html.twig' %}
+
+        {# TODO: Rajouter une condition si le joueur a une équipe #}
+        {#{% block info %}#}
+            {#{{ 'event.cancel.info'|trans }}#}
+        {#{% endblock %}#}
+
+        {# TODO: Rajouter une condition si le joueur est le créateur d'une équipe, pour transférer la propriété #}
+
+        {% block submit %}
+            {{ form_row(form.submit, {'label': 'event.cancel.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
+        {% endblock %}
+
+        {% block back %}
+            <a href="{{ path('nantarena_user_profile') }}">
+                {{ 'event.cancel.back'|trans }}
+            </a>
+        {% endblock %}
+
+    {% endembed %}
+{% endblock %}

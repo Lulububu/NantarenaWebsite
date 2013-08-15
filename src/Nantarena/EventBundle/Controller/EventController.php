@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class EventController
@@ -152,6 +153,78 @@ class EventController extends Controller
             'underage' => ($diff->y < 18),
             'form' => $form->createView()
         );
+    }
+
+    /**
+     * @Route("/{slug}/cancel", name="nantarena_event_cancel")
+     * @Template()
+     */
+    public function cancelAction(Request $request, Event $event)
+    {
+        $translator = $this->get('translator');
+        $flashbag = $this->get('session')->getFlashBag();
+
+        // Check if user is logged
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return new NotFoundHttpException();
+        }
+
+        $user = $this->get('security.context')->getToken()->getUser();
+        $entry = null;
+
+        // Check if user is already registered
+        if (!$user->hasEntry($event, $entry)) {
+            $flashbag->add('error', $translator->trans('event.cancel.flash.notyet'));
+            return $this->redirect($this->generateUrl('nantarena_user_profile'));
+        }
+
+        // TODO: Check if user has not paid
+
+        $form = $this->createDeleteForm($event);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            try {
+                if ($form->get('id')->getData() == $event->getId() || null === $entry) {
+                    $em = $this->getDoctrine()->getManager();
+
+                    $em->remove($entry);
+                    $em->flush();
+
+                    $flashbag->add('success', $translator->trans('event.cancel.flash.success'));
+                } else {
+                    throw new \Exception;
+                }
+            } catch (\Exception $e) {
+                $flashbag->add('error', $translator->trans('event.cancel.flash.error'));
+            }
+
+            return $this->redirect($this->generateUrl('nantarena_user_profile'));
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'event' => $event
+        );
+    }
+
+    /**
+     * Creates a form to delete an Entry entity by id.
+     *
+     * @param Event $event
+     * @return \Symfony\Component\Form\Form
+     */
+    private function createDeleteForm($event)
+    {
+        // TODO : Rajouter un champ si le joueur est créateur d'une équipe, pour transférer la propriété
+        return $this->createFormBuilder(array('id' => $event->getId()))
+            ->add('id', 'hidden')
+            ->add('submit', 'submit')
+            ->setMethod('POST')
+            ->setAction($this->generateUrl('nantarena_event_cancel', array(
+                'slug' => $event->getSlug()
+            )))
+            ->getForm();
     }
 
     /**

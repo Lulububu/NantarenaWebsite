@@ -38,6 +38,7 @@
                     <th>{{ 'event.profile.index.team'|trans }}</th>
                     <th>{{ 'event.profile.index.tournament'|trans }}</th>
                     <th>{{ 'event.profile.index.payment'|trans }}</th>
+                    <th class="tiny"></th>
                 </tr>
                 </thead>
 
@@ -61,6 +62,10 @@
                     </td>
                     <td>
                         {#TODO#}<a href="#" class="btn btn-success">Payer</a>
+                    </td>
+                    <td>
+                        {#TODO: Check if the user has not paid #}
+                        <a href="{{ path('nantarena_event_cancel', {'slug': entry.entryType.event.slug}) }}">Se désinscrire</a>
                     </td>
                 </tr>
 

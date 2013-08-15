@@ -21,7 +21,9 @@
         {% block form %}
         {% endblock %}
 
-        {{ form_row(form.submit, {'label': 'admin.delete.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
+        {% block submit %}
+            {{ form_row(form.submit, {'label': 'admin.delete.submit'|trans, 'attr': {'class':'btn-danger'}}) }}
+        {% endblock %}
     {{ form_end(form) }}
 
     <p class="text-center">
