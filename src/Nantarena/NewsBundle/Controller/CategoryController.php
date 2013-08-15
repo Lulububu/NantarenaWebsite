@@ -42,6 +42,15 @@ class CategoryController extends Controller
             $limit
         );
 
+        $this->get('nantarena_site.breadcrumb')->push(
+            $this->get('translator')->trans('site.menu.news'),
+            $this->generateUrl('nantarena_news_index')
+        );
+        $this->get('nantarena_site.breadcrumb')->push(
+            $category->getName(),
+            $this->get('nantarena_news.category_manager')->getCategoryPath($category)
+        );
+
         return array(
             'pagination' => $pagination,
             'category' => $category,

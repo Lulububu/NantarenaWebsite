@@ -43,11 +43,26 @@ class NewsController extends Controller
      */
     public function showAction($category, News $news)
     {
+        $category = $news->getCategory();
+
         if (News::STATE_UNPUBLISHED === $news->getState()) {
             if (!$this->get('security.context')->isGranted('ROLE_NEWS_ADMIN_NEWS')) {
                 throw $this->createNotFoundException();
             }
         }
+
+        $this->get('nantarena_site.breadcrumb')->push(
+            $this->get('translator')->trans('site.menu.news'),
+            $this->generateUrl('nantarena_news_index')
+        );
+        $this->get('nantarena_site.breadcrumb')->push(
+            $category->getName(),
+            $this->get('nantarena_news.category_manager')->getCategoryPath($category)
+        );
+        $this->get('nantarena_site.breadcrumb')->push(
+            $news->getTitle(),
+            $this->get('nantarena_news.news_manager')->getNewsPath($news)
+        );
 
         $form = $this->createForm(new CommentType(), null, array(
             'action' => $this->get('nantarena_news.comment_manager')->getCreateCommentPath($news),

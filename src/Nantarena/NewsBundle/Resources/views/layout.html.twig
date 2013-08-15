@@ -10,6 +10,10 @@
     {% endstylesheets %}
 {% endblock %}
 
+{% block breadcrumb %}
+    {{ render_breadcrumb() }}
+{% endblock %}
+
 {% block body %}
     {% include 'NantarenaSiteBundle::_flashbag.html.twig' %}
 
