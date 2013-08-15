@@ -256,7 +256,7 @@ class User extends BaseUser
 
         /** @var \Nantarena\EventBundle\Entity\Entry $entry */
         foreach($entries as $entry) {
-            if ($entry->getEventEntryType()->getEvent() === $event) {
+            if ($entry->getEntryType()->getEvent() === $event) {
                 $result = true;
                 break;
             }
