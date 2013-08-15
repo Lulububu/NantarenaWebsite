@@ -1,0 +1,12 @@
+{% extends 'NantarenaForumBundle::layout.html.twig' %}
+
+{% block title 'forum.thread.reply.title'|trans({'%thread%': thread.name}) %}
+
+{% block forum_content %}
+    <h2>
+        {{ 'forum.thread.reply.title'|trans({'%thread%': thread.name}) }}
+    </h2>
+
+    {% embed 'NantarenaForumBundle:Form:_post.html.twig' with {'submit': 'forum.form.post.reply.submit'|trans} %}
+    {% endembed %}
+{% endblock %}

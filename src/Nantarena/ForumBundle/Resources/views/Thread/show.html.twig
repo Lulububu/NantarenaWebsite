@@ -1,0 +1,38 @@
+{% extends 'NantarenaForumBundle::layout.html.twig' %}
+
+{% block title 'forum.thread.show.title'|trans({'%thread%': thread.name}) %}
+
+{% block forum_content %}
+    <h2>
+        {{ thread.name }}
+    </h2>
+
+    {% include 'NantarenaForumBundle:Control:_thread.html.twig' %}
+
+    {{ knp_pagination_render(pagination) }}
+
+    <table class="table table-striped">
+        {% for post in pagination %}
+            <tr id="post-{{ post.id }}">
+                <th>{{ post.user.username }}</th>
+                <th class="text-right">
+                    <div class="text-right">
+                        {{ post.creationDate|date('d/m/Y H:i') }}
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    User info
+                </td>
+                <td>
+                    {{ post.content|e|nl2br }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% include 'NantarenaForumBundle:Control:_thread.html.twig' %}
+
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}

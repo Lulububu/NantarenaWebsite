@@ -52,6 +52,9 @@ security:
     access_control:
         - { path: ^/news/comment, roles: ROLE_USER }
 
+        - { path: ^/forum/.*/reply, roles: ROLE_USER }
+        - { path: ^/forum/.*/create, roles: ROLE_USER }
+
         - { path: ^/profile, roles: ROLE_USER }
 
         - { path: ^/admin/static, roles: ROLE_STATIC_ADMIN }

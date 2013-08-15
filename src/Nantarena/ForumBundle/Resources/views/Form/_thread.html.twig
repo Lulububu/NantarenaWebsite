@@ -1,0 +1,7 @@
+<div class="span10">
+    {{ form_start(form) }}
+        {{ form_row(form.name, {'label': 'forum.entity.thread.name'|trans|colon}) }}
+        {{ form_row(form.content, {'label': 'forum.entity.thread.content'|trans|colon}) }}
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+</div>

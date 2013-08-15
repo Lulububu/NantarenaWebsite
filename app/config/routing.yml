@@ -1,3 +1,8 @@
+nantarena_forum:
+    resource: "@NantarenaForumBundle/Controller/"
+    type:     annotation
+    prefix:   /forum/
+
 nantarena_contact:
     resource: "@NantarenaContactBundle/Controller/"
     type:     annotation

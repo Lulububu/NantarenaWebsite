@@ -1,0 +1,52 @@
+forum:
+    category:
+        activity: 'Derniers messages'
+        no_activity: 'Aucune activité'
+        no_results: 'Aucun topic'
+        threads: Topics
+        title: 'Catégorie « %category% »'
+
+    entity:
+        post:
+            content: Réponse
+
+        thread:
+            content: Contenu
+            name: Sujet
+
+    form:
+        post:
+            reply:
+                submit: 'Envoyer la réponse'
+
+        thread:
+            create:
+                submit: 'Créer le topic'
+
+    forum:
+        activity: 'Derniers messages'
+        no_results: 'Aucun topic'
+        posts: Réponses
+        title: 'Forum « %forum% »'
+
+    index:
+        activity: 'Derniers messages'
+        no_activity: 'Aucune activité'
+        threads: Topics
+        title: 'Index du forum'
+
+    thread:
+        control:
+            answer: Répondre
+            create: 'Nouveau sujet'
+
+        create:
+            flash_success: 'Topic créé avec succès'
+            title: 'Créer un nouveau topic'
+
+        reply:
+            flash_success: 'Réponse envoyée avec succès'
+            title: 'Réponse au sujet « %thread% »'
+
+        show:
+            title: 'Topic « %thread% »'

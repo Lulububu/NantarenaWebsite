@@ -1,0 +1,36 @@
+{% extends 'NantarenaForumBundle::layout.html.twig' %}
+
+{% block title 'forum.index.title'|trans %}
+
+{% block forum_content %}
+    <table class="table">
+        {% for category in categories %}
+            <tr>
+                <th><a href="{{ forum_category_path(category) }}">{{ category.name }}</a></th>
+                <th>{{ 'forum.index.threads'|trans }}</th>
+                <th>{{ 'forum.index.activity'|trans }}</th>
+            </tr>
+            {% for forum in category.forums %}
+                {% set first = forum.threads.first() %}
+                <tr>
+                    <td><a href="{{ forum_path(forum) }}">{{ forum.name }}</a></td>
+                    <td>{{ forum.threads.count() }}</td>
+                    <td>
+                        {% if first %}
+                            <p>
+                                <a href="{{ thread_path(first, first.lastPage) }}#post-{{ first.posts.last().id }}">{{ first.updateDate|date('d/m/Y H:i') }}</a>
+                            </p>
+                            <p>
+                                {{ first.user.username }}
+                            </p>
+                        {% else %}
+                            <p>
+                                {{ 'forum.index.no_activity'|trans }}
+                            </p>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'NantarenaForumBundle::layout.html.twig' %}
+
+{% block title 'forum.forum.title'|trans({'%forum%': forum.name}) %}
+
+{% block forum_content %}
+    {% include 'NantarenaForumBundle:Control:_forum.html.twig' %}
+
+    {{ knp_pagination_render(pagination) }}
+
+    <table class="table">
+        <tr>
+            <th>{{ forum.name }}</th>
+            <th>{{ 'forum.forum.posts'|trans }}</th>
+            <th>{{ 'forum.forum.activity'|trans }}</th>
+        </tr>
+        {% for thread in pagination %}
+            {% set last = thread.posts.last() %}
+            <tr>
+                <td><a href="{{ thread_path(thread) }}">{{ thread.name }}</a></td>
+                <td>{{ thread.posts.count() }}</td>
+                <td>
+                    <p>
+                        <a href="{{ thread_path(thread, thread.lastPage) }}#post-{{ last.id }}">{{ last.updateDate|date('d/m/Y H:i') }}</a>
+                    </p>
+                    <p>
+                        {{ last.user.username }}
+                    </p>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">
+                    {{ 'forum.forum.no_results'|trans }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% include 'NantarenaForumBundle:Control:_forum.html.twig' %}
+
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}
