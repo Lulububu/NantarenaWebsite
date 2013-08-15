@@ -28,14 +28,14 @@ class NewsRepository extends EntityRepository
 
     public function addComments(QueryBuilder $qb)
     {
-        $qb->join('n.comments', 'c')->addSelect('c');
+        $qb->leftJoin('n.comments', 'c')->addSelect('c');
 
         return $this;
     }
 
     public function addComment(QueryBuilder $qb)
     {
-        $qb->join('n.comments', 'c')->addSelect('c');
+        $qb->leftJoin('n.comments', 'c')->addSelect('c');
 
         return $this;
     }
