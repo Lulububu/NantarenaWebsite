@@ -10,12 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SponsorSlideType extends AbstractType
 {
-    protected $active;
-
-    function __construct($active=true) {
-        $this->active = $active;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

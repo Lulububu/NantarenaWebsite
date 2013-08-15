@@ -22,11 +22,9 @@ class SponsorSlideManager
         $this->router = $router;
     }
 
-    public function SponsorSlide(SponsorSlide $content)
+    public function SponsorSlide()
     {
-        return $this->router->generate('nantarena_banner_sponsorslide_index', array(
-            'slug' => $content->getSlug(),
-        ));
+        return $this->router->generate('nantarena_banner_sponsorslide_index');
     }
 
     public function getEditPath(SponsorSlide $content)

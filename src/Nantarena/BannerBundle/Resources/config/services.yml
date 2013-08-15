@@ -1,7 +1,7 @@
 parameters:
 
 services:
-    nantarena_banner.admin_event:
+    nantarena_banner.admin_banner:
         class: Nantarena\BannerBundle\Controller\AdminController
         tags:
             - { name: nantarena_admin.dashboard}

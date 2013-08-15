@@ -22,11 +22,9 @@ class HeaderNewsManager
         $this->router = $router;
     }
 
-    public function getHeaderNewsPath(HeaderNews $content)
+    public function getHeaderNewsPath()
     {
-        return $this->router->generate('nantarena_banner_news_index', array(
-            'slug' => $content->getSlug(),
-        ));
+        return $this->router->generate('nantarena_banner_news_index');
     }
 
     public function getEditPath(HeaderNews $content)
