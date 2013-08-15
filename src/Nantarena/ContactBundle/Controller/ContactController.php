@@ -35,8 +35,7 @@ class ContactController extends Controller
             $contact->setEmail($user->getEmail());
 
             $username = $user->getUsername();
-        } else 
-        {
+        } else {
             $username = "";
         }
 
@@ -49,7 +48,7 @@ class ContactController extends Controller
 
         if ($form->isValid()) {
             // message construction
-            if ($username != "") {
+            if (!empty($username)) {
                 $src_email = array($contact->getEmail() => $username);
             } else {
                 $src_email = $contact->getEmail();
@@ -73,15 +72,16 @@ class ContactController extends Controller
             // send message (number of message sent in result)
             $result = $this->get('mailer')->send($message);
 
-            if ($result)
-            {
-              $this->get('session')->getFlashBag()->add('success', 
-                $this->get('translator')->trans('contact.contact.form.flash_success'));
+            if ($result == 0)
+            { // no message sent
+                $this->get('session')->getFlashBag()->add('error', 
+                    $this->get('translator')->trans('contact.contact.form.flash_error'));
             }
             else
             {
-              $this->get('session')->getFlashBag()->add('error', 
-                $this->get('translator')->trans('contact.contact.form.flash_error'));
+                $this->get('session')->getFlashBag()->add('success', 
+                    $this->get('translator')->trans('contact.contact.form.flash_success'));
+              
             }
             
             return $this->redirect($this->generateUrl('nantarena_contact'));

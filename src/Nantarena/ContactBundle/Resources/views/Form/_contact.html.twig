@@ -8,9 +8,7 @@
         {{ form_row(form.content, {'label': 'contact.contact.form.label_content'|trans|colon}) }}
         {{ form_row(form.recaptcha, {'label': 'contact.contact.form.label_captcha'|trans|colon}) }}
         
-        <div class="text-center">
-        	{{ form_row(form.submit, {'label': submit}) }}
-        </div>
+        {{ form_row(form.submit, {'label': submit}) }}
         
     {{ form_end(form) }}
 </div>
