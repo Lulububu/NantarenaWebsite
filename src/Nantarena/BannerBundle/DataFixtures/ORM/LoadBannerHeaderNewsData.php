@@ -18,7 +18,10 @@ class LoadBannerHeaderNewsData extends AbstractFixture
         $example = new HeaderNews();
         $example
             ->setActive(true)
-            ->setContent('<p>Pour votre divertissement !</p><img alt="Nantarena" src="http://www.nantarena.net/sites/default/files/logo.png" >');
+            ->setContent('
+<p style="text-align:center">Pour votre divertissement !</p>
+<p style="text-align:center"><img alt="Nantarena" src="http://www.nantarena.net/sites/default/files/logo.png" /></p>
+');
 
         $manager->persist($example);
         $manager->flush();

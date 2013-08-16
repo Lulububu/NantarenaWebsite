@@ -13,12 +13,7 @@ class HeaderNewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'textarea', array(
-                'attr' => array(
-                    'class' => 'input-block-level follow_content',
-                    'rows' => 10,
-                )
-            ))
+            ->add('content', 'wysiwyg_area')
             ->add('submit', 'submit')
         ;
     }

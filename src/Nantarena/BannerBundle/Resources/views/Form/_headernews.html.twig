@@ -3,8 +3,6 @@
         {{ form_errors(form) }}
 
         {{ form_row(form.content, {'label': 'banner.admin.headernews.form.label_content'|trans|colon}) }}
-
-        {% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
         
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}

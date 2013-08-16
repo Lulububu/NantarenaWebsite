@@ -3,25 +3,10 @@
 {% block title 'banner.admin.headernews.create.title'|trans %}
 {% block page_title 'banner.admin.headernews.create.title'|trans %}
 
-{% block stylesheets %}
-    {{ parent() }}
-
-    {% stylesheets 'bundles/nantarenabanner/css/banneroverview.css' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-{% endblock %}
-
 {% block admin_content %}
 
 {% embed 'NantarenaBannerBundle:Form:_headernews.html.twig' with {
     'submit': 'banner.admin.headernews.form.submit_create'|trans
 } %}{% endembed %}
 
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts '@NantarenaBannerBundle/Resources/public/js/glance.js' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
 {% endblock %}

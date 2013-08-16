@@ -19,12 +19,9 @@ class LoadBannerSponsorSlideData extends AbstractFixture
         $slide1
             ->setActive(true)
             ->setContent('
-<p>
-    <a href="#" title="MSI">
-        <img src="http://i.imgur.com/7v1tgYp.png" alt="MSI" />
-    </a>
-</p>
-<h2>Partenaire de la Nantarena</h2>');
+<p style="text-align:center"><a href="#" title="MSI"><img alt="MSI" src="http://i.imgur.com/7v1tgYp.png" /> </a></p>
+<h2 style="text-align:center">Partenaire de la Nantarena</h2>
+');
 
         $manager->persist($slide1);
 
@@ -33,16 +30,9 @@ class LoadBannerSponsorSlideData extends AbstractFixture
         $slide2
             ->setActive(true)
             ->setContent('
-<p>
-    <a href="#" title="Roccat">
-        <img src="http://i.imgur.com/S1A7ejG.jpg" alt="Roccat" />
-    </a>
-</p>
-<p>
-    <a href="#" title="Roccat">
-        <img src="http://i.imgur.com/B62U2Tj.jpg" alt="Roccat" />
-    </a>
-</p>');
+<p style="text-align:center"><a href="#" title="Roccat"><img alt="Roccat" src="http://i.imgur.com/S1A7ejG.jpg" /> </a></p>
+<p style="text-align:center"><a href="#" title="Roccat"><img alt="Roccat" src="http://i.imgur.com/B62U2Tj.jpg" /> </a></p>
+');
 
 
         $manager->persist($slide2);

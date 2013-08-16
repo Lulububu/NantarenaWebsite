@@ -4,8 +4,6 @@
 
         {{ form_row(form.content, {'label': 'banner.admin.sponsorslide.form.label_content'|trans|colon}) }}
         {{ form_row(form.active, {'label': 'banner.admin.sponsorslide.form.label_active'|trans|colon}) }}
-
-        {% include 'NantarenaBannerBundle:Admin:glance.html.twig' %}
         
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}
