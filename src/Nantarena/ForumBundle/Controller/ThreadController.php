@@ -84,6 +84,9 @@ class ThreadController extends Controller
             $em = $this->getDoctrine()->getManager();
             $user = $this->getUser();
 
+            // mise à jour de l'activité du thread
+            $thread->updateActivity();
+
             $post->setThread($thread);
             $post->setUser($user);
 

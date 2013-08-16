@@ -237,4 +237,9 @@ class Thread
 
         return $this;
     }
+
+    public function updateActivity()
+    {
+        $this->updateDate = new \DateTime();
+    }
 }

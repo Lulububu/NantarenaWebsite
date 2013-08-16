@@ -20,7 +20,7 @@
                             <a href="{{ thread_path(first, first.lastPage) }}#post-{{ first.posts.last().id }}">{{ first.updateDate|date('d/m/Y H:i') }}</a>
                         </p>
                         <p>
-                            {{ first.user.username }}
+                            {{ first.posts.last().user.username }}
                         </p>
                     {% else %}
                         <p>
