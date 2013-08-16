@@ -132,7 +132,7 @@ event:
         index:
             event: Evènement
             next_event: 'L''évènement <strong>%name%</strong> aura lieu le %date%,<br /> vous pouvez y participer en cliquant <a href="%link%">ici</a>.'
-            no_next: 'Vous n''avez pas prévu participer à de futurs évènements.'
+            no_next: 'Vous n''avez pas prévu de participer à de futurs évènements.'
             old_events: 'Mes précédents évènements'
             payment: Paiement
             team: Equipe

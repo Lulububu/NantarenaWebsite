@@ -44,7 +44,7 @@ user:
             create:
                 back: 'Retour à la liste'
                 flash_error: 'Erreur lors de la création de l''utilisateur'
-                flash_success: 'L''tilisateur a été créé avec succès'
+                flash_success: 'L''utilisateur a été créé avec succès'
                 submit: Créer
                 title: 'Ajouter un nouveau membre'
 
