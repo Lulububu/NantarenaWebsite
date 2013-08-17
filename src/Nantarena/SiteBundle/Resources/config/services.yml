@@ -3,7 +3,7 @@ services:
         class: Nantarena\SiteBundle\Services\TablePrefixSubscriber
         arguments: [%nantarena_site.db_prefix%]
         tags:
-            - {name: doctrine.event_subscriber}
+            - { name: doctrine.event_subscriber }
 
     nantarena_site.breadcrumb:
         class: Nantarena\SiteBundle\Navigation\Breadcrumb

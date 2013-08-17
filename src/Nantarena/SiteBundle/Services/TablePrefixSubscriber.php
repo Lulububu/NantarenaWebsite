@@ -6,8 +6,8 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
-class TablePrefixSubscriber implements EventSubscriber {
-
+class TablePrefixSubscriber implements EventSubscriber
+{
     protected $prefix = '';
 
     public function __construct($prefix)
