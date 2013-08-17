@@ -65,3 +65,22 @@ div.news-categories ul li {
     padding: 10px;
     text-align: center;
 }
+
+div.news-comment-info {
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+div.news-comment-info p {
+    margin: 0;
+    padding: 0;
+}
+
+div.news-comment-info p a {
+    margin-top: -3px;
+}
+
+p.new-comment-content {
+    padding: 10px;
+}

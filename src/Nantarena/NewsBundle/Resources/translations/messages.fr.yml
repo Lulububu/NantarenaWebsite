@@ -7,12 +7,12 @@ news:
                 title: 'Créer une nouvelle catégorie'
 
             delete:
+                category: 'Déplacer vers :'
                 flash_error: 'Impossible de supprimer la catégorie'
                 flash_success: 'Catégorie supprimée'
+                info: 'Les news de cette catégorie seront déplacées vers la nouvelle catégorie définie ci-dessous.'
                 title: 'Suppression d''une catégorie'
                 warning: 'Vous êtes sur le point de supprimer une catégorie.'
-                info: 'Les news de cette catégorie seront déplacées vers la nouvelle catégorie définie ci-dessous.'
-                category: 'Déplacer vers :'
 
             edit:
                 flash_error: 'Impossible d''éditer la catégorie'
@@ -20,14 +20,13 @@ news:
                 title: 'Editer une catégorie'
 
             index:
-                actions: Actions
                 create: 'Créer une categorie'
                 title: 'Liste des catégories'
 
         dashboard:
-            categories_management: Gestion des catégories
-            news_management: Gestion des news
-            title: Gestion des news
+            categories_management: 'Gestion des catégories'
+            news_management: 'Gestion des news'
+            title: 'Gestion des news'
 
         news:
             back: 'Retour à la liste'
@@ -50,11 +49,11 @@ news:
 
             index:
                 create: 'Créer une nouvelle news'
-                title: 'Liste des news'
                 empty: 'Aucune news ne correspond à ces critères'
+                title: 'Liste des news'
 
     category:
-        title: Catégorie « %category% »
+        title: 'Catégorie « %category% »'
 
     comment:
         create:
@@ -74,40 +73,29 @@ news:
         category: Catégorie
         content: Contenu
         date: Date
+        name: Nom
         state: Etat
         title: Titre
-        name: Nom
 
     form:
         category:
             create:
-                reset: 'RàZ'
                 submit: Créer
 
-            delete:
-                cancel: 'Annuler la suppression'
-                submit: Supprimer
-
             edit:
-                reset: 'RàZ'
                 submit: Editer
 
         comment:
             create:
                 content: Commentaire
+                legend: 'Commenter la news'
                 submit: Envoyer
 
         news:
             create:
-                reset: 'RàZ'
                 submit: 'Créer la news'
 
-            delete:
-                cancel: Annuler
-                submit: 'Supprimer la news'
-
             edit:
-                reset: 'RàZ'
                 submit: 'Editer la news'
 
     index:
@@ -125,8 +113,9 @@ news:
 
     show:
         comments:
-            title: 'Commentaires'
             no_results: 'Aucun commentaire'
+            title: Commentaires
+
         title: '%title%'
 
     state:

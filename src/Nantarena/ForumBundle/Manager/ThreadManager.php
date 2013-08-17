@@ -56,24 +56,14 @@ class ThreadManager
     public function getLockPath(Thread $thread)
     {
         return $this->router->generate('nantarena_forum_thread_lock', array(
-            'categoryId' => $thread->getForum()->getCategory()->getId(),
-            'categorySlug' => $thread->getForum()->getCategory()->getSlug(),
-            'forumId' => $thread->getForum()->getId(),
-            'forumSlug' => $thread->getForum()->getSlug(),
             'id' => $thread->getId(),
-            'slug' => $thread->getSlug(),
         ));
     }
 
     public function getDeletePath(Thread $thread)
     {
         return $this->router->generate('nantarena_forum_thread_delete', array(
-            'categoryId' => $thread->getForum()->getCategory()->getId(),
-            'categorySlug' => $thread->getForum()->getCategory()->getSlug(),
-            'forumId' => $thread->getForum()->getId(),
-            'forumSlug' => $thread->getForum()->getSlug(),
             'id' => $thread->getId(),
-            'slug' => $thread->getSlug(),
         ));
     }
 }

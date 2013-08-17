@@ -118,9 +118,9 @@ class ThreadController extends BaseController
     }
 
     /**
-     * @Route("/{categoryId}-{categorySlug}/{forumId}-{forumSlug}/{id}-{slug}/lock")
+     * @Route("/thread/lock/{id}")
      */
-    public function lockAction($categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread)
+    public function lockAction(Thread $thread)
     {
         if (!$this->getSecurityContext()->isGranted('OPERATOR', $thread)) {
             throw new AccessDeniedException();
@@ -140,9 +140,9 @@ class ThreadController extends BaseController
     }
 
     /**
-     * @Route("/{categoryId}-{categorySlug}/{forumId}-{forumSlug}/{id}-{slug}/delete")
+     * @Route("/thread/delete/{id}")
      */
-    public function deleteAction($categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread)
+    public function deleteAction(Thread $thread)
     {
         if (!$this->getSecurityContext()->isGranted('DELETE', $thread)) {
             throw new AccessDeniedException();
