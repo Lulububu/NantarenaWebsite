@@ -16,18 +16,25 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
 
         $staffGroup = new Group('Staff');
         $staffGroup->addRole('ROLE_USER_ADMIN_USERS');
+        // donne accès aux parties reservées au staff
+        $staffGroup->addRole('ROLE_STAFF_FORUM');
 
-        $usersGroup= new Group('Membres');
+        $usersGroup = new Group('Membres');
         $usersGroup->addRole('ROLE_USER');
         $usersGroup->setDefault(true);
+
+        $moderatorsGroup = new Group('Modérateur');
+        $moderatorsGroup->addRole('ROLE_FORUM_MODERATE');
 
         $this->addReference('group-1', $adminsGroup);
         $this->addReference('group-2', $staffGroup);
         $this->addReference('group-3', $usersGroup);
+        $this->addReference('group-forum-moderate', $moderatorsGroup);
 
         $manager->persist($adminsGroup);
         $manager->persist($staffGroup);
         $manager->persist($usersGroup);
+        $manager->persist($moderatorsGroup);
 
         $manager->flush();
     }

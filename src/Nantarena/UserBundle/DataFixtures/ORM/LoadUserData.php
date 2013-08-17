@@ -25,11 +25,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 
         $user = new User();
         $user
-            ->setUsername('Testeur1')
-            ->setEmail('testeur1@nantarena.net')
-            ->setPlainPassword('testeur1')
+            ->setUsername('staff')
+            ->setEmail('staff@nantarena.net')
+            ->setPlainPassword('staff')
             ->addGroup($this->getReference('group-2'))
             ->addGroup($this->getReference('group-3'))
+            // cet utilisateur est modérateur sur le forum
+            ->addGroup($this->getReference('group-forum-moderate'))
             ->setEnabled(true);
         $manager->persist($user);
 
@@ -37,9 +39,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 
         $user = new User();
         $user
-            ->setUsername('Testeur2')
-            ->setEmail('testeur2@nantarena.net')
-            ->setPlainPassword('testeur2')
+            ->setUsername('user')
+            ->setEmail('user@nantarena.net')
+            ->setPlainPassword('user')
             ->addGroup($this->getReference('group-3'))
             ->setEnabled(true);
         $manager->persist($user);
