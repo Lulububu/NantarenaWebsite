@@ -85,7 +85,20 @@
 
                         var regex = new RegExp(pattern, 'i');
 
-                        if ($(this).text().search(regex) == -1) {
+                        var title = '';
+                        var tooltip = '';
+
+                        if ($(this).children('abbr').prop('title'))
+                            tooltip = $(this).children().prop('title');
+
+                        if ($(this).children('abbr').data('original-title'))
+                            tooltip = $(this).children().data('original-title');
+
+                        var matchText = $(this).text().search(regex);
+                        var matchTitle = title.search(regex);
+                        var matchTooltip = tooltip.search(regex);
+
+                        if (matchText == -1 && matchTitle == -1 && matchTooltip == -1) {
                             $(this).parent().addClass('hide');
                         }
                     }
