@@ -14,7 +14,7 @@
             {% embed 'NantarenaNewsBundle:News:_news.html.twig' with {'news': entity} %}
             {% endembed %}
         {% else %}
-            <p>
+            <p class="no-results">
                 {{ 'news.index.no_results'|trans }}
             </p>
         {% endfor %}

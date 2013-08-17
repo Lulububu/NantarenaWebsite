@@ -115,7 +115,7 @@ news:
         title: 'Liste des news'
 
     news_embed:
-        category: 'Publiée dans la catégorie <a href="%path%" class="label label-info">%category%</a>'
+        category: 'Publiée dans <a href="%path%" class="label label-info">%category%</a>'
         comments: '{0} Aucun commentaire|{1} Un commentaire|]1,Inf] %count% commentaires'
         read: 'Lire la news'
         title: '%title%'

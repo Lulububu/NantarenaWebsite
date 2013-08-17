@@ -30,7 +30,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/{slug}/{page}", name="nantarena_news_category_index")
+     * @Route("/{slug}/{page}", name="nantarena_news_category_index", requirements={"page" = "\d+"})
      * @Template()
      */
     public function indexAction(Category $category, $page = 1)

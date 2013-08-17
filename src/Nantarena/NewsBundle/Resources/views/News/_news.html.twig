@@ -19,17 +19,17 @@
         </div>
         <footer>
             {% block news_footer %}
+                {% block news_footer_links %}
+                    <p class="news-links pull-right">
+                        <a href="{{ news_path(news) }}" class="btn btn-default btn-small">{{ 'news.news_embed.read'|trans }}</a>
+                        <a href="{{ news_path(news) }}#comments" class="btn btn-default btn-small">{{ 'news.news_embed.comments'|transchoice(news.comments|length) }}</a>
+                    </p>
+                {% endblock %}
                 {% block news_footer_category %}
                     <p class="news-category">
                         {% block news_category %}
                             {{ 'news.news_embed.category'|trans({'%category%': news.category, '%path%': category_path(news.category)})|raw }}
                         {% endblock %}
-                    </p>
-                {% endblock %}
-                {% block news_footer_links %}
-                    <p class="news-links">
-                        <a href="{{ news_path(news) }}" class="btn btn-default btn-small">{{ 'news.news_embed.read'|trans }}</a>
-                        <a href="{{ news_path(news) }}#comments" class="btn btn-default btn-small">{{ 'news.news_embed.comments'|transchoice(news.comments|length) }}</a>
                     </p>
                 {% endblock %}
             {% endblock %}

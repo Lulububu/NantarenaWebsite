@@ -1,6 +1,8 @@
 div.news-categories ul {
-    padding: 0;
+    padding: 10px;
     margin: 0;
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
 }
 
 div.news-categories ul li {
@@ -43,7 +45,23 @@ div.news-categories ul li {
     border: 1px solid #AAA;
 }
 
-.news article .news_content {
-    margin-left: 20px;
-    margin-right: 10px;
+.news article footer p.news-category {
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.news article footer p.news-links {
+    padding: 7px;
+}
+
+.news article .news-content {
+    min-height: 200px;
+    text-indent: 20px;
+    padding: 20px;
+}
+
+.news p.no-results {
+    padding: 10px;
+    text-align: center;
 }
