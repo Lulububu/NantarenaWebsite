@@ -17,12 +17,30 @@ class CategoryExtension extends \Twig_Extension implements ContainerAwareInterfa
     {
         return array(
             new \Twig_SimpleFunction('forum_category_path', array($this, 'getCategoryPath')),
+            new \Twig_SimpleFunction('forum_category_delete_path', array($this, 'getDeletePath')),
+            new \Twig_SimpleFunction('forum_category_edit_path', array($this, 'getEditPath')),
+            new \Twig_SimpleFunction('forum_category_create_path', array($this, 'getCreatePath')),
         );
     }
 
     public function getCategoryPath(Category $category)
     {
         return $this->container->get('nantarena_forum.category_manager')->getCategoryPath($category);
+    }
+
+    public function getDeletePath(Category $category)
+    {
+        return $this->container->get('nantarena_forum.category_manager')->getDeletePath($category);
+    }
+
+    public function getEditPath(Category $category)
+    {
+        return $this->container->get('nantarena_forum.category_manager')->getEditPath($category);
+    }
+
+    public function getCreatePath()
+    {
+        return $this->container->get('nantarena_forum.category_manager')->getCreatePath();
     }
 
     /**

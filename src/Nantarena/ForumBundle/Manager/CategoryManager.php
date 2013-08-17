@@ -24,4 +24,23 @@ class CategoryManager
             'slug' => $category->getSlug(),
         ));
     }
+
+    public function getCreatePath()
+    {
+        return $this->router->generate('nantarena_forum_admin_categories_create');
+    }
+
+    public function getEditPath(Category $category)
+    {
+        return $this->router->generate('nantarena_forum_admin_categories_edit', array(
+            'id' => $category->getId(),
+        ));
+    }
+
+    public function getDeletePath(Category $category)
+    {
+        return $this->router->generate('nantarena_forum_admin_categories_delete', array(
+            'id' => $category->getId(),
+        ));
+    }
 }

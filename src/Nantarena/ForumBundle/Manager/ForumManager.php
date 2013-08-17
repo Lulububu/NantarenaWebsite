@@ -26,4 +26,23 @@ class ForumManager
             'slug' => $forum->getSlug(),
         ));
     }
+
+    public function getEditPath(Forum $forum)
+    {
+        return $this->router->generate('nantarena_forum_admin_forums_edit', array(
+            'id' => $forum->getId(),
+        ));
+    }
+
+    public function getDeletePath(Forum $forum)
+    {
+        return $this->router->generate('nantarena_forum_admin_forums_delete', array(
+            'id' => $forum->getId(),
+        ));
+    }
+
+    public function getCreatePath()
+    {
+        return $this->router->generate('nantarena_forum_admin_forums_create');
+    }
 }

@@ -61,24 +61,20 @@ class LoadForumData extends AbstractFixture implements DependentFixtureInterface
         $manager->flush();
 
         $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum1, array(
-            'ROLE_STAFF_FORUM'
+            'ROLE_GROUP_'.$this->getReference('group-staffs')->getId()
         ));
 
         $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum2, array(
-            'ROLE_STAFF_FORUM'
+            'ROLE_GROUP_'.$this->getReference('group-staffs')->getId()
         ));
 
-        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum4, array(
-            'IS_AUTHENTICATED_ANONYMOUSLY'
-        ));
-
-        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum5, array(
-            'IS_AUTHENTICATED_ANONYMOUSLY'
-        ));
+        // ces deux forums ont un accès anonyme, on omet donc le role correspondant
+        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum4);
+        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum5);
 
         // le forum Remarques et suggestions est uniquement visible des utilisateurs connectés
         $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum3, array(
-            'ROLE_USER'
+            'ROLE_GROUP_'.$this->getReference('group-users')->getId()
         ));
     }
 
@@ -104,6 +100,4 @@ class LoadForumData extends AbstractFixture implements DependentFixtureInterface
     {
         $this->container = $container;
     }
-
-
 }

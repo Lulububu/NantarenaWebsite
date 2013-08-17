@@ -18,7 +18,7 @@
                     <td>
                         {% if first %}
                             <p>
-                                <a href="{{ thread_path(first, first.lastPage) }}#post-{{ first.posts.last().id }}">{{ first.updateDate|date('d/m/Y H:i') }}</a>
+                                <a href="{{ thread_path(first, first.lastPage) }}#post-{{ first.posts.last().id }}">{{ first.updateDate|localizeddate('medium', 'medium') }}</a>
                             </p>
                             <p>
                                 {{ first.posts.last().user.username }}

@@ -6,6 +6,7 @@ use Nantarena\ForumBundle\Entity\Category;
 use Nantarena\ForumBundle\Entity\Forum;
 use Nantarena\ForumBundle\Entity\Post;
 use Nantarena\ForumBundle\Entity\Thread;
+use Nantarena\SiteBundle\Security\Acl\Domain\GroupSecurityIdentity;
 use Symfony\Component\Security\Acl\Dbal\MutableAclProvider;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\RoleSecurityIdentity;
@@ -90,14 +91,22 @@ class AclManager
      * @param Forum $forum
      * @param array $roles
      */
-    public function createAclForForum(Forum $forum, array $roles)
+    public function createAclForForum(Forum $forum, array $roles = array())
     {
         $forumIdentity = $this->createObjectIdentity($forum);
         $acl = $this->createAcl($forumIdentity);
 
-        foreach ($roles as $role) {
-            $acl->insertObjectAce($this->createRoleSecurityIdentity($role), MaskBuilder::MASK_VIEW);
+        // aucun groupe = accès public
+        if (empty($roles)) {
+            $acl->insertObjectAce($this->createRoleSecurityIdentity('IS_AUTHENTICATED_ANONYMOUSLY'), MaskBuilder::MASK_VIEW);
+        } else {
+            foreach ($roles as $role) {
+                $acl->insertObjectAce($this->createRoleSecurityIdentity($role), MaskBuilder::MASK_VIEW);
+            }
         }
+
+        // Toujours veiller à donner accès au SUPER_ADMIN
+        $acl->insertObjectAce($this->createRoleSecurityIdentity('ROLE_SUPER_ADMIN'), MaskBuilder::MASK_MASTER);
 
         $this->updateAcl($acl);
     }
@@ -108,14 +117,22 @@ class AclManager
      * @param Category $category
      * @param array $roles
      */
-    public function createAclForCategory(Category $category, array $roles)
+    public function createAclForCategory(Category $category, array $roles = array())
     {
         $categoryIdentity = $this->createObjectIdentity($category);
         $acl = $this->createAcl($categoryIdentity);
 
-        foreach ($roles as $role) {
-            $acl->insertObjectAce($this->createRoleSecurityIdentity($role), MaskBuilder::MASK_VIEW);
+        // aucun groupe = accès public
+        if (empty($roles)) {
+            $acl->insertObjectAce($this->createRoleSecurityIdentity('IS_AUTHENTICATED_ANONYMOUSLY'), MaskBuilder::MASK_VIEW);
+        } else {
+            foreach ($roles as $role) {
+                $acl->insertObjectAce($this->createRoleSecurityIdentity($role), MaskBuilder::MASK_VIEW);
+            }
         }
+
+        // Toujours veiller à donner accès au SUPER_ADMIN
+        $acl->insertObjectAce($this->createRoleSecurityIdentity('ROLE_SUPER_ADMIN'), MaskBuilder::MASK_MASTER);
 
         $this->updateAcl($acl);
     }
@@ -155,14 +172,6 @@ class AclManager
     }
 
     /**
-     * @return UserInterface
-     */
-    public function getUser()
-    {
-        return $this->getSecurityContext()->getToken()->getUser();
-    }
-
-    /**
      * @return \Symfony\Component\Security\Acl\Dbal\MutableAclProvider
      */
     public function getProvider()
@@ -178,4 +187,8 @@ class AclManager
         return $this->securityContext;
     }
 
+    public function deleteAcl($object)
+    {
+        $this->provider->deleteAcl($this->createObjectIdentity($object));
+    }
 }

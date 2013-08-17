@@ -1,0 +1,46 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'forum.admin.forums.index.title'|trans %}
+{% block page_title 'forum.admin.forums.index.title'|trans %}
+
+{% block admin_content %}
+    <div class="span12">
+        <p class="text-center">
+            <a href="{{ path('nantarena_forum_admin_forums_create') }}" class="btn">{{ 'forum.admin.forums.index.create'|trans }}</a>
+        </p>
+
+        {% for category in categories %}
+            <table class="table sortable">
+                <thead>
+                    <tr>
+                        <th data-filter="ignore" class="tiny">#</th>
+                        <th>{{ 'forum.entity.forum.category' }}</th>
+                        <th>{{ 'forum.entity.forum.position'|trans }}</th>
+                        <th>{{ 'forum.entity.forum.name'|trans }}</th>
+                        <th class="mini"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for forum in category.forums %}
+                        <tr>
+                            <td>{{ forum.id }}</td>
+                            <td>{{ forum.category.name }}</td>
+                            <td>{{ forum.position }}</td>
+                            <td>{{ forum.name }}</td>
+                            <td>
+                                <a href="{{ forum_edit_path(forum) }}"><i class="icon-wrench"></i></a>
+                                &nbsp;&nbsp;
+                                <a href="{{ forum_delete_path(forum) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% if not loop.last %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

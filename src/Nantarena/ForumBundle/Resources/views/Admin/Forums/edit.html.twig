@@ -1,0 +1,10 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'forum.admin.forums.edit.title'|trans %}
+{% block page_title 'forum.admin.forums.edit.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaForumBundle:Form:_forum.html.twig' with {
+        'submit': 'forum.form.forum.edit.submit'|trans
+    } %}{% endembed %}
+{% endblock %}

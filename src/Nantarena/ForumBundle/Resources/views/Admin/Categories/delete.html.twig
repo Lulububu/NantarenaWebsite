@@ -1,0 +1,26 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'forum.admin.categories.delete.title'|trans %}
+{% block page_title 'forum.admin.categories.delete.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaSiteBundle::_deleteConfirm.html.twig' %}
+        {% block warning %}
+            {{ 'forum.admin.categories.delete.warning'|trans }}
+        {% endblock %}
+
+        {% block info %}
+            {{ 'forum.admin.categories.delete.info'|trans }}
+        {% endblock %}
+
+        {% block form %}
+            {{ form_row(form.category, {'label': 'forum.admin.categories.delete.category'|trans}) }}
+        {% endblock %}
+
+        {% block back %}
+            <a href="{{ path('nantarena_forum_admin_categories_index') }}">
+                {{ 'forum.admin.forum.back'|trans }}
+            </a>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

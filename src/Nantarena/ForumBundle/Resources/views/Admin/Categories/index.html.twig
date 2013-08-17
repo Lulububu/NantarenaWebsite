@@ -1,0 +1,38 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'forum.admin.categories.index.title'|trans %}
+{% block page_title 'forum.admin.categories.index.title'|trans %}
+
+{% block admin_content %}
+    <div class="span12">
+        <p class="text-center">
+            <a href="{{ path('nantarena_forum_admin_categories_create') }}" class="btn">{{ 'forum.admin.categories.index.create'|trans }}</a>
+        </p>
+        <table class="table sortable" data-sort="1">
+            <thead>
+                <tr>
+                    <th data-filter="ignore" class="tiny">#</th>
+                    <th>{{ 'forum.entity.category.position'|trans }}</th>
+                    <th>{{ 'forum.entity.category.name'|trans }}</th>
+                    <th class="mini"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for c in categories %}
+                    <tr>
+                        <td>{{ c.id }}</td>
+                        <td>{{ c.position }}</td>
+                        <td>{{ c.name }}</td>
+                        <td>
+                            <a href="{{ forum_category_edit_path(c) }}"><i class="icon-wrench"></i></a>
+                            &nbsp;&nbsp;
+                            <a href="{{ forum_category_delete_path(c) }}"><i class="icon-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+{% endblock %}

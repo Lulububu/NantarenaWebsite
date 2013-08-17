@@ -1,7 +1,7 @@
 nantarena_forum:
     resource: "@NantarenaForumBundle/Controller/"
     type:     annotation
-    prefix:   /forum/
+    prefix:   /
 
 nantarena_contact:
     resource: "@NantarenaContactBundle/Controller/"

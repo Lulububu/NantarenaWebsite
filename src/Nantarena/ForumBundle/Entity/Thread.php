@@ -247,9 +247,14 @@ class Thread
 
     public function getPageForPost(Post $post)
     {
-        return (false === $index = $this->posts->indexOf($post))
-            ? ceil($index / self::POSTS_PER_PAGE)
-            : 1;
+        $index = $this->posts->indexOf($post) + 1;
+        $page = 1;
+
+        if (false !== $index) {
+            $page = ceil($index / self::POSTS_PER_PAGE);
+        }
+
+        return $page;
     }
 
     /**

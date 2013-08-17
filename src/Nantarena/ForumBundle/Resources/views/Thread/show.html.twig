@@ -14,7 +14,7 @@
                 <th class="text-right">
                     {% include 'NantarenaForumBundle:Control:_post.html.twig' %}
                     <div class="text-right">
-                        {{ post.creationDate|date('d/m/Y à H:i') }}
+                        {{ post.creationDate|localizeddate('medium', 'medium') }}
                     </div>
                 </th>
             </tr>
@@ -22,12 +22,14 @@
                 <td>
                     User info
                 </td>
-                <td class="forum-post-content">
-                    {{ post.content|e|nl2br }}
+                <td>
+                    <div class="forum-post-content">
+                        {{ post.content|e|nl2br }}
+                    </div>
 
                     {% if post.creationDate != post.updateDate %}
                         <p class="post-edited">
-                            {{ 'forum.thread.show.edited'|trans({'%date%': post.updateDate|date('d/m/Y à H:i')}) }}
+                            {{ 'forum.thread.show.edited'|trans({'%date%': post.updateDate|localizeddate('medium', 'medium')}) }}
                         </p>
                     {% endif %}
                 </td>

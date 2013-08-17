@@ -1,0 +1,8 @@
+<div class="span6 offset3">
+    {{ form_start(form) }}
+        {{ form_row(form.name, {'label': 'forum.entity.category.name'|trans|colon}) }}
+        {{ form_row(form.position, {'label': 'forum.entity.category.position'|trans|colon}) }}
+        {{ form_row(form.groups, {'label': 'forum.entity.category.groups'|trans|colon}) }}
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+</div>

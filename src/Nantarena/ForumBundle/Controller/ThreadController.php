@@ -13,6 +13,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * @Route("/forum")
+ */
 class ThreadController extends BaseController
 {
     /**

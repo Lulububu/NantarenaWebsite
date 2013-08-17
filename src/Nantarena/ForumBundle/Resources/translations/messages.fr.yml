@@ -1,12 +1,78 @@
 forum:
+    admin:
+        categories:
+            create:
+                flash_error: 'La catégorie n''a pas pu être crée'
+                flash_success: 'La catégorie a été crée avec succès'
+                title: 'Créer une nouvelle catégorie'
+
+            delete:
+                category: 'Nouvelle catégorie'
+                flash_error: 'La catégorie n''a pas pu être supprimée'
+                flash_success: 'La catégorie a été supprimée avec succès'
+                info: 'Veuillez déplacer les forums dans une autre catégorie'
+                title: 'Supprimer une catégorie'
+                warning: 'Attention, la catégorie sera définitivement supprimée'
+
+            edit:
+                flash_error: 'La catégorie n''a pas pu être éditée'
+                flash_success: 'La catégorie a été éditée avec succès'
+                title: 'Editer une catégorie'
+
+            index:
+                create: 'Créer une nouvelle catégorie'
+                title: 'Gestion des catégories'
+
+        dashboard:
+            categories_management: 'Gestion des catégories'
+            forum_management: 'Gestion des forums'
+            title: 'Gestion du forum'
+
+        forum:
+            back: Retour
+
+        forums:
+            create:
+                flash_error: 'Le nouveau forum n''a pas pu être créé'
+                flash_success: 'Le nouveau forum a été créé avec succès'
+                title: 'Créer un nouveau forum'
+
+            delete:
+                flash_error: 'Le forum n''a pas pu être supprimé'
+                flash_success: 'Forum supprimé avec succès'
+                forum: 'Nouveau forum'
+                info: 'Veuillez déplacer les topics dans un autre forum'
+                title: 'Supprimer un forum'
+                warning: 'Attention, le forum sera définitivement supprimé'
+
+            edit:
+                flash_error: 'Le forum %name% n''a pas pu être édité'
+                flash_success: 'Le forum %name% a été édité'
+                title: 'Edition du forum'
+
+            index:
+                create: 'Créer un nouveau forum'
+                title: 'Gestion des forums'
+
     category:
         activity: 'Derniers messages'
         no_activity: 'Aucune activité'
-        no_results: 'Aucun topic'
+        no_results: 'Aucun forum'
         threads: Topics
         title: 'Catégorie « %category% »'
 
     entity:
+        category:
+            groups: 'Accès aux groupes'
+            name: Nom
+            position: 'Position d''affichage'
+
+        forum:
+            category: Catégorie
+            groups: 'Accès aux groupes'
+            name: Nom
+            position: 'Position d''affichage'
+
         post:
             content: Réponse
 
@@ -15,6 +81,20 @@ forum:
             name: Sujet
 
     form:
+        category:
+            create:
+                submit: 'Créer la catégorie'
+
+            edit:
+                submit: Sauvegarder
+
+        forum:
+            create:
+                submit: 'Créer le forum'
+
+            edit:
+                submit: 'Editer le forum'
+
         post:
             edit:
                 submit: 'Editer réponse'
@@ -42,8 +122,9 @@ forum:
         edit:
             flash_success: 'Réponse éditée avec succès'
             title: 'Editer réponse au sujet « %thread% »'
+
         delete:
-            flash_success: 'Message supprimé avec succès'
+            flash_success: 'Post supprimé avec succès'
 
     thread:
         control:
@@ -66,8 +147,4 @@ forum:
             title: 'Topic « %thread% »'
 
         delete:
-            flash_success: 'Topic supprimé avec succès (visible dans le panneau admin)'
-
-        lock:
-            lock_success: 'Topic verrouillé avec succès'
-            unlock_success: 'Topic ouvert avec succès'
+            flash_success: 'Topic supprimé avec succès'

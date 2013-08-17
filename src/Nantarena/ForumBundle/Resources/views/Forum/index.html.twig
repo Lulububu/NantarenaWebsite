@@ -16,7 +16,7 @@
                 <td>{{ thread.posts.count() }}</td>
                 <td>
                     <p>
-                        <a href="{{ thread_path(thread, thread.lastPage) }}#post-{{ last.id }}">{{ last.updateDate|date('d/m/Y H:i') }}</a>
+                        <a href="{{ thread_path(thread, thread.lastPage) }}#post-{{ last.id }}">{{ last.updateDate|localizeddate('medium', 'medium') }}</a>
                     </p>
                     <p>
                         {{ last.user.username }}

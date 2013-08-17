@@ -31,14 +31,14 @@ class LoadCategoryData extends AbstractFixture implements ContainerAwareInterfac
 
         $manager->flush();
 
-        // configuration des Acl sur la catégorie Le Club Rézo
+        // Acl sur la catégorie Le Club Rézo
         $this->container->get('nantarena_forum.acl_manager')->createAclForCategory($category1, array(
-            'ROLE_STAFF_FORUM'
+            'ROLE_GROUP_'.$this->getReference('group-staffs')->getId()
         ));
 
-        $this->container->get('nantarena_forum.acl_manager')->createAclForCategory($category2, array(
-            'IS_AUTHENTICATED_ANONYMOUSLY'
-        ));
+        // Acl sur la catégorie La Nantarena, on omet le role car on désire qu'elle soit accessible
+        // par les anonymes
+        $this->container->get('nantarena_forum.acl_manager')->createAclForCategory($category2);
     }
 
     /**

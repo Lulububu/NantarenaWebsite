@@ -1,8 +1,13 @@
 parameters:
 
 services:
+    nantarena_forum.admin_event:
+        class: Nantarena\ForumBundle\Controller\AdminController
+        tags:
+            - { name: nantarena_admin.dashboard }
+
     nantarena_forum.acl_subscriber:
-        class: Nantarena\ForumBundle\Listener\AclSubscriber
+        class: Nantarena\ForumBundle\EventListener\AclSubscriber
         tags:
             - { name: doctrine.event_subscriber }
         calls:

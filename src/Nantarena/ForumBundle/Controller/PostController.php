@@ -13,6 +13,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * @Route("/forum")
+ */
 class PostController extends BaseController
 {
     /**
@@ -168,12 +171,22 @@ class PostController extends BaseController
         }
 
         $em = $this->getDoctrine()->getManager();
+        $thread = $post->getThread();
 
         $em->remove($post);
-        $em->flush();
 
+        // S'il n'y a plus qu'un seul Post dans le Thread, on supprime aussi le Thread
+        if (1 == $thread->getPosts()->count()) {
+            $em->remove($thread);
+            $em->flush();
+            $this->addFlash('success', 'forum.thread.delete.flash_success');
+
+            return $this->redirect($this->get('nantarena_forum.forum_manager')->getForumPath($thread->getForum()));
+        }
+
+        $em->flush();
         $this->addFlash('success', 'forum.post.delete.flash_success');
 
-        return $this->redirect($this->get('nantarena_forum.thread_manager')->getThreadPath($post->getThread()));
+        return $this->redirect($this->get('nantarena_forum.thread_manager')->getThreadPath($thread));
     }
 }
