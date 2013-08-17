@@ -1,6 +1,6 @@
 <?php
 
-namespace Nantarena\ForumBundle\Listener;
+namespace Nantarena\ForumBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
