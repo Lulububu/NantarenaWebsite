@@ -6,15 +6,17 @@ use Nantarena\ForumBundle\Entity\Forum;
 use Nantarena\SiteBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ForumController extends BaseController
 {
     /**
-     * @Route("/{categoryId}-{categorySlug}/{id}-{slug}/{page}", requirements={"page" = "\d+"})
+     * @Route("/{category_id}-{category_slug}/{id}-{slug}/{page}", requirements={"page" = "\d+"})
+     * @ParamConverter("forum", class="NantarenaForumBundle:Forum", options={"repository_method" = "findWithJoins"})
      * @Template()
      */
-    public function indexAction($categoryId, $categorySlug, Forum $forum, $page = 1)
+    public function indexAction(Forum $forum, $page = 1)
     {
         if (!$this->getSecurityContext()->isGranted('VIEW', $forum)) {
             throw new AccessDeniedException();

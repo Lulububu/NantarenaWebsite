@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 
 class ForumRepository extends EntityRepository
 {
-    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null)
+    public function findWithJoins($id)
     {
         $qb = $this->createQueryBuilder('f');
 

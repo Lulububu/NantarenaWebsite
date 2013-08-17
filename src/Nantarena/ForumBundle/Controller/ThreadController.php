@@ -5,21 +5,22 @@ namespace Nantarena\ForumBundle\Controller;
 use Nantarena\ForumBundle\Entity\Forum;
 use Nantarena\ForumBundle\Entity\Post;
 use Nantarena\ForumBundle\Entity\Thread;
-use Nantarena\ForumBundle\Form\Type\PostType;
 use Nantarena\ForumBundle\Form\Type\ThreadType;
 use Nantarena\SiteBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ThreadController extends BaseController
 {
     /**
-     * @Route("/{categoryId}-{categorySlug}/{id}-{slug}/create")
+     * @Route("/{category_id}-{category_slug}/{id}-{slug}/create")
+     * @ParamConverter("forum", class="NantarenaForumBundle:Forum", options={"repository_method" = "findWithJoins"})
      * @Template()
      */
-    public function createAction(Request $request, $categoryId, $categorySlug, Forum $forum)
+    public function createAction(Request $request, Forum $forum)
     {
         // On ne peut créer un Thread que dans un forum dont on a accès
         if (!$this->getSecurityContext()->isGranted('VIEW', $forum)) {
@@ -79,10 +80,11 @@ class ThreadController extends BaseController
     }
 
     /**
-     * @Route("/{categoryId}-{categorySlug}/{forumId}-{forumSlug}/{id}-{slug}/{page}", requirements={"page" = "\d+"})
+     * @Route("/{category_id}-{category_slug}/{forum_id}-{forum_slug}/{id}-{slug}/{page}", requirements={"page" = "\d+"})
+     * @ParamConverter("thread", class="NantarenaForumBundle:Thread", options={"repository_method" = "findWithJoins"})
      * @Template()
      */
-    public function showAction($categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread, $page = 1)
+    public function showAction(Thread $thread, $page = 1)
     {
         // Pour un thread on check le forum du thread en accès VIEW (et pas directement le thread en lui même)
         if (!$this->getSecurityContext()->isGranted('VIEW', $thread->getForum())) {

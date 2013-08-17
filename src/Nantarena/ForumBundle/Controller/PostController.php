@@ -9,16 +9,18 @@ use Nantarena\ForumBundle\Form\Type\ThreadType;
 use Nantarena\SiteBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends BaseController
 {
     /**
-     * @Route("/{categoryId}-{categorySlug}/{forumId}-{forumSlug}/{id}-{slug}/reply")
+     * @Route("/{category_id}-{category_slug}/{forum_id}-{forum_slug}/{id}-{slug}/reply")
+     * @ParamConverter("thread", class="NantarenaForumBundle:Thread", options={"repository_method" = "findWithJoins"})
      * @Template()
      */
-    public function replyAction(Request $request, $categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread)
+    public function replyAction(Request $request, Thread $thread)
     {
         // Accessible uniquement aux membres qui ont VIEW
         if (!$this->getSecurityContext()->isGranted('VIEW', $thread->getForum())) {
@@ -83,6 +85,7 @@ class PostController extends BaseController
 
     /**
      * @Route("/post/edit/{id}")
+     * @ParamConverter("post", class="NantarenaForumBundle:Post", options={"repository_method" = "findWithJoins"})
      * @Template()
      */
     public function editAction(Request $request, Post $post)
@@ -156,6 +159,7 @@ class PostController extends BaseController
 
     /**
      * @Route("/post/delete/{id}")
+     * @ParamConverter("post", class="NantarenaForumBundle:Post", options={"repository_method" = "findWithJoins"})
      */
     public function deleteAction(Post $post)
     {

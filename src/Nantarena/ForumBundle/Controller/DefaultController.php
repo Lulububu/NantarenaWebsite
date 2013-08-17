@@ -14,7 +14,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $categories = $this->getDoctrine()->getRepository('NantarenaForumBundle:Category')->findAllWithForum();
+        $categories = $this->getDoctrine()->getRepository('NantarenaForumBundle:Category')->findAllWithForums();
 
         $this->get('nantarena_site.breadcrumb')->push(
             $this->get('translator')->trans('forum.index.title'),

@@ -20,8 +20,8 @@ class ForumManager
     public function getForumPath(Forum $forum)
     {
         return $this->router->generate('nantarena_forum_forum_index', array(
-            'categoryId' => $forum->getCategory()->getId(),
-            'categorySlug' => $forum->getCategory()->getSlug(),
+            'category_id' => $forum->getCategory()->getId(),
+            'category_slug' => $forum->getCategory()->getSlug(),
             'id' => $forum->getId(),
             'slug' => $forum->getSlug(),
         ));

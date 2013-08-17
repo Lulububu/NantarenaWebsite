@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 
 class CategoryRepository extends EntityRepository
 {
-    public function findAllWithForum()
+    public function findAllWithForums()
     {
         $qb = $this->createQueryBuilder('c');
 
@@ -20,7 +20,7 @@ class CategoryRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null)
+    public function findWithJoins($id)
     {
         $qb = $this->createQueryBuilder('c');
 

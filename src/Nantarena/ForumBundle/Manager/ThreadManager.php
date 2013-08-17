@@ -21,10 +21,10 @@ class ThreadManager
     public function getThreadPath(Thread $thread, $page = 1)
     {
         return $this->router->generate('nantarena_forum_thread_show', array(
-            'categoryId' => $thread->getForum()->getCategory()->getId(),
-            'categorySlug' => $thread->getForum()->getCategory()->getSlug(),
-            'forumId' => $thread->getForum()->getId(),
-            'forumSlug' => $thread->getForum()->getSlug(),
+            'category_id' => $thread->getForum()->getCategory()->getId(),
+            'category_slug' => $thread->getForum()->getCategory()->getSlug(),
+            'forum_id' => $thread->getForum()->getId(),
+            'forum_slug' => $thread->getForum()->getSlug(),
             'id' => $thread->getId(),
             'slug' => $thread->getSlug(),
             'page' => $page,
@@ -34,10 +34,10 @@ class ThreadManager
     public function getReplyPath(Thread $thread)
     {
         return $this->router->generate('nantarena_forum_post_reply', array(
-            'categoryId' => $thread->getForum()->getCategory()->getId(),
-            'categorySlug' => $thread->getForum()->getCategory()->getSlug(),
-            'forumId' => $thread->getForum()->getId(),
-            'forumSlug' => $thread->getForum()->getSlug(),
+            'category_id' => $thread->getForum()->getCategory()->getId(),
+            'category_slug' => $thread->getForum()->getCategory()->getSlug(),
+            'forum_id' => $thread->getForum()->getId(),
+            'forum_slug' => $thread->getForum()->getSlug(),
             'id' => $thread->getId(),
             'slug' => $thread->getSlug(),
         ));
@@ -46,8 +46,8 @@ class ThreadManager
     public function getCreatePath(Forum $forum)
     {
         return $this->router->generate('nantarena_forum_thread_create', array(
-            'categoryId' => $forum->getCategory()->getId(),
-            'categorySlug' => $forum->getCategory()->getSlug(),
+            'category_id' => $forum->getCategory()->getId(),
+            'category_slug' => $forum->getCategory()->getSlug(),
             'id' => $forum->getId(),
             'slug' => $forum->getSlug(),
         ));
