@@ -29,6 +29,7 @@ security:
 
             - ROLE_EVENT_ADMIN_GAMES
             - ROLE_EVENT_ADMIN_EVENTS
+            - ROLE_EVENT_ADMIN_ENTRIES
             - ROLE_EVENT_TOURNAMENTS_MANAGER
 
     providers:

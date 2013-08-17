@@ -25,6 +25,11 @@ class AdminController extends Controller implements DashboardInterface
                     'url' => $this->generateUrl('nantarena_event_admin_events'),
                     'role' => 'ROLE_EVENT_ADMIN_EVENTS'
                 ),
+
+                $translator->trans('event.admin.dashboard.entries_management') => array(
+                    'url' => $this->generateUrl('nantarena_event_admin_entries'),
+                    'role' => 'ROLE_EVENT_ADMIN_ENTRIES'
+                ),
             )
         );
     }

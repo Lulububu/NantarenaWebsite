@@ -53,7 +53,9 @@ class EventRepository extends EntityRepository
     public function findNext()
     {
         return $this->createQueryBuilder('e')
-            ->orderBy('e.startDate', 'desc')
+            ->where('e.endDate > :now')
+            ->orderBy('e.startDate', 'asc')
+            ->setParameter('now', new \DateTime())
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();

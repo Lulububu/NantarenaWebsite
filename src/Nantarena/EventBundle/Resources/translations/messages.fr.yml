@@ -1,9 +1,18 @@
 event:
     admin:
         dashboard:
+            entries_management: 'Gestion des inscriptions'
             events_management: 'Gestion des évènements'
             games_management: 'Gestion des jeux'
             title: 'Gestion des évènements'
+
+        entries:
+            create:
+                title: 'Ajouter une nouvelle inscription'
+
+            list:
+                empty: 'Aucune inscription ne correspond aux critères'
+                title: 'Liste des inscriptions'
 
         events:
             create:

@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Entry
  *
  * @ORM\Table(name="event_entry")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Nantarena\EventBundle\Repository\EntryRepository")
  */
 class Entry
 {
