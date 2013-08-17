@@ -1,6 +1,6 @@
 services:
     nantarena_site.db_prefix:
-        class: Nantarena\SiteBundle\Services\TablePrefixSubscriber
+        class: Nantarena\SiteBundle\Listener\TablePrefixSubscriber
         arguments: [%nantarena_site.db_prefix%]
         tags:
             - { name: doctrine.event_subscriber }

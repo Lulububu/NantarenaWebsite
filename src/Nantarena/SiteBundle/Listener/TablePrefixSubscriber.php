@@ -1,6 +1,6 @@
 <?php
 
-namespace Nantarena\SiteBundle\Services;
+namespace Nantarena\SiteBundle\Listener;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\Common\EventSubscriber;
