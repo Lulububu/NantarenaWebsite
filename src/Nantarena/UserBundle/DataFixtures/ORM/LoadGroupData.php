@@ -23,7 +23,7 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
         $usersGroup->addRole('ROLE_USER');
         $usersGroup->setDefault(true);
 
-        $moderatorsGroup = new Group('Modérateur');
+        $moderatorsGroup = new Group('Modérateurs');
         $moderatorsGroup->addRole('ROLE_FORUM_MODERATE');
 
         $this->addReference('group-1', $adminsGroup);
