@@ -23,13 +23,13 @@ class Category
     protected $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=100, unique=true)
      * @Assert\NotBlank()
      */
     protected $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=20)
      * @Assert\NotBlank()
      */
     protected $tag;
