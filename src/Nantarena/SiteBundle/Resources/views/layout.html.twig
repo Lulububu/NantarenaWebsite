@@ -74,11 +74,11 @@
 
                     <li class="right"><a href="{{ path('fos_user_registration_register') }}">{{ 'site.menu.signup'|trans }}</a></li>
                 {% else %}
-
                     <li class="right profile">
-                        <span>
+                        <a>
+                            <i class="icon-user icon-white"></i>&nbsp;&nbsp;
                             {{ app.user.username }}
-                        </span>
+                        </a>
                         {#{% if  app.user.getUnreadNotifs() > 0 %}#}
                             {#<span class="badge"><a href="#">{{ app.user.getUnreadNotifs() }}</a></span>#}
                         {#{% endif %}#}

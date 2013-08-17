@@ -285,7 +285,6 @@
             display: none;
             position: absolute;
             right: 0;
-            margin-top: 9px;
             min-width: 130px;
             background: url('../images/boxborder.png') repeat-x #1B1B1B;
             border-bottom: 1px solid #3A3A3A;
@@ -298,21 +297,7 @@
             display: block;
         }
 
-        nav#menu li.profile {
-            color: #fff ;
-            font-family: 'Lato';
-            font-size: 13px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            height: 29px;
-            margin-top: 2px;
-            padding-top: 7px;
-            padding-left: 8px;
-            padding-right: 8px;
-        }
-
-        nav#menu li.profile > span {
+        nav#menu li.profile > a {
             cursor: pointer;
         }
 
