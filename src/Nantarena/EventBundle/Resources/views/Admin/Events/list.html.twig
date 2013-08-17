@@ -31,8 +31,10 @@
         {% for event in events if date(event.endDate) > date() %}
             {% if date(event.startRegistrationDate) <= date() and date(event.startDate) >= date() %}
                 <tr class="warning">
-            {% else %}
+            {% elseif date(event.startDate) < date() and date(event.endDate) > date() %}
                 <tr class="error">
+            {% else %}
+                <tr>
             {% endif %}
 
                 <td>{{ event.id }}</td>
