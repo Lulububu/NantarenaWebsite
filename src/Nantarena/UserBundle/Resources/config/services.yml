@@ -15,12 +15,17 @@ services:
         class: Nantarena\UserBundle\EventListener\ProfileListener
         arguments: [@router]
         tags:
-            - { name: kernel.event_subscriber}
+            - { name: kernel.event_subscriber }
+
+    nantarena_user.group_subscriber:
+        class: Nantarena\UserBundle\EventListener\GroupSubscriber
+        tags:
+            - { name: doctrine.event_subscriber }
 
     nantarena_user.admin_user:
         class: Nantarena\UserBundle\Controller\AdminController
         tags:
-            - { name: nantarena_admin.dashboard}
+            - { name: nantarena_admin.dashboard }
 
     nantarena_user.groups.group_type:
         class: Nantarena\UserBundle\Form\Type\GroupType

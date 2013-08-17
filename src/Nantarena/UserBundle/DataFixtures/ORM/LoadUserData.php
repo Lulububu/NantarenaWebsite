@@ -16,8 +16,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             ->setUsername('admin')
             ->setEmail('admin@nantarena.net')
             ->setPlainPassword('admin')
-            ->addGroup($this->getReference('group-1'))
-            ->addGroup($this->getReference('group-3'))
+            ->addGroup($this->getReference('group-admins'))
+            ->addGroup($this->getReference('group-users'))
             ->setEnabled(true);
         $manager->persist($user);
 
@@ -28,10 +28,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             ->setUsername('staff')
             ->setEmail('staff@nantarena.net')
             ->setPlainPassword('staff')
-            ->addGroup($this->getReference('group-2'))
-            ->addGroup($this->getReference('group-3'))
+            ->addGroup($this->getReference('group-staffs'))
+            ->addGroup($this->getReference('group-users'))
             // cet utilisateur est modérateur sur le forum
-            ->addGroup($this->getReference('group-forum-moderate'))
+            ->addGroup($this->getReference('group-moderators'))
             ->setEnabled(true);
         $manager->persist($user);
 
@@ -42,7 +42,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             ->setUsername('user')
             ->setEmail('user@nantarena.net')
             ->setPlainPassword('user')
-            ->addGroup($this->getReference('group-3'))
+            ->addGroup($this->getReference('group-users'))
             ->setEnabled(true);
         $manager->persist($user);
 
@@ -55,7 +55,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             ->setUsername('demo')
             ->setEmail('demo@nantarena.net')
             ->setPlainPassword('demo')
-            ->addGroup($this->getReference('group-3'))
+            ->addGroup($this->getReference('group-users'))
             ->setEnabled(true);
         $manager->persist($user);
 
