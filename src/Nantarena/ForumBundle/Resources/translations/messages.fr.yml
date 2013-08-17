@@ -16,6 +16,9 @@ forum:
 
     form:
         post:
+            edit:
+                submit: 'Editer réponse'
+
             reply:
                 submit: 'Envoyer la réponse'
 
@@ -35,10 +38,20 @@ forum:
         threads: Topics
         title: 'Index du forum'
 
+    post:
+        edit:
+            flash_success: 'Réponse éditée avec succès'
+            title: 'Editer réponse au sujet « %thread% »'
+        delete:
+            flash_success: 'Message supprimé avec succès'
+
     thread:
         control:
             answer: Répondre
             create: 'Nouveau sujet'
+            delete: Supprimer
+            lock: Verrouiller
+            unlock: Déverrouiller
 
         create:
             flash_success: 'Topic créé avec succès'
@@ -49,4 +62,12 @@ forum:
             title: 'Réponse au sujet « %thread% »'
 
         show:
+            edited: 'Dernière modification le %date%'
             title: 'Topic « %thread% »'
+
+        delete:
+            flash_success: 'Topic supprimé avec succès (visible dans le panneau admin)'
+
+        lock:
+            lock_success: 'Topic verrouillé avec succès'
+            unlock_success: 'Topic ouvert avec succès'

@@ -3,6 +3,7 @@
 namespace Nantarena\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Nantarena\UserBundle\Entity\User;
 
 /**
@@ -10,6 +11,7 @@ use Nantarena\UserBundle\Entity\User;
  *
  * @ORM\Table(name="forum_post")
  * @ORM\Entity(repositoryClass="Nantarena\ForumBundle\Repository\PostRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Post
 {
@@ -47,6 +49,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="updateDate", type="datetime")
+     * @Gedmo\Timestampable(on="change", field={"content"})
      */
     private $updateDate;
 
@@ -56,6 +59,13 @@ class Post
      * @ORM\Column(name="content", type="text")
      */
     private $content;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $deletedAt;
 
     public function __construct()
     {
@@ -76,7 +86,7 @@ class Post
     /**
      * Set user
      *
-     * @param string $user
+     * @param User $user
      * @return Post
      */
     public function setUser($user)
@@ -89,7 +99,7 @@ class Post
     /**
      * Get user
      *
-     * @return string 
+     * @return User
      */
     public function getUser()
     {
@@ -99,7 +109,7 @@ class Post
     /**
      * Set thread
      *
-     * @param string $thread
+     * @param Thread $thread
      * @return Post
      */
     public function setThread($thread)
@@ -112,7 +122,7 @@ class Post
     /**
      * Get thread
      *
-     * @return string 
+     * @return Thread
      */
     public function getThread()
     {
@@ -186,5 +196,24 @@ class Post
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * @param \DateTime $deletedAt
+     * @return Post
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }

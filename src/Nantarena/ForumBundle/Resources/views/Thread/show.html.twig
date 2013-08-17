@@ -7,17 +7,14 @@
         {{ thread.name }}
     </h2>
 
-    {% include 'NantarenaForumBundle:Control:_thread.html.twig' %}
-
-    {{ knp_pagination_render(pagination) }}
-
-    <table class="table table-striped">
+    <table class="table">
         {% for post in pagination %}
-            <tr id="post-{{ post.id }}">
+            <tr id="post-{{ post.id }}" class="forum-table-header">
                 <th>{{ post.user.username }}</th>
                 <th class="text-right">
+                    {% include 'NantarenaForumBundle:Control:_post.html.twig' %}
                     <div class="text-right">
-                        {{ post.creationDate|date('d/m/Y H:i') }}
+                        {{ post.creationDate|date('d/m/Y à H:i') }}
                     </div>
                 </th>
             </tr>
@@ -25,8 +22,14 @@
                 <td>
                     User info
                 </td>
-                <td>
+                <td class="forum-post-content">
                     {{ post.content|e|nl2br }}
+
+                    {% if post.creationDate != post.updateDate %}
+                        <p class="post-edited">
+                            {{ 'forum.thread.show.edited'|trans({'%date%': post.updateDate|date('d/m/Y à H:i')}) }}
+                        </p>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

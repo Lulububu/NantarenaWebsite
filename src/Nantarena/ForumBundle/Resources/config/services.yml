@@ -1,6 +1,13 @@
 parameters:
 
 services:
+    nantarena_forum.acl_subscriber:
+        class: Nantarena\ForumBundle\Listener\AclSubscriber
+        tags:
+            - { name: doctrine.event_subscriber }
+        calls:
+            - [ setContainer, [@service_container] ]
+
     # Managers
     nantarena_forum.category_manager:
         class: Nantarena\ForumBundle\Manager\CategoryManager
@@ -13,6 +20,14 @@ services:
     nantarena_forum.thread_manager:
         class: Nantarena\ForumBundle\Manager\ThreadManager
         arguments: [@router]
+
+    nantarena_forum.post_manager:
+        class: Nantarena\ForumBundle\Manager\PostManager
+        arguments: [@router]
+
+    nantarena_forum.acl_manager:
+        class: Nantarena\ForumBundle\Security\Acl\AclManager
+        arguments: [@security.acl.provider, @security.context]
 
     # Extensions twig
     nantarena_forum.twig.category_extension:
@@ -31,6 +46,13 @@ services:
 
     nantarena_forum.twig.thread_extension:
         class: Nantarena\ForumBundle\Twig\ThreadExtension
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [ setContainer, [@service_container] ]
+
+    nantarena_forum.twig.post_extension:
+        class: Nantarena\ForumBundle\Twig\PostExtension
         tags:
             - { name: twig.extension }
         calls:

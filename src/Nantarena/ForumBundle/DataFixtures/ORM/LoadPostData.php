@@ -42,6 +42,12 @@ class LoadPostData extends AbstractFixture implements DependentFixtureInterface
             $manager->persist($post);
         }
 
+        $post = new Post();
+        $post->setUser($this->getReference('user-2'));
+        $post->setContent('Ceci est un message pour les ROLE_USERs uniquement');
+        $post->setThread($this->getReference('thread-3'));
+        $manager->persist($post);
+
         $manager->flush();
     }
 

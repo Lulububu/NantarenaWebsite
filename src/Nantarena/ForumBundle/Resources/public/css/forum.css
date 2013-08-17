@@ -1,0 +1,22 @@
+p.post-edited {
+    font-size: x-small;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+tr.forum-table-header {
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+tr.forum-table-header td, tr.forum-table-header th {
+    background-color: #f9f9f9;
+}
+
+td.forum-post-content {
+    height: 100px;
+}
+
+div.forum-control {
+    /*padding: 20px 0;*/
+}

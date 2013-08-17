@@ -1,3 +1,15 @@
 <div class="btn-group pull-right">
-    <a href="{{ thread_reply_path(thread) }}" class="btn">{{ 'forum.thread.control.answer'|trans }} <i class="icon-play"></i></a>
+    {% if is_granted('ROLE_FORUM_MODERATE') or thread.isOpen() %}
+        <a href="{{ thread_reply_path(thread) }}" class="btn">{{ 'forum.thread.control.answer'|trans }} <i class="icon-play"></i></a>
+    {% endif %}
+    {% if is_granted('DELETE', thread) %}
+        <a href="{{ thread_delete_path(thread) }}" class="btn">{{ 'forum.thread.control.delete'|trans }} <i class="icon-trash"></i></a>
+    {% endif %}
+    {% if is_granted('OPERATOR', thread) %}
+        {% if thread.isLocked() %}
+            <a href="{{ thread_lock_path(thread) }}" class="btn">{{ 'forum.thread.control.unlock'|trans }} <i class="icon-lock"></i></a>
+        {% else %}
+            <a href="{{ thread_lock_path(thread) }}" class="btn">{{ 'forum.thread.control.lock'|trans }} <i class="icon-lock"></i></a>
+        {% endif %}
+    {% endif %}
 </div>

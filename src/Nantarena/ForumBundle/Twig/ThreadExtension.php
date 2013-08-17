@@ -20,6 +20,8 @@ class ThreadExtension extends \Twig_Extension implements ContainerAwareInterface
             new \Twig_SimpleFunction('thread_path', array($this, 'getThreadPath')),
             new \Twig_SimpleFunction('thread_reply_path', array($this, 'getThreadReplyPath')),
             new \Twig_SimpleFunction('thread_create_path', array($this, 'getThreadCreatePath')),
+            new \Twig_SimpleFunction('thread_delete_path', array($this, 'getThreadDeletePath')),
+            new \Twig_SimpleFunction('thread_lock_path', array($this, 'getThreadLockPath')),
         );
     }
 
@@ -30,12 +32,22 @@ class ThreadExtension extends \Twig_Extension implements ContainerAwareInterface
 
     public function getThreadReplyPath(Thread $thread)
     {
-        return $this->container->get('nantarena_forum.thread_manager')->getThreadReplyPath($thread);
+        return $this->container->get('nantarena_forum.thread_manager')->getReplyPath($thread);
     }
 
     public function getThreadCreatePath(Forum $forum)
     {
-        return $this->container->get('nantarena_forum.thread_manager')->getThreadCreatePath($forum);
+        return $this->container->get('nantarena_forum.thread_manager')->getCreatePath($forum);
+    }
+
+    public function getThreadLockPath(Thread $thread)
+    {
+        return $this->container->get('nantarena_forum.thread_manager')->getLockPath($thread);
+    }
+
+    public function getThreadDeletePath(Thread $thread)
+    {
+        return $this->container->get('nantarena_forum.thread_manager')->getDeletePath($thread);
     }
 
     /**

@@ -1,0 +1,17 @@
+{% extends 'NantarenaForumBundle::layout.html.twig' %}
+
+{% block title 'forum.post.edit.title'|trans({'%thread%': thread.name}) %}
+
+{% block forum_content %}
+    <h2>
+        {{ 'forum.post.edit.title'|trans({'%thread%': thread.name}) }}
+    </h2>
+
+    {% if is_thread %}
+        {% embed 'NantarenaForumBundle:Form:_thread.html.twig' with {'submit': 'forum.form.post.edit.submit'|trans} %}
+        {% endembed %}
+    {% else %}
+        {% embed 'NantarenaForumBundle:Form:_post.html.twig' with {'submit': 'forum.form.post.edit.submit'|trans} %}
+        {% endembed %}
+    {% endif %}
+{% endblock %}

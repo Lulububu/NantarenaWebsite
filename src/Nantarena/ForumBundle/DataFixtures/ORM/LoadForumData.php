@@ -6,51 +6,80 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nantarena\ForumBundle\Entity\Forum;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadForumData extends AbstractFixture implements DependentFixtureInterface
+class LoadForumData extends AbstractFixture implements DependentFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var Container
+     */
+    private $container;
+
     public function load(ObjectManager $manager)
     {
         // catégorie Club
 
-        $forum = new Forum();
-        $forum->setName('Discussions générales');
-        $forum->setPosition(1);
-        $forum->setCategory($this->getReference('category-club'));
-        $this->addReference('forum-club-general', $forum);
-        $manager->persist($forum);
+        $forum1 = new Forum();
+        $forum1->setName('Discussions générales');
+        $forum1->setPosition(1);
+        $forum1->setCategory($this->getReference('category-club'));
+        $this->addReference('forum-club-general', $forum1);
+        $manager->persist($forum1);
 
-        $forum = new Forum();
-        $forum->setName('Comptes rendus réunions');
-        $forum->setPosition(2);
-        $forum->setCategory($this->getReference('category-club'));
-        $this->addReference('forum-club-compte', $forum);
-        $manager->persist($forum);
+        $forum2 = new Forum();
+        $forum2->setName('Comptes rendus réunions');
+        $forum2->setPosition(2);
+        $forum2->setCategory($this->getReference('category-club'));
+        $this->addReference('forum-club-compte', $forum2);
+        $manager->persist($forum2);
 
         // categorie Nantarena
 
-        $forum = new Forum();
-        $forum->setName('Discussions générales');
-        $forum->setPosition(1);
-        $forum->setCategory($this->getReference('category-nantarena'));
-        $this->addReference('forum-nantarena-general', $forum);
-        $manager->persist($forum);
+        $forum4 = new Forum();
+        $forum4->setName('Discussions générales');
+        $forum4->setPosition(1);
+        $forum4->setCategory($this->getReference('category-nantarena'));
+        $this->addReference('forum-nantarena-general', $forum4);
+        $manager->persist($forum4);
 
-        $forum = new Forum();
-        $forum->setName('Questions et réponses');
-        $forum->setPosition(2);
-        $forum->setCategory($this->getReference('category-nantarena'));
-        $this->addReference('forum-nantarena-faq', $forum);
-        $manager->persist($forum);
+        $forum5 = new Forum();
+        $forum5->setName('Questions et réponses');
+        $forum5->setPosition(2);
+        $forum5->setCategory($this->getReference('category-nantarena'));
+        $this->addReference('forum-nantarena-faq', $forum5);
+        $manager->persist($forum5);
 
-        $forum = new Forum();
-        $forum->setName('Remarques et suggestions');
-        $forum->setPosition(3);
-        $forum->setCategory($this->getReference('category-nantarena'));
-        $this->addReference('forum-nantarena-remarques', $forum);
-        $manager->persist($forum);
+        $forum3 = new Forum();
+        $forum3->setName('Remarques et suggestions');
+        $forum3->setPosition(3);
+        $forum3->setCategory($this->getReference('category-nantarena'));
+        $this->addReference('forum-nantarena-remarques', $forum3);
+        $manager->persist($forum3);
 
         $manager->flush();
+
+        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum1, array(
+            'ROLE_STAFF_FORUM'
+        ));
+
+        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum2, array(
+            'ROLE_STAFF_FORUM'
+        ));
+
+        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum4, array(
+            'IS_AUTHENTICATED_ANONYMOUSLY'
+        ));
+
+        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum5, array(
+            'IS_AUTHENTICATED_ANONYMOUSLY'
+        ));
+
+        // le forum Remarques et suggestions est uniquement visible des utilisateurs connectés
+        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum3, array(
+            'ROLE_USER'
+        ));
     }
 
     /**
@@ -59,8 +88,22 @@ class LoadForumData extends AbstractFixture implements DependentFixtureInterface
      *
      * @return array
      */
-    function getDependencies()
+    public function getDependencies()
     {
         return array('Nantarena\ForumBundle\DataFixtures\ORM\LoadCategoryData');
     }
+
+    /**
+     * Sets the Container.
+     *
+     * @param ContainerInterface|null $container A ContainerInterface instance or null
+     *
+     * @api
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+
 }

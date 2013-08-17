@@ -7,12 +7,13 @@ use Nantarena\ForumBundle\Entity\Post;
 use Nantarena\ForumBundle\Entity\Thread;
 use Nantarena\ForumBundle\Form\Type\PostType;
 use Nantarena\ForumBundle\Form\Type\ThreadType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Nantarena\SiteBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ThreadController extends Controller
+class ThreadController extends BaseController
 {
     /**
      * @Route("/{categoryId}-{categorySlug}/{id}-{slug}/create")
@@ -20,6 +21,11 @@ class ThreadController extends Controller
      */
     public function createAction(Request $request, $categoryId, $categorySlug, Forum $forum)
     {
+        // On ne peut créer un Thread que dans un forum dont on a accès
+        if (!$this->getSecurityContext()->isGranted('VIEW', $forum)) {
+            throw new AccessDeniedException();
+        }
+
         $thread = new Thread();
         $form = $this->createForm(new ThreadType(), $thread)->handleRequest($request);
 
@@ -31,6 +37,7 @@ class ThreadController extends Controller
             $post
                 ->setUser($user)
                 ->setThread($thread)
+                // non mappé dans le form donc on le récupère manuellement
                 ->setContent($form->get('content')->getData());
 
             $thread
@@ -42,14 +49,14 @@ class ThreadController extends Controller
             $em->persist($post);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.thread.create.flash_success'));
+            $this->get('session')->getFlashBag()->add('success', $this->trans('forum.thread.create.flash_success'));
 
             return $this->redirect($this->get('nantarena_forum.thread_manager')->getThreadPath($thread, $thread->getLastPage()));
         }
 
         $this->get('nantarena_site.breadcrumb')
             ->push(
-                $this->get('translator')->trans('forum.index.title'),
+                $this->trans('forum.index.title'),
                 $this->generateUrl('nantarena_forum_default_index')
             )
             ->push(
@@ -61,69 +68,12 @@ class ThreadController extends Controller
                 $this->get('nantarena_forum.forum_manager')->getForumPath($forum)
             )
             ->push(
-                $this->get('translator')->trans('forum.thread.create.title'),
-                $this->get('nantarena_forum.thread_manager')->getThreadCreatePath($forum)
+                $this->trans('forum.thread.create.title'),
+                $this->get('nantarena_forum.thread_manager')->getCreatePath($forum)
             );
 
         return array(
             'forum' => $forum,
-            'form' => $form->createView(),
-        );
-    }
-
-    /**
-     * @Route("/{categoryId}-{categorySlug}/{forumId}-{forumSlug}/{id}-{slug}/reply")
-     * @Template()
-     */
-    public function replyAction(Request $request, $categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread)
-    {
-        $post = new Post();
-        $form = $this->createForm(new PostType(), $post)->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-
-            // mise à jour de l'activité du thread
-            $thread->updateActivity();
-
-            $post->setThread($thread);
-            $post->setUser($user);
-
-            $em->persist($post);
-            $em->flush();
-
-            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.thread.reply.flash_success'));
-
-            return $this->redirect($this->get('nantarena_forum.thread_manager')->getThreadPath($thread, $thread->getLastPage()));
-        }
-
-        $this->get('nantarena_site.breadcrumb')
-            ->push(
-                $this->get('translator')->trans('forum.index.title'),
-                $this->generateUrl('nantarena_forum_default_index')
-            )
-            ->push(
-                $thread->getForum()->getCategory()->getName(),
-                $this->get('nantarena_forum.category_manager')->getCategoryPath($thread->getForum()->getCategory())
-            )
-            ->push(
-                $thread->getForum()->getName(),
-                $this->get('nantarena_forum.forum_manager')->getForumPath($thread->getForum())
-            )
-            ->push(
-                $thread->getName(),
-                $this->get('nantarena_forum.thread_manager')->getThreadPath($thread)
-            )
-            ->push(
-                $this->get('translator')->trans('forum.thread.reply.title', array(
-                    '%thread%' => $thread->getName(),
-                )),
-                $this->get('nantarena_forum.thread_manager')->getThreadReplyPath($thread)
-            );
-
-        return array(
-            'thread' => $thread,
             'form' => $form->createView(),
         );
     }
@@ -134,9 +84,14 @@ class ThreadController extends Controller
      */
     public function showAction($categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread, $page = 1)
     {
+        // Pour un thread on check le forum du thread en accès VIEW (et pas directement le thread en lui même)
+        if (!$this->getSecurityContext()->isGranted('VIEW', $thread->getForum())) {
+            throw new AccessDeniedException();
+        }
+
         $this->get('nantarena_site.breadcrumb')
             ->push(
-                $this->get('translator')->trans('forum.index.title'),
+                $this->trans('forum.index.title'),
                 $this->generateUrl('nantarena_forum_default_index')
             )
             ->push(
@@ -153,12 +108,53 @@ class ThreadController extends Controller
             );
 
         $pagination = $this->get('knp_paginator')->paginate(
-            $thread->getPosts(), $page, 20
+            $thread->getPosts(), $page, Thread::POSTS_PER_PAGE
         );
 
         return array(
             'thread' => $thread,
             'pagination' => $pagination,
         );
+    }
+
+    /**
+     * @Route("/{categoryId}-{categorySlug}/{forumId}-{forumSlug}/{id}-{slug}/lock")
+     */
+    public function lockAction($categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread)
+    {
+        if (!$this->getSecurityContext()->isGranted('OPERATOR', $thread)) {
+            throw new AccessDeniedException();
+        }
+
+        if ($thread->isLocked()) {
+            $thread->open();
+            $this->addFlash('success', 'forum.thread.lock.unlock_success');
+        } else {
+            $thread->close();
+            $this->addFlash('success', 'forum.thread.lock.lock_success');
+        }
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirect($this->get('nantarena_forum.thread_manager')->getThreadPath($thread));
+    }
+
+    /**
+     * @Route("/{categoryId}-{categorySlug}/{forumId}-{forumSlug}/{id}-{slug}/delete")
+     */
+    public function deleteAction($categoryId, $categorySlug, $forumId, $forumSlug, Thread $thread)
+    {
+        if (!$this->getSecurityContext()->isGranted('DELETE', $thread)) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($thread);
+        $em->flush();
+
+        $this->addFlash('success', 'forum.thread.delete.flash_success');
+
+        return $this->redirect($this->get('nantarena_forum.forum_manager')->getForumPath($thread->getForum()));
     }
 }

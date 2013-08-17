@@ -1,0 +1,8 @@
+<div class="btn-group pull-left">
+    {% if is_granted('EDIT', post) %}
+        <a href="{{ post_edit_path(post) }}" class="btn btn-mini"><i class="icon-pencil"></i></a>
+    {% endif %}
+    {% if is_granted('DELETE', post) %}
+        <a href="{{ post_delete_path(post) }}" class="btn btn-mini"><i class="icon-trash"></i></a>
+    {% endif %}
+</div>

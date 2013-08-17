@@ -31,9 +31,9 @@ class ThreadManager
         ));
     }
 
-    public function getThreadReplyPath(Thread $thread)
+    public function getReplyPath(Thread $thread)
     {
-        return $this->router->generate('nantarena_forum_thread_reply', array(
+        return $this->router->generate('nantarena_forum_post_reply', array(
             'categoryId' => $thread->getForum()->getCategory()->getId(),
             'categorySlug' => $thread->getForum()->getCategory()->getSlug(),
             'forumId' => $thread->getForum()->getId(),
@@ -43,13 +43,37 @@ class ThreadManager
         ));
     }
 
-    public function getThreadCreatePath(Forum $forum)
+    public function getCreatePath(Forum $forum)
     {
         return $this->router->generate('nantarena_forum_thread_create', array(
             'categoryId' => $forum->getCategory()->getId(),
             'categorySlug' => $forum->getCategory()->getSlug(),
             'id' => $forum->getId(),
             'slug' => $forum->getSlug(),
+        ));
+    }
+
+    public function getLockPath(Thread $thread)
+    {
+        return $this->router->generate('nantarena_forum_thread_lock', array(
+            'categoryId' => $thread->getForum()->getCategory()->getId(),
+            'categorySlug' => $thread->getForum()->getCategory()->getSlug(),
+            'forumId' => $thread->getForum()->getId(),
+            'forumSlug' => $thread->getForum()->getSlug(),
+            'id' => $thread->getId(),
+            'slug' => $thread->getSlug(),
+        ));
+    }
+
+    public function getDeletePath(Thread $thread)
+    {
+        return $this->router->generate('nantarena_forum_thread_delete', array(
+            'categoryId' => $thread->getForum()->getCategory()->getId(),
+            'categorySlug' => $thread->getForum()->getCategory()->getSlug(),
+            'forumId' => $thread->getForum()->getId(),
+            'forumSlug' => $thread->getForum()->getSlug(),
+            'id' => $thread->getId(),
+            'slug' => $thread->getSlug(),
         ));
     }
 }

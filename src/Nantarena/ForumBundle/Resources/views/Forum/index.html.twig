@@ -3,12 +3,8 @@
 {% block title 'forum.forum.title'|trans({'%forum%': forum.name}) %}
 
 {% block forum_content %}
-    {% include 'NantarenaForumBundle:Control:_forum.html.twig' %}
-
-    {{ knp_pagination_render(pagination) }}
-
     <table class="table">
-        <tr>
+        <tr class="forum-table-header">
             <th>{{ forum.name }}</th>
             <th>{{ 'forum.forum.posts'|trans }}</th>
             <th>{{ 'forum.forum.activity'|trans }}</th>

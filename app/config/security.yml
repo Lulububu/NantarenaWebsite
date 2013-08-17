@@ -1,12 +1,20 @@
 security:
+    acl:
+        connection: default
+
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_SUPER_ADMIN:
+            - ROLE_STAFF_FORUM
+
             - ROLE_ADMIN
 
             - ROLE_STATIC_ADMIN
+
+            - ROLE_FORUM_ADMIN
+            - ROLE_FORUM_MODERATE
 
             - ROLE_NEWS_ADMIN_CATEGORIES
             - ROLE_NEWS_ADMIN_NEWS

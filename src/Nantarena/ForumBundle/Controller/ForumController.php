@@ -3,11 +3,12 @@
 namespace Nantarena\ForumBundle\Controller;
 
 use Nantarena\ForumBundle\Entity\Forum;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Nantarena\SiteBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ForumController extends Controller
+class ForumController extends BaseController
 {
     /**
      * @Route("/{categoryId}-{categorySlug}/{id}-{slug}/{page}", requirements={"page" = "\d+"})
@@ -15,6 +16,10 @@ class ForumController extends Controller
      */
     public function indexAction($categoryId, $categorySlug, Forum $forum, $page = 1)
     {
+        if (!$this->getSecurityContext()->isGranted('VIEW', $forum)) {
+            throw new AccessDeniedException();
+        }
+
         $this->get('nantarena_site.breadcrumb')
             ->push(
                 $this->get('translator')->trans('forum.index.title'),

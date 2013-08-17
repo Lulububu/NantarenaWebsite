@@ -12,9 +12,12 @@ use Nantarena\UserBundle\Entity\User;
  *
  * @ORM\Table(name="forum_thread")
  * @ORM\Entity(repositoryClass="Nantarena\ForumBundle\Repository\ThreadRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Thread
 {
+    const POSTS_PER_PAGE = 15;
+
     /**
      * @var integer
      *
@@ -40,9 +43,9 @@ class Thread
     private $slug;
 
     /**
-     * @var string
+     * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Nantarena\ForumBundle\Entity\Post", mappedBy="thread")
+     * @ORM\OneToMany(targetEntity="Nantarena\ForumBundle\Entity\Post", mappedBy="thread", cascade={"remove"})
      * @ORM\OrderBy({"id" = "ASC"})
      */
     private $posts;
@@ -68,10 +71,25 @@ class Thread
      */
     private $forum;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $locked;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
     public function __construct()
     {
         $this->updateDate = new \DateTime();
         $this->posts = new ArrayCollection();
+        $this->locked = false;
     }
 
     /**
@@ -169,7 +187,7 @@ class Thread
     /**
      * Get creator
      *
-     * @return string 
+     * @return User
      */
     public function getUser()
     {
@@ -224,7 +242,14 @@ class Thread
 
     public function getLastPage()
     {
-        return ceil($this->posts->count() / 20);
+        return ceil($this->posts->count() / self::POSTS_PER_PAGE);
+    }
+
+    public function getPageForPost(Post $post)
+    {
+        return (false === $index = $this->posts->indexOf($post))
+            ? ceil($index / self::POSTS_PER_PAGE)
+            : 1;
     }
 
     /**
@@ -241,5 +266,44 @@ class Thread
     public function updateActivity()
     {
         $this->updateDate = new \DateTime();
+    }
+
+    public function isLocked()
+    {
+        return $this->locked;
+    }
+
+    public function isOpen()
+    {
+        return !$this->locked;
+    }
+
+    public function close()
+    {
+        $this->locked = true;
+    }
+
+    public function open()
+    {
+        $this->locked = false;
+    }
+
+    /**
+     * @param \DateTime $deletedAt
+     * @return Post
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }

@@ -4,12 +4,12 @@
 
 {% block forum_content %}
     <table class="table">
-        <tr>
+        <tr class="forum-table-header">
             <th>{{ category.name }}</th>
             <th>{{ 'forum.category.threads'|trans }}</th>
             <th>{{ 'forum.category.activity'|trans }}</th>
         </tr>
-        {% for forum in category.forums %}
+        {% for forum in category.forums if is_granted('VIEW', forum) %}
             {% set first = forum.threads.first() %}
             <tr>
                 <td><a href="{{ forum_path(forum) }}">{{ forum.name }}</a></td>
