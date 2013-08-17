@@ -35,3 +35,9 @@
     table th.mini, table td.mini {
         width: 80px;
     }
+
+    table input.filter,
+    table select.filter {
+        max-width: 150px;
+        width: auto;
+    }
