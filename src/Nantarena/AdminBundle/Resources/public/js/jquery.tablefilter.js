@@ -20,7 +20,7 @@
 
                     filter.append('<select class="filter filter-select" data-field="'+ index +'"></select>');
                     var uniq = Array();
-                    $("tr td:nth-child("+(index+1)+")", $table).each(function() {
+                    $("tbody:not(.empty) tr td:nth-child("+(index+1)+")", $table).each(function() {
                         if ($.inArray($(this).text(), uniq) == -1)
                             uniq.push($(this).text());
                     });
@@ -36,14 +36,14 @@
 
                 } else if ($(this).data('filter') && $(this).data('filter') == 'date') {
 
-                    filter.append("<input type='text' data-field='"+ index +"' class='filter input-small datepicker' />");
+                    filter.append("<input type='text' data-field='"+ index +"' class='filter datepicker' />");
                     filter.change(function() {
                         process($table);
                     });
 
                 } else if (!$(this).data('filter')) {
 
-                    filter.append("<input type='text' data-field='"+ index +"' class='filter input-medium' />");
+                    filter.append("<input type='text' data-field='"+ index +"' class='filter' />");
                     filter.keyup(function() {
                         process($table);
                     });
