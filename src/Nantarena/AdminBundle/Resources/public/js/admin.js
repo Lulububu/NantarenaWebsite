@@ -6,10 +6,6 @@ function admin_init() {
 $(function() {
     admin_init();
 
-    // transforme le curseur en pointer pour indiquer qu'une action est
-    // faisable sur la cellule de tête du tableau
-    $("[data-sort] th").css('cursor', 'pointer');
-
     $("table.filterable").bind('filterUpdate', function() {
         $('abbr, .ttip').tooltip();
         datetime_init();

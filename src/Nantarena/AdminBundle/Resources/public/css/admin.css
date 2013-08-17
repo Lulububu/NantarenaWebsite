@@ -41,3 +41,7 @@
         max-width: 150px;
         width: auto;
     }
+
+    table.sortable th.header {
+        cursor: pointer;
+    }
