@@ -14,9 +14,6 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $imageTransformer = new ImageTransformer();
-        $resourceTransformer = new ResourceTransformer();
-
         $builder
             ->add('name', 'text')
             ->add('startDate', 'datetime', array(
@@ -50,24 +47,18 @@ class EventType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
-            ->add(
-                $builder->create('cover', new ImageType(), array(
-                    'required' => false,
-                    'empty_message' => 'event.form.event.cover_empty'
-                ))->addViewTransformer($imageTransformer)
-            )
-            ->add(
-                $builder->create('rules', new ResourceType(), array(
-                    'required' => false,
-                    'empty_message' => 'event.form.event.rules_empty'
-                ))->addViewTransformer($resourceTransformer)
-            )
-            ->add(
-                $builder->create('autorization', new ResourceType(), array(
-                    'required' => false,
-                    'empty_message' => 'event.form.event.autorization_empty'
-                ))->addViewTransformer($resourceTransformer)
-            )
+            ->add('cover', new ImageType(), array(
+                'required' => false,
+                'empty_message' => 'event.form.event.cover_empty'
+            ))
+            ->add('rules', new ResourceType(), array(
+                'required' => false,
+                'empty_message' => 'event.form.event.rules_empty'
+            ))
+            ->add('autorization', new ResourceType(), array(
+                'required' => false,
+                'empty_message' => 'event.form.event.autorization_empty'
+            ))
             ->add('submit', 'submit')
         ;
     }

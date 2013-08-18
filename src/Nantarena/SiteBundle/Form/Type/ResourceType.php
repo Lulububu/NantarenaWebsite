@@ -4,6 +4,7 @@ namespace Nantarena\SiteBundle\Form\Type;
 
 use Nantarena\SiteBundle\Form\Field\ImgurField;
 use Nantarena\SiteBundle\Form\Field\UploadField;
+use Nantarena\SiteBundle\Form\Transformer\ResourceTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -14,10 +15,14 @@ class ResourceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $resourceTransformer = new ResourceTransformer();
+
         $builder
             ->add('name', 'hidden', array(
                 'required' => false
-            ));
+            ))
+            ->addViewTransformer($resourceTransformer)
+        ;
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($options) {
             $form = $event->getForm();

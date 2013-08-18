@@ -2,6 +2,7 @@
 
 namespace Nantarena\EventBundle\Controller\Admin;
 
+use Doctrine\ORM\ORMException;
 use Nantarena\EventBundle\Entity\Event;
 use Nantarena\EventBundle\Form\Type\EventType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -59,7 +60,7 @@ class EventsController extends Controller
                 $flashbag->add('success', $translator->trans('event.admin.events.create.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_event_admin_events'));
 
-            } catch (\Exception $e) {
+            } catch (ORMException $e) {
                 $flashbag->add('error', $translator->trans('event.admin.events.create.flash_error'));
             }
         }
@@ -134,7 +135,7 @@ class EventsController extends Controller
                 $flashbag->add('success', $translator->trans('event.admin.events.edit.flash_success'));
                 return $this->redirect($this->generateUrl('nantarena_event_admin_events'));
 
-            } catch (\Exception $e) {
+            } catch (ORMException $e) {
                 $flashbag->add('error', $translator->trans('event.admin.events.edit.flash_error'));
             }
         }
@@ -174,7 +175,7 @@ class EventsController extends Controller
                 } else {
                     throw new \Exception;
                 }
-            } catch (\Exception $e) {
+            } catch (ORMException $e) {
                 $flashbag->add('error', $translator->trans('event.admin.events.delete.flash_error'));
             }
 
