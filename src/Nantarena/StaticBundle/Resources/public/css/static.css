@@ -1,0 +1,9 @@
+div.static-content {
+    min-height: 400px;
+}
+
+footer.static-footer {
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
