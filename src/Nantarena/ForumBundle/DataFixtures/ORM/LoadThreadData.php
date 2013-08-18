@@ -34,7 +34,9 @@ class LoadThreadData extends AbstractFixture implements DependentFixtureInterfac
         $thread3 = new Thread();
         $thread3->setForum($this->getReference('forum-nantarena-remarques'));
         $thread3->setUser($this->getReference('user-2'));
-        $thread3->setName('Topic masqué des anonymes');
+        $thread3->setName('Topic masqué des anonymes et sticky');
+        // Ce Thread sera épinglé en haut de la page
+        $thread3->setSticky(true);
         $this->addReference('thread-3', $thread3);
         $manager->persist($thread3);
 

@@ -30,7 +30,7 @@
                 </td>
                 <td>
                     <div class="forum-post-content">
-                        {{ post.content|e }}
+                        {{ post.content|e|nl2br }}
                     </div>
 
                     {% if post.creationDate != post.updateDate %}
