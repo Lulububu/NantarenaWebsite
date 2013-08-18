@@ -11,15 +11,8 @@ use Symfony\Component\Form\FormInterface;
 
 class TypeaheadField extends AbstractType
 {
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        parent::buildView($view, $form, $options);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
-
         $transformer = new TypeaheadTransformer($options);
         $builder->addViewTransformer($transformer);
     }
