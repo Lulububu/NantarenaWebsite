@@ -1,9 +1,7 @@
 ROLE_USER_ADMIN_GROUPS: 'Admin - Gestion des groupes d''utilisateurs'
 ROLE_USER_ADMIN_USERS: 'Admin - Gestion des utilisateurs'
 
-site:
-    login:
-        resetting: site.login.resetting   # FIXME
+'Bad credentials': 'Identifiants incorrects'
 
 user:
     admin:
