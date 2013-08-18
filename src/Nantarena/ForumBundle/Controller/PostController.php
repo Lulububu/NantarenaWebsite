@@ -101,7 +101,8 @@ class PostController extends BaseController
         $isThread = false;
 
         if ($post->getId() === $thread->getPosts()->first()->getId()) {
-            $form = $this->createForm(new ThreadType(), $thread)->handleRequest($request);
+            $sticky = $this->getSecurityContext()->isGranted('ROLE_FORUM_MODERATE');
+            $form = $this->createForm(new ThreadType($sticky), $thread)->handleRequest($request);
 
             // Forçage du contenu depuis le contenu du Post
             if (!$form->isValid()) {
@@ -179,13 +180,13 @@ class PostController extends BaseController
         if (1 == $thread->getPosts()->count()) {
             $em->remove($thread);
             $em->flush();
-            $this->addFlash('success', 'forum.thread.delete.flash_success');
+            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.thread.delete.flash_success'));
 
             return $this->redirect($this->get('nantarena_forum.forum_manager')->getForumPath($thread->getForum()));
         }
 
         $em->flush();
-        $this->addFlash('success', 'forum.post.delete.flash_success');
+        $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.post.delete.flash_success'));
 
         return $this->redirect($this->get('nantarena_forum.thread_manager')->getThreadPath($thread));
     }

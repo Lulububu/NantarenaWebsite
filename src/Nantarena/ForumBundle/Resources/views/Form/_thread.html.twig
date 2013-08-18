@@ -2,6 +2,9 @@
     {{ form_start(form) }}
         {{ form_row(form.name, {'label': 'forum.entity.thread.name'|trans|colon}) }}
         {{ form_row(form.content, {'label': 'forum.entity.thread.content'|trans|colon}) }}
+        {% if is_granted('ROLE_FORUM_MODERATE') %}
+            {{ form_row(form.sticky, {'label': 'forum.entity.thread.sticky'|trans|colon}) }}
+        {% endif %}
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}
 </div>

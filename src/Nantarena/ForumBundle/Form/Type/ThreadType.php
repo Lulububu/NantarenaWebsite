@@ -9,6 +9,13 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ThreadType extends AbstractType
 {
+    protected $sticky;
+
+    public function __construct($sticky = false)
+    {
+        $this->sticky = $sticky;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -24,8 +31,16 @@ class ThreadType extends AbstractType
                 ),
                 'mapped' => false,
                 'constraints' => new NotBlank(),
-            ))
-            ->add('submit', 'submit');
+            ));
+
+        // Ajoute le field supplémentaire si demandé
+        if ($this->sticky) {
+            $builder->add('sticky', 'checkbox', array(
+                'required'  => false,
+            ));
+        }
+
+        $builder->add('submit', 'submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

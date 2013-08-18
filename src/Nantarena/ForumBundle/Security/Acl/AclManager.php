@@ -191,4 +191,9 @@ class AclManager
     {
         $this->provider->deleteAcl($this->createObjectIdentity($object));
     }
+
+    public function getAclProvider()
+    {
+        return $this->provider;
+    }
 }

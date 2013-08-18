@@ -20,7 +20,7 @@
                             <a href="{{ thread_path(first, first.lastPage) }}#post-{{ first.posts.last().id }}">{{ first.updateDate|localizeddate('medium', 'medium') }}</a>
                         </p>
                         <p>
-                            {{ first.posts.last().user.username }}
+                            {{ 'forum.category.last_by'|trans({'%username%': first.posts.last().user.username}) }}
                         </p>
                     {% else %}
                         <p>

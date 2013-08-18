@@ -1,0 +1,15 @@
+{% set last = thread.posts.last() %}
+<tr>
+    <td>
+        {% if thread.isSticky() %}<i class="icon-flag"></i> {% endif %}{% if thread.isLocked() %}<i class="icon-lock"></i>{% endif %} <a href="{{ thread_path(thread) }}">{{ thread.name }}</a>
+    </td>
+    <td>{{ thread.posts.count() }}</td>
+    <td>
+        <p>
+            <a href="{{ thread_path(thread, thread.lastPage) }}#post-{{ last.id }}">{{ last.updateDate|localizeddate('medium', 'medium') }}</a>
+        </p>
+        <p>
+            {{ 'forum.forum.last_by'|trans({'%username%': last.user.username}) }}
+        </p>
+    </td>
+</tr>

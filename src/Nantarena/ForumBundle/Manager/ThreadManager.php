@@ -66,4 +66,11 @@ class ThreadManager
             'id' => $thread->getId(),
         ));
     }
+
+    public function getMovePath(Thread $thread)
+    {
+        return $this->router->generate('nantarena_forum_thread_move', array(
+            'id' => $thread->getId(),
+        ));
+    }
 }

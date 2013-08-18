@@ -9,20 +9,16 @@
             <th>{{ 'forum.forum.posts'|trans }}</th>
             <th>{{ 'forum.forum.activity'|trans }}</th>
         </tr>
+        {% for thread in sticky_threads %}
+            {% include 'NantarenaForumBundle:Forum:_line.html.twig' %}
+            {% if loop.last %}
+                <tr class="forum-table-header">
+                    <td colspan="3" class="separator"></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
         {% for thread in pagination %}
-            {% set last = thread.posts.last() %}
-            <tr>
-                <td><a href="{{ thread_path(thread) }}">{{ thread.name }}</a></td>
-                <td>{{ thread.posts.count() }}</td>
-                <td>
-                    <p>
-                        <a href="{{ thread_path(thread, thread.lastPage) }}#post-{{ last.id }}">{{ last.updateDate|localizeddate('medium', 'medium') }}</a>
-                    </p>
-                    <p>
-                        {{ last.user.username }}
-                    </p>
-                </td>
-            </tr>
+            {% include 'NantarenaForumBundle:Forum:_line.html.twig' %}
         {% else %}
             <tr>
                 <td colspan="3">

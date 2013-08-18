@@ -5,4 +5,10 @@
         {{ form_row(form.groups, {'label': 'forum.entity.category.groups'|trans|colon}) }}
         {{ form_row(form.submit, {'label': submit}) }}
     {{ form_end(form) }}
+
+    <p class="text-center">
+        <a href="{{ path('nantarena_forum_admin_categories_index') }}">
+            {{ 'forum.admin.forum.back'|trans }}
+        </a>
+    </p>
 </div>

@@ -1,0 +1,16 @@
+{% extends 'NantarenaForumBundle::layout.html.twig' %}
+
+{% block title 'forum.thread.move.title'|trans({'%thread%': thread.name}) %}
+
+{% block forum_content %}
+    <h2>
+        {{ 'forum.thread.move.title'|trans({'%thread%': thread.name}) }}
+    </h2>
+
+    <div class="span10">
+        {{ form_start(form) }}
+            {{ form_row(form.forum, {'label': 'forum.entity.thread.forum'|trans|colon}) }}
+            {{ form_row(form.submit, {'label': 'forum.form.thread.move.submit'|trans}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -39,12 +39,14 @@ class ForumController extends BaseController
                 $this->get('nantarena_forum.forum_manager')->getForumPath($forum)
             );
 
+        $sticky = $this->getDoctrine()->getRepository('NantarenaForumBundle:Thread')->findBySticky($forum->getId(), true);
         $pagination = $this->get('knp_paginator')->paginate(
             $forum->getThreads(), $page, 20
         );
 
         return array(
             'forum' => $forum,
+            'sticky_threads' => $sticky,
             'pagination' => $pagination,
         );
     }

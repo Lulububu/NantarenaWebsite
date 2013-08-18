@@ -11,5 +11,6 @@
         {% else %}
             <a href="{{ thread_lock_path(thread) }}" class="btn">{{ 'forum.thread.control.lock'|trans }} <i class="icon-lock"></i></a>
         {% endif %}
+        <a href="{{ thread_move_path(thread) }}" class="btn">{{ 'forum.thread.control.move'|trans }} <i class="icon-share-alt"></i></a>
     {% endif %}
 </div>

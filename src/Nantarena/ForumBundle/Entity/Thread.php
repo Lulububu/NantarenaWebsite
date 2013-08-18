@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Nantarena\UserBundle\Entity\User;
+use Nantarena\ForumBundle\Validator\Constraints as ForumAssert;
 
 /**
  * Thread
@@ -79,6 +80,14 @@ class Thread
     private $locked;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     * @ForumAssert\Sticky
+     */
+    private $sticky;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime", nullable=true)
@@ -90,6 +99,7 @@ class Thread
         $this->updateDate = new \DateTime();
         $this->posts = new ArrayCollection();
         $this->locked = false;
+        $this->sticky = false;
     }
 
     /**
@@ -310,5 +320,17 @@ class Thread
     public function getDeletedAt()
     {
         return $this->deletedAt;
+    }
+
+    public function isSticky()
+    {
+        return $this->sticky;
+    }
+
+    public function setSticky($sticky)
+    {
+        $this->sticky = $sticky;
+
+        return $this;
     }
 }

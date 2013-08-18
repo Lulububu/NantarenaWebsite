@@ -3,6 +3,12 @@
 {% block title 'forum.thread.show.title'|trans({'%thread%': thread.name}) %}
 
 {% block forum_content %}
+    {% if thread.isLocked() %}
+        <p class="pull-right label label-info">
+            <i class="icon-lock"></i> {{ 'forum.thread.show.locked'|trans }}
+        </p>
+    {% endif %}
+
     <h2>
         {{ thread.name }}
     </h2>
@@ -20,11 +26,11 @@
             </tr>
             <tr>
                 <td>
-                    User info
+
                 </td>
                 <td>
                     <div class="forum-post-content">
-                        {{ post.content|e|nl2br }}
+                        {{ post.content|e }}
                     </div>
 
                     {% if post.creationDate != post.updateDate %}

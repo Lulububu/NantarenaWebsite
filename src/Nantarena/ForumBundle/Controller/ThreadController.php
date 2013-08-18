@@ -6,6 +6,7 @@ use Nantarena\ForumBundle\Entity\Forum;
 use Nantarena\ForumBundle\Entity\Post;
 use Nantarena\ForumBundle\Entity\Thread;
 use Nantarena\ForumBundle\Form\Type\ThreadType;
+use Nantarena\ForumBundle\Repository\ForumRepository;
 use Nantarena\SiteBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -30,8 +31,9 @@ class ThreadController extends BaseController
             throw new AccessDeniedException();
         }
 
+        $sticky = $this->getSecurityContext()->isGranted('ROLE_FORUM_MODERATE');
         $thread = new Thread();
-        $form = $this->createForm(new ThreadType(), $thread)->handleRequest($request);
+        $form = $this->createForm(new ThreadType($sticky), $thread)->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -133,10 +135,10 @@ class ThreadController extends BaseController
 
         if ($thread->isLocked()) {
             $thread->open();
-            $this->addFlash('success', 'forum.thread.lock.unlock_success');
+            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.thread.lock.unlock_success'));
         } else {
             $thread->close();
-            $this->addFlash('success', 'forum.thread.lock.lock_success');
+            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.thread.lock.lock_success'));
         }
 
         $this->getDoctrine()->getManager()->flush();
@@ -158,8 +160,87 @@ class ThreadController extends BaseController
         $em->remove($thread);
         $em->flush();
 
-        $this->addFlash('success', 'forum.thread.delete.flash_success');
+        $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.thread.delete.flash_success'));
 
         return $this->redirect($this->get('nantarena_forum.forum_manager')->getForumPath($thread->getForum()));
+    }
+
+    /**
+     * @Route("/thread/move/{id}")
+     * @Template()
+     */
+    public function moveAction(Request $request, Thread $thread)
+    {
+        if (!$this->getSecurityContext()->isGranted('OPERATOR', $thread)) {
+            throw new AccessDeniedException();
+        }
+
+        $threadId = $thread->getId();
+        $forumId = $thread->getForum()->getId();
+
+        $form = $this->createFormBuilder(array('id' => $threadId))
+            ->add('forum', 'entity', array(
+                'class' => 'Nantarena\ForumBundle\Entity\Forum',
+                'property' => 'name',
+                'query_builder' => function(ForumRepository $er) use ($forumId) {
+                    return $er->createQueryBuilder('f')
+                        ->where('f.id <> :id')
+                        ->setParameter('id', $forumId);
+                },
+                'group_by' => 'category.name'
+            ))
+            ->add('id', 'hidden')
+            ->add('submit', 'submit')
+            ->setMethod('POST')
+            ->setAction($this->generateUrl('nantarena_forum_thread_move', array(
+                'id' => $threadId
+            )))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $forum = $form->get('forum')->getData();
+            if ($form->get('id')->getData() == $threadId && $forum->getId() != $thread->getForum()->getId()) {
+                // Modification du Forum du Thread
+                $thread->setForum($form->get('forum')->getData());
+
+                $this->getDoctrine()->getManager()->flush();
+                $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.thread.move.flash_success'));
+
+                return $this->redirect($this->get('nantarena_forum.thread_manager')->getThreadPath($thread));
+            } else {
+                $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('forum.thread.move.flash_error'));
+            }
+        }
+
+        $this->get('nantarena_site.breadcrumb')
+            ->push(
+                $this->trans('forum.index.title'),
+                $this->generateUrl('nantarena_forum_default_index')
+            )
+            ->push(
+                $thread->getForum()->getCategory()->getName(),
+                $this->get('nantarena_forum.category_manager')->getCategoryPath($thread->getForum()->getCategory())
+            )
+            ->push(
+                $thread->getForum()->getName(),
+                $this->get('nantarena_forum.forum_manager')->getForumPath($thread->getForum())
+            )
+            ->push(
+                $thread->getName(),
+                $this->get('nantarena_forum.thread_manager')->getThreadPath($thread)
+            )
+            ->push(
+                $this->trans('forum.thread.move.title', array(
+                    '%thread%' => $thread->getName(),
+                )),
+                $this->get('nantarena_forum.thread_manager')->getMovePath($thread)
+            );
+
+        return array(
+            'thread' => $thread,
+            'form' => $form->createView(),
+        );
     }
 }

@@ -167,7 +167,7 @@ class ForumsController extends BaseController
                         ->where('f.id <> :id')
                         ->setParameter('id', $id);
                 },
-                'group_by' => 'category.name',
+                'group_by' => 'category.name'
             ))
             ->add('id', 'hidden')
             ->add('submit', 'submit')

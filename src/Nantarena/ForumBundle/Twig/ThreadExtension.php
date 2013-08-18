@@ -22,6 +22,7 @@ class ThreadExtension extends \Twig_Extension implements ContainerAwareInterface
             new \Twig_SimpleFunction('thread_create_path', array($this, 'getThreadCreatePath')),
             new \Twig_SimpleFunction('thread_delete_path', array($this, 'getThreadDeletePath')),
             new \Twig_SimpleFunction('thread_lock_path', array($this, 'getThreadLockPath')),
+            new \Twig_SimpleFunction('thread_move_path', array($this, 'getThreadMovePath')),
         );
     }
 
@@ -48,6 +49,11 @@ class ThreadExtension extends \Twig_Extension implements ContainerAwareInterface
     public function getThreadDeletePath(Thread $thread)
     {
         return $this->container->get('nantarena_forum.thread_manager')->getDeletePath($thread);
+    }
+
+    public function getThreadMovePath(Thread $thread)
+    {
+        return $this->container->get('nantarena_forum.thread_manager')->getMovePath($thread);
     }
 
     /**

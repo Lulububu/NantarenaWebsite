@@ -1,7 +1,7 @@
 {% extends 'NantarenaAdminBundle::layout.html.twig' %}
 
-{% block title 'forum.admin.categories.delete.title'|trans %}
-{% block page_title 'forum.admin.categories.delete.title'|trans %}
+{% block title 'forum.admin.categories.delete.title'|trans({'%name%': category.name}) %}
+{% block page_title 'forum.admin.categories.delete.title'|trans({'%name%': category.name}) %}
 
 {% block admin_content %}
     {% embed 'NantarenaSiteBundle::_deleteConfirm.html.twig' %}
