@@ -17,6 +17,13 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    nantarena_user.user_subscriber:
+        class: Nantarena\UserBundle\EventListener\UserSubscriber
+        tags:
+            - { name: doctrine.event_subscriber }
+        calls:
+            - [ setContainer, [@service_container] ]
+
     nantarena_user.group_subscriber:
         class: Nantarena\UserBundle\EventListener\GroupSubscriber
         tags:
