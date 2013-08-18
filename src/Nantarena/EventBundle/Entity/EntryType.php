@@ -41,7 +41,7 @@ class EntryType
     /**
      * @var int
      *
-     * @ORM\Column(name="price", type="decimal")
+     * @ORM\Column(name="price", type="decimal", precision=5, scale=2)
      * @Assert\GreaterThanOrEqual(value=0)
      */
     private $price;
