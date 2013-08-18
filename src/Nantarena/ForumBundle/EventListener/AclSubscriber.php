@@ -29,13 +29,27 @@ class AclSubscriber implements EventSubscriber, ContainerAwareInterface
     }
 
     /**
+     * Automatise la suppression des Acl lorsque l'on supprime un post ou topic
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function preRemove(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        if ($entity instanceof Thread || $entity instanceof Post) {
+            $this->container->get('nantarena_forum.acl_manager')->deleteAcl($entity);
+        }
+    }
+
+    /**
      * Returns an array of events this subscriber wants to listen to.
      *
      * @return array
      */
     public function getSubscribedEvents()
     {
-        return array('postPersist');
+        return array('postPersist', 'preRemove');
     }
 
     /**
