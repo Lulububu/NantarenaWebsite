@@ -7,6 +7,7 @@ use Nantarena\ForumBundle\Entity\Forum;
 use Nantarena\ForumBundle\Entity\Post;
 use Nantarena\ForumBundle\Entity\Thread;
 use Nantarena\SiteBundle\Security\Acl\Domain\GroupSecurityIdentity;
+use Nantarena\UserBundle\Entity\Group;
 use Symfony\Component\Security\Acl\Dbal\MutableAclProvider;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\RoleSecurityIdentity;
@@ -89,9 +90,8 @@ class AclManager
      * Crée une Acl pour un Forum
      *
      * @param Forum $forum
-     * @param array $roles
      */
-    public function createAclForForum(Forum $forum, array $roles = array())
+    public function createAclForForum(Forum $forum)
     {
         $forumIdentity = $this->createObjectIdentity($forum);
         $acl = $this->createAcl($forumIdentity);
@@ -100,8 +100,9 @@ class AclManager
         if (empty($roles)) {
             $acl->insertObjectAce($this->createRoleSecurityIdentity('IS_AUTHENTICATED_ANONYMOUSLY'), MaskBuilder::MASK_VIEW);
         } else {
-            foreach ($roles as $role) {
-                $acl->insertObjectAce($this->createRoleSecurityIdentity($role), MaskBuilder::MASK_VIEW);
+            /** @var Group $group */
+            foreach ($forum->getGroups() as $group) {
+                $acl->insertObjectAce($this->createRoleSecurityIdentity('ROLE_GROUP_'.$group->getId()), MaskBuilder::MASK_VIEW);
             }
         }
 
@@ -115,9 +116,8 @@ class AclManager
      * Crée une Acl pour une category
      *
      * @param Category $category
-     * @param array $roles
      */
-    public function createAclForCategory(Category $category, array $roles = array())
+    public function createAclForCategory(Category $category)
     {
         $categoryIdentity = $this->createObjectIdentity($category);
         $acl = $this->createAcl($categoryIdentity);
@@ -126,8 +126,9 @@ class AclManager
         if (empty($roles)) {
             $acl->insertObjectAce($this->createRoleSecurityIdentity('IS_AUTHENTICATED_ANONYMOUSLY'), MaskBuilder::MASK_VIEW);
         } else {
-            foreach ($roles as $role) {
-                $acl->insertObjectAce($this->createRoleSecurityIdentity($role), MaskBuilder::MASK_VIEW);
+            /** @var Group $group */
+            foreach ($category->getGroups() as $group) {
+                $acl->insertObjectAce($this->createRoleSecurityIdentity('ROLE_GROUP_'.$group->getId()), MaskBuilder::MASK_VIEW);
             }
         }
 

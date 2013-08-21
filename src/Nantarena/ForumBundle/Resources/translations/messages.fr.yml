@@ -135,6 +135,7 @@ forum:
             title: 'Editer réponse au sujet « %thread% »'
 
     thread:
+        quick_reply: Réponse rapide ...
         control:
             answer: Répondre
             create: 'Nouveau sujet'

@@ -25,6 +25,7 @@ class LoadForumData extends AbstractFixture implements DependentFixtureInterface
         $forum1->setName('Discussions générales');
         $forum1->setPosition(1);
         $forum1->setCategory($this->getReference('category-club'));
+        $forum1->addGroup($this->getReference('group-staffs'));
         $this->addReference('forum-club-general', $forum1);
         $manager->persist($forum1);
 
@@ -32,6 +33,7 @@ class LoadForumData extends AbstractFixture implements DependentFixtureInterface
         $forum2->setName('Comptes rendus réunions');
         $forum2->setPosition(2);
         $forum2->setCategory($this->getReference('category-club'));
+        $forum2->addGroup($this->getReference('group-staffs'));
         $this->addReference('forum-club-compte', $forum2);
         $manager->persist($forum2);
 
@@ -59,23 +61,6 @@ class LoadForumData extends AbstractFixture implements DependentFixtureInterface
         $manager->persist($forum3);
 
         $manager->flush();
-
-        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum1, array(
-            'ROLE_GROUP_'.$this->getReference('group-staffs')->getId()
-        ));
-
-        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum2, array(
-            'ROLE_GROUP_'.$this->getReference('group-staffs')->getId()
-        ));
-
-        // ces deux forums ont un accès anonyme, on omet donc le role correspondant
-        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum4);
-        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum5);
-
-        // le forum Remarques et suggestions est uniquement visible des utilisateurs connectés
-        $this->container->get('nantarena_forum.acl_manager')->createAclForForum($forum3, array(
-            'ROLE_GROUP_'.$this->getReference('group-users')->getId()
-        ));
     }
 
     /**

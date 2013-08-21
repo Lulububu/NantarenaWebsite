@@ -15,7 +15,6 @@ class CategoryType extends AbstractType
             ->add('position', 'integer')
             ->add('groups', 'entity', array(
                 'class' => 'Nantarena\UserBundle\Entity\Group',
-                'mapped' => false,
                 'multiple' => true,
                 'expanded' => true,
             ))

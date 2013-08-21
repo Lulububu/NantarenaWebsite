@@ -20,6 +20,7 @@ class LoadCategoryData extends AbstractFixture implements ContainerAwareInterfac
         $category1 = new Category();
         $category1->setName('Le Club Rézo');
         $category1->setPosition(1);
+        $category1->addGroup($this->getReference('group-staffs'));
         $this->addReference('category-club', $category1);
         $manager->persist($category1);
 
@@ -30,15 +31,6 @@ class LoadCategoryData extends AbstractFixture implements ContainerAwareInterfac
         $manager->persist($category2);
 
         $manager->flush();
-
-        // Acl sur la catégorie Le Club Rézo
-        $this->container->get('nantarena_forum.acl_manager')->createAclForCategory($category1, array(
-            'ROLE_GROUP_'.$this->getReference('group-staffs')->getId()
-        ));
-
-        // Acl sur la catégorie La Nantarena, on omet le role car on désire qu'elle soit accessible
-        // par les anonymes
-        $this->container->get('nantarena_forum.acl_manager')->createAclForCategory($category2);
     }
 
     /**

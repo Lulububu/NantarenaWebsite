@@ -4,6 +4,8 @@ namespace Nantarena\ForumBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Nantarena\ForumBundle\Entity\Category;
+use Nantarena\ForumBundle\Entity\Forum;
 use Nantarena\ForumBundle\Entity\Post;
 use Nantarena\ForumBundle\Entity\Thread;
 use Symfony\Component\DependencyInjection\Container;
@@ -25,6 +27,10 @@ class AclSubscriber implements EventSubscriber, ContainerAwareInterface
             $this->container->get('nantarena_forum.acl_manager')->createAclForThread($entity);
         } elseif ($entity instanceof Post) {
             $this->container->get('nantarena_forum.acl_manager')->createAclForPost($entity);
+        } elseif ($entity instanceof Category) {
+            $this->container->get('nantarena_forum.acl_manager')->createAclForCategory($entity);
+        } elseif ($entity instanceof Forum) {
+            $this->container->get('nantarena_forum.acl_manager')->createAclForForum($entity);
         }
     }
 
@@ -39,6 +45,27 @@ class AclSubscriber implements EventSubscriber, ContainerAwareInterface
 
         if ($entity instanceof Thread || $entity instanceof Post) {
             $this->container->get('nantarena_forum.acl_manager')->deleteAcl($entity);
+        } else if ($entity instanceof Category || $entity instanceof Forum) {
+            $this->container->get('nantarena_forum.acl_manager')->deleteAcl($entity);
+        }
+    }
+
+    /**
+     * Cette méthode va simplement changer les permissions sur les Category et Forum
+     * en supprimant les anciennes Acl et en insérant de nouvelles
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function postUpdate(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        if ($entity instanceof Category) {
+            $this->container->get('nantarena_forum.acl_manager')->deleteAcl($entity);
+            $this->container->get('nantarena_forum.acl_manager')->createAclForCategory($entity);
+        } elseif ($entity instanceof Forum) {
+            $this->container->get('nantarena_forum.acl_manager')->deleteAcl($entity);
+            $this->container->get('nantarena_forum.acl_manager')->createAclForForum($entity);
         }
     }
 
@@ -49,7 +76,7 @@ class AclSubscriber implements EventSubscriber, ContainerAwareInterface
      */
     public function getSubscribedEvents()
     {
-        return array('postPersist', 'preRemove');
+        return array('postPersist', 'preRemove', 'postUpdate');
     }
 
     /**

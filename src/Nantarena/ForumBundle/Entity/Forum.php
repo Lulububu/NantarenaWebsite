@@ -5,6 +5,7 @@ namespace Nantarena\ForumBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Nantarena\UserBundle\Entity\Group;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -55,7 +56,14 @@ class Forum
     private $category;
 
     /**
-     * @var array
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Nantarena\UserBundle\Entity\Group")
+     */
+    private $groups;
+
+    /**
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Nantarena\ForumBundle\Entity\Thread", mappedBy="forum")
      * @ORM\OrderBy({"updateDate" = "DESC"})
@@ -64,6 +72,7 @@ class Forum
 
     public function __construct()
     {
+        $this->groups = new ArrayCollection();
         $this->threads = new ArrayCollection();
     }
 
@@ -147,7 +156,8 @@ class Forum
     }
 
     /**
-     * @param \Nantarena\ForumBundle\Entity\Category $category
+     * @param Category $category
+     * @return $this
      */
     public function setCategory($category)
     {
@@ -157,7 +167,7 @@ class Forum
     }
 
     /**
-     * @return \Nantarena\ForumBundle\Entity\Category
+     * @return Category
      */
     public function getCategory()
     {
@@ -166,6 +176,7 @@ class Forum
 
     /**
      * @param array $threads
+     * @return $this
      */
     public function setThreads($threads)
     {
@@ -180,5 +191,46 @@ class Forum
     public function getThreads()
     {
         return $this->threads;
+    }
+
+    /**
+     * @param array $groups
+     * @return $this
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param Group $group
+     * @return $this
+     */
+    public function addGroup(Group $group)
+    {
+        $this->groups->add($group);
+
+        return $this;
+    }
+
+    /**
+     * @param Group $group
+     * @return $this
+     */
+    public function removeGroup(Group $group)
+    {
+        $this->groups->remove($group);
+
+        return $this;
     }
 }

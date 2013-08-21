@@ -5,6 +5,7 @@ namespace Nantarena\ForumBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Nantarena\UserBundle\Entity\Group;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -48,7 +49,14 @@ class Category
     private $position;
 
     /**
-     * @var array
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Nantarena\UserBundle\Entity\Group")
+     */
+    private $groups;
+
+    /**
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Nantarena\ForumBundle\Entity\Forum", mappedBy="category")
      * @ORM\OrderBy({"position" = "ASC"})
@@ -57,13 +65,14 @@ class Category
 
     public function __construct()
     {
+        $this->groups = new ArrayCollection();
         $this->forums = new ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,14 +88,14 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -102,14 +111,14 @@ class Category
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -125,14 +134,14 @@ class Category
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -156,5 +165,46 @@ class Category
     public function getForums()
     {
         return $this->forums;
+    }
+
+    /**
+     * @param array $groups
+     * @return $this
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param Group $group
+     * @return $this
+     */
+    public function addGroup(Group $group)
+    {
+        $this->groups->add($group);
+
+        return $this;
+    }
+
+    /**
+     * @param Group $group
+     * @return $this
+     */
+    public function removeGroup(Group $group)
+    {
+        $this->groups->remove($group);
+
+        return $this;
     }
 }

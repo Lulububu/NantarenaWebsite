@@ -88,9 +88,6 @@ class ForumsController extends BaseController
                     $thread->setForum($form->get('forum')->getData());
                 }
 
-                // Suppression des Acl relatives au forum
-                $this->deleteAcl($forum);
-
                 $em->remove($forum);
                 $em->flush();
 
@@ -128,10 +125,6 @@ class ForumsController extends BaseController
 
                 $em->persist($forum);
                 $em->flush();
-
-                // Création des Acl pour le forum, attention ici à l'appeller après le flush
-                // afin d'avoir un id généré
-                $this->createAcl($forum, $form->get('groups')->getData());
 
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('forum.admin.forums.create.flash_success', array(
                     '%name%' => $forum->getName(),
@@ -176,24 +169,5 @@ class ForumsController extends BaseController
                 'id' => $id
             )))
             ->getForm();
-    }
-
-    private function createAcl(Forum $forum, $groups)
-    {
-        // Récupération des roles pertinents pour la catégorie
-        $roles = array();
-
-        /** @var \Nantarena\UserBundle\Entity\Group $group */
-        foreach ($groups as $group) {
-            $roles[] = 'ROLE_GROUP_'.$group->getId();
-        }
-
-        // Création des Acl relatives à la nouvelle catégorie
-        $this->get('nantarena_forum.acl_manager')->createAclForForum($forum, $roles);
-    }
-
-    private function deleteAcl(Forum $forum)
-    {
-        $this->get('nantarena_forum.acl_manager')->deleteAcl($forum);
     }
 }

@@ -25,7 +25,6 @@ class ForumType extends AbstractType
             ))
             ->add('groups', 'entity', array(
                 'class' => 'Nantarena\UserBundle\Entity\Group',
-                'mapped' => false,
                 'multiple' => true,
                 'expanded' => true,
             ))
