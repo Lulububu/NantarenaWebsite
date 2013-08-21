@@ -83,6 +83,7 @@ class PostController extends BaseController
         return array(
             'thread' => $thread,
             'form' => $form->createView(),
+            'last' => $this->getDoctrine()->getRepository('NantarenaForumBundle:Post')->findLastPostsOrderedByIdDesc($thread),
         );
     }
 

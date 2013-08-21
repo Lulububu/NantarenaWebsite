@@ -1,6 +1,6 @@
-<div class="span10">
-    {{ form_start(form) }}
-        {{ form_row(form.content, {'label': 'forum.entity.post.content'|trans|colon}) }}
-        {{ form_row(form.submit, {'label': submit}) }}
-    {{ form_end(form) }}
-</div>
+{{ form_start(form) }}
+    <div class="control-group">
+        {{ form_widget(form.content, {'label': false}) }}
+    </div>
+    {{ form_row(form.submit, {'label': submit}) }}
+{{ form_end(form) }}

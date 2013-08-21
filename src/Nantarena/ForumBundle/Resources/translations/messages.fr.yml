@@ -135,6 +135,7 @@ forum:
             title: 'Editer réponse au sujet « %thread% »'
 
     thread:
+        reminder: Avant de poster veuillez vous assurer que vous respectez les conditions générales du site.
         quick_reply: Réponse rapide ...
         control:
             answer: Répondre
@@ -163,6 +164,7 @@ forum:
         reply:
             flash_success: 'Réponse envoyée avec succès'
             title: 'Réponse au sujet « %thread% »'
+            last_posts: Derniers messages
 
         show:
             edited: 'Dernière modification le %date%'

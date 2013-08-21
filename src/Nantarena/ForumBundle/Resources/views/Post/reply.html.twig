@@ -7,6 +7,41 @@
         {{ 'forum.thread.reply.title'|trans({'%thread%': thread.name}) }}
     </h2>
 
+    <p>
+        {{ 'forum.thread.reminder'|trans }}
+    </p>
+
     {% embed 'NantarenaForumBundle:Form:_post.html.twig' with {'submit': 'forum.form.post.reply.submit'|trans} %}
     {% endembed %}
+
+    <h2>{{ 'forum.thread.reply.last_posts'|trans }}</h2>
+
+    <table class="table">
+        {% for post in last %}
+            <tr id="post-{{ post.id }}" class="forum-table-header">
+                <th>{{ post.user.username }}</th>
+                <th class="text-right">
+                    <div class="text-right">
+                        {{ post.creationDate|localizeddate('medium', 'medium') }}
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <div class="forum-post-content">
+                        {{ post.content|e|nl2br }}
+                    </div>
+
+                    {% if post.creationDate != post.updateDate %}
+                        <p class="post-edited">
+                            {{ 'forum.thread.show.edited'|trans({'%date%': post.updateDate|localizeddate('medium', 'medium')}) }}
+                        </p>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
