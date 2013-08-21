@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+    <div class="control-group">
+        {{ form_widget(form.content, {'label': false, 'attr': {'rows': 4, 'placeholder': 'forum.thread.quick_reply'|trans }}) }}
+    </div>
+    {{ form_row(form.submit, {'label': submit}) }}
+{{ form_end(form) }}

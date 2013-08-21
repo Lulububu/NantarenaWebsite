@@ -46,4 +46,7 @@
     {% include 'NantarenaForumBundle:Control:_thread.html.twig' %}
 
     {{ knp_pagination_render(pagination) }}
+
+    {% embed 'NantarenaForumBundle:Form:_quick_reply.html.twig' with {'submit': 'forum.form.post.reply.submit'|trans} %}
+    {% endembed %}
 {% endblock %}

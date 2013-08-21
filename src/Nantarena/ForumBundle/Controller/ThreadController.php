@@ -5,6 +5,7 @@ namespace Nantarena\ForumBundle\Controller;
 use Nantarena\ForumBundle\Entity\Forum;
 use Nantarena\ForumBundle\Entity\Post;
 use Nantarena\ForumBundle\Entity\Thread;
+use Nantarena\ForumBundle\Form\Type\PostType;
 use Nantarena\ForumBundle\Form\Type\ThreadType;
 use Nantarena\ForumBundle\Repository\ForumRepository;
 use Nantarena\SiteBundle\Controller\BaseController;
@@ -118,9 +119,15 @@ class ThreadController extends BaseController
             $thread->getPosts(), $page, Thread::POSTS_PER_PAGE
         );
 
+        $form = $this->createForm(new PostType(), null, array(
+            'method' => 'POST',
+            'action' => $this->get('nantarena_forum.thread_manager')->getReplyPath($thread),
+        ));
+
         return array(
             'thread' => $thread,
             'pagination' => $pagination,
+            'form' => $form->createView(),
         );
     }
 
