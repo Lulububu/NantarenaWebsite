@@ -203,7 +203,7 @@ class Category
      */
     public function removeGroup(Group $group)
     {
-        $this->groups->remove($group);
+        $this->groups->removeElement($group);
 
         return $this;
     }
