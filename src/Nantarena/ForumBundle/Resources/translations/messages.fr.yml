@@ -132,6 +132,12 @@ forum:
             flash_success: 'Réponse éditée avec succès'
             title: 'Editer réponse au sujet « %thread% »'
 
+    role:
+        admin: Admin
+        member: Membre
+        moderator: Modérateur
+        staff: Staff
+
     thread:
         control:
             answer: Répondre

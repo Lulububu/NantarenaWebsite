@@ -267,4 +267,18 @@ class User extends BaseUser
 
         return $result;
     }
+
+    public function hasRole($role)
+    {
+        /** @var Group $group */
+        foreach ($this->groups as $group) {
+            foreach ($group->getRoles() as $groupRole) {
+                if ($role === $groupRole) {
+                    return true;
+                }
+            }
+        }
+
+        return parent::hasRole($role);
+    }
 }
