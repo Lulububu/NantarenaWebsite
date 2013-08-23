@@ -9,5 +9,5 @@
 {% endblock %}
 
 {% block static_footer %}
-    {{ 'static.show.footer'|trans({'%date%': content.update|date('d-m-Y à H:i')}) }}
+    {{ 'static.show.footer'|trans({'%date%': content.update|localizeddate('full', 'none')}) }}
 {% endblock %}
