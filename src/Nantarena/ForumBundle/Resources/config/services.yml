@@ -6,6 +6,12 @@ services:
         tags:
             - { name: nantarena_admin.dashboard }
 
+    nantarena_forum.read_status_subscriber:
+        class: Nantarena\ForumBundle\EventListener\ReadStatusSubscriber
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: kernel.event_subscriber }
+
     nantarena_forum.acl_subscriber:
         class: Nantarena\ForumBundle\EventListener\AclSubscriber
         tags:

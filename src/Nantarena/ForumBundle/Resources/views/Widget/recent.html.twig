@@ -1,0 +1,29 @@
+<div id="forumWidget" class="widget">
+    <h4>{{ 'forum.widget.recent.title'|trans }}</h4>
+
+    <div>
+        <ul>
+            {% for thread in widget_threads if is_granted('VIEW', thread.forum) %}
+                {% set last = thread.posts.last() %}
+                {% set new = status is not null ? thread in status.threads : null %}
+                <li>
+                    <p class="topic{% if new %} new{% endif %}">
+                        {% if new %}<i class="icon-star"></i> {% endif %}<a href="{{ thread_path(thread, thread.getLastPage()) }}#post-{{ last.id }}">{{ thread.name }}</a>
+                        <small>{{ 'forum.widget.recent.in'|trans({'%forum%': thread.forum.name })|raw }}</small>
+                    </p>
+                    <p class="infos">
+                        {{ 'forum.widget.recent.infos'|trans({'%author%': last.user.username, '%date%': thread.updateDate|localizeddate('medium', 'medium')}) }}
+                    </p>
+                </li>
+            {% else %}
+                <p>
+                    {{ 'forum.widget.recent.no_results'|trans }}
+                </p>
+            {% endfor %}
+        </ul>
+
+        <p class="unreads text-center">
+            <a href="{{ path('nantarena_forum_default_unreads') }}">{{ 'forum.widget.recent.unreads'|trans }}</a>
+        </p>
+    </div>
+</div>

@@ -95,13 +95,14 @@ class AclManager
     {
         $forumIdentity = $this->createObjectIdentity($forum);
         $acl = $this->createAcl($forumIdentity);
+        $groups = $forum->getGroups();
 
         // aucun groupe = accès public
-        if (empty($roles)) {
+        if (0 === $groups->count()) {
             $acl->insertObjectAce($this->createRoleSecurityIdentity('IS_AUTHENTICATED_ANONYMOUSLY'), MaskBuilder::MASK_VIEW);
         } else {
             /** @var Group $group */
-            foreach ($forum->getGroups() as $group) {
+            foreach ($groups as $group) {
                 $acl->insertObjectAce($this->createRoleSecurityIdentity('ROLE_GROUP_'.$group->getId()), MaskBuilder::MASK_VIEW);
             }
         }
@@ -121,13 +122,14 @@ class AclManager
     {
         $categoryIdentity = $this->createObjectIdentity($category);
         $acl = $this->createAcl($categoryIdentity);
+        $groups = $category->getGroups();
 
         // aucun groupe = accès public
-        if (empty($roles)) {
+        if (0 === $groups->count()) {
             $acl->insertObjectAce($this->createRoleSecurityIdentity('IS_AUTHENTICATED_ANONYMOUSLY'), MaskBuilder::MASK_VIEW);
         } else {
             /** @var Group $group */
-            foreach ($category->getGroups() as $group) {
+            foreach ($groups as $group) {
                 $acl->insertObjectAce($this->createRoleSecurityIdentity('ROLE_GROUP_'.$group->getId()), MaskBuilder::MASK_VIEW);
             }
         }

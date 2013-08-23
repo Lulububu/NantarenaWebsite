@@ -41,4 +41,27 @@ class ThreadRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findRecents($limit = 10)
+    {
+        $qb = $this->createQueryBuilder('t');
+
+        $qb
+            ->addOrderBy('t.updateDate', 'desc')
+            ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findUnreads(\DateTime $date)
+    {
+        $qb = $this->createQueryBuilder('t');
+
+        $qb
+            ->addSelect('t')
+            ->andWhere('t.updateDate > :date')
+            ->setParameter('date', $date);
+
+        return $qb->getQuery()->getResult();
+    }
 }

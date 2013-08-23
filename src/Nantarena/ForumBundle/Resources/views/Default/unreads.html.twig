@@ -1,0 +1,42 @@
+{% extends 'NantarenaForumBundle::layout.html.twig' %}
+
+{% block title 'forum.unreads.title'|trans %}
+
+{% block forum_content %}
+    <div class="span6">
+        <i class="icon-chevron-left"></i> <a href="{{ path('nantarena_forum_default_index') }}">{{ 'forum.unreads.back'|trans }}</a>
+    </div>
+
+    <table class="table">
+        <tr class="forum-table-header">
+            <th class="thread-column">{{ 'forum.unreads.threads'|trans }}</th>
+            <th class="posts-column">{{ 'forum.unreads.posts'|trans }}</th>
+            <th class="activity-column">{{ 'forum.unreads.activity'|trans }}</th>
+        </tr>
+        {% for thread in pagination %}
+            {% set last = thread.posts.last() %}
+            <tr>
+                <td>
+                   {% if thread.isLocked() %}<i class="icon-lock"></i>{% endif %} <a href="{{ thread_path(thread) }}">{{ thread.name }}</a>
+                </td>
+                <td>{{ thread.posts.count() }}</td>
+                <td>
+                    <p>
+                        <a href="{{ thread_path(thread, thread.lastPage) }}#post-{{ last.id }}">{{ last.updateDate|localizeddate('medium', 'medium') }}</a>
+                    </p>
+                    <p>
+                        {{ 'forum.unreads.last_by'|trans({'%username%': last.user.username}) }}
+                    </p>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">
+                    {{ 'forum.unreads.no_results'|trans }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}

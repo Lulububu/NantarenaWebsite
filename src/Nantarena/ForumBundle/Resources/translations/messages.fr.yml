@@ -74,9 +74,6 @@ forum:
             name: Nom
             position: 'Position d''affichage'
 
-        post:
-            content: Réponse
-
         thread:
             content: Contenu
             forum: Forum
@@ -125,6 +122,7 @@ forum:
         no_activity: 'Aucune activité'
         threads: Topics
         title: 'Index du forum'
+        unreads: 'Consulter les messages non lus'
 
     post:
         delete:
@@ -135,8 +133,6 @@ forum:
             title: 'Editer réponse au sujet « %thread% »'
 
     thread:
-        reminder: Avant de poster veuillez vous assurer que vous respectez les conditions générales du site.
-        quick_reply: Réponse rapide ...
         control:
             answer: Répondre
             create: 'Nouveau sujet'
@@ -161,12 +157,32 @@ forum:
             flash_success: 'Déplacement du topic effectué avec succès'
             title: 'Déplacement de « %thread% »'
 
+        quick_reply: 'Réponse rapide ...'
+        reminder: 'Avant de poster veuillez vous assurer que vous respectez les conditions générales du site.'
+
         reply:
             flash_success: 'Réponse envoyée avec succès'
+            last_posts: 'Derniers messages'
             title: 'Réponse au sujet « %thread% »'
-            last_posts: Derniers messages
 
         show:
             edited: 'Dernière modification le %date%'
             locked: 'Sujet verrouillé'
             title: 'Topic « %thread% »'
+
+    unreads:
+        activity: 'Derniers messages'
+        back: 'Retour au forum'
+        last_by: 'Par %username%'
+        no_results: 'Aucun topic non lu trouvé'
+        posts: Réponses
+        threads: Topics
+        title: 'Topics non lus'
+
+    widget:
+        recent:
+            in: ' &raquo; %forum%'
+            infos: 'Par %author% le %date%'
+            no_results: 'Aucun topic récent'
+            title: 'Derniers topics sur le forum'
+            unreads: 'Consulter les messages non lus'

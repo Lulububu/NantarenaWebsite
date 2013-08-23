@@ -205,7 +205,7 @@ class Forum
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
     public function getGroups()
     {

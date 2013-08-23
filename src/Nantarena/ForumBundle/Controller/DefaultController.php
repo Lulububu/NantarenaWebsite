@@ -28,4 +28,30 @@ class DefaultController extends Controller
             'categories' => $categories,
         );
     }
+
+    /**
+     * @Route("/unreads/{page}")
+     * @Template()
+     */
+    public function unreadsAction($page = 1)
+    {
+        $this->get('nantarena_site.breadcrumb')
+            ->push(
+                $this->get('translator')->trans('forum.index.title'),
+                $this->generateUrl('nantarena_forum_default_index')
+            )
+            ->push(
+                $this->get('translator')->trans('forum.unreads.title'),
+                $this->generateUrl('nantarena_forum_default_unreads')
+            );
+
+        $unreads = $this->getDoctrine()->getRepository('NantarenaForumBundle:ReadStatus')->findOneByUser($this->getUser());
+        $pagination = $this->get('knp_paginator')->paginate(
+            $unreads->getThreads(), $page, 20
+        );
+
+        return array(
+            'pagination' => $pagination,
+        );
+    }
 }

@@ -41,14 +41,14 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationDate", type="datetime")
+     * @ORM\Column(name="creation_date", type="datetime")
      */
     private $creationDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updateDate", type="datetime")
+     * @ORM\Column(name="update_date", type="datetime")
      * @Gedmo\Timestampable(on="change", field={"content"})
      */
     private $updateDate;

@@ -54,6 +54,12 @@ class ThreadController extends BaseController
 
             $em->persist($thread);
             $em->persist($post);
+
+            // TODO: FIX force update activity
+            $status = $this->getDoctrine()->getRepository('NantarenaForumBundle:ReadStatus')->findOneByUser($this->getUser());
+            $status
+                ->setUpdateDate(new \DateTime());
+
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('success', $this->trans('forum.thread.create.flash_success'));
@@ -123,6 +129,15 @@ class ThreadController extends BaseController
             'method' => 'POST',
             'action' => $this->get('nantarena_forum.thread_manager')->getReplyPath($thread),
         ));
+
+        if ($this->getSecurityContext()->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            // mise à jour du read status
+            $status = $this->getDoctrine()->getRepository('NantarenaForumBundle:ReadStatus')->findOneByUser($this->getUser());
+            $status
+                ->removeThread($thread);
+            // mise à jour db
+            $this->getDoctrine()->getManager()->flush();
+        }
 
         return array(
             'thread' => $thread,

@@ -57,6 +57,7 @@ class LoadForumData extends AbstractFixture implements DependentFixtureInterface
         $forum3->setName('Remarques et suggestions');
         $forum3->setPosition(3);
         $forum3->setCategory($this->getReference('category-nantarena'));
+        $forum3->addGroup($this->getReference('group-users'));
         $this->addReference('forum-nantarena-remarques', $forum3);
         $manager->persist($forum3);
 

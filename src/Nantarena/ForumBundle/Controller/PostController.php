@@ -49,6 +49,12 @@ class PostController extends BaseController
             $post->setUser($user);
 
             $em->persist($post);
+
+            // TODO: FIX force update activity
+            $status = $this->getDoctrine()->getRepository('NantarenaForumBundle:ReadStatus')->findOneByUser($this->getUser());
+            $status
+                ->setUpdateDate(new \DateTime());
+
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('success', $this->trans('forum.thread.reply.flash_success'));

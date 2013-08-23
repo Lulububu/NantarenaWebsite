@@ -179,7 +179,7 @@ class Category
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
     public function getGroups()
     {
