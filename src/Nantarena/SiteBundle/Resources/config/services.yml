@@ -8,6 +8,11 @@ services:
     nantarena_site.breadcrumb:
         class: Nantarena\SiteBundle\Navigation\Breadcrumb
 
+    nantarena_site.twig.site_extension:
+        class: Nantarena\SiteBundle\Twig\SiteExtension
+        tags:
+            - { name: twig.extension }
+
     nantarena_site.twig.form_extension:
         class: Nantarena\SiteBundle\Twig\FormExtension
         tags:
