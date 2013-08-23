@@ -3,12 +3,16 @@
 {% block title 'forum.index.title'|trans %}
 
 {% block forum_content %}
+    <div class="span6">
+        <a href="{{ path('nantarena_forum_default_unreads') }}">{{ 'forum.index.unreads'|trans }}</a>
+    </div>
+
     <table class="table">
         {% for category in categories if is_granted('VIEW', category) %}
             <tr class="forum-table-header">
-                <th><a href="{{ forum_category_path(category) }}">{{ category.name }}</a></th>
-                <th>{{ 'forum.index.threads'|trans }}</th>
-                <th>{{ 'forum.index.activity'|trans }}</th>
+                <th class="thread-column"><a href="{{ forum_category_path(category) }}">{{ category.name }}</a></th>
+                <th class="posts-column">{{ 'forum.index.threads'|trans }}</th>
+                <th class="activity-column">{{ 'forum.index.activity'|trans }}</th>
             </tr>
             {% for forum in category.forums if is_granted('VIEW', forum) %}
                 {% set first = forum.threads.first() %}

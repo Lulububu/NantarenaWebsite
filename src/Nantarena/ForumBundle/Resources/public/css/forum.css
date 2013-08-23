@@ -20,3 +20,23 @@ div.forum-post-content {
 div.forum-control {
     /*padding: 20px 0;*/
 }
+
+th.thread-column {
+    width: 60%;
+}
+
+th.posts-column {
+    width: 10%;
+}
+
+th.activity-column {
+    width: 30%;
+}
+
+th.infos-column {
+    width: 15%;
+}
+
+th.content-column {
+    width: 85%
+}

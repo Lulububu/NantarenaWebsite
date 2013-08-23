@@ -16,8 +16,8 @@
     <table class="table">
         {% for post in pagination %}
             <tr id="post-{{ post.id }}" class="forum-table-header">
-                <th>{{ post.user.username }}</th>
-                <th class="text-right">
+                <th class="infos-column">{{ post.user.username }}</th>
+                <th class="content-colum text-right">
                     {% include 'NantarenaForumBundle:Control:_post.html.twig' %}
                     <div class="text-right">
                         {{ post.creationDate|localizeddate('medium', 'medium') }}

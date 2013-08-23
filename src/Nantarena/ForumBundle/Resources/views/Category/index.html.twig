@@ -5,9 +5,9 @@
 {% block forum_content %}
     <table class="table">
         <tr class="forum-table-header">
-            <th>{{ category.name }}</th>
-            <th>{{ 'forum.category.threads'|trans }}</th>
-            <th>{{ 'forum.category.activity'|trans }}</th>
+            <th class="thread-column">{{ category.name }}</th>
+            <th class="posts-column">{{ 'forum.category.threads'|trans }}</th>
+            <th class="activity-column">{{ 'forum.category.activity'|trans }}</th>
         </tr>
         {% for forum in category.forums if is_granted('VIEW', forum) %}
             {% set first = forum.threads.first() %}

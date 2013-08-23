@@ -5,9 +5,9 @@
 {% block forum_content %}
     <table class="table">
         <tr class="forum-table-header">
-            <th>{{ forum.name }}</th>
-            <th>{{ 'forum.forum.posts'|trans }}</th>
-            <th>{{ 'forum.forum.activity'|trans }}</th>
+            <th class="thread-column">{{ forum.name }}</th>
+            <th class="posts-column">{{ 'forum.forum.posts'|trans }}</th>
+            <th class="activity-column">{{ 'forum.forum.activity'|trans }}</th>
         </tr>
         {% for thread in sticky_threads %}
             {% include 'NantarenaForumBundle:Forum:_line.html.twig' %}
