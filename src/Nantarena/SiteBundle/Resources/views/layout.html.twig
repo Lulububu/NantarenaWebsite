@@ -64,7 +64,7 @@
                                 <div class="submit">
                                     <input type="checkbox" name="_remember_me" value="on" checked="checked" class="hide" />
                                     <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}" />
-                                    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+                                    {# <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" /> #}
                                     <input type="submit" class="btn" name="_submit" />
                                 </div>
                             </form>
