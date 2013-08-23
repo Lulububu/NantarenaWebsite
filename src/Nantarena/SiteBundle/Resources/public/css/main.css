@@ -478,6 +478,15 @@
         margin: 0;
     }
 
+    #forumWidget p.topic {
+        padding: 3px 2px 3px 2px;
+        line-height: 1;
+    }
+
+    #forumWidget p.unreads {
+        padding: 2px 2px 5px 2px;
+    }
+
     #forumWidget p.topic.new {
         font-weight: bold;
     }
