@@ -47,10 +47,15 @@ class ThreadRepository extends EntityRepository
         $qb = $this->createQueryBuilder('t');
 
         $qb
-            ->addOrderBy('t.updateDate', 'desc')
-            ->setMaxResults($limit);
+            ->addSelect('t, p, u1, u2, f, c')
+            ->join('t.forum', 'f')
+            ->join('f.category', 'c')
+            ->join('t.user', 'u1')
+            ->join('t.posts', 'p')
+            ->join('p.user', 'u2')
+            ->addOrderBy('t.updateDate', 'desc');
 
-        return $qb->getQuery()->getResult();
+        return array_slice($qb->getQuery()->getResult(), 0, $limit);
     }
 
     public function findUnreads(\DateTime $date)

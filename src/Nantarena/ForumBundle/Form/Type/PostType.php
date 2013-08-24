@@ -11,12 +11,7 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'textarea', array(
-                'attr' => array(
-                    'class' => 'input-block-level',
-                    'rows' => 20,
-                ),
-            ))
+            ->add('content', 'wysiwyg_area')
             ->add('submit', 'submit');
     }
 

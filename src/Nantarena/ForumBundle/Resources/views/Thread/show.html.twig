@@ -64,6 +64,16 @@
 
     {{ knp_pagination_render(pagination) }}
 
-    {% embed 'NantarenaForumBundle:Form:_quick_reply.html.twig' with {'submit': 'forum.form.post.reply.submit'|trans} %}
-    {% endembed %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% embed 'NantarenaForumBundle:Form:_quick_reply.html.twig' with {'submit': 'forum.form.post.reply.submit'|trans} %}
+        {% endembed %}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        CKEDITOR.config.height = 100;
+    </script>
 {% endblock %}

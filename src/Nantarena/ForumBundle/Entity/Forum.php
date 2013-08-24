@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="forum_forum")
  * @ORM\Entity(repositoryClass="Nantarena\ForumBundle\Repository\ForumRepository")
- * @UniqueEntity("name")
+ * @UniqueEntity({"category", "name"})
  */
 class Forum
 {
@@ -59,6 +59,7 @@ class Forum
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Nantarena\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="forum_forum_group")
      */
     private $groups;
 

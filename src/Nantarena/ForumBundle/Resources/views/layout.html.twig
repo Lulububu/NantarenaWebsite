@@ -20,3 +20,24 @@
     {% block forum_content %}
     {% endblock forum_content %}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% javascripts '@NantarenaForumBundle/Resources/public/js/*' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script>
+        CKEDITOR.config.extraPlugins = 'bbcode';
+        CKEDITOR.config.removePlugins = 'elementspath,bidi,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates';
+        CKEDITOR.config.height = 300;
+        CKEDITOR.config.toolbar = [
+            { name: 'styles', items : [ 'FontSize','TextColor' ] },
+            { name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
+            { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+            { name: 'links', items : [ 'Link','Unlink','Anchor' ] }
+        ];
+        CKEDITOR.config.fontSize_sizes = '30/30%;50/50%;100/100%;120/120%;150/150%;200/200%;300/300%';
+    </script>
+{% endblock %}

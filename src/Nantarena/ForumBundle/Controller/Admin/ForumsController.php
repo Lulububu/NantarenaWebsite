@@ -69,7 +69,7 @@ class ForumsController extends BaseController
      * @Route("/delete/{id}")
      * @Template()
      */
-    public function deleteAction(Request $request, forum $forum)
+    public function deleteAction(Request $request, Forum $forum)
     {
         $form = $this->createDeleteForm($forum->getId());
 

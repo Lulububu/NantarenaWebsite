@@ -52,6 +52,7 @@ class Category
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Nantarena\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="forum_category_group")
      */
     private $groups;
 

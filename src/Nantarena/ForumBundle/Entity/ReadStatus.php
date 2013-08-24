@@ -34,6 +34,7 @@ class ReadStatus
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Nantarena\ForumBundle\Entity\Thread")
+     * @ORM\JoinTable(name="forum_read_status_thread")
      * @ORM\OrderBy({"updateDate" = "DESC"})
      */
     protected $threads;

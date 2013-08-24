@@ -24,11 +24,7 @@ class ThreadType extends AbstractType
                     'class' => 'input-block-level',
                 ),
             ))
-            ->add('content', 'textarea', array(
-                'attr' => array(
-                    'class' => 'input-block-level',
-                    'rows' => 20,
-                ),
+            ->add('content', 'wysiwyg_area', array(
                 'mapped' => false,
                 'constraints' => new NotBlank(),
             ));
