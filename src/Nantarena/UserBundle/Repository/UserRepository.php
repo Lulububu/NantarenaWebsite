@@ -3,6 +3,7 @@
 namespace Nantarena\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Nantarena\EventBundle\Entity\Event;
 use Nantarena\UserBundle\Entity\Group;
 
 /**
@@ -28,5 +29,17 @@ class UserRepository extends EntityRepository
             ->setParameter('group', $group)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findRegisteredEvent(Event $event)
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.entries', 'ee')
+            ->leftJoin('ee.entryType', 'et')
+            ->where('et.event = :event')
+            ->setParameter('event', $event)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 }

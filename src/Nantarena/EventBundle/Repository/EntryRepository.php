@@ -4,6 +4,7 @@ namespace Nantarena\EventBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Nantarena\EventBundle\Entity\Event;
+use Nantarena\UserBundle\Entity\User;
 
 /**
  * EntryRepository
@@ -22,5 +23,18 @@ class EntryRepository extends EntityRepository
             ->setParameter('event', $event)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByEventAndUser(Event $event, User $user)
+    {
+        return $this->createQueryBuilder('e')
+            ->join('e.entryType', 'et')
+            ->addSelect('et')
+            ->where('et.event = :event')
+            ->andWhere('e.user = :user')
+            ->setParameter('event', $event)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

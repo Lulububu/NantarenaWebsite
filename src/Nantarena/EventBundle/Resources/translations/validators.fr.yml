@@ -20,3 +20,7 @@ event:
 
     tournaments:
         outDate: 'Les tournois doivent commencer pendant l''évènement'
+
+    user:
+        invalid: 'Le membre n''existe pas'
+        already: 'Le membre est déjà inscrit à l''évènement'

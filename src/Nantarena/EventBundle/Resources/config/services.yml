@@ -3,3 +3,9 @@ services:
         class: Nantarena\EventBundle\Controller\AdminController
         tags:
             - { name: nantarena_admin.dashboard}
+
+    nantarena_event.user_entry_constraint:
+        class: Nantarena\EventBundle\Validator\Constraints\UserEntryConstraintValidator
+        arguments: [@doctrine.orm.entity_manager, @translator]
+        tags:
+            - { name: validator.constraint_validator, alias: user_entry_constraint }

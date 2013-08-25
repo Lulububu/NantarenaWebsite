@@ -12,7 +12,9 @@
     </div>
 
     <div class="text-center">
-        <a class="btn" href="{{ path('nantarena_user_admin_users_create') }}">
+        <a class="btn" href="{{ path('nantarena_event_admin_entries_create', {
+            'slug': event.slug
+        }) }}">
             {{ 'event.admin.entries.create.title'|trans }}
         </a>
     </div>
@@ -50,11 +52,17 @@
                     <td>--</td>
                     <td>Paypal</td>
                     <td>
-                        <a href="{{ path('nantarena_user_admin_users_edit', {'id': entry.user.id}) }}">
+                        <a href="{{ path('nantarena_event_admin_entries_edit', {
+                            'slug': event.slug,
+                            'user_id': entry.user.id
+                        }) }}">
                             <i class="icon-wrench"></i>
                         </a>
                         &nbsp;&nbsp;
-                        <a href="{{ path('nantarena_user_admin_users_delete', {'id': entry.user.id}) }}">
+                        <a href="{{ path('nantarena_event_admin_entries_delete', {
+                            'slug': event.slug,
+                            'user_id': entry.user.id
+                        }) }}">
                             <i class="icon-trash"></i>
                         </a>
                     </td>

@@ -1,0 +1,24 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'event.admin.entries.delete.title'|trans %}
+{% block page_title 'event.admin.entries.delete.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaSiteBundle::_deleteConfirm.html.twig' %}
+
+        {% block warning %}
+            {{ 'event.admin.entries.delete.warning'|trans }}
+        {% endblock %}
+
+        {% block info %}
+            {{ 'event.admin.entries.delete.info'|trans }}
+        {% endblock %}
+
+        {% block back %}
+            <a href="{{ path('nantarena_event_admin_entries') }}">
+                {{ 'event.admin.entries.back'|trans }}
+            </a>
+        {% endblock %}
+
+    {% endembed %}
+{% endblock %}

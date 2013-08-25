@@ -1,0 +1,23 @@
+<div class="span6 offset3">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.event, {'label': 'event.profile.index.event'|trans|colon}) }}
+
+        {{ form_row(form.user, {
+            'label': 'user.form.username'|trans|colon,
+            'invalid_message': 'event.user.invalid'|trans({}, 'validators')
+        }) }}
+
+        {{ form_row(form.entryType, {'label': 'event.form.entrytype.name'|trans|colon}) }}
+        {{ form_row(form.submit, {'label': submit}) }}
+    {{ form_end(form) }}
+
+    <p class="text-center">
+        <a href="{{ path('nantarena_event_admin_entries', {
+            'slug': event.slug
+        }) }}">
+            {{ 'event.admin.entries.back'|trans }}
+        </a>
+    </p>
+</div>

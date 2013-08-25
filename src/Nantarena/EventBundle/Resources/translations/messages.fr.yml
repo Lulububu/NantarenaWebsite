@@ -7,8 +7,25 @@ event:
             title: 'Gestion des évènements'
 
         entries:
+            back: 'Retour à la liste'
             create:
                 title: 'Ajouter une nouvelle inscription'
+                flash_error: 'Erreur lors de la création de l''inscription'
+                flash_success: 'La nouvelle inscription a été créée avec succès'
+                submit: Créer
+
+            edit:
+                flash_error: 'Erreur lors de la modification de l''inscription'
+                flash_success: 'L''inscription a été modifiée avec succès'
+                submit: Modifier
+                title: 'Modifier une inscription'
+
+            delete:
+                flash_error: 'Erreur lors de la suppression de l''inscription'
+                flash_success: 'L''inscription a été supprimée avec succès'
+                info: 'Toutes les données liées à cette inscription seront également supprimées'
+                title: 'Suppression d''une inscription'
+                warning: 'Vous êtes sur le point de supprimer une inscription.'
 
             list:
                 empty: 'Aucune inscription ne correspond aux critères'

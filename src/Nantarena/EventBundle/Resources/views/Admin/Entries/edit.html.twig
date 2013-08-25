@@ -1,0 +1,10 @@
+{% extends 'NantarenaAdminBundle::layout.html.twig' %}
+
+{% block title 'event.admin.entries.edit.title'|trans %}
+{% block page_title 'event.admin.entries.edit.title'|trans %}
+
+{% block admin_content %}
+    {% embed 'NantarenaEventBundle:Admin/Entries:_form.html.twig' with {
+        'submit': 'event.admin.entries.edit.submit'|trans
+    } %}{% endembed %}
+{% endblock %}
